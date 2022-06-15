@@ -1,0 +1,148 @@
+//========================
+// Health & Armor Spawners
+//========================
+
+ACTOR NewHealthInvasionSpot : CustomPickupInvasionSpot
+{
+//$Category Invasion Health and Armor Spawners
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR HealthFlaskSpot : NewHealthInvasionSpot 15100
+{
+	//$Title Health Flask
+	//$Sprite PMEDA0
+	DropItem "HealthFlask2"
+}
+
+ACTOR StimkitSpot : NewHealthInvasionSpot 15101
+{
+	//$Title Stimkit
+	//$Sprite PME2A0
+	DropItem "Stimkit2"
+}
+
+ACTOR PortableMedkitSpot : NewHealthInvasionSpot 15102
+{
+	//$Title Portable Medkit
+	//$Sprite PME3A0
+	DropItem "PortableMedkit2"
+}
+
+ACTOR ArmorChargeSpot : NewHealthInvasionSpot 15103
+{
+	//$Title Armor Charge
+	//$Sprite ACRGA0
+	DropItem "ArmorCharge2"
+}
+
+ACTOR ArmorBoosterSpot : NewHealthInvasionSpot 15104
+{
+	//$Title Armor Booster
+	//$Sprite ABSTA0
+	DropItem "ArmorBooster2"
+}
+
+ACTOR ArmorPlateSpot : NewHealthInvasionSpot 15105
+{
+	//$Title Armor Plate
+	//$Sprite ARMPA0
+	DropItem "ArmorPlate2"
+}
+
+ACTOR LifeEssenceSpot : NewHealthInvasionSpot 15106
+{
+	//$Title Life Essence
+	//$Sprite LIFEA0
+	DropItem "LifeEssence"
+}
+
+ACTOR BossLifeEssenceSpot : NewHealthInvasionSpot 15107
+{
+	//$Title Boss Life Essence
+	//$Sprite BLIFA0
+	DropItem "BossLifeEssence"
+}
+
+ACTOR NewMaxArmorBonusSpot : NewHealthInvasionSpot 15108
+{
+	//$Title Max Armor Bonus
+	//$Sprite MABOA0
+	Scale 0.18
+	DropItem "NewMaxArmorBonus"
+}
+
+ACTOR ArmorBonusMaxSpot : NewHealthInvasionSpot 15109
+{
+	//$Title Armor Bonus Max
+	//$Sprite LFSSA0
+	DropItem "ArmorBonusMax"
+}
+
+ACTOR BossArmorBonusMaxSpot : NewHealthInvasionSpot 15110
+{
+	//$Title Boss Armor Bonus Max
+	//$Sprite DASPA0
+	DropItem "BossArmorBonusMax"
+}
+
+ACTOR RedArmorSpot1 : NewHealthInvasionSpot 15111
+{
+	//$Title Red Armor
+	//$Sprite ARM3B0
+	DropItem "RedArmorPickup"
+}
+
+ACTOR ExtraArmorSpot : NewHealthInvasionSpot 15112
+{
+	//$Title Extra Armor
+	//$Sprite ARMEA0
+	DropItem "NewExtraArmor"
+}
+
+ACTOR NewMaxHealthBonusSpot : NewHealthInvasionSpot 15113
+{
+	//$Title Max Health Bonus
+	//$Sprite MHBSA0
+	Scale 0.24
+	DropItem "NewMaxHealthBonus"
+}
+
+ACTOR LegendaryArmorSpot : NewHealthInvasionSpot 15114
+{
+	//$Title Legendary Armor
+	//$Sprite LEGAA0
+	DropItem "LegendaryArmorPickup"
+}
+
+ACTOR MedPackSpot : NewHealthInvasionSpot 15115
+{
+	//$Title Medical Backpack
+	//$Sprite MBPKA0
+	DropItem "MedPack"
+}
+
+ACTOR SuperHealthBonusSpot : NewHealthInvasionSpot 15116
+{
+	//$Title Super Health Bonus
+	//$Sprite EHLZA0
+	DropItem "SuperHealthBonus"
+}
+
+ACTOR SuperArmorBonusSpot : NewHealthInvasionSpot 15117
+{
+	//$Title Super Armor Bonus
+	//$Sprite EHLXA0
+	DropItem "SuperArmorBonus"
+}
+
+ACTOR TrueLegendaryArmorSpot : NewHealthInvasionSpot 15118
+{
+	//$Title True Legendary Armor
+	//$Sprite ATLGA0
+	DropItem "TrueLegendaryArmorPickup"
+}

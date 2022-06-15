@@ -1,0 +1,5 @@
+IWAD = "DOOM2.WAD"
+STARTUPTITLE = "Complex Doom Invasion (v0.99.9)"
+STARTUPCOLORS = "00 b7 b5","00 0e 0e"
+STARTUPTYPE = "Hexen"
+STARTUPSONG = "D_DM2INT"

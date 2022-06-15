@@ -1,0 +1,281 @@
+//====================================================\\
+// ------------------ Max Soldier ------------------- \\
+//====================================================\\
+
+Actor MaxSoldier : MechPickup
+{
+  States
+  {
+  Spawn:
+    MECH E 1 A_SpawnItemEx("SuitIndicator",0,0,64)
+    Loop
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("MaxSoldierGiver")
+	Stop
+  Nope:
+	MECH E 1
+	Stop
+  }
+}
+
+ACTOR MaxSoldierGiver : MechGiver{Powerup.Type "MaxSoldier"}
+
+ACTOR PowerMaxSoldier : PowerMorph
+{
+  PowerMorph.PlayerClass "Suit_MaxSoldier"
+  PowerMorph.MorphFlash "Nothing"
+  PowerMorph.UnMorphFlash "Nothing"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Suit_MaxSoldier : PlayerPawn
+{
+  Speed 1
+  Mass 300
+  Radius 20
+  Height 56
+  Health 300
+  Player.MaxHealth 300
+  Player.ForwardMove 0.75
+  Player.SideMove 0.5
+  Player.JumpZ 9
+  Player.SoundClass "Marine"
+  Player.DisplayName "Max Soldier"
+  Player.AttackZOffset 0
+  Player.DamageScreenColor Blue, 0.1
+  Player.MorphWeapon "MaxSoldier-Weapons"
+  PainChance 256
+  DamageFactor "Slime", 0
+  DamageFactor "MechStep", 0.0
+  DamageFactor "Marine", 0.0
+  DamageFactor "MarinePierce", 0.0
+  DamageFactor "MarineKaboom", 0.0 
+  DamageFactor 0.45
+  RadiusDamageFactor 0.85
+  Species "Player"
+  +THRUSPECIES
+  +DONTHARMSPECIES
+  +NOICEDEATH
+  +NOSKIN
+  +DONTRIP
+  +NOTELEFRAG
+  States
+  {
+   Spawn:
+    SUT1 A -1
+    Loop
+   See:
+    SUT1 AABB 3
+    TNT1 A 0 A_PlaySound("b1battlebot/step")
+    SUT1 CCDD 3
+    TNT1 A 0 A_PlaySound("b1battlebot/step")
+    Goto Spawn
+   Missile:
+    SUT1 E 12 
+    Goto Spawn
+   Melee:
+    SUT1 F 6 Bright
+    Goto Missile
+   Pain:
+    SUT1 G 4 
+    SUT1 G 4 A_Pain
+    Goto Spawn
+   Death:
+	SUT1 H 8
+	SUT1 I 8 A_PlayerScream
+	SUT1 J 8 A_NoBlocking
+	SUT1 K 8
+	SUT1 L 8 A_SpawnItem("BodyCrash",0,0,0,0)
+	SUT1 M 8
+	SUT1 N -1
+	Stop
+  }
+}
+
+Actor MaxSoldier-Weapons : Weapon
+{
+  +INVENTORY.UNDROPPABLE
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL
+  +WEAPON.CHEATNOTWEAPON
+  States
+  {
+  Ready:
+	MUS1 A 0
+	MUS1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+    MUS1 AAAAA 1 A_WeaponReady
+    Loop
+  Deselect: 
+    MUS1 A 1 A_Lower
+    Loop
+  Select:
+    MUS1 A 1 A_Raise
+    Loop
+  Fire:
+    MUS1 A 0 A_JumpIfInventory("MechRailgunReload",1,"AltFire")
+    MUS1 A 0 A_GiveInventory("MechRailgunReload",1)
+    MUS1 A 0 ACS_ExecuteAlways(3113,0,4)
+	MUS1 A 0 ACS_ExecuteAlways(3104,0,8)
+	MUS1 A 0
+    Goto Ready	
+  AltFire:
+    MUS1 A 1 A_FireCustomMissile("PlasmaBeamProj",0,0,0,18)
+	MUS1 A 0 A_PlayWeaponSound("plasmagun/fire")
+    MUS1 A 1 A_GunFlash
+    MUS1 A 1 A_ReFire
+    MUS1 A 10
+    Goto Ready
+  Flash:
+    MUS1 B 2 Bright A_Light1
+    MUS1 C 3 Bright A_Light2
+    MUS1 A 0 Bright A_Light0
+    Stop
+  GrenadeCheck:
+	MUS1 A 0
+	MUS1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	MUS1 A 0 A_JumpIfInventory("MechSeekerRocketReload",1,"AltFire")
+    MUS1 A 0 A_GiveInventory("MechSeekerRocketReload",1)
+    MUS1 A 0 ACS_ExecuteAlways(3113,0,20)
+	MUS1 A 0 ACS_ExecuteAlways(3104,0,1009)
+	MUS1 A 0 A_GunFlash
+	Goto Ready
+  Spawn:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR MaxSoldier-MiniRocket1 : CustomInventory
+{       
+Inventory.Amount 1
+Inventory.MaxAmount 1
++INVENTORY.QUIET
++INVENTORY.UNDROPPABLE
++INVENTORY.ALWAYSPICKUP
++INVENTORY.AUTOACTIVATE
+States
+{
+  Use:
+	TNT1 A 0 
+	//TNT1 A 0 A_GunFlash DO NOT USE IT IN INVENTORY OR IT WILL ENDS UP WITH CRASH WHEN FIRING AS MAX SOLDIER AND EXITING MECH AT SAME TIME!!!
+	TNT1 A 0 A_FireCustomMissile("MaxMiniRocket",0,0,-12,24)
+	Stop
+}
+}
+
+ACTOR MaxSoldier-MiniRocket2 : MaxSoldier-MiniRocket1
+{       
+States
+{
+  Use:
+	TNT1 A 0 
+	//TNT1 A 0 A_GunFlash DO NOT USE IT IN INVENTORY OR IT WILL ENDS UP WITH CRASH WHEN FIRING AS MAX SOLDIER AND EXITING MECH AT SAME TIME!!!
+	TNT1 A 0 A_FireCustomMissile("MaxMiniRocket",0,0,12,24)
+	Stop
+}
+}
+
+ACTOR MaxSoldier-DiggerGrenade : MaxSoldier-MiniRocket1
+{       
+States
+{
+  Use:
+	TNT1 A 0 
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+	TNT1 A 0 A_PlaySoundEx("digger/fire",0,FALSE)
+	TNT1 A 0 A_FireCustomMissile("DiggerGrenade",0,1,9,3)
+	Stop
+}
+}
+
+ACTOR PlasmaBeamProj : FastProjectile
+{
+Speed 200
+Radius 13
+Height 8
+Damage 3
+Decal DoomImpScorch
+Damagetype "Marine"
+MissileType "BeamTrail"
++MTHRUSPECIES
+//+NOTIMEFREEZE
+States
+{
+  Spawn:
+    TNT1 A 1
+    Loop
+  Death:
+    TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom6", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+    AP2X BCDE 3 Bright
+    Stop
+  }
+}
+
+ACTOR MPlasmaBeamProj : PlasmaBeamProj
+{
+Damage 6
+-MTHRUSPECIES
+}
+
+ACTOR BeamTrail : ClientSideEffect
+{
+  Speed 0
+  Projectile
+  +FORCEXYBILLBOARD
+  +CLIENTSIDEONLY
+  RenderStyle Add
+  Alpha 0.67
+  Scale 0.25
+  States
+  {
+  Spawn:
+    AP2X BCD 1 Bright
+    Stop
+  }
+}
+
+Actor MaxMiniRocket : MiniRocket
+{
+Damage 7
+Damagetype "Marine"
++MTHRUSPECIES
+States
+{
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 1, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_CustomMissile("Kaboom9", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_Explode(16,34)
+	TNT1 A 0 A_SetTranslucent(0.85,1)
+	H2BL JKLMN 4 Bright
+	Stop
+}
+}
+
+ACTOR MaxSoldier_Destroyed
+{
+  States
+  {
+  Spawn:
+    MECH E 70
+	MECH EE 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH EEEEEE 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	MECH EE 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	MECH EE 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH EEEEEE 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	MECH EE 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+    MECH EE 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH EEEEEE 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	MECH EE 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+    MECH EE 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH EEEEEE 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+    Stop 	
+  }
+}

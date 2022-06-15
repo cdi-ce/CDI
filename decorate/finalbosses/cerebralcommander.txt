@@ -1,0 +1,628 @@
+ACTOR CerebralCommander
+{
+Health 16000
+Radius 158
+Height 228
+Mass 999999
+Speed 15
+FloatSpeed 15
+Monster
+Obituary "%o was turned to mush by heavy weapons from the Cerebral Commander."
++BOSS
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NORADIUSDMG
++DONTHARMSPECIES
++NOTIMEFREEZE
++FLOAT
++NOGRAVITY
++DONTRIP
++DROPOFF
++NOPAIN
++NOFEAR
++BRIGHT
+Scale 3
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Cyber10K", 0.0
+DamageFactor "Legendary", 0.1
+DamageFactor "BFGSplash", 0.25
+DamageFactor "PDTBFG", 0.05
+DamageFactor "PDTBFGTracer", 0.05
+DamageFactor "PlayerDevBall", 0.2
+DamageFactor "PlayerDevTracer", 0.2
+DamageFactor "MechStep", 0.0
+DamageFactor "FinalBossSector", 0.0
+DamageFactor "Pierce", 0.25
+DamageFactor "MarinePierce", 0.25
+DamageFactor "Kaboom", 0.2
+DamageFactor "MarineKaboom", 0.2
+DamageFactor 0.4
+RadiusDamageFactor 0.5
+MinMissileChance 10
+SeeSound "Commander/See"
+DeathSound "Commander/Die"
+AttackSound ""
+var int user_script;
+var int user_part1;
+var int user_part2;
+var int user_part3;
+var int user_wait;
+Tag "\c[w8]Cerebral Commander\c-"
+States
+{
+  Spawn:
+    TNT1 A 0 A_JumpIf(user_script == 1,4)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("CerebralCommanderFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	COMM AB 2 Bright A_Look
+	Loop	
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,4)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("CerebralCommanderFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_UnSetInvulnerable
+	COMM AB 2 Bright A_Chase
+	TNT1 A 0 A_Jump(38,"Evade")	
+	TNT1 A 0 A_JumpIfTargetInLos(2)
+	TNT1 A 0 A_Jump(256,2)
+    TNT1 A 0 A_Jump(88,"Strafing")
+	TNT1 A 0
+	Loop
+  Strafing:
+	COMM A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	COMM A 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM B 0 A_Chase("","Missile",CHF_DONTMOVE)
+	COMM B 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(8,"See")
+	Loop	
+  Evade:
+	TNT1 A 0 A_Jump(128,11)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+	COMM ABABABAB 2 Bright A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+	COMM ABABABAB 2 Bright A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+  Missile:
+	TNT1 A 0 A_Jump(64,"DTBFG","HellStormAltBFG10K","Devastator","BrainWave")
+	TNT1 A 0 A_Jump(128,"BFG9K","BFG10K","HellStormBFG10K","MiniDTBFG","Summon")
+  Normal:
+    TNT1 A 0 A_JumpIfCloser(2200,1)
+	Goto BFG9K
+	COMM ABA 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+    TNT1 AAA 0 A_SpawnItemEx("OrangeShellCasing", 10, -12, 40, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 AAA 0 A_CustomMissile("SentientExplosiveTracer",75,random(-40,40),Random(-5,5),0)
+	COMM C 4 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+    TNT1 AAA 0 A_SpawnItemEx("OrangeShellCasing", 10, -12, 40, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 AAA 0 A_CustomMissile("SentientExplosiveTracer",75,random(-40,40),Random(-5,5),0)
+	COMM D 4 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_StopSoundEx("Weapon")	
+	TNT1 A 0 A_Jump(3,"See","BFG9K","BFG10K","DTBFG")
+    TNT1 A 0 A_SpidRefire
+	Goto Normal+4
+  BFG9K:
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	COMM EEEEEEEEEEEEFFFF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,14)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-14)	
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,0)
+	COMM FF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,14)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-14)	
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,0)
+	COMM FF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,14)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-14)	
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,0)
+	COMM FEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	COMM EEEEEEEEEEEEFFFF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,14)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-14)	
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,0)
+	COMM FF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,14)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-14)	
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,0)
+	COMM FF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,14)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-14)	
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,-7)
+	COMM F 0 A_CustomMissile("UpdatedSentientBFG9500Ball",98,0,0)
+	COMM FEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"BFG10K")
+	Goto See
+  BFG10K:
+	TNT1 A 0 A_PlaySound("SeekerBFG10K/Start")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	COMM EEEEEEEE 3 Bright A_GiveInventory("CebComStrafe",1)
+  BFG10KGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 48,"BFG10KEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	COMM F 2 Bright A_CustomMissile("CebCom10K",98,0,Random(6,-6))
+	COMM E 2 Bright A_GiveInventory("CebComStrafe",1)
+    TNT1 A 0 A_JumpIf(user_wait >= 24,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(12,2)
+	TNT1 A 0 
+	Loop
+  BFG10KEnd:
+	COMM E 3 Bright A_PlaySound("SeekerBFG10K/Cool",CHAN_AUTO)
+	COMM EEEEEE 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"MiniDTBFG")
+	Goto See
+  MiniDTBFG:
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGCharge")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	COMM EEEEEEE 4 Bright A_GiveInventory("CebComStrafe",1)
+  MiniDTBFGGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 14,"MiniDTBFGEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	COMM F 0 A_CustomMissile("LesserCardinalMiniDTBFG",98,0,Random(3,-3))
+	COMM FFEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	Loop
+  MiniDTBFGEnd:
+	COMM EEEE 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"DTBFG")
+	Goto See
+  DTBFG:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	COMM EEEEEEEEEEEEEEEEEEFFFF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 2 Bright A_CustomMissile("CebComDTBFG10KBall",98,0,0)
+	COMM EE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	COMM EEEEEEEEEEEEEEEEEEFFFF 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM F 2 Bright A_CustomMissile("CebComDTBFG10KBall",98,0,0)
+	COMM EEEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"HellStormBFG10K")
+	Goto See
+  HellStormBFG10K:
+	TNT1 A 0 A_PlaySound("weapons/Hcharge10k")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	COMM EEEEEEE 4 Bright A_GiveInventory("CebComStrafe",1)
+  HellStormBFG10KGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 12,"HellStormBFG10KEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	COMM FFFFF 0 A_CustomMissile("CardihilationHSBFG10kShot",98,0,Random(4,-4))
+	COMM FEEE 4 Bright A_GiveInventory("CebComStrafe",1)
+	Loop
+  HellStormBFG10KEnd:
+	COMM EEEEEEE 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"HellStormAltBFG10K")
+	Goto See
+  HellStormAltBFG10K:
+	TNT1 A 0 A_PlaySound("weapons/Hcharge10k")
+	COMM EEEEEEEEEEEEEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	COMM F 0 A_CustomMissile("CardihilationHSBFG10kBigShot",98,0,-5)
+	COMM F 0 A_CustomMissile("CardihilationHSBFG10kBigShot",98,0,5)
+	COMM F 0 A_CustomMissile("CardihilationHSBFG10kBigShot",98,0,0)
+	COMM FFEEEEEEEEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/Hcharge10k")
+	COMM EEEEEEEEEEEEEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	COMM F 0 A_CustomMissile("CardihilationHSBFG10kBigShot",98,0,-5)
+	COMM F 0 A_CustomMissile("CardihilationHSBFG10kBigShot",98,0,5)
+	COMM F 0 A_CustomMissile("CardihilationHSBFG10kBigShot",98,0,0)
+	COMM FFEEEEEEEEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"Devastator")
+	Goto See
+  Devastator:
+	TNT1 A 0 A_PlaySound("devastator/charge")
+	COMM EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFFFF 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("devastator/fire")
+	COMM F 2 Bright A_CustomMissile("UpdatedDemonDevastatorBall",98,0,0)
+	COMM EE 2 Bright A_GiveInventory("CebComStrafe",1)
+	COMM EEEE 2 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"BrainWave")
+	Goto See
+  BrainWave:
+    COMM GGGGG 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_PlaySound("Commander/Attack")
+	COMM HHHHHHHHHHHHHHHHH 3 Bright A_GiveInventory("CebComStrafe",1)
+	COMM I 4 Bright A_CustomMissile("CebComBrainBall",200,0,random(-12,12))
+	COMM HH 3 Bright A_GiveInventory("CebComStrafe",1)
+	COMM I 4 Bright A_CustomMissile("CebComBrainBall",200,0,random(-12,12))
+	COMM HH 3 Bright A_GiveInventory("CebComStrafe",1)
+	COMM I 4 Bright A_CustomMissile("CebComBrainBall",200,0,random(-12,12))
+	COMM HH 3 Bright A_GiveInventory("CebComStrafe",1)
+	COMM I 4 Bright A_CustomMissile("CebComBrainBall",200,0,random(-12,12))
+	COMM HH 3 Bright A_GiveInventory("CebComStrafe",1)
+	COMM GGGGG 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_Jump(110,"Summon")
+	Goto See
+ Summon:
+	COMM GGGGGG 3 Bright A_GiveInventory("CebComStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 Radius_Quake(10,80,0,24,0)
+	TNT1 A 0 A_SpawnItem("CerebralCommanderBrainSFX",0,0,0,0)
+	COMM G 3 Bright A_PlaySound("sentient/laugh")
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,30,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,90,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,150,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,210,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,270,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,330,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,360,0)
+	COMM GG 3 Bright A_SpawnItem("CerebralCommanderBrainSFX",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,15,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,45,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,75,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,105,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,135,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,165,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,195,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,225,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,255,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,285,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,315,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,345,0)
+	COMM GG 3 Bright A_SpawnItem("CerebralCommanderBrainSFX",0,0,0,0)
+	COMM GGGGG 0 A_SpawnItemEx("CeComSpawners",0,0,0,0,0,0,0,32,64)
+	COMM GGGGGGGGGG 3 Bright A_SpawnItem("CerebralCommanderBrainSFX",0,0,0,0)
+	COMM GGGGGGGGGGGGG 0 A_SpawnItemEx("CeComSpawners",0,0,0,0,0,0,0,32,64)
+	COMM GGGGGGGGGGGGGG 3 Bright A_SpawnItem("CerebralCommanderBrainSFX",0,0,0,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	COMM A 3 Bright
+	TNT1 A 0 A_Jump(110,"Summon")
+	Goto See	
+  Death:
+	TNT1 A 0 A_ScreamAndUnblock
+	COMM J 20 A_GiveInventory("ImDead",1)
+	COMM JJJJJJJJJJ 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(100,156))
+    TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	TNT1 AAAA 0 A_SpawnItemEx("BigRedBloodCloud",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	COMM KKKKK 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(100,156))
+    TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	TNT1 AAAA 0 A_SpawnItemEx("BigRedBloodCloud",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	COMM LLLLL 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(100,156))
+    TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	TNT1 AAAA 0 A_SpawnItemEx("BigRedBloodCloud",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+    COMM LLLLL 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(100,156))
+    TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	TNT1 AAAA 0 A_SpawnItemEx("BigRedBloodCloud",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)		
+    COMM MMMMM 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(100,156))
+    TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	TNT1 AAAA 0 A_SpawnItemEx("BigRedBloodCloud",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+    COMM MMMMM 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	TNT1 A 0 A_SpawnItemEx("SuperBossExplosionEffect",0,0,128)
+    TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+	TNT1 AAAA 0 A_SpawnItemEx("BigRedBloodCloud",random(-64,64),random(-64,64),random(100,156),0,0,0,0,128)	
+    COMM NNNNN 2 Bright A_SpawnItemEx("Kaboom",random(-128,128),random(-128,128),random(100,156),0,0,0,0,128)		
+	Stop	
+}
+}
+
+Actor CeComSpawners
+{
+Radius 40
+Height 56
+Speed 29
+Monster
++FLOAT
+-SHOOTABLE
+-COUNTKILL
+-SOLID
+Gravity 1000
+Mass 99999
+MaxDropOffHeight 48
+MaxStepHeight 32
+var int user_limit;
+States
+{
+   Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_SetAngle(random(0,359))
+	TNT1 A 1 A_Recoil(-80)
+	TNT1 A 0 A_JumpIf(user_limit > 3,"Death")
+	TNT1 A 0 A_SetUserVar("user_limit",user_limit+1)
+	TNT1 A 1 A_Recoil(-8)
+	TNT1 A 2 A_Jump(16,"Death")
+    Goto Spawn+3
+   Death:
+    TNT1 A 0 A_SpawnItemEx("TeleportFog")
+    TNT1 A 5 A_SpawnItemEx("CeComMinions")
+	TNT1 A 1 A_Fall
+	Stop	
+	}
+}
+
+Actor CeComMinions
+{
++NOSECTOR
++NOGRAVITY
++BOSSDEATH
++SHOOTABLE
++ISMONSTER
++NORADIUSDMG
++NOINTERACTION
++NOBLOCKMAP
+HEALTH 0x7FFFFFFF
+Radius 0
+Height 0
+Mass 0x7FFFFFFF
+States
+{
+  Spawn:
+    TNT1 A 1
+	TNT1 A 0 A_Jump(12,"OPSpawn")
+	TNT1 A 0 A_Jump(24,"StrongSpawn")
+    TNT1 A 0 A_Jump(48,"MediumSpawn")
+  WeakSpawn:
+    TNT1 A 0 A_SpawnItemEx("Dualachnotron1")
+    Stop
+  MediumSpawn:
+    TNT1 A 0 A_SpawnItemEx("Fusionite1")
+    Stop
+  StrongSpawn:
+    TNT1 A 0 A_SpawnItemEx("BabyDemolisher1")
+    Stop
+  OPSpawn:
+    TNT1 A 0 A_SpawnItemEx("BabySentient1")
+    Stop	
+    }
+}
+
+ACTOR CebCom10K : DemonRed10KProjectile
+{
+Obituary "%o was turned to mush by heavy weapons from the Cerebral Commander."
++SEEKERMISSILE
+Decal BFG10KLightning
+States
+{
+  Spawn:
+   TRA3 A 35 Bright
+  Fly:
+   TRA3 A 3 Bright A_SeekerMissile(3,5)
+   Loop
+}
+}
+
+ACTOR CebCom10KBFG9500Ball : SentientBFG9500Ball
+{
+-THRUSPECIES
+Obituary "%o was turned to mush by heavy weapons from the Cerebral Commander."
+Decal BFG9500LightningRed
+States
+{
+  Spawn:
+    BFR3 AAABBB 2 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 AAAAAA 0 A_CustomMissile("Kaboom18", 0, 0, random(0,360), 2, random(0,360))
+    BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    BRE3 C 8 Bright A_BFGSpray("CustomSprayRed")
+    BRE3 DEF 8 Bright
+    Stop    
+}
+}
+
+ACTOR CebComDTBFG10KBall : UpdatedDemonDTBFG10KBall
+{
++SEEKERMISSILE
+States
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SeekerMissile(3,5)
+    TNT1 A 0 A_PlaySoundEx("weapons/dtech10kball","Voice",1)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 A 1 Bright A_SpawnItemEx("UpdatedDemonDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 B 1 Bright A_SpawnItemEx("UpdatedDemonDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SeekerMissile(3,5)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 C 1 Bright A_SpawnItemEx("UpdatedDemonDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 D 1 Bright A_SpawnItemEx("UpdatedDemonDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    Loop
+}
+}
+
+ACTOR CebComDTBFGProjectileAttack : SentientDTBFGProjectileAttack
+{
+Obituary "%o was turned to mush by heavy weapons from the Cerebral Commander."
+}
+
+ACTOR CebComBrainBall
+{
+Radius 12
+Height 12
+Speed 60
+Damage 50
+Scale 1.2
++ExtremeDeath
++DontReflect
++SeekerMissile
++ForceRadiusDMG
+PROJECTILE
+Renderstyle Add
+SEESOUND "queen/fire"
+DEATHSOUND "queen/hit"
+Obituary "%o was turned to mush by heavy weapons from the Cerebral Slayer."
+DECAL BFG9500LightningRed
+States
+{
+ Spawn:
+     CBTS ABCDEFABCDEF 1 BRIGHT
+ Fly:
+    CBTS A 0 A_SeekerMissile(5,5)
+    CBTS A 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS B 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS C 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS D 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS E 2 BRIGHT A_SpawnItem("CebComBrainWave")	
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS F 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS G 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS H 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS I 2 BRIGHT A_SpawnItem("CebComBrainWave")
+	CBTS A 0 A_SeekerMissile(5,5)
+    CBTS J 2 BRIGHT A_SpawnItem("CebComBrainWave")	
+    Loop
+  Death:
+    CBTS K 0 Radius_Quake(15,15,0,40,0)
+	CBTS K 2 BRIGHT A_Explode(156,156)
+	TNT1 A 0 A_SpawnItemEx("DTech10KShockwave2", 0, 0, 15, 0, 0, 0, 0, 128)
+    TNT1 A 20 A_SpawnItem("RedDTBFGEx",0,-10)
+	CBTS LMNOPQRSTUVW 2 BRIGHT
+	Stop
+	}
+}
+
+ACTOR CebComBrainWave
+{   
+Radius 30
+Height 30
+Speed 5
+PROJECTILE
++NOGRAVITY
++NOTELEPORT
++NOBLOCKMAP
++EXTREMEDEATH
++DONTHURTSPECIES
++ForceRadiusDMG
+RenderStyle ADD
+Alpha 0.5
+Species "Masterminds"
+States
+{
+   Spawn:
+      TNT1 A 0
+      ESHK ABCDEFGHIJKLMNOPQR 2 Bright A_Explode(6,80,0)
+      Stop
+   }
+}
+
+ACTOR CerebralCommanderFireFollower
+{
++NOBLOCKMAP
++NOTELEPORT
++DONTSPLASH
++NOINTERACTION
++NOGRAVITY
+States
+{
+  Spawn:
+	TNT1 A 2 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	TNT1 A 0 A_SpawnItemEx("CerebralCommanderFireSpawner",0,0,0,0,0,0,0,32)
+	TNT1 A 0 A_JumpIfInventory("ImDead",1,"Death",AAPTR_TARGET)
+	Loop
+  Death:
+	TNT1 A 1
+	Stop
+	}
+}
+
+ACTOR CerebralCommanderFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_PlaySound("monster/ambientfire2")
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+    TNT1 AAAA 0 A_SpawnItemEx("SentientFire",random(140,160),random(140,160),188,0,0,random(-8,-16),0,128,0)
+	TNT1 AAAA 0 A_SpawnItemEx("SentientFire",random(-140,-160),random(-140,-160),188,0,0,random(-8,-16),0,128,0)
+	TNT1 AAAA 0 A_SpawnItemEx("SentientFire",random(140,160),random(-140,-160),188,0,0,random(-8,-16),0,128,0)
+	TNT1 AAAA 0 A_SpawnItemEx("SentientFire",random(-140,-160),random(140,160),188,0,0,random(-8,-16),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR CerebralCommanderBrainSFX : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 AAAAA 0 A_SpawnItemEx("SentientBrainLightning",random(120,-120),random(120,-120),random(60,200),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_SpawnItemEx("SentientBrainLightning2",random(120,-120),random(120,-120),random(60,200),0,0,0,0,128,0)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SentientBrainFlame",random(120,-120),random(120,-120),random(60,200),0,0,random(4,6),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+Actor CebComStrafe : CustomInventory
+{
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.AUTOACTIVATE       
+  +COUNTITEM
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  States
+  {
+  Pickup:
+    NULL A 1
+	NULL A 1 A_ChangeVelocity(velx/2,vely/2,velz,CVF_REPLACE)
+	NULL A 1 A_JumpIf(velx != 0 || vely != 0,2)
+	NULL A 1 A_Jump(256,2)
+	NULL A 1 A_Jump(235,5)
+	NULL A 1 A_JumpIfInventory("LegStrafeSens",1,3)
+	NULL A 1 A_GiveInventory("LegStrafeSens",1)
+	NULL A 1 A_Jump(256,2)	
+	NULL A 1 A_TakeInventory("LegStrafeSens",1)
+	NULL A 1 A_JumpIfInventory("LegStrafeSens",1,3)
+	NULL A 1 ThrustThing(angle*256/360+38.7,9,0,0)
+	NULL A 1 A_Jump(256,2)	
+	NULL A 1 ThrustThing(angle*256/360+38.7,-9,0,0)
+    NULL A 1 A_FaceTarget
+	NULL A 1 A_Jump(24,2)
+	NULL A 1 A_Recoil(-1)
+    Stop
+	NULL A 1 A_Recoil(1)
+    Stop
+  }
+}

@@ -1,0 +1,707 @@
+ACTOR Cardihilation : Cardihilator1
+{
+Speed 12
+Scale 1.25
+Mass 10000
+Health 20000
+Painchance 2
+SeeSound "Cardihilation/See"
+ActiveSound "Cardihilation/Active"
+PainSound "Cardihilation/Pain"
+DeathSound "Cardihilation/Death"
+MinMissileChance 1
++DONTHARMSPECIES
++NOTIMEFREEZE
++DROPOFF
++DONTRIP
++NOFEAR
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Cyber10K", 0.0
+DamageFactor "Legendary", 0.2
+DamageFactor "BFGSplash", 0.25
+DamageFactor "PDTBFG", 0.05
+DamageFactor "PDTBFGTracer", 0.05
+DamageFactor "PlayerDevBall", 0.15
+DamageFactor "PlayerDevTracer", 0.15
+DamageFactor "MechStep", 0.0
+DamageFactor "Pierce", 0.35
+DamageFactor "MarinePierce", 0.35
+DamageFactor "Kaboom", 0.3
+DamageFactor "MarineKaboom", 0.3
+DamageFactor 0.40
+Obituary "%o was forced to spect against the might of the Cardihilation." 
+Tag "\c[w8]Cardihilation\c-"
+var int user_delay;
+var int user_missile;
+States
+{
+  Spawn:
+    TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_SpawnItemEx("CardihilationFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,0,1,0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    CRHL AB 2 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_SpawnItemEx("CardihilationFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,0,1,0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	CRHL AB 2 A_Chase
+    Loop
+  Missile:
+	TNT1 A 0
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_Jump(12,"Nukes","Nukes","EradicationBFGUltimate")
+	TNT1 A 0 A_Jump(12,"Devastator")
+	TNT1 A 0 A_Jump(192,"MRLRocket","Seeker","Railgun","ExplosiveRailgun","MiniDTBFG","BFG10K","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K","EradicationBFG")
+  Normal:
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalRocket",44,26,Random(-3,3))
+	TNT1 A 0 A_Jump(192,"MRLRocket","Seeker","Railgun","ExplosiveRailgun","MiniDTBFG","BFG10K","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See
+  MRLRocket:
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_PlayWeaponSound("mrl/fire")
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",64,-26,Random(-2,2))
+	CRHL N 0 A_CustomMissile("ZMRLFastRocket",44,-26,Random(-2,2))
+	CRHL N 6 A_CustomMissile("ZMRLFastRocket",44,26,Random(-2,2))
+	TNT1 A 0 A_Jump(192,"Seeker","Railgun","ExplosiveRailgun","MiniDTBFG","BFG10K","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See
+  Seeker:
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	CRHL C 6 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedCardinalHomingRocket",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("UpdatedCardinalHomingRocket",44,26,Random(-3,3))
+	TNT1 A 0 A_Jump(192,"Railgun","ExplosiveRailgun","MiniDTBFG","BFG10K","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See
+  Railgun:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+	CRHL CCCCCCCCCC 4 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("CardinalRail",84,26,Random(-1,1))
+	CRHL N 0 A_CustomMissile("CardinalRail",84,-26,Random(-1,1))
+	CRHL N 0 A_CustomMissile("CardinalRail",64,-26,Random(-1,1))
+	CRHL N 4 A_CustomMissile("CardinalRail",64,26,Random(-1,1))
+	CRHL CCCC 4 A_FaceTarget
+	CRHL N 0 A_CustomMissile("CardinalRail",84,26,Random(-1,1))
+	CRHL N 0 A_CustomMissile("CardinalRail",84,-26,Random(-1,1))
+	CRHL N 0 A_CustomMissile("CardinalRail",64,-26,Random(-1,1))
+	CRHL N 4 A_CustomMissile("CardinalRail",64,26,Random(-1,1))
+	CRHL CC 4 A_FaceTarget  
+	TNT1 A 0 A_Jump(192,"ExplosiveRailgun","MiniDTBFG","BFG10K","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See
+  ExplosiveRailgun:
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Charge")
+	CRHL CCCCCCCCCC 4 A_FaceTarget   
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
+	CRHL N 0 A_CustomMissile("CardihilationRail",84,26,0)
+	CRHL N 0 A_CustomMissile("CardihilationRail",84,-26,0)
+	CRHL N 0 A_CustomMissile("CardihilationRail",64,-26,0)
+	CRHL N 0 A_CustomMissile("CardihilationRail",64,26,0)
+	CRHL N 0 A_CustomMissile("NobleExplosiveRailgunImpact",84,26,0)
+	CRHL N 0 A_CustomMissile("NobleExplosiveRailgunImpact",84,-26,0)
+	CRHL N 0 A_CustomMissile("NobleExplosiveRailgunImpact",64,-26,0)
+	CRHL N 4 A_CustomMissile("NobleExplosiveRailgunImpact",64,26,0)
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Charge")
+	CRHL CCCCCCCCCC 4 A_FaceTarget   
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
+	CRHL N 0 A_CustomMissile("CardihilationRail",84,26,0)
+	CRHL N 0 A_CustomMissile("CardihilationRail",84,-26,0)
+	CRHL N 0 A_CustomMissile("CardihilationRail",64,-26,0)
+	CRHL N 0 A_CustomMissile("CardihilationRail",64,26,0)
+	CRHL N 0 A_CustomMissile("NobleExplosiveRailgunImpact",84,26,0)
+	CRHL N 0 A_CustomMissile("NobleExplosiveRailgunImpact",84,-26,0)
+	CRHL N 0 A_CustomMissile("NobleExplosiveRailgunImpact",64,-26,0)
+	CRHL N 4 A_CustomMissile("NobleExplosiveRailgunImpact",64,26,0)
+	CRHL CCCC 4 A_FaceTarget
+	TNT1 A 0 A_Jump(192,"MiniDTBFG","BFG10K","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See
+  BFG10K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	CRHL CCCCCCC 4 A_FaceTarget   
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL C 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("DemonRed10KProjectile",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("DemonRed10KProjectile",64,26,Random(-3,3))
+	CRHL CCCCC 4 A_FaceTarget
+	TNT1 A 0 A_Jump(192,"MiniDTBFG","DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See 
+  MiniDTBFG:
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGCharge")
+	CRHL CCCCCCC 5 A_FaceTarget 
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire")  
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",44,-26,Random(-3,3))
+	CRHL N 4 A_CustomMissile("LesserCardinalMiniDTBFG",44,26,Random(-3,3))
+	CRHL CC 5 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire")  
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",44,-26,Random(-3,3))
+	CRHL N 4 A_CustomMissile("LesserCardinalMiniDTBFG",44,26,Random(-3,3))
+	CRHL CC 5 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire")  
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",44,-26,Random(-3,3))
+	CRHL N 4 A_CustomMissile("LesserCardinalMiniDTBFG",44,26,Random(-3,3))
+	CRHL CC 5 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire")  
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("LesserCardinalMiniDTBFG",44,-26,Random(-3,3))
+	CRHL N 4 A_CustomMissile("LesserCardinalMiniDTBFG",44,26,Random(-3,3))
+	CRHL CC 5 A_FaceTarget
+	TNT1 A 0 A_Jump(192,"DTBFG10K","HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See 
+  DTBFG10K:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	CRHL CCCCNN 4 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",44,-26,Random(-3,3))
+	CRHL N 4 A_CustomMissile("UpdatedDemonDTBFG10KBall",44,26,Random(-3,3))
+	CRHL CC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	CRHL CCCCNN 4 A_FaceTarget   
+	CRHL N 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",44,-26,Random(-3,3))
+	CRHL N 4 A_CustomMissile("UpdatedDemonDTBFG10KBall",44,26,Random(-3,3))
+	CRHL CC 4 A_FaceTarget  
+	TNT1 A 0 A_Jump(192,"HellStormBFG10K","HellStormAltBFG10K","BFG12K")
+	Goto See
+  HellStormBFG10K:
+	TNT1 A 0 A_PlaySound("weapons/Hcharge10k")
+	CRHL CCCCCCC 4 A_FaceTarget   
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kShot",64,26,Random(-3,3))
+	CRHL CCCCC 4 A_FaceTarget
+	TNT1 A 0 A_Jump(192,"HellStormAltBFG10K","BFG12K")
+	Goto See 
+  HellStormAltBFG10K:
+	TNT1 A 0 A_PlaySound("HellStormBFG/Charge2")
+	CRHL CCCCCCC 4 A_FaceTarget   
+	TNT1 A 0 A_PlaySound("HellStormBFG/Fire2")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kBigShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kBigShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kBigShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kBigShot",64,26,Random(-3,3))
+	CRHL CCCCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("HellStormBFG/Charge2")
+	CRHL CCCCCCC 4 A_FaceTarget   
+	TNT1 A 0 A_PlaySound("HellStormBFG/Fire2")
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kBigShot",84,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kBigShot",84,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("CardihilationHSBFG10kBigShot",64,-26,Random(-3,3))
+	CRHL N 3 A_CustomMissile("CardihilationHSBFG10kBigShot",64,26,Random(-3,3))
+	CRHL CCCCC 4 A_FaceTarget
+	TNT1 A 0 A_Jump(128,"BFG12K")
+	Goto See
+  BFG12K:
+	CRHL CCCCC 5 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	CRHL CCCCCCC 5 A_FaceTarget
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",84,26,Random(-3,3))
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",84,-26,Random(-3,3))
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",64,-26,Random(-3,3))
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",64,26,Random(-3,3))
+	CRHL NNN 5 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	CRHL CCCCCCC 5 A_FaceTarget
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",84,26,Random(-3,3))
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",84,-26,Random(-3,3))
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",64,-26,Random(-3,3))
+    TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",64,26,Random(-3,3))
+	CRHL NNN 5 A_FaceTarget
+	CRHL CCC 6 A_FaceTarget
+	TNT1 A 0 A_Jump(88,"Devastator")
+	Goto See
+  Devastator:
+	TNT1 A 0 A_PlaySound("devastator/charge")
+	CRHL CCCCCC 10 A_FaceTarget  
+	CRHL N 0 A_PlayWeaponSound("devastator/fire") 
+	CRHL N 0 A_CustomMissile("UpdatedDemonDevastatorBall",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedDemonDevastatorBall",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("UpdatedDemonDevastatorBall",44,-26,Random(-3,3))
+	CRHL N 35 A_CustomMissile("UpdatedDemonDevastatorBall",44,26,Random(-3,3))
+	CRHL CC 10 A_FaceTarget
+	TNT1 A 0 A_Jump(128,"EradicationBFG")
+	Goto See
+  EradicationBFG:
+	CRHL C 10 A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+	CRHL D 3 A_PlaySound("Cardihilation/See")
+	TNT1 A 0 A_PlayWeaponSound("EradicationBFG/Charge")
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",84,26,random(-6,6))
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",84,-26,random(-6,6))
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",64,-26,random(-6,6))
+	CRHL N 3 A_CustomMissile("DEradicationBFGProjectile",64,26,random(-6,6))	
+	TNT1 A 0 A_FaceTarget
+    CRHL NCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",84,26,random(-6,6))
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",84,-26,random(-6,6))
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",64,-26,random(-6,6))
+	CRHL N 3 A_CustomMissile("DEradicationBFGProjectile",64,26,random(-6,6))
+	TNT1 A 0 A_FaceTarget
+    CRHL NCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",84,26,random(-6,6))
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",84,-26,random(-6,6))
+	CRHL N 0 A_CustomMissile("DEradicationBFGProjectile",64,-26,random(-6,6))
+	CRHL N 3 A_CustomMissile("DEradicationBFGProjectile",64,26,random(-6,6))	
+	TNT1 A 0 A_FaceTarget
+    CRHL NCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    CRHL CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnsetInvulnerable
+	CRHL C 20
+	Goto See
+  Nukes:
+	TNT1 A 0 A_PlaySound("weapons/nuclearmissilecharge",0,10.0)
+	CRHL C 3 A_PlaySound("Cardihilation/See",CHAN_AUTO,1.0,FALSE,ATTN_NONE)
+	TNT1 A 0 Radius_Quake(50,150,0,24,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",TRUE)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySoundEx("Cardihilator/NukeFire",1,0,2)
+	CRHL N 0 A_CustomMissile("MonsterFusionNuke",64,26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("MonsterFusionNuke",64,-26,Random(-3,3))
+	CRHL N 0 A_CustomMissile("MonsterFusionNuke",44,-26,Random(-3,3))
+	CRHL N 6 A_CustomMissile("MonsterFusionNuke",44,26,Random(-3,3))
+	TNT1 A 0 A_ChangeFlag("NOPAIN",FALSE)
+	CRHL CCCCC 35 
+	TNT1 A 0 A_Jump(88,"EradicationBFGUltimate")
+	Goto See
+  EradicationBFGUltimate:
+	CRHL C 3 A_PlaySound("Cardihilation/See",CHAN_AUTO,1.0,FALSE,ATTN_NONE)
+	TNT1 A 0 Radius_Quake(50,150,0,24,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",TRUE)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("EradicationBFG/UltimateCharge")
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CCCC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	CRHL CC 4 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL N 6 A_CustomMissile("DemonEradicationBFGUltimateBall",54,0,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",FALSE)
+	CRHL CCCCC 35 
+	Goto See
+  Pain:
+	TNT1 A 0 A_Jump(128,"PainRage","EradicationBFG")
+	CRHL E 3 A_Pain
+	CRHL EE 3 Bright
+	Goto Missile
+  PainRage:
+	CRHL E 3 A_Pain
+	CRHL E 12 Bright
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 Radius_Quake(10,80,0,24,0)
+	TNT1 A 0 A_GiveInventory("Health",750)
+	TNT1 A 0 A_PlaySound("Cardinal/Laugh")	  
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	CRHL EEEE 2 A_SpawnItemEx("InfernoDemonRainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	CRHL EE 3 Bright
+	TNT1 A 0 A_Jump(196,"EradicationBFG","Nukes")
+	Goto See
+  Death: 
+	CRHL E 10 A_Scream
+	TNT1 A 0 A_GiveInventory("ImDead",1)
+	TNT1 AA 0 A_GiveToTarget("EpicCrateStrongGiver",1)
+	TNT1 AAAAA 0 A_GiveToTarget("BossCrateGiver",1)
+	CRHL F 10 A_NoBlocking
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	CRHL GGGGGGGGGG 2 A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	CRHL HHHHHHHHHH 2 A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))		
+	CRHL IIIIIIIIII 2 A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)		
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItemEx("SuperBossExplosionEffect",0,0,0)
+	CRHL JJJJJJJJJJ 1 A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	CRHL KKKKKKKKKK 1 A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAA 0 A_CustomMissile("SmokeFX3", Random(20,80), 0, random(0,360), 2, random(0,360))	
+	CRHL L 2
+	CRHL M 3
+	Stop
+  }
+}
+
+ACTOR CardihilationRail : CardinalRail
+{
+Damage 0
+DamageType "Hell"
+MissileType "CardinalRailTrail"
+SeeSound ""
+DeathSound ""
+Decal Cardinal15KLightning
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_SpawnItem("RailgunImpactEffectRed")
+	Stop
+	}
+}
+
+Actor CardihilationHSBFG10kShot : HSBFG10kShot
+{
+Damage 20
+DamageType "Hell"
+Speed 80
++NOGRAVITY
+-MTHRUSPECIES
+}
+
+Actor CardihilationHSBFG10kBigShot : HSBFG10kBigShot
+{
+Damage 100
+DamageType "Hell"
+Speed 65
++NOGRAVITY
+-MTHRUSPECIES
+States
+{
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_ChangeFlag("NOGRAVITY",TRUE)
+	TNT1 A 0 A_SpawnItemEx("HSBFG10kBigShotExplosion")
+    HPE3 ABCDEF 3 Bright A_Explode(186,434)
+    Stop
+  }
+}
+
+Actor MHSBFG10kShot : CardihilationHSBFG10kShot{DamageType "Marine"}
+Actor MHSBFG10kBigShot : CardihilationHSBFG10kBigShot{DamageType "Marine"}

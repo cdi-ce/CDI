@@ -1,0 +1,3756 @@
+//===============
+// Map Decoration
+//===============
+
+Actor JumpPadIndicator 18000
+{
+//$Category "Decoration/New Decoration"
+//$Title Jump Pad Indicator
+//$Sprite PNTRA0
++NOBLOCKMAP
++NOGRAVITY
++NOSECTOR
++NOINTERACTION
++NOCLIP
+-SOLID
+States
+{
+  Spawn:
+  Active:
+   TNT1 A 0
+   TNT1 AAA 5 A_SpawnItemEx("BasePointer",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0)
+   TNT1 A 5 A_SpawnItemEx("Pointer_Middle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0)
+   TNT1 AAA 5 A_SpawnItemEx("BasePointer",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0)
+   TNT1 A 5 A_SpawnItemEx("Pointer_Large",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0)
+   TNT1 AAA 5 A_SpawnItemEx("BasePointer",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0)
+   TNT1 A 5 A_SpawnItemEx("Pointer_Middle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0)
+   Loop
+  Inactive:
+   TNT1 A 1
+   Loop
+}
+}
+
+Actor LightPost 18001
+{
+    //$Category "Lights/New Light Sources"
+    //$Title Light Post
+    //$Sprite PSTEA0
+	Radius 10
+	Height 150
+	Mass 99999
+	+SOLID
+	States
+	{
+	Spawn:
+        PSTE A 0
+		PSTE A 1 Bright A_SpawnItem("LensFlare",0,200)
+		Loop
+	}
+}
+
+Actor SeaWeed 18002
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Sea Weed 
+  //$Sprite CWEDA0
+  States
+  {
+  Spawn:
+    CWED AB 12
+    Loop
+  }
+}
+
+Actor CeilingLight 18003
+{
+    //$Category "Lights/New Light Sources"
+    //$Title Ceiling Light
+    //$Sprite CLIGA0
+	Radius 10
+	Height 48
+	Scale 0.3
+	Mass 99999
+	+SPAWNCEILING
+	+NOGRAVITY 
+	States
+	{
+	Spawn:
+	    TNT1 A 0 A_CheckSight("Spawn2")
+		CLIG A 1 bright A_SpawnItem("LensFlare",0,6)
+		Loop
+	Spawn2:
+		CLIG A 1 bright
+		Goto Spawn
+	}
+}
+
+Actor Plant1 18004
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Plant 1
+  //$Sprite PLN1A0
+  Height 10
+  Radius 10
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+  PLN1 A -1
+  Stop
+  }
+}
+
+Actor Plant2 : Plant1 18005
+{
+  //$Title Plant 2
+  //$Sprite PLN2A0
+  States
+  {
+  Spawn:
+  PLN2 A -1
+  Stop
+  }
+}
+
+Actor Grass1 : Plant1 18006
+{
+  //$Title Grass 1
+  //$Sprite GRS1A0
+  Scale 0.8
+  States
+  {
+  Spawn:
+  GRS1 A -1
+  Stop
+  }
+}
+
+Actor Grass2 : Plant1 18007
+{
+  //$Title Grass 2
+  //$Sprite GRS2A0
+  Scale 1.1
+  States
+  {
+  Spawn:
+  GRS2 A -1
+  Stop
+  }
+}
+
+Actor Grass3 : Plant1 18008
+{
+  //$Title Grass 3
+  //$Sprite GRS3A0
+  Scale 1.25
+  States
+  {
+  Spawn:
+  GRS3 A -1
+  Stop
+  }
+}
+
+Actor Grass4 : Plant1 18009
+{
+  //$Title Grass 4
+  //$Sprite GRS4A0
+  Scale 0.6
+  States
+  {
+  Spawn:
+  GRS4 A -1
+  Stop
+  }
+}
+
+Actor Grass5 : Plant1 18010
+{
+  //$Title Grass 5
+  //$Sprite GRS5A0
+  Scale 1.25
+  States
+  {
+  Spawn:
+  GRS5 A -1
+  Stop
+  }
+}
+
+Actor Grass6 : Plant1 18011
+{
+  //$Title Grass 6
+  //$Sprite GRS6A0
+  Scale 0.8
+  States
+  {
+  Spawn:
+  GRS6 A 0
+  GRS6 A 1 A_Jump(127,2)
+  GRS6 A -1
+  Stop
+  GRS6 B -1
+  Stop
+  }
+}
+
+Actor Mushroom : Plant1 18012
+{
+  //$Title Mushroom
+  //$Sprite MSHRA0
+  Scale 1.25
+  States
+  {
+  Spawn:
+  MSHR A -1
+  Stop
+  }
+}
+
+
+Actor Plant : Plant1 18013
+{
+    //$Title Plant
+    //$Sprite PLNTA0
+	Scale 0.6
+	States
+	{
+	Spawn:
+		PLNT A -1
+		Stop
+	}
+}
+
+Actor Fog 18014
+{
+    //$Category "Decoration/New Decoration"
+    //$Title Fog
+    //$Sprite FOGGA0
+	Height 32
+	Radius 32
+	+CANPASS
+	+NOGRAVITY
+	+FORCEXYBILLBOARD
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	Renderstyle add
+	Alpha 1
+	Scale 1.25
+	States
+	{
+	Spawn:
+		FOGG A -1
+		Stop
+	}
+}
+
+Actor NRock 18015
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Rock
+  //$Sprite NROKB0
+  Radius 16
+  Height 32
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    NROK A 0
+    NROK A 1 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13)
+	NROK A -1
+    Stop
+    NROK B -1
+    Stop
+    NROK C -1
+    Stop
+    NROK D -1
+    Stop
+    NROK E -1
+    Stop
+    NROK F -1
+    Stop
+    NROK G -1
+    Stop
+    NROK H -1
+    Stop
+    NROK I -1
+    Stop
+    NROK J -1
+    Stop
+    NROK K -1
+    Stop
+    NROK L -1
+    Stop
+    NROK M -1
+    Stop	
+  }
+}
+
+Actor NewStalagmite 18016
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Stalagmite
+  //$Sprite NSTGA0
+  Radius 10
+  Height 72
+  +SOLID 
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    NSTG A -1
+	Stop
+  }
+}
+
+Actor NewStalactite : NewStalagmite 18017
+{
+  //$Title Stalactite
+  //$Sprite NSTCA0
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    NSTC A -1
+	Stop
+  }
+}
+
+Actor HCactus 18018
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Cactus
+  //$Sprite TREEM0
+  Radius 16
+  Height 56
+  Scale 0.7
+  +SOLID
+  States
+  {
+  Spawn:
+    TREE M -1
+    Stop
+  }
+}
+
+Actor MiniLight 18019
+{
+    //$Category "Lights/New Light Sources"
+    //$Title Mini Light
+    //$Sprite MLIGA0
+	Radius 8
+	Height 16
+	Scale 0.4
+	States
+	{
+	Spawn:
+		MLIG A 2 Bright A_SpawnItem("YellowFlareSmall",0,24)
+		Loop
+	}
+}
+
+Actor SteamSpawner : SwitchableDecoration 18020
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Steam
+  //$Sprite STEMA0
+  //$Angled
+  //$Arg0 "Direction"
+  //$Arg0Type 11
+  //$Arg0Enum {0="Up";1="Down";2="Foward";}
+  //$Arg1 "Constant"
+  //$Arg1Type 11
+  //$Arg1Enum {0="Yes";1="No";} 
+  //$Arg2 "Frequence"
+  //$Arg2ToolTip "*number*/8"
+  //$Arg2Default 16      
+  //$Arg3 "Sound"
+  //$Arg3Type 11
+  //$Arg3Enum {0="Yes";1="No";}
+  Height 2
+  Radius 1
+  Mass 0
+  +NoBlockMap
+  +NoGravity
+  +NoInteraction
+  States
+  {
+  Spawn:
+  Active:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(Args[0] == 1,"Down")
+    TNT1 A 0 A_JumpIf(Args[0] > 1,"Forward")
+    TNT1 A 0 A_JumpIf(Args[1] > 0,"UpBurst")
+    TNT1 A 0 A_JumpIf(Args[3] > 0,2)
+    TNT1 A 0 A_PlaySoundEx("Steam/Loop","SoundSlot7",1)
+    TNT1 A 1 A_SpawnItemEx("SteamParticle",0,0,1,(0.1)*Random(0,4),0,(0.1)*Random(35,40),Random(0,360),128)
+    Loop	
+  Down:
+    TNT1 A 0 A_JumpIf(Args[1] > 0,"DownBurst")
+    TNT1 A 0 A_JumpIf(Args[3] > 0,2)
+    TNT1 A 0 A_PlaySoundEx("Steam/Loop","SoundSlot7",1)
+    TNT1 A 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(0,4),0,(-0.1)*Random(35,40),Random(0,360),128)
+    Loop
+  Forward:
+    TNT1 A 0 A_JumpIf(Args[1] > 0,"ForwardBurst")
+    TNT1 A 0 A_JumpIf(Args[3] > 0,2)
+    TNT1 A 0 A_PlaySoundEx("Steam/Loop","SoundSlot7",1)
+    TNT1 A 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(35, 40),0,(0.1)*Random(-5,5),Random(-8,8),128)
+    Loop
+  UpBurst:
+    TNT1 A 1 A_Jump(Args[2]/16,1)
+    Loop
+    TNT1 A 0 A_JumpIf(Args[3] > 0,2)
+    TNT1 A 0 A_PlaySoundEx("Steam/Fire", "SoundSlot7", 0)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle", 0, 0, 1, (0.1)*Random(0, 4), 0, (0.1)*Random(35, 40), Random(0, 360), 128)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle", 0, 0, 1, (0.1)*Random(0, 4), 0, (0.1)*Random(35, 40), Random(0, 360), 128)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle", 0, 0, 1, (0.1)*Random(0, 4), 0, (0.1)*Random(35, 40), Random(0, 360), 128)
+    Loop
+  DownBurst:
+    TNT1 A 1 A_Jump(Args[2]/16,1)
+    Loop
+    TNT1 A 0 A_JumpIf(Args[3] > 0,2)
+    TNT1 A 0 A_PlaySoundEx("Steam/Fire","SoundSlot7",0)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(0,4),0,(-0.1)*Random(35,40),Random(0,360),128)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(0,4),0,(-0.1)*Random(35,40),Random(0,360),128)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(0,4),0,(-0.1)*Random(35,40),Random(0,360),128)
+    Loop
+  ForwardBurst:
+    TNT1 A 1 A_Jump(Args[2]/16,1)
+    Loop
+    TNT1 A 0 A_JumpIf(Args[3] > 0,2)
+    TNT1 A 0 A_PlaySoundEx("Steam/Fire","SoundSlot7",0)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(35,40),0,(0.1)*Random(-5,5),Random(-8,8),128)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(35,40),0,(0.1)*Random(-5,5),Random(-8,8),128)
+    TNT1 AAAAAAAAAA 1 A_SpawnItemEx("SteamParticle",0,0,0,(0.1)*Random(35,40),0,(0.1)*Random(-5,5),Random(-8,8),128)
+    Loop
+  Inactive:
+    TNT1 A 0
+    TNT1 A 1 A_StopSoundEx("SoundSlot7")
+    TNT1 A 1
+    Goto Inactive+2	
+  }
+}
+
+Actor ForestTree 18021
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Forest Tree
+  //$Sprite TRE9F0
+  Radius 24
+  Height 160
+  Scale 1.4
+  +SOLID
+  States
+  {
+  Spawn:
+    TRE9 A 0
+    TRE9 A 1 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+    TRE9 A -1
+    Stop
+    TRE9 B -1
+    Stop
+	TRE9 C -1
+    Stop
+	TRE9 D -1
+    Stop
+    TRE9 E -1
+    Stop	
+    TRE9 F -1
+    Stop
+    TRE9 G -1
+    Stop
+    TRE9 H -1
+    Stop
+    TRE9 I -1
+    Stop
+    TRE9 J -1
+    Stop
+    TRE9 K -1
+    Stop
+    TRE9 L -1
+    Stop
+    TRE9 M -1
+    Stop
+	TRE9 N -1
+    Stop
+	TRE9 O -1
+    Stop
+	TRE9 P -1
+    Stop
+	TRE9 Q -1
+    Stop
+	TRE9 R -1
+    Stop
+	TRE9 S -1
+    Stop
+	TRE9 T -1
+    Stop
+	TRE9 U -1
+    Stop
+	TRE9 V -1
+    Stop
+	TRE9 W -1
+    Stop
+  }
+}
+
+Actor ForestBush 18022
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Forest Bush
+  //$Sprite BUSHA0
+  Radius 20
+  Height 64
+  Scale 0.6
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    BUSH A 0
+    BUSH A 1 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13)
+    BUSH A -1
+    Stop
+    BUSH B -1
+    Stop
+    BUSH C -1
+    Stop
+    BUSH D -1
+    Stop
+    BUSH E -1
+    Stop
+    BUSH F -1
+    Stop
+    BUSH G -1
+    Stop
+    BUSH H -1
+    Stop
+    BUSH I -1
+    Stop
+    BUSH J -1
+    Stop
+    BUSH K -1
+    Stop
+	BUSH L -1
+    Stop
+	BUSH M -1
+    Stop
+	BUSH N -1
+    Stop
+  }
+}
+
+ACTOR Veggies : RandomSpawner 18023
+{
+//$Category "Decoration/New Decoration"
+//$Title Veggies
+//$Sprite PLN2A0
+Height 16
+Radius 15
+DropItem "Grass1", 256, 1
+DropItem "Grass2", 256, 1
+DropItem "Grass5", 256, 1
+DropItem "Plant2", 256, 1
+DropItem "Plant", 256, 1
+DropItem "ForestBush", 256, 10
+}
+
+Actor ForestSmallTree 18024
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Forest Tree Small
+  //$Sprite STREA0
+  Radius 13
+  Height 64
+  +SOLID
+  States
+  {
+  Spawn:
+    STRE A 0
+    STRE A 1 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13)
+    STRE A -1
+    Stop
+    STRE B -1
+    Stop
+	STRE C -1
+    Stop
+	STRE D -1
+    Stop	
+	STRE E -1
+    Stop
+	STRE F -1
+    Stop
+	STRE G -1
+    Stop
+	STRE H -1
+    Stop
+	STRE I -1
+    Stop
+	STRE J -1
+    Stop
+	STRE K -1
+    Stop
+	STRE L -1
+    Stop
+	STRE M -1
+    Stop
+  }
+}
+
+Actor CaveStalagmite : NewStalagmite 18025
+{
+  //$Title Cave Stalagmite
+  //$Sprite CAVEC0
+  Radius 16
+  Height 40
+  States
+  {
+  Spawn:
+    CAVE C -1
+	Stop
+  }
+}
+
+Actor CaveStalactite : NewStalactite 18026
+{
+  //$Title Cave Stalactite
+  //$Sprite CAVEA0
+  Radius 16
+  Height 40
+  States
+  {
+  Spawn:
+    CAVE A 0
+    CAVE A 1 A_Jump(256,1,2)
+    CAVE A -1
+    Stop
+    CAVE B -1
+    Stop	
+  }
+}
+
+Actor BigRock 18027
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Big Rock
+  //$Sprite BROKZ0
+  Radius 24
+  Height 56
+  +SOLID
+  States
+  {
+  Spawn:
+	BROK Z -1	
+	Stop
+  }
+}
+
+Actor AirStrikeSpawner : SwitchableDecoration 18028
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Air Strike
+  //$Sprite FIGTA1
+  //$Angled
+  //$Arg0 "Delay"
+  //$Arg0oolTip "Delay between air strikes, 0 means only 1 time." 
+  //$Arg1 "Bombs"
+  //$Arg1ToolTip "If the air strike drops bomb or not."
+  //$Arg1Type 11
+  //$Arg1Enum {0="Yes";1="No";} 
+  +SPAWNCEILING
+  +NOGRAVITY
+  Radius 20
+  Height 48
+  var int user_delay;
+  States
+  {
+  Active:
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(Args[1] > 0,2)
+	TNT1 A 0 A_CustomMissile("AirStrike",0,0,0,CMF_AIMDIRECTION)
+	Goto Check
+	TNT1 A 0 A_CustomMissile("AirStrikeNoBomb",0,0,0,CMF_AIMDIRECTION)
+	Goto Check
+  Check:
+	TNT1 A 0 A_SetUserVar("user_delay",0)
+	TNT1 A 1 A_JumpIf(Args[0] > 0,"Restart")
+	Stop
+  Restart:
+    TNT1 A 0 A_JumpIf(user_delay >= Args[0],"Spawn")
+	TNT1 A 35 A_SetUserVar("user_delay",user_delay+1)
+	Loop
+  Inactive:
+    TNT1 A 1
+    Loop
+  }
+}
+
+Actor BaseSecurityCamera 18029
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Security Camera
+  //$Sprite WCMRA8A2
+  //$Angled
+  +SPAWNCEILING
+  +NOGRAVITY
+  Height 30
+  Radius 15
+  States
+  {
+  Spawn:
+    WCMR A -1
+    Stop
+  }
+}
+
+ACTOR CardDispenser 18030
+{
+//$Category "Decoration/New Decoration"
+//$Title Card Dispenser
+//$Sprite BCARA0
++USESPECIAL 
+Activation THINGSPEC_ThingActs
+var int user_script;
+var int user_wait;
+var int user_ready;
+var int user_start;
+States
+{
+  Spawn:
+    BCAR A 0
+	BCAR A 0 A_ChangeFlag("USESPECIAL",1)
+	BCAR A 0 A_JumpIf(user_script == 1,3)
+	BCAR A 0 Thing_SetSpecial(0,226,2997,0,0)
+	BCAR A 0 Thing_ChangeTID(0,6999)
+	BCAR A 0 A_SetUserVar("user_script",1)
+	BCAR B 0 A_JumpIf(user_start == 0,"Initialazing")
+	BCAR A 0 A_SetUserVar("user_ready",1)
+    BCAR AAAAAAAAAAAAA 1 Bright A_SpawnItemEx("BluePowerLine",random(16,-16),random(16,-16),0,0,0,2,0,128,0) 
+    Goto Spawn+5
+  Reloading:
+    BCAR B 0 A_ChangeFlag("USESPECIAL",0)
+	//BCAR B 0 A_SetUserVar("user_wait",0)
+	BCAR A 0 A_SetUserVar("user_ready",0)
+    BCAR B 1 A_SpawnItemEx("ReinforcementCard",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+	//BCAR B 0 A_JumpIf(user_wait > 119,"Spawn")
+	//BCAR B 0 A_SetUserVar("user_wait",user_wait+1)
+    BCAR B 1 //A_Jump(4,"Spawn")
+	Goto Reloading+3
+  Initialazing:
+    BCAR B 1
+	BCAR B 1 A_SetUserVar("user_start",1)
+    Goto Reloading+3
+}
+}
+
+Actor Tyres 18031
+{
+    //$Category "Decoration/New Decoration"
+    //$Title Tyres
+    //$Sprite PNEUA0
+	Radius 20
+	Height 15
+	+CLIENTSIDEONLY
+	Scale 0.6
+	States
+	{
+	Spawn:
+		PNEU A -1
+		Stop
+	}
+}
+
+Actor Box 18032
+{
+	//$Category "Decoration/New Decoration"
+    //$Title Box
+    //$Sprite UBOXA0
+	Height 20
+	Radius 15
+	+CLIENTSIDEONLY
+	Scale 0.65
+	States
+	{
+	Spawn:
+		UBOX A -1
+		Stop
+	}
+}
+
+Actor CratePoints : Inventory{Inventory.MaxAmount 999999}
+
+Actor Chair : Pottery1 18033
+{
+    //$Category "Decoration/New Decoration"
+    //$Title Chair
+    //$Sprite CHIRA0
+	Scale 0.7
+	Health 50
+	Mass 200
+	Radius 25
+	Height 25
+	+SOLID
+	+PUSHABLE
+	+SHOOTABLE
+	+NOBLOOD
+	States
+	{
+	Spawn:
+	    CHIR A 1
+		Loop
+    Death:
+	    CHIR B 0
+	    CHIR B 0 A_ScreamAndUnblock
+		CHIR BCD 8
+		CHIR D -1
+		Stop
+	}
+}
+
+Actor LargeFlames : RedTorch 18034
+{
+   //$Category "Decoration/New Decoration"
+   //$Title Flame Large
+   //$Sprite FRE2C0
+   Radius 28
+   Height 40
+   Scale 1.0
+   Speed 0
+   Mass 5000000
+   RENDERSTYLE ADD
+   DamageType Fire
+   ALPHA 0.90
+   DONTHURTSHOOTER
+   -NOGRAVITY
+   +LOWGRAVITY
+   +NOEXPLODEFLOOR
+   +NODAMAGETHRUST
+   +THRUGHOST
+   +NOBLOCKMAP
+   +CLIENTSIDEONLY
+   Obituary "%o jumped into the fire."
+   States
+   {
+   Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("fire/normal","SoundSlot6",1)
+   Spawn2:
+    FRE2 ABCDEFGH 2 Bright
+	Loop
+    }
+}
+
+Actor SmallFlames : LargeFlames 18035
+{
+   //$Title Flame Small
+   //$Sprite FRE3G0
+   States
+   {
+   Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("fire/weak","SoundSlot6",1)
+   Spawn2:
+    FRE3 ABCDEFGHIJKLMN 2 Bright
+    Loop
+    }
+}
+
+Actor Hedgehog 18036
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Hedgehog
+  //$Sprite HEDGA0
+  Radius 16
+  Height 40
+  +SOLID
+  States
+  {
+  Spawn:
+    HEDG A -1
+    Stop
+  }
+}
+
+Actor JunkPile1 18037
+{
+//$Category "Obstacles/New Obstacles"
+//$Title Junk Pile 1
+//$Sprite JPILA0
+Radius 40
+Height 38
++SOLID
+States
+{
+Spawn:
+	JPIL A -1
+	Stop
+}
+}
+
+Actor JunkPile2 : JunkPile1 18038
+{
+//$Title Junk Pile 2
+//$Sprite JPILB0
+States
+{
+Spawn:
+	JPIL B -1
+	Stop
+}
+}
+
+Actor SkullTree 18039
+{
+    //$Category "Obstacles/New Obstacles"
+    //$Title Skull Tree
+    //$Sprite TRESA0
+	Radius 36
+	Height 157
+	ProjectilePassHeight -16
+    +SOLID
+	States
+	{
+	Spawn:
+		TRES A -1
+		Stop
+	}
+}
+
+Actor DeciduousBurned 18040
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Deciduous Tree Burned
+  //$Sprite TREEZ0
+  Radius 13
+  Height 160
+  Scale 1.35
+  +SOLID
+  States
+  {
+  Spawn:
+    TREE Z -1
+    Stop
+  }
+}
+
+Actor DoomBigTree 18041
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Big Tree
+  //$Sprite TRE4A0
+  Radius 32
+  Height 108
+  ProjectilePassHeight -16
+  +SOLID
+  States
+  {
+  Spawn:
+    TRE4 A 0
+    TRE4 A 1 A_Jump (256,"Spawn1","Spawn2","Spawn3","Spawn4")
+  Spawn1:
+    TRE4 A -1
+    Stop
+  Spawn2:
+    TRE4 B -1
+    Stop
+  Spawn3:
+    TRE4 C -1
+    Stop
+  Spawn4:
+    TRE4 D -1
+    Stop	
+  }
+}
+
+Actor Chair1 18042
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Chair 2
+  //$Sprite CHAIA8A2
+  //$Angled
+  +FLOORCLIP
+  +SOLID
+  +PUSHABLE
+  Height 30
+  Radius 15
+  States
+  {
+  Spawn:
+    CHAI A -1
+    Stop
+  }
+}
+
+Actor GreyMetalBarrel 18043
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Metal Barrel
+  //$Sprite GBR2A0
+  +FloorClip
+  +Solid
+  +Shootable
+  +NoBlood
+  Health 0x7fffffff
+  Mass 999999
+  Radius 12
+  Height 32
+  States
+  {
+  Spawn:
+    GBR2 A -1
+    Stop
+  }
+}
+
+Actor ForestDeadTree : ForestTree 18044
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Forest Tree Dead
+  //$Sprite TRE7T0
+  Radius 24
+  Height 160
+  Scale 1.4
+  +SOLID
+  States
+  {
+  Spawn:
+    TRE7 N 0
+    TRE7 N 1 A_Jump(256,1,2,3,4,5,6,7)
+    TRE7 N -1
+    Stop
+    TRE7 O -1
+    Stop
+	TRE7 P -1
+    Stop
+	TRE7 Q -1
+    Stop
+	TRE7 R -1
+    Stop
+	TRE7 S -1
+    Stop
+	TRE7 T -1
+    Stop	
+  }
+}
+
+Actor Car 18046
+{
+    //$Category "Obstacles/New Obstacles"
+    //$Title Parked Car 1
+    //$Sprite CAARA1
+	//$Angled
+	+SHOOTABLE
+	+SOLID
+	+FLOORCLIP
+	+NOBLOOD
+    -PUSHABLE
+	Health 1200
+	Height 48
+	Radius 48
+    Gravity 0.7
+    Scale 0.8
+	Mass 99999999
+	DeathSound "weapons/rocklx"
+	RadiusDamageFactor 0.3
+	DamageFactor "MechStep", 10.0
+	States
+	{
+   Spawn:
+    CAAR A 1
+	CAAR A 1 ACS_ExecuteAlways(3555,0,0,0,0)
+	CAAR A 1
+	Wait
+   Death:
+	TNT1 A 0
+	TNT1 A 0 A_Scream
+	TNT1 A 0 A_SpawnItemEx("ShockWave",0,0,0,0,0,0,0,128) 
+    TNT1 AAA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)  
+	TNT1 AAA 0 A_CustomMissile("SmokeFX3",0,0,random(0,360),2,random(0,360))
+    TNT1 AAAAAA 0 A_CustomMissile("Kaboom",0,0,random(0,360),2,random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_CustomMissile("Explosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_Explode(44,256)
+	TNT1 A 0 A_Explode(128,64)
+	TNT1 A 0 A_Explode(256,32)	
+	TNT1 A 0 A_SpawnItem("FuckedUpCar")
+	TNT1 A 20
+    Stop
+	}
+}
+
+Actor FuckedUpCar 18047
+{
+    //$Category "Obstacles/New Obstacles"
+    //$Title Destoryed Car
+    //$Sprite CAARB1
+	//$Angled
+	+FLOORCLIP
+	+SOLID
+	+SHOOTABLE
+	+NOBLOOD
+    Health 0x7fffffff
+	Mass 99999999
+	Height 48
+	Radius 48
+    Gravity 0.7
+    Scale 0.8
+	States
+	{
+	Spawn:
+        CAAR B 20 A_CustomMissile("SmokeFX2",50,0,random(0,360),2,random(70,130))
+        Loop
+	}
+}
+
+Actor FountainWater 18048
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Fountain Water
+  //$Sprite WFOUA0
+  Radius 2
+  Height 2
+  Scale 0.75
+  RenderStyle Translucent
+  Alpha 0.75
+  +NOBLOCKMAP
+  +MOVEWITHSECTOR
+  +CLIENTSIDEONLY
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    WFOU ABCD 3 A_PlaySound ("Fountain/Loop", CHAN_AUTO, 1.0, 1, 2)
+    Loop
+  }
+}
+
+Actor FountainNukage : FountainWater 18049
+{
+  //$Title Fountain Nukage
+  //$Sprite NFOUA0
+  States
+  {
+  Spawn:
+    NFOU ABCD 3 A_PlaySound ("Fountain/Loop", CHAN_AUTO, 1.0, 1, 2)
+    Loop
+  }
+}
+
+Actor FountainBlood : FountainWater 18050
+{
+  //$Title Fountain Blood
+  //$Sprite BFOUA0
+  States
+  {
+  Spawn:
+    BFOU ABCD 3 A_PlaySound ("Fountain/Loop", CHAN_AUTO, 1.0, 1, 2)
+    Loop
+  }
+}
+
+ACTOR NewWallTorch 18051
+{
+  //$Category "Lights/New Light Sources"
+  //$Title Wall Torch
+  //$Sprite WLTRA0
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +FIXMAPTHINGPOS
+  Radius 4
+  States
+  {
+  Spawn:
+    WLTR ABCDEFG 2 Bright A_SpawnItem("OrangeFlare",0,28)
+    Loop
+  }
+}
+
+Actor ChandelierOff 18052
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Chandelier Off
+  //$Sprite CHAND0
+  Radius 10
+  Height 21
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    CHAN D -1
+    Stop
+  }
+}
+
+Actor ChandelierOn 18053
+{
+  //$Category "Lights/New Light Sources"
+  //$Title Chandelier On
+  //$Sprite CHANA0
+  Radius 10
+  Height 21
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    CHAN ABC 4
+    Loop
+  }
+}
+
+Actor Hidrant : Box 18054
+{
+    //$Title Hidrant
+    //$Sprite UHDRA0
+	States
+	{
+	Spawn:
+		UHDR A -1
+		Stop
+	}
+}
+
+Actor Cone : Box 18055
+{
+    //$Title Cone
+    //$Sprite UCONA0
+	States
+	{
+	Spawn:
+		UCON A -1
+		Stop
+	}
+}
+
+Actor AttSign 18056
+{
+    //$Category "Obstacles/New Obstacles"
+    //$Title Att Sign
+    //$Sprite USGNA0
+	Height 48
+	Radius 25
+	+SOLID
+	States
+	{
+	Spawn:
+		USGN A -1
+		Stop
+	}
+}
+Actor AttSign2 : Box 18057
+{
+    //$Title Att Sign 2
+    //$Sprite USGNB0
+	Height 48
+	Radius 25
+	Scale 1.0
+	States
+	{
+	Spawn:
+		USGN B -1
+		Stop
+	}
+}
+
+Actor NewsPaper : Box 18058
+{
+    //$Title News Paper
+    //$Sprite NEWSA0
+	States
+	{
+	Spawn:
+		NEWS A -1
+		Stop
+	}
+}
+
+Actor SmokeTrap 18059
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Smoke Trap
+  //$Sprite SMK3B0
+  +NOGRAVITY
+  States
+  {
+      Spawn:
+	    TNT1 A 0
+	    TNT1 A 1 A_PlaySound("smoke/trap",0,1,1)
+		TNT1 A 1 A_SpawnItemEx("SmokeFX7",random(-256,256),random(-256,256),48,random(1,4),random(1,4),0,random(0,359))
+		Goto Spawn+2
+  }
+}
+
+ACTOR RuneRemovalConfirm
+{
++USESPECIAL 
+Activation THINGSPEC_ThingActs
+var int user_amount;
+var int user_script;
+var int user_ready;
+var int user_limit;
+Height 1 
+Radius 1
+RenderStyle Add
+Scale 0.04
+Alpha 0.25
+States
+{
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_ChangeFlag("USESPECIAL",1)
+    TNT1 A 0 A_SetUserVar("user_ready",0)
+	TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 Thing_SetSpecial(0,226,2997,0,0)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 AAAAA 35
+    Loop
+  Death:
+  Reloading:
+    TNT1 A 0 A_ChangeFlag("USESPECIAL",0)
+    TNT1 A 0 A_SpawnItemEx("RuneRemovalSpawn",0,0,0,0,0,0,0,32)
+    TNT1 A 1
+	Stop
+}
+}
+
+Actor TrashBag 18060
+{
+//$Category "Decoration/New Decoration"
+//$Title Trash Bag
+//$Sprite TRSHA0
+Radius 15
+Height 30
+Health 25
+Mass 300
+DeathSound "trash/explode"
++SOLID
++PUSHABLE
++NOBLOOD
++SHOOTABLE
+Scale 0.8
+States
+{
+  Spawn:
+   TRSH A 0 
+   TRSH A 0 A_Jump(128,2)
+   TRSH A -1
+   Stop
+   TRSH C -1
+   Stop		
+  Death:
+   TNT1 A 0
+   TNT1 A 0 A_ScreamAndUnBlock
+   TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+   TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+   TNT1 AAA 0 A_CustomMissile("SmokeFX2",32,0,random(0,360),2,random(0,360))
+   Stop
+   }
+}
+
+Actor Trash1 : TrashBag 18061
+{
+    //$Title Trash Building 1
+    //$Sprite TRSHD0
+	States
+	{
+	Spawn:
+		TRSH D -1
+		Stop	
+	}
+}
+
+Actor Trash2 : TrashBag 18062
+{
+    //$Title Trash Building 2
+    //$Sprite TRSHB0
+	States
+	{
+	Spawn:
+		TRSH B -1
+		Stop	
+	}
+}
+
+Actor Apple : Box 18063
+{
+    //$Title Apple
+    //$Sprite APLEA0
+    Scale 0.4
+	States
+	{
+	Spawn:
+		APLE A -1
+		Stop
+	}
+}
+
+ACTOR CityTrashes : RandomSpawner 18064
+{
+//$Category "Decoration/New Decoration"
+//$Title City Trashes
+//$Sprite NEWSA0
+Height 20
+Radius 15
+DropItem "NewsPaper", 256, 1
+DropItem "Box", 256, 1
+DropItem "Tyres", 256, 1
+DropItem "Apple", 256, 1
+}
+
+Actor SmokeDecoration : SmokeTrap 18065
+{
+  //$Title Smoke Decoration
+  -NOGRAVITY
+  States
+  {
+      Spawn:
+	    TNT1 A 0
+		TNT1 A 16 A_CustomMissile("SmokeFX2",8,0,random(0,360),2,random(70,130))
+		Loop
+  }
+}
+
+Actor HugeFlames : LargeFlames 18066
+{
+   //$Title Flame Huge
+   Radius 64
+   Height 128
+   Scale 3.0
+   -CLIENTSIDEONLY
+}
+
+Actor UACHolo1 18067
+{
+//$Category "Decoration/New Decoration"
+//$Title UAC Hologram 1
+//$Sprite UAC1A0
+Height 16
+Radius 16
+Scale 1.4
+Renderstyle Add
++NOGRAVITY
++CLIENTSIDEONLY
+States
+{
+Spawn:
+	UAC1 A 1 Bright A_SpawnItemEx("GreenPowerLineSpawner",random(-64,64),random(-64,64),random(0,8),0,0,random(3,8),0,129,0) 
+	Loop
+}
+}
+Actor UACHolo2 : UACHolo1 18068
+{
+//$Title UAC Hologram 2
+//$Sprite UAC1B0
+States
+{
+Spawn:
+	UAC1 B 2 Bright A_SpawnItemEx("GreenPowerLineSpawner",random(-64,64),random(-64,64),random(0,8),0,0,random(3,8),0,129,0)
+	Loop
+}
+}
+
+Actor LightPostOff : LightPost 18069
+{
+    //$Title Light Post Off
+	States
+	{
+	Spawn:
+		PSTE A -1
+		Stop
+	}
+}
+
+ACTOR IceStalagmiteLarge 18070
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Ice Stalagmite
+  //$Sprite ICESA0
+  Radius 24
+  Height 128
+  +SOLID
+  States
+  {
+  Spawn:
+    ICES A -1
+    Stop
+  }
+}
+
+ACTOR IceStalagmiteSmall 18071
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Small Ice Stalagmite
+  //$Sprite ICESB0
+  Radius 16
+  Height 32
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    ICES B 0
+    ICES B 1 A_Jump(256,1,2)
+    ICES B -1
+    Stop
+    ICES C -1
+    Stop
+  }
+}
+
+Actor MapIndicator 18072
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Map Indicator
+  //$Sprite MARKA0
+  RENDERSTYLE TRANSLUCENT
+  Alpha 0.5
+  Radius 32
+  Height 32
+  +NOGRAVITY
+  +NOBLOCKMAP
+  +NOLIFTDROP
+  +FLOATBOB
+  +CLIENTSIDEONLY
+  +NOCLIP
+  States
+  {
+    Spawn:
+       MARK A -1 Bright
+	   Stop
+  }
+}
+
+Actor StrobeLightBlue 18073
+{
+  //$Category "Lights/New Light Sources"
+  //$Title Strobe Light Blue
+  //$Sprite ST2BA0
+  Radius 16
+  Height 16
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    ST2B A 0 Bright
+    ST2B A 0 Bright A_SpawnItem("StrobeEmitterBlue")
+  Spin:
+    ST2B DCBA 4 Bright
+    Loop
+  }
+}
+
+Actor StrobeLightGreen : StrobeLightBlue 18074
+{
+  //$Title Strobe Light Green
+  //$Sprite ST2GA0
+  States
+  {
+  Spawn:
+    ST2G A 0 Bright
+    ST2G A 0 Bright A_SpawnItem ("StrobeEmitterGreen")
+  Spin:
+    ST2G DCBA 4 Bright
+    Loop
+  }
+}
+
+Actor StrobeLightRed : StrobeLightBlue 18075
+{
+  //$Title Strobe Light Red
+  //$Sprite ST2RA0
+  States
+  {
+  Spawn:
+    ST2R A 0 Bright
+    ST2R A 0 Bright A_SpawnItem ("StrobeEmitterRed")
+  Spin:
+    ST2R DCBA 4 Bright
+    Loop
+  }
+}
+
+Actor StrobeLightYellow : StrobeLightBlue 18076
+{
+  //$Title Strobe Light Yellow
+  //$Sprite ST2YA0
+  States
+  {
+  Spawn:
+    ST2Y A 0 Bright
+    ST2Y A 0 Bright A_SpawnItem ("StrobeEmitterYellow")
+  Spin:
+    ST2Y DCBA 4 Bright
+    Loop
+  }
+}
+
+Actor CeilingLightVanilla 18077
+{
+    //$Category "Lights/New Light Sources"
+    //$Title Ceiling Light (No Flare)
+    //$Sprite CLIGA0
+	Radius 10
+	Height 48
+	Scale 0.3
+	Mass 99999
+	+SPAWNCEILING
+	+NOGRAVITY 
+	States
+	{
+	Spawn:
+		CLIG A -1 Bright
+		Stop
+	}
+}
+
+Actor StrobeLightRedVanilla : StrobeLightRed 18078
+{
+  //$Title Strobe Light Red(Vanilla)
+  States
+  {
+  Spawn:
+    ST2R DCBA 4 Bright
+    Loop
+  }
+}
+
+Actor StrobeLightBlueVanilla : StrobeLightBlue 18079
+{
+  //$Title Strobe Light Blue(Vanilla)
+  //$Sprite ST2BA0
+  States
+  {
+  Spawn:
+    ST2B DCBA 4 Bright
+    Loop
+  }
+}
+
+Actor ActiveFlare 18080
+{
+  //$Category "Lights/New Light Sources"
+  //$Title Flare
+  //$Sprite FL4RA0
+  Radius 22
+  Height 11
+  States
+  {
+  Spawn:
+    FLAF A 0 Bright
+    FLAF A 0 Bright A_PlaySound("Flare/Light")
+    FLAF A 0 Bright A_PlaySoundEx("Flare/Loop","SoundSlot7",1,-1)
+    FLAF AB 1 Bright
+    Goto Spawn+3
+  }
+}
+
+Actor FrozenTree 18081
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Frozen Tree
+  //$Sprite ITREA0
+  Radius 24
+  Height 160
+  Scale 1.4
+  +SOLID
+  States
+  {
+  Spawn:
+    ITRE A -1
+    Stop
+  }
+}
+
+ACTOR PalmTree1 18082
+{
+  //$Category "Obstacles/New Obstacles"
+  //$Title Palm Tree 1
+  //$Sprite PAMNA0
+  Radius 24
+  Height 160
+  +SOLID
+  Scale 1.4
+  States
+  {
+  Spawn:
+    PAMN A -1
+    Stop
+  }
+}
+
+ACTOR PalmTree2 : PalmTree1 18083
+{
+  //$Title Palm Tree 2
+  //$Sprite PAMNB0
+  States
+  {
+  Spawn:
+    PAMN B -1
+    Stop
+  }
+}
+
+ACTOR PalmTree3 : PalmTree1 18084
+{
+  //$Title Palm Tree 3
+  //$Sprite PAMNC0
+  States
+  {
+  Spawn:
+    PAMN C -1
+    Stop
+  }
+}
+
+ACTOR PalmTree4 : PalmTree1 18085
+{
+  //$Title Palm Tree 4
+  //$Sprite PAMPA0
+  States
+  {
+  Spawn:
+    PAMP A -1
+    Stop
+  }
+}
+
+ACTOR MapHealthDispenser 18086
+{
+//$Category Dispensers
+//$Title Health Dispenser
+//$Color 1
+//$NotAngled
++USESPECIAL 
+Activation THINGSPEC_ThingActs
+//var int user_amount;
+var int user_script;
+var int user_ready;
+//var int user_limit;
+//var int user_timer;
+Radius 20
+States
+{
+  Spawn:
+    IBOX B 0
+	IBOX B 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX B 0 A_SetUserVar("user_ready",0)
+	IBOX B 0 A_JumpIf(user_script == 1,3)
+	IBOX B 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX B 0 A_SetUserVar("user_script",1)
+    IBOX BBBBBBBBBB 1 Bright A_SpawnItemEx("RedPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX AAAAAAAAAA 1 A_SpawnItemEx("HealthDispenserItems",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX AAA 35
+	Goto Spawn
+}
+}
+
+ACTOR MapAmmoDispenser : MapHealthDispenser 18087
+{
+//$Title Ammo Dispenser
+//$Color 6
+States
+{
+  Spawn:
+    IBOX C 0
+	IBOX C 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX C 0 A_SetUserVar("user_ready",0)
+	IBOX C 0 A_JumpIf(user_script == 1,3)
+	IBOX C 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX C 0 A_SetUserVar("user_script",1)
+    IBOX CCCCCCCCCC 1 Bright A_SpawnItemEx("WhitePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX AAAAAAAAAAAAAAA 1 A_SpawnItemEx("AmmoDispenserItems",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX AAA 35
+	Goto Spawn
+}
+}
+
+ACTOR MapArmorDispenser : MapHealthDispenser 18088
+{
+//$Title Armor Dispenser
+States
+{
+  Spawn:
+    IBOX D 0
+	IBOX D 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX D 0 A_SetUserVar("user_ready",0)
+	IBOX D 0 A_JumpIf(user_script == 1,3)
+	IBOX D 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX D 0 A_SetUserVar("user_script",1)
+    IBOX DDDDDDDDDD 1 Bright A_SpawnItemEx("GreenPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX AAAAAAAAAAAAAAA 1 A_SpawnItemEx("ArmorShardsDispenserItems",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX AAA 35
+	Goto Spawn
+}
+}
+
+Actor ForestAutumnTree : ForestTree 18089
+{
+  //$Title Forest Autumn Tree
+  //$Sprite ATREI0
+  States
+  {
+  Spawn:
+    ATRE A 0
+    ATRE A 1 A_Jump(256,1,2,3,4,5,6,7,8,9)
+    ATRE A -1
+    Stop
+    ATRE B -1
+    Stop
+	ATRE C -1
+    Stop
+	ATRE D -1
+    Stop
+    ATRE E -1
+    Stop	
+    ATRE F -1
+    Stop
+    ATRE G -1
+    Stop
+    ATRE H -1
+    Stop
+    ATRE I -1
+    Stop
+  }
+}
+
+Actor ForestPineTree : ForestTree 18090
+{
+  //$Title Forest Pine Tree
+  //$Sprite PTREB0
+  States
+  {
+  Spawn:
+    PTRE A 0
+    PTRE A 1 A_Jump(256,1,2,3,4)
+    PTRE A -1
+    Stop
+    PTRE B -1
+    Stop
+	PTRE C -1
+    Stop
+	PTRE D -1
+    Stop
+  }
+}
+
+Actor ForestCherryTree : ForestTree 18091
+{
+  //$Title Forest Cherry Tree
+  //$Sprite CHTRA0
+  States
+  {
+  Spawn:
+    CHTR A 0
+    CHTR A 1 A_Jump(256,1,2,3,4,5)
+    CHTR A -1
+    Stop
+    CHTR B -1
+    Stop
+	CHTR C -1
+    Stop
+	CHTR D -1
+    Stop
+	CHTR E -1
+    Stop
+  }
+}
+
+Actor BamboBig : ForestTree 18092
+{
+  //$Title Bambo Big
+  //$Sprite BAMBA0
+  States
+  {
+  Spawn:
+    BAMB A -1
+    Stop
+  }
+}
+
+Actor BamboSmall : ForestBush 18093
+{
+  //$Title Bambo Small
+  //$Sprite BAMBB0
+  States
+  {
+  Spawn:
+    BAMB B -1
+    Stop
+  }
+}
+
+ACTOR BigPatrolPoint : PatrolPoint 18094
+{
+  //$Title Big Patrol Point
+  //$Category Zdoom
+  Radius 160
+  Height 256
+}
+
+Actor StrobeLightGreenVanilla : StrobeLightGreen 18095
+{
+  //$Title Strobe Light Green(Vanilla)
+  //$Sprite ST2GA0
+  States
+  {
+  Spawn:
+    ST2G DCBA 4 Bright
+    Loop
+  }
+}
+
+ACTOR MapBlueAmmorDispenser : MapHealthDispenser 18096
+{
+//$Title Blue Armor Dispenser
+States
+{
+  Spawn:
+    IBOX E 0
+	IBOX E 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX E 0 A_SetUserVar("user_ready",0)
+	IBOX E 0 A_JumpIf(user_script == 1,3)
+	IBOX E 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX E 0 A_SetUserVar("user_script",1)
+    IBOX EEEEEEEEEE 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("ModdedBlueArmorPickup",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 350
+	Goto Spawn
+}
+}
+
+ACTOR MapRedAmmorDispenser : MapHealthDispenser 18097
+{
+//$Title Red Armor Dispenser
+States
+{
+  Spawn:
+    IBOX F 0
+	IBOX F 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX F 0 A_SetUserVar("user_ready",0)
+	IBOX F 0 A_JumpIf(user_script == 1,3)
+	IBOX F 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX F 0 A_SetUserVar("user_script",1)
+    IBOX FFFFFFFFFF 1 Bright A_SpawnItemEx("RedPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("RedArmorPickup",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 420
+	Goto Spawn
+}
+}
+
+ACTOR MapBonusCrateDispenser : MapHealthDispenser 18098
+{
+//$Title Bonus Crate Dispenser
+//$Color 14
+States
+{
+  Spawn:
+    IBOX G 0
+	IBOX G 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX G 0 A_SetUserVar("user_ready",0)
+	IBOX G 0 A_JumpIf(user_script == 1,3)
+	IBOX G 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX G 0 A_SetUserVar("user_script",1)
+    IBOX GGGGGGGGGG 1 Bright A_SpawnItemEx("YellowPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("BonusCratePickup",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 1050
+	Goto Spawn
+}
+}
+
+ACTOR MapSoulSphereDispenser : MapHealthDispenser 18099
+{
+//$Title Soul Sphere Dispenser
+//$Color 9
+States
+{
+  Spawn:
+    IBOX H 0
+	IBOX H 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX H 0 A_SetUserVar("user_ready",0)
+	IBOX H 0 A_JumpIf(user_script == 1,3)
+	IBOX H 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX H 0 A_SetUserVar("user_script",1)
+    IBOX HHHHHHHHHH 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("SoulSphere",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 210
+	Goto Spawn
+}
+}
+
+ACTOR MapLifeSphereDispenser : MapHealthDispenser 18100
+{
+//$Title Life Sphere Dispenser
+//$Color 9
+States
+{
+  Spawn:
+    IBOX I 0
+	IBOX I 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX I 0 A_SetUserVar("user_ready",0)
+	IBOX I 0 A_JumpIf(user_script == 1,3)
+	IBOX I 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX I 0 A_SetUserVar("user_script",1)
+    IBOX IIIIIIIIII 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("LifeSphere",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 420
+	Goto Spawn
+}
+}
+
+ACTOR MapMegaSphereDispenser : MapHealthDispenser 18101
+{
+//$Title Mega Sphere Dispenser
+//$Color 9
+States
+{
+  Spawn:
+    IBOX J 0
+	IBOX J 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX J 0 A_SetUserVar("user_ready",0)
+	IBOX J 0 A_JumpIf(user_script == 1,3)
+	IBOX J 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX J 0 A_SetUserVar("user_script",1)
+    IBOX JJJJJJJJJJ 1 Bright A_SpawnItemEx("WhitePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("MegaSphere",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 420
+	Goto Spawn
+}
+}
+
+ACTOR MapUltraSphereDispenser : MapHealthDispenser 18102
+{
+//$Title Ultra Sphere Dispenser
+//$Color 9
+States
+{
+  Spawn:
+    IBOX K 0
+	IBOX K 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX K 0 A_SetUserVar("user_ready",0)
+	IBOX K 0 A_JumpIf(user_script == 1,3)
+	IBOX K 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX K 0 A_SetUserVar("user_script",1)
+    IBOX KKKKKKKKKK 1 Bright A_SpawnItemEx("PurplePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("UltraSphere2",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 700
+	Goto Spawn
+}
+}
+
+ACTOR MapReinforcementDispenser : MapHealthDispenser 18103
+{
+//$Title Reinforcement Dispenser
+States
+{
+  Spawn:
+    IBOX L 0
+	IBOX L 0 A_ChangeFlag("USESPECIAL",1)
+    IBOX L 0 A_SetUserVar("user_ready",0)
+	IBOX L 0 A_JumpIf(user_script == 1,3)
+	IBOX L 0 Thing_SetSpecial(0,226,2997,0,0)
+	IBOX L 0 A_SetUserVar("user_script",1)
+    IBOX LLLLLLLLLLL 1 Bright A_SpawnItemEx("YellowPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0)
+    Loop
+  Reloading:
+    IBOX A 0 A_ChangeFlag("USESPECIAL",0)
+	IBOX A 0 A_SetUserVar("user_ready",1)
+    IBOX A 1 A_SpawnItemEx("ReinforcementCard",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+    IBOX A 350
+	Goto Spawn
+}
+}
+
+Actor NewUtilityPack : CustomInventory 18104
+{
+//$Category Weapons
+//$Title Utility Pack
+Inventory.PickupMessage "\c[A6]Utility Pack"
+Inventory.PickupSound "fullpack/pickup"
+Scale 1.35
+States
+{
+  Spawn:
+    BKPK A -1
+    Stop
+  Pickup:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Gun Check",0,0,0) == 0 ,"Nope")
+    TNT1 A 0 ACS_NamedExecuteAlways("Utility Gun Pickup",0,0,0,0)
+    Stop
+  Nope:
+	BKPK A 1 Bright A_Print("You are not ready yet for the utility gun, be more active on the field!")
+	Stop
+}
+}
+
+Actor PotTree 18105
+{
+//$Category "Decoration/New Decoration"
+//$Title Pot Tree
+//$Sprite TR36A0
+Height 48
+Radius 14
++SOLID
+States
+{
+  Spawn:
+	TR36 A -1
+	Stop
+}
+}
+
+ACTOR CeilFanOn 18106
+{
+//$Category "Decoration/New Decoration"
+//$Sprite C3FAA0
+//$Title Ceil Fan On
+Radius 16
+Height 32
++CLIENTSIDEONLY
++NOGRAVITY
++SPAWNCEILING
+Scale 0.8
+States
+{
+   Spawn:
+	C3FA ABC 3
+	Loop
+}
+}
+
+ACTOR CeilFanOff : CeilFanOn 18107
+{
+//$Title Ceil Fan Off
+States
+{
+  Spawn:
+	C3FA A 3
+	Loop
+}
+}
+
+Actor BrokenLamp 18108
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Broken Lamp
+  //$Sprite BLMPA0
+  +FloorClip
+  +Solid
+  Height 30
+  Radius 10
+  States
+  {
+  Spawn:
+    BLMP A -1
+    Stop
+  }
+}
+
+Actor PlasmaGlobe 18109
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Plasma Globe
+  //$Sprite PL4BA0
+  Scale 0.6
+  Radius 16
+  Height 48
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    PL3B ABCD 4 Bright
+    Loop
+  }
+}
+
+Actor WhitePowerPad 18110
+{
+//$Category "Decoration/New Decoration"
+//$Title Power Pad White
+//$Sprite SPFXA0
+//$Arg0 "Radius"
+//$Arg0ToolTip "Radius where the effects will spawn."
+//$Arg0Default 32
++NOBLOCKMAP
++NOGRAVITY
++NOSECTOR
++NOINTERACTION
++NOCLIP
+-SOLID
+States
+{
+Spawn:
+  TNT1 A 0
+  TNT1 A 0 A_JumpIf(ARGS[0] > 0,"Edit")
+  TNT1 A 1 A_SpawnItemEx("PowerPadBaseLine",random(-32,32),random(-32,32),random(0,8),0,0,random(1,3),0,129,0) 
+  Loop
+ Edit: 
+  TNT1 A 1 A_SpawnItemEx("PowerPadBaseLine",random(-ARGS[0],ARGS[0]),random(-ARGS[0],ARGS[0]),random(0,8),0,0,random(1,3),0,129,0) 
+  Loop 
+}    
+}
+
+Actor PowerPadBaseLine
+{
+Speed 1
+Radius 0
+Height 0
+Scale 0.28
+RenderStyle Add
+Alpha 0.8
++MISSILE
++CLIENTSIDEONLY
++NOGRAVITY
++NOBLOCKMAP
++NOINTERACTION
++NOTELEPORT
++DONTSPLASH
+-SOLID
+States
+{
+Spawn:
+   SPFX A 5 Bright
+   TNT1 A 0 A_Jump(128,"FadeOut2")
+Normal:
+   SPFX AAAAAAAA 1 Bright A_FadeOut(0.05)
+   Stop
+FadeOut2:
+   SPFX AAAAAAAA 1 Bright A_FadeOut(0.075)
+   Stop
+   }
+}
+
+Actor BluePowerPad : WhitePowerPad 18111
+{
+//$Title Power Pad Blue
+Translation "80:111=196:207"
+}
+
+Actor GreenPowerPad : WhitePowerPad 18112
+{
+//$Title Power Pad Green
+Translation "80:111=112:127"
+}
+
+Actor RedPowerPad : WhitePowerPad 18113
+{
+//$Title Power Pad Red
+Translation "80:111=176:191"
+}
+Actor OrangePowerPad: WhitePowerPad 18114
+{
+//$Title Power Pad Orange
+Translation "80:111=214:223"
+}
+
+Actor Wires 18115
+{
+//$Category "Decoration/New Decoration"
+//$Sprite WIREA0
+//$Title Wires
+Radius 8
+Height 56
++NOGRAVITY
++NOCLIP
++SPAWNCEILING
++CLIENTSIDEONLY
+Scale 0.5
+States
+{
+  Spawn:
+	WIRE A 0
+    WIRE A 1 A_Jump(256,1,2)
+    Stop
+	WIRE A -1
+    Stop
+    WIRE B -1
+    Stop
+	}
+}
+
+Actor YellowSparkSpawner : SwitchableDecoration 18116 
+{
+Height 12
+Radius 12
++NoBlockMap
++NoGravity
++NoInteraction
++ClientSideOnly
++NoClip
+Scale 0.08
+//$Category "Decoration/New Decoration"
+//$Title Sparks
+//$Sprite SPKYA0
+//$Angled
+//$Arg0 "Direction"
+//$Arg0ToolTip "Down-facing spawners should be placed 8 map units below the ceiling."
+//$Arg0Type 11
+//$Arg0Enum {0="Up";1="Down";2="Forward";}
+//$Arg1 "Frequency"
+//$Arg1ToolTip "Values are divided by 16, so you can't get a spawner that spawns every time. This argument is only used if the third argument is 0."
+//$Arg1Default 128
+//$Arg2 "Activity"
+//$Arg2ToolTip "The third argument prevents it from activating spontaneously, and can only be activated by the ACS function Thing_Activate."
+//$Arg2Type 11
+//$Arg2Enum {0="Automatically";1="ACS-Only";}
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(Args[2] > 0,"Inactive")
+    TNT1 A 10 A_Jump(Args[1]/16,"Active")
+    Loop
+  Active:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySound("world/spark")
+    TNT1 A 0 A_Jump(256,1,2,3,4,5,6)
+    TNT1 A 1 A_SpawnItemEx("SparkFlare_Y1",0,0,0,0,0,0,0,128)
+    Goto SpawnSparks
+    TNT1 A 1 A_SpawnItemEx("SparkFlare_Y2",0,0,0,0,0,0,0,128)
+    Goto SpawnSparks
+    TNT1 A 1 A_SpawnItemEx("SparkFlare_Y3",0,0,0,0,0,0,0,128)
+    Goto SpawnSparks
+    TNT1 A 1 A_SpawnItemEx("SparkFlare_Y4",0,0,0,0,0,0,0,128)
+    Goto SpawnSparks
+    TNT1 A 1 A_SpawnItemEx("SparkFlare_Y5",0,0,0,0,0,0,0,128)
+    Goto SpawnSparks
+    TNT1 A 1 A_SpawnItemEx("SparkFlare_Y6",0,0,0,0,0,0,0,128)
+    Goto SpawnSparks
+  SpawnSparks:
+    TNT1 A 0 A_JumpIf(Args[0] == 1,"SpawnDown")
+    TNT1 A 0 A_JumpIf(Args[0] > 1,"SpawnSide")
+    Goto SpawnUp
+  SpawnUp:
+    TNT1 AA 0 A_CustomMissile("Spark_Y1",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y2",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y3",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y4",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y5",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y6",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y7",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y8",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y9",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y10",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y11",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y12",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y13",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y14",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y15",0,0,random(0,360),2,random(67,113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y16",0,0,random(0,360),2,random(67,113))
+    TNT1 A 1 A_JumpIf(Args[2] > 0,1)
+    Goto Spawn
+    TNT1 A 1
+    Goto Inactive
+  SpawnDown:
+    TNT1 AA 0 A_CustomMissile("Spark_Y1",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y2",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y3",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y4",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y5",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y6",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y7",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y8",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y9",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y10",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y11",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y12",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y13",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y14",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y15",0,0,random(0,360),2,random (-67,-113))
+    TNT1 AA 0 A_CustomMissile("Spark_Y16",0,0,random(0,360),2,random (-67,-113))
+    TNT1 A 1 A_JumpIf(Args[2] > 0,1)
+    Goto Spawn
+    TNT1 A 1
+    Goto Inactive
+  SpawnSide:
+    TNT1 AA 0 A_CustomMissile("Spark_Y1",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y2",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y3",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y4",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y5",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y6",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y7",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y8",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y9",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y10",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y11",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y12",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y13",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y14",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y15",0,0,random(-23,23),2,random(157,203))
+    TNT1 AA 0 A_CustomMissile("Spark_Y16",0,0,random(-23,23),2,random(157,203))
+    TNT1 A 1 A_JumpIf(Args[2] > 0,1)
+    Goto Spawn
+    TNT1 A 1
+    Goto Inactive
+  Inactive:
+    TNT1 A -1
+    Loop
+  }
+}	
+
+ACTOR Generator 18117
+{
+//$Category "Decoration/New Decoration" 
+//$Title Genetator
+//$Sprite GEN0A0
+Radius 15
+Height 90
+Scale 0.6
+Health 0x7fffffff
+Mass 999999
++SOLID
++SHOOTABLE
++NOBLOOD
++FLOORCLIP
+States
+ {
+ Spawn:
+  HUG3 A 0
+  HUG3 A 0 A_PlaySoundEx("world/forcefield","Voice",1)
+  HUG3 ABCD 4 Bright 
+  Goto Spawn+2
+ }
+}
+
+Actor Television 18118
+{
+//$Category "Decoration/New Decoration"
+//$Title TV
+//$Sprite TVSDA0
+Radius 24
+Height 32
++SPAWNCEILING 
++NOGRAVITY
+States
+{
+  Spawn:
+	TVSD A -1
+	Stop
+	}
+}
+
+ACTOR Satellite 18119
+{
+//$Category "Decoration/New Decoration"
+//$Title Satellite
+//$Sprite SATTA0
+Radius 48
+Height 128
+Health 0x7fffffff
+Mass 999999
++SOLID
++SHOOTABLE
++NOBLOOD
+States
+{
+   Spawn:
+	SATT A -1
+	Stop
+	}
+}
+
+Actor DemonSpectator 18120
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Demon Spectator
+  //$Sprite LOHSA2A8
+  Radius 24
+  Height 64
+  Scale 1.0
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_Jump(24,"HellDuke","Behemoth")
+	TNT1 A 0 A_Jump(64,"Daedabus","PyroDemon","BruiserDemon")
+	TNT1 A 0 A_Jump(48,"Hectebus")
+	TNT1 A 0 A_Jump(68,"BaronOfHell")
+    TNT1 A 1 A_Jump(256,"HellKnight")
+  HellKnight: 
+    LOHS A 14
+	LOHI A 14 
+    Loop 
+  BaronOfHell:
+	HFRY A 14
+	HFRI A 14
+	Loop
+  PyroDemon:
+	PYRO A 14 Bright A_SetScale(1.05,1.05)
+	PYRI A 14 Bright 
+	Loop 
+  BruiserDemon:
+	FRIT A 14 Bright A_SetScale(1.05,1.05)
+	FRII A 14 Bright 
+	Loop
+  HellDuke:
+    HDUK A 14 Bright A_SetScale(1.15,1.15)
+	HDUI A 14 Bright 
+    Loop 
+  Hectebus:
+	TABU C 16
+	TABI C 16
+	Loop
+  Daedabus:
+	HECT C 16 A_SetScale(1.05,1.05)
+	HECI C 16
+	Loop
+  Behemoth:
+	FAT2 C 16 A_SetScale(1.1,1.1)
+	FATI C 16
+	Loop
+  }
+}
+
+Actor DemonSpectatorHellChampion : DemonSpectator 18121
+{
+  //$Title Demon Spectator (Hell Champion)
+  //$Sprite HW2RA2
+  -CLIENTSIDEONLY
+  Scale 1.2
+  States
+  {
+  Spawn:
+	HW2R A -1
+	Stop
+  }
+}
+
+Actor DemonSpectatorHellFireBaron : DemonSpectator 18122
+{
+  //$Title Demon Spectator (HellFire Baron)
+  //$Sprite HFBYA2A8
+  -CLIENTSIDEONLY
+  Scale 1.3
+  States
+  {
+  Spawn:
+	HFBY A 14
+	HFBI A 14
+	Loop
+  }
+}
+
+Actor DemonSpectatorHellFireCardinal : DemonSpectator 18123
+{
+  //$Title Demon Spectator (HellFire Cardinal)
+  //$Sprite HFCDA2
+  Scale 1.4
+  -CLIENTSIDEONLY
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    HFCD AAAAABBBBB 2 Bright A_SpawnItem("CardinalFireSpawner",0,0,0,0)
+    Loop
+  }
+}
+
+Actor HumanBBQ1 18124
+{
+//$Category "Decoration/New Decoration"
+//$Title Human BBQ 1
+//$Sprite HBCQA0
+Radius 20
+Height 88
++SOLID
+States
+{
+  Spawn:
+	HBCQ ABC 4 Bright
+	Loop
+}
+}
+
+Actor HumanBBQ2 : HumanBBQ1 18125
+{
+//$Title Human BBQ 2
+//$Sprite HBDQA0
+States
+{
+  Spawn:
+	HBDQ ABC 4 Bright
+	Loop
+}
+}
+
+ACTOR NewSkullCandles 18126
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Skull Candles
+  //$Sprite SCANA0
+  Radius 20
+  Height 48
+  +SOLID
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_Jump(128,"Spawn2")
+  Spawn1:
+    SC4N AB 4 Bright
+    Loop
+  Spawn2:
+    SC4N CDE 4 Bright
+    Loop
+  }
+}
+
+ACTOR NewHangingGuy 18127
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Hanging Guy
+  //$Sprite H4NGA0
+  Radius 18
+  Height 55
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_Jump(128,"Spawn2")
+    H4NG A -1
+    Stop
+  Spawn2:
+    H4NG B -1
+    Stop
+  }
+}
+
+ACTOR NewBloodPool 18128
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Blood Pool
+  //$Sprite BPOLA0
+  Radius 10
+  Height 40
+  +NOBLOCKMAP
+  +MOVEWITHSECTOR
+  States
+  {
+  Spawn:
+    BPOL A -1
+    Stop
+  }
+}
+
+Actor PileOfSkulls 18129
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Pile Of Skulls
+  //$Sprite SKUKA0
+  Radius 20
+  Height 48
+  ProjectilePassHeight -16
+  +SOLID
+  States
+  {
+  Spawn:
+    SKUK A 0
+    SKUK A 1 A_Jump(256,1,2,3,4,5,6)
+    SKUK A -1
+    Stop
+    SKUK B -1
+    Stop
+	SKUK C -1
+    Stop
+	SKUK D -1
+    Stop
+    SKUK E -1
+    Stop	
+    SKUK F -1
+    Stop
+  }
+}
+
+Actor CorpsePile 18130
+{
+//$Category "Decoration/New Decoration"
+//$Title Corpse Pile
+//$Sprite PIL8A0
+Radius 24
+Height 60
++SOLID
+States
+{
+  Spawn:
+	PIL8 A -1
+	Stop
+}
+}
+
+Actor DeadMarineGuy 18131
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Dead Marine
+  //$Sprite DEPLB0
+  Radius 20
+  Height 16
+  +NOBLOCKMAP
+  +MOVEWITHSECTOR
+  States
+  {
+  Spawn:
+    PLAY N 0
+    PLAY N 1 A_Jump(256,1,2,3,4,5,6,7)
+    PLAY N -1
+    Stop
+    DEPL A -1
+    Stop
+    DEPL B -1
+    Stop
+    DEPL C -1
+    Stop
+    DEPL D -1
+    Stop
+    DEPL E -1
+    Stop
+    DEPL F -1
+    Stop
+  }
+}
+
+Actor DestroyedMainBattleTank 18132
+{
+//$Category "Obstacles/New Obstacles"
+//$Title Destroyed Main Battle Tank
+//$Sprite MMTKZ1
+//$Angled
++FLOORCLIP
++SOLID
++SHOOTABLE
++NOBLOOD
+Health 0x7fffffff
+Mass 99999999
+Height 86
+Radius 48
+States
+{
+  Spawn:
+	MMTK Z 20 A_CustomMissile("SmokeFX2",128,0,random(0,360),2,random(70,130))
+	Loop
+}
+}
+
+Actor IncursionMovingSpot : SwitchableDecoration 18133
+{
+//$Title Normal Incursion Spot (radius 128.0)
+//$Category "Complex Doom Invasion"
+//$Sprite ARJ4A0
+//$Color 9
+Height 128
+Radius 160
+RenderStyle Add
+Alpha 0.75
+//+NOBLOCKMONST
+//+THRUACTORS
++THRUSPECIES
++NOTIMEFREEZE
++NODROPOFF
++DONTSPLASH
+Species "Incursion"
+MaxStepHeight 192
+MaxDropOffHeight 192
+var int user_amount;
+var int user_initial;
+var int user_max;
+var int user_try;
+var int user_delay;
+var int user_clear;
+States
+{
+  Spawn:
+  Active:
+    TNT1 A 0 
+    TNT1 A 0 ACS_NamedExecuteAlways("Hell Incursion Moving Spot",0,0,0,0)
+    //ARJ1 A 1 Bright
+    TNT1 A 1 Bright
+    Wait
+  Inactive:
+    TNT1 A 1 Bright
+    Loop
+}
+}
+
+Actor BigIncursionMovingSpot : IncursionMovingSpot 18134
+{
+//$Title Big Incursion Spot (radius 160.0)
+Radius 192
+}
+
+Actor HugeIncursionMovingSpot : IncursionMovingSpot 18135
+{
+//$Title Huge Incursion Spot (radius 224.0)
+Radius 256
+}
+
+Actor SmallIncursionMovingSpot : IncursionMovingSpot 18136
+{
+//$Title Small Incursion Spot (radius 96.0)
+Radius 128
+}
+
+Actor TinyIncursionMovingSpot : IncursionMovingSpot 18137
+{
+//$Title Tiny Incursion Spot (radius 64.0)
+Radius 96
+}
+
+Actor DoomBigTreeLeaves : DoomBigTree 18138
+{
+  //$Title Big Tree (Leaves)
+  //$Sprite TRE5B0
+  States
+  {
+  Spawn:
+    TRE5 A 0
+    TRE5 A 1 A_Jump (256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+  Spawn1:
+    TRE5 A -1
+    Stop
+  Spawn2:
+    TRE5 B -1
+    Stop
+  Spawn3:
+    TRE5 C -1
+    Stop
+  Spawn4:
+    TRE5 D -1
+    Stop
+  Spawn5:
+    TRE5 E -1
+    Stop
+  Spawn6:
+    TRE5 F -1
+    Stop
+  Spawn7:
+    TRE5 G -1
+    Stop	
+  }
+}
+
+Actor DoomBigTreeDead : DoomBigTree 18139
+{
+  //$Title Big Tree (Dead)
+  //$Sprite DTREA0
+  States
+  {
+  Spawn:
+    DTRE A 0
+    DTRE A 1 A_Jump(256,"Spawn1","Spawn2")
+  Spawn1:
+    DTRE A -1
+    Stop
+  Spawn2:
+    DTRE B -1
+    Stop	
+  }
+}
+
+Actor UACGardenU : DoomBigTree 18140
+{
+Height 32
+Radius 24
+Scale 1.25
+ProjectilePassHeight -16
+//$Title UAC Garden U
+//$Sprite G4RD A0
+States
+{
+  Spawn:
+    G4RD A -1
+    Stop	
+}
+}
+
+Actor UACGardenA : UACGardenU 18141
+{
+//$Title UAC Garden A
+//$Sprite G4RDB0
+States
+{
+  Spawn:
+    G4RD B -1
+    Stop	
+}
+}
+
+Actor UACGardenC : UACGardenU 18142
+{
+//$Title UAC Garden C
+//$Sprite G4RDC0
+States
+{
+  Spawn:
+    G4RD C -1
+    Stop	
+}
+}
+
+Actor UACGardenIcon : UACGardenU 18143
+{
+//$Title UAC Garden Icon
+//$Sprite G4RDD0
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Jump(64,2)
+    G4RD D -1
+    Stop	
+    G4RD E -1
+    Stop
+}
+}
+
+Actor UACGardenWall : UACGardenU 18144
+{
+//$Title UAC Garden Wall
+//$Sprite G4RDF0
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Jump(64,2)
+    G4RD F -1
+    Stop	
+    G4RD G -1
+    Stop
+}
+}		
+
+Actor UACGardenTree : UACGardenU 18145
+{
+//$Title UAC Garden Tree
+//$Sprite G4RDH0
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Jump(64,2)
+    G4RD H -1
+    Stop	
+    G4RD I -1
+    Stop
+}
+}	
+
+Actor UACGardenBush : UACGardenU 18146
+{
+//$Title UAC Garden Bush
+//$Sprite G4RDJ0
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Jump(64,2)
+    G4RD J -1
+    Stop	
+    G4RD K -1
+    Stop
+}
+}
+
+Actor UACGardenStatue : UACGardenU 18147
+{
+//$Title UAC Garden Statue
+//$Sprite G4RDL0
+States
+{
+  Spawn:
+    G4RD L -1
+    Stop	
+}
+}
+
+ACTOR BarrelGenerator 18148
+{
+//$Category "Obstacles/New Obstacles"
+//$Title Barrel Generator
+//$Sprite P2PLA0
+Radius 24
+Height 64
++BRIGHT
++NOGRAVITY
+var int user_delay;
+var int user_time;
+var int user_limit;
+var int user_velocity;
+var int user_minions;
+//$Arg0 "Delay"
+//$Arg0ToolTip "Delay in seconds between barrel spawn."
+//$Arg0Default 1
+//$Arg1 "Limit"
+//$Arg1ToolTip "Limit of barrels it can spawn."
+//$Arg1Default 10
+//$Arg2 "Spawn Velocity"
+//$Arg2Type 11
+//$Arg2ToolTip "Move barrels at spawn with current velocity."
+//$Arg2Default 1
+//$Arg3 "Barrel Type"
+//$Arg3Type 11
+//$Arg3ToolTip "What type of barrel it will spawn."
+//$Arg3Enum {0="Explosive";1="Radioactive";2="Oil";3="Poison";4="Tech";5="Demon Tech";6="Devastator";7="Nuclear";8="Chaos";9="Eradicator";10="Random";11="Random(Weak)";12="Random(Medium)";13="Random(Strong)";}
+//$Arg3Default 0
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedExecuteAlways("Infestor Script Start",0,0,0)
+  DelaySetter:
+    TNT1 A 0 A_JumpIf(Args[0] > 0,2)
+    TNT1 A 0 A_Jump(256,3)
+    TNT1 A 0 A_SetUserVar("user_delay",Args[0])
+    TNT1 A 0 A_Jump(256,2)
+    TNT1 A 0 A_SetUserVar("user_delay",1)
+  LimitSetter:
+    TNT1 A 0 A_JumpIf(Args[1] > 0,2)
+    TNT1 A 0 A_Jump(256,3)
+    TNT1 A 0 A_SetUserVar("user_limit",Args[1])
+    TNT1 A 0 A_Jump(256,2)
+    TNT1 A 0 A_SetUserVar("user_limit",10)
+    TNT1 A 0 A_SetUserVar("user_limit",user_limit-1)
+  VelocitySetter:
+    TNT1 A 0 A_SetUserVar("user_velocity",Args[2])
+  Waiting:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(user_time >= user_delay,2)
+    TNT1 A 0 A_Jump(256,2)
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Infestor Script Check",user_limit,0,0) == TRUE,"Construct")
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Infestor Script Check",user_limit,0,0) == FALSE,2)
+    TNT1 A 0 A_SetUserVar("user_time",user_time+1)
+	P2PL ABABABABABABABABABABABABABABABABABA 1
+	Loop
+  Construct:
+    TNT1 A 0 
+    TNT1 A 0 A_SetUserVar("user_time",0)
+    TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,32)
+    TNT1 A 0 A_JumpIf(Args[3] == 1,"RadioactiveBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 2,"OilBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 3,"PoisonBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 4,"TechBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 5,"DemonTechBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 6,"DevastatorBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 7,"NuclearBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 8,"ChaosBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 9,"EradicatorBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 10,"RandomBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 11,"RandomWeakBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 12,"RandomMediumBarrel")
+    TNT1 A 0 A_JumpIf(Args[3] == 13,"RandomStrongBarrel")
+  ExplosiveBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityExplosiveBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  RadioactiveBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityRadioactiveBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  OilBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityOilBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  PoisonBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityPoisonBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  TechBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityTechBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  DemonTechBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityDemonTechBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  DevastatorBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityDevastatorBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  NuclearBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityNuclearBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  ChaosBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityChaosBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  EradicatorBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityEradicatorBarrel3",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  RandomBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityRandomBarrel",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  RandomWeakBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityRandomWeakBarrel",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  RandomMediumBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityRandomMediumBarrel",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+  RandomStrongBarrel:
+    TNT1 A 0 A_SpawnItemEx("UtilityRandomStrongBarrel",0,0,32,random(user_velocity/2,user_velocity),0,random(user_velocity/2,user_velocity),random(0,359),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0,user_minions)
+    Goto Waiting
+}
+}
+
+Actor DemonTechCoreDecoration 18149
+{
+//$Category "Decoration/New Decoration"
+//$Title Demon Tech Core
+//$Sprite LORGA0
+RenderStyle Add
+Scale 2.0
+Alpha 0.9
++NOBLOCKMAP
++NOGRAVITY
++FLOATBOB
++NOCLIP
++BRIGHT
+-SOLID
+States
+{
+  Spawn:
+	LORG ABCDEFG 2
+    Loop
+}
+}
+
+//WTF
+
+Actor TPortal : SwitchableDecoration 18927
+{
+    //$Category "Decoration/New Decoration"
+    //$Title Teleporter Portal
+    //$Sprite ORBPA0
+	//+CLIENTSIDEONLY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+NOTELEPORT
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.25
+	States
+	{
+	Spawn:
+	Active:
+		TNT1 AAAAA 7 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,172)
+		TNT1 A 0 A_SetTranslucent(0.1,1)
+		TNT1 A 0 A_PlaySound("TPortalAppear")
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.2,1)
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.3,1)
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.4,1)
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.5,1)
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.6,1)
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.7,1)
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		TNT1 A 0 A_SetTranslucent(0.8,1)
+		TNT1 A 0 A_PlaySound("TPortalLoop",5,1,1)
+	Doing:
+		ORBP ABCDCB 1 bright Light("TPortNormal") A_SpawnItem("TPortMistSpawner",0,32)
+		ORBP A 0 A_SpawnItemEx("TPortLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+		Loop
+	Inactive:
+		TNT1 A 0
+		TNT1 A 1 A_StopSound(5)
+		TNT1 A 1
+		Goto Inactive+2	
+	}
+}
+
+Actor TextMessage1 18928
+{
+  //$Category "Decoration/New Decoration"
+  //$Title Text Message 1
+  //$Sprite TEXTA0
+  +NOGRAVITY
+  +FORCEXYBILLBOARD
+  +NOINTERACTION
+  States
+  {
+      Spawn:
+	    TEXT A 0
+	    TEXT A 0 Thing_ChangeTID(0,7000)
+		TEXT A 1
+		Wait
+  }
+}
+
+Actor TextMessage2 : TextMessage1 18929
+{
+//$Title Text Message 2
+//$Sprite TEXTB0
+States
+{
+      Spawn:
+		TEXT B -1
+		Stop
+  }
+}
+
+ACTOR StoneBaronOfHell 19300
+{
+  //$Category "Decoration/New Decoration"
+  //$Sprite SBSSA1
+  //$Title "Stone Baron of Hell"
+  Radius 24
+  Height 64
+  Mass 0x7FFFFFFF
+  +FLOORCLIP
+  +SOLID
+  -SHOOTABLE
+  States
+  {
+  Spawn:
+	SBSS A -1
+  }
+}
+
+ACTOR UACGenerator 19301
+{
+//$Title Field Generator (Sector 1)
+//$Category "UAC/UAC Objects"
+//$Color 9
+//$Arg0 "Forced ID"
+//$Arg0oolTip "ID Forced by the Generator, to avoid conflict with mods changing the ID of this actor like HP-Bar." 
+Monster
+Health 2000
+Radius 15
+Height 90
+Mass 999999999
+Scale 0.6
++FRIENDLY
+-SOLID
++NOBLOOD
++NORADIUSDMG
++THRUSPECIES
+PainChance 256
+Species "Player"
+DamageFactor "Marine", 0
+DamageFactor "MarinePierce", 0.0
+DamageFactor "MarineKaboom", 0.0
+DamageFactor "Legendary", 0
+DamageFactor "MechStep", 0
+DamageFactor "Mine", 0
+DamageFactor "Cyber10K", 0.25
+DamageFactor "CerEnergyBall", 0.25
+DamageFactor "BFGSplash", 0.25
+DamageFactor 0.85
+RadiusDamageFactor 0.25
+DeathSound "weapons/rocklx"
+Tag "\c[a6]UAC \c[v2]- \c[m4]Main Generator\c-"
+States
+{
+ Spawn:
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  Loop
+ Pain:
+  HUG3 A 0
+  HUG3 A 0 A_ChangeFlag("NOPAIN",1)
+  HUG3 A 0 ACS_NamedExecute("Generator Attacked Warning",0,0,0,0)
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 A 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 B 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 C 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  TNT1 A 0 Thing_ChangeTID(0,Args[0])
+  HUG3 D 1 Bright HealThing(1,2000) 
+  HUG3 A 0 A_ChangeFlag("NOPAIN",0)
+  Goto Spawn
+ Death:
+  HUG3 AAAAAA 2 A_CustomMissile("Kaboom", random(8,80), random(20,-20), random(0,360), 2, random(0,360))
+  HUG3 Z 0 A_SpawnItemEx("KaBoom", 0, 0, 64, 0, 0, 0, 0, 160)  
+  HUG3 Z 0 A_SpawnItemEx("KaBoom", 0, 0, 32, 0, 0, 0, 0, 160)
+  HUG3 Z 0 A_SpawnItemEx("KaBoom", 0, 0, 96, 0, 0, 0, 0, 160)
+  HUG3 Z 4 Bright A_PlaySound("map/gen2off")
+  HUG3 Z -1
+  Stop
+ }
+}
+
+Actor MapSentryGun : SentryGun 19302
+{
+//$Title Sentry Gun
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    SENT AAAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SENT A 0 HealThing(30,300)
+    SENT A 0 A_PlaySound("sentry/beep")
+    Loop
+  Done:
+  See:
+    SENT AAAAAAAAAAAAAAAA 1 A_Chase
+	SENT AAAAAAAAAAAAAAAA 1 A_Chase
+	SENT AAAAAAAAAAAAAAAA 1 A_Chase
+	SENT AAAAAAAAAAAAAAAA 1 A_Chase
+	SENT A 0 HealThing(30,300) 
+    SENT A 0 A_PlaySound("sentry/beep")
+	SENT A 0 A_ClearTarget
+    Loop
+  }
+}
+
+Actor MapSniperSentryGun : SniperSentryGun 19303
+{
+//$Title Sniper Sentry Gun
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    SET3 AAAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SET3 A 0 HealThing(30,300)
+    SET3 A 0 A_PlaySound("sentry/beep")
+    Loop
+  Done:
+  See:
+    SET3 A 0 HealThing(15,300) 
+    SET3 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET3 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET3 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET3 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET3 A 0 HealThing(30,300) 
+    SET3 A 0 A_PlaySound("sentry/beep")
+	SET3 A 0 A_ClearTarget
+    Loop
+  }
+}
+
+Actor MapHeavySentryGun : HeavySentryGun 19304
+{
+//$Title Heavy Sentry Gun
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_StopSoundEx("SoundSlot6")
+    S3NT AAAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	S3NT A 0 HealThing(65,650)
+    S3NT A 0 A_PlaySound("sentry/beep")
+    Loop
+  Done: 
+  See:
+    TNT1 A 0
+	S3NT A 0 HealThing(33,650)
+    TNT1 A 0 A_StopSoundEx("SoundSlot6")
+    S3NT AAAAAAAAAAAAAAAA 1 A_Chase
+	S3NT AAAAAAAAAAAAAAAA 1 A_Chase
+	S3NT AAAAAAAAAAAAAAAA 1 A_Chase
+	S3NT AAAAAAAAAAAAAAAA 1 A_Chase
+	S3NT A 0 HealThing(65,650)
+    S3NT A 0 A_PlaySound("sentry/beep")
+	S3NT A 0 A_ClearTarget
+    Loop
+  }
+}
+
+Actor MapMissileSentryGun : MissileSentryGun 19305
+{
+//$Title Missile Sentry Gun
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    SET9 AAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SET9 A 0 HealThing(220,2200)
+    SET9 A 0 A_PlaySound("sentry/beep")
+	Loop
+  Done:
+  See:
+    SET9 A 0 HealThing(110,2200)
+    SET9 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET9 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET9 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET9 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET9 A 0 HealThing(220,2200)
+    SET9 A 0 A_PlaySound("sentry/beep")
+	SET9 A 0 A_ClearTarget
+    Loop	
+  }
+}
+
+Actor MapObeliskOfLight : ObeliskOfLight 19306
+{
+//$Title Obelisk OfLight
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    OBLK AAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,10000,0,360,"See")	
+    OBLK A 0 A_PlaySound("obelisk/active")
+	Loop
+  See:
+    OBLK A 0 HealThing(50) 
+    OBLK AAAAAAAAAAAAAAAA 1 A_Chase
+	OBLK AAAAAAAAAAAAAAAA 1 A_Chase
+	OBLK AAAAAAAAAAAAAAAA 1 A_Chase
+	OBLK AAAAAAAAAAAAAAAA 1 A_Chase
+    OBLK A 0 A_PlaySound("obelisk/active")
+	OBLK A 0 A_ClearTarget
+    Loop	
+  }
+}
+
+ACTOR UACGenerator2 : UACGenerator 19307
+{
+//$Title Field Generator (Sector 2)
+Health 4000
+States
+{
+ Spawn:
+  HUG3 ABCD 4 bright HealThing(8,4000) 
+  Loop
+ }
+}
+
+ACTOR UACGenerator3 : UACGenerator 19308
+{
+//$Title Field Generator (Sector 3)
+Health 6000
+States
+{
+ Spawn:
+  HUG3 ABCD 4 bright HealThing(12,6000) 
+  Loop
+ }
+}
+
+ACTOR UACGenerator4 : UACGenerator 19309
+{
+//$Title Field Generator (Sector 4)
+Health 8000
+States
+{
+ Spawn:
+  HUG3 ABCD 4 bright HealThing(16,8000) 
+  Loop
+ }
+}
+
+Actor MapShotgunSentryGun : ShotgunSentryGun 19310
+{
+//$Title Shotgun Sentry Gun
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    SET4 AAAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SET4 A 0 HealThing(30,300)
+    SET4 A 0 A_PlaySound("sentry/beep")
+    Loop
+  Done:
+  See:
+    SET4 A 0 HealThing(15,300) 
+    SET4 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET4 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET4 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET4 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET4 A 0 HealThing(30,300) 
+    SET4 A 0 A_PlaySound("sentry/beep")
+	SET4 A 0 A_ClearTarget
+    Loop
+  }
+}
+
+Actor MapMiniRocketSentryGun : MiniRocketSentryGun 19311
+{
+//$Title Mini Rocket Sentry Gun
+//$Category "UAC/UAC Objects"
+//$Color 9
+States
+{
+  Spawn:
+    SET7 AAAAAAAAAAAAAAAA 4 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SET7 A 0 HealThing(30,300)
+    SET7 A 0 A_PlaySound("sentry/beep")
+    Loop
+  Done:
+  See:
+    SET4 A 0 HealThing(15,300)
+    SET7 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET7 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET7 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET7 AAAAAAAAAAAAAAAA 1 A_Chase
+	SET7 A 0 HealThing(30,300) 
+    SET7 A 0 A_PlaySound("sentry/beep")
+	SET7 A 0 A_ClearTarget
+    Loop
+  }
+}
+
+Actor FFHealthSpawner : RandomSpawner
+{
+DropItem "NewStimpack",256,100
+DropItem "Stimkit2",256,100
+DropItem "NewMedikit",256,40
+DropItem "PortableMedkit2",256,40
+DropItem "MedPack",256,10
+DropItem "BerserkPack",256,10
+//DropItem "PureRage",256,5
+DropItem "HellionRegen", 256, 1
+}
+
+Actor FFArmorSpawner1 : RandomSpawner
+{
+DropItem "ModdedGreenArmorPickup",256,100
+DropItem "ExtraArmor",256,40
+}
+
+Actor FFArmorSpawner2 : RandomSpawner
+{
+DropItem "ModdedBlueArmorPickup",256,100
+DropItem "ModdedGreenArmorPickup",256,40
+DropItem "ExtraArmor",256,40
+}
+
+Actor FFArmorSpawner3 : RandomSpawner
+{
+DropItem "ModdedBlueArmorPickup",256,80
+DropItem "RedArmorPickup",256,20
+}
+
+Actor FFAmmoSpawner1 : RandomSpawner
+{
+DropItem "BulletMag",256,100
+DropItem "NewShell",256,100
+DropItem "BulletBox",256,40
+DropItem "NewShellBox",256,40
+DropItem "AmmoPack",256,40
+DropItem "AmpGoggles", 256,10
+DropItem "FlameTurret", 256,10
+}
+
+Actor FFAmmoSpawner2 : RandomSpawner
+{
+DropItem "BulletBox",256,100
+DropItem "NewShellBox",256,100
+DropItem "NewCellPack",256,100
+DropItem "MissileBox",256,100
+DropItem "DemonAmmo",256,40
+DropItem "AmmoPack",256,40
+DropItem "ModdedBackpack",256,10
+DropItem "DeployableShield",256,10
+DropItem "HolographicDecoy",256,10
+DropItem "TimeBomb",256,10
+DropItem "MissilePod",256,10
+DropItem "SentryBox",256,10
+DropItem "LightDroneCompanionItem",256,10
+}
+
+Actor FFAmmoSpawner3 : RandomSpawner
+{
+DropItem "BulletBox",256,100
+DropItem "NewShellBox",256,100
+DropItem "NewCellPack",256,100
+DropItem "MissileBox",256,100
+DropItem "ModdedBackpack", 256, 100
+DropItem "DemonAmmoBox",256,40 
+DropItem "FullRefilePack",256,10
+DropItem "PoisonTurret",256,10
+DropItem "TeleportedStrikeBeacon",256,10
+DropItem "TeleportedStrikeBeacon",256,10
+DropItem "SoulGenerator",256,10
+DropItem "ArmorGenerator",256,10
+DropItem "SkullOfPower", 256, 5
+DropItem "DemonicChalice", 256, 5
+}
+
+Actor FFWeaponSpawner1 : RandomSpawner
+{
+DropItem "Shotgun",256,100
+DropItem "MP40",256,100
+DropItem "Assault Rifle",256,100
+DropItem "Assault Shotgun ",256,40
+DropItem "Double Barrel Shotgun",256,40
+DropItem "Demon Tech Pistol",256,40
+}
+
+Actor FFWeaponSpawner2 : RandomSpawner
+{
+DropItem "Minigun ",256,100
+DropItem "Quad Barrel Shotgun",256,100
+DropItem "PulseShotgun",256,100
+DropItem "Demon Tech Ballista",256,100
+DropItem "Plasma Rifle ",256,100
+DropItem "Railgun ",256,40
+DropItem "Rocket Launcher",256,40
+DropItem "Grenade Launcher",256,40
+DropItem "Demon Tech Rifle",256,40
+DropItem "Freezer Rifle",256,10
+}
+
+Actor FFWeaponSpawner3 : RandomSpawner
+{
+DropItem "Hexa-Shotgun ",256,100
+DropItem "BehemothCannon",256,100
+DropItem "DoubleGrenadeLauncher",256,100
+DropItem "HomingRocketLauncher",256,100
+DropItem "PlasmaRepeater",256,100
+DropItem "PlasmaCaster",256,40
+DropItem "ExplosiveSSG",256,40
+DropItem "Explosive Minigun ",256,40
+DropItem "QuadRocketLauncher",256,40
+DropItem "MineLauncher",256,40
+DropItem "Demon Tech Railgun",256,10
+DropItem "Demon Tech Rocket Launcher",256,10
+DropItem "Demon Tech Minigun",256,10
+}
+
+Actor FFWeaponSpawner4 : RandomSpawner
+{
+DropItem "M79GrenadeLauncher",256,100
+DropItem "BFG9500",256,100
+DropItem "BFG10K ",256,100
+DropItem "BFG4700",256,40
+DropItem "BFG3500",256,40
+DropItem "HellStormBFG",256,10
+DropItem "Demon Tech BFG10K",256,10
+DropItem "EFG9000",256,10
+}
+
+Actor FFPowerupSpawner1 : RandomSpawner
+{
+DropItem "ModdedSoulSphere",256,100
+DropItem "HasteSphere",256,40
+DropItem "ModdedBlurSphere",256,40
+DropItem "LifeSphere",256,10
+DropItem "ModdedMegaSphere2",256,10
+DropItem "RandomSphere", 256, 10
+}
+
+Actor FFPowerupSpawner2 : RandomSpawner
+{
+DropItem "ProtectionSphere",256,100
+DropItem "WickedSphere",256,100
+DropItem "UltraSphere2",256,40
+DropItem "RevengeSphere",256,40
+DropItem "AnnihilationSphere",256,40
+DropItem "EpicSphere",256,40
+DropItem "TerrorSphere",256,40
+DropItem "RandomSphere", 256, 40
+DropItem "ThunderSphere",256,10
+}
+
+Actor FFPowerupSpawner3 : RandomSpawner
+{
+DropItem "ModdedInvulnerabilitySphere",256,100
+DropItem "NewDoomSphere",256,40
+DropItem "FateSphere",256,40
+DropItem "UnbelieveabilitySphere",256,40
+DropItem "HolySphere",256,10
+}

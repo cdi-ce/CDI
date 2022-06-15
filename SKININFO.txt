@@ -1,0 +1,138 @@
+{
+Name = HRL-Marine
+Class = "Doom Guy"
+Sprite = PHRL
+CrouchSprite = PHRC
+Hidden = False
+}
+
+{
+Name = Repeater-Marine
+Class = "Doom Guy"
+Sprite = PSTN
+CrouchSprite = PSNC
+Hidden = False
+}
+
+{
+Name = Sniper-Marine
+Class = "Doom Guy"
+Sprite = PSNP
+CrouchSprite = PSPC
+Hidden = False
+}
+
+{
+Name = DBFG-Marine
+Class = "Doom Guy"
+Sprite = PBDB
+CrouchSprite = PDBC
+Hidden = False
+}
+
+{
+Name = EFG9K-Marine
+Class = "Doom Guy"
+Sprite = PRDM
+CrouchSprite = PRDM
+Hidden = False
+}
+
+{
+Name = LegLMG-Marine
+Class = "Doom Guy"
+Sprite = PLLM
+CrouchSprite = PLLC
+Hidden = False
+}
+
+{
+Name = Util-Marine
+Class = "Doom Guy"
+Sprite = PBAK
+CrouchSprite = PBPC
+Hidden = False
+}
+
+{
+Name = Sword-Marine
+Class = "Doom Guy"
+Sprite = PZSAA1
+CrouchSprite = PZSAA1
+Hidden = False
+}
+
+{
+Name = "LegendaryRailgun-Marine"
+Class = "Doom Guy"
+Sprite = PLRG
+CrouchSprite = PLRC
+Hidden = False
+}
+
+{
+Name = DTBallista-Marine
+Class = "Doom Guy"
+Sprite=PDTB
+CrouchSprite=PDBX
+Hidden = False
+}
+
+{
+Name = DTRepeater-Marine
+Class = "Doom Guy"
+Sprite = PREP
+CrouchSprite = PRPC
+Hidden = False
+}
+
+{
+Name = DTechRailgun-Marine
+Class = "Doom Guy"
+Sprite = PDTR
+CrouchSprite = PDTX
+Hidden = False
+}
+
+{
+Name = LegendaryChainsaw-Marine
+Class = "Doom Guy"
+Sprite=PLCS
+CrouchSprite=PCCS
+Hidden = False
+}
+
+{
+Name = LegendarySSG-Marine
+Class = "Doom Guy"
+Sprite=P2SG
+CrouchSprite=PCSG
+Hidden = False
+}
+
+{
+Name = Chaingun-Marine
+Class = "Doom Guy"
+Sprite=PLA4
+CrouchSprite=PL4C
+Hidden = False
+}
+
+//Extra Skins
+{
+Name = "Muhammad"
+Class = "Doom Guy"
+DSTAUNT = ALL
+DSDEATH = All/DEATH
+Hidden = True
+Face = STF
+}
+
+{
+Name = "TigerMafia"
+Class = "Doom Guy"
+DSTAUNT = CMDOCMDO
+DSDEATH = TIGRMAFA
+Hidden = True
+Face = STF
+}

@@ -1,0 +1,387 @@
+//================================================== \\
+// ------------------ Assault Tank ----------------- \\
+//================================================== \\
+
+Actor AssaultTank : MechPickup
+{
+  Scale 0.75
+  States
+  {
+  Spawn:
+    MECH G 1 A_SpawnItemEx("MechIndicator",0,0,128)
+    Loop
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("AssaultTankGiver")
+	Stop
+  Nope:
+	MECH G 1
+	Stop
+  } 
+}
+
+Actor AssaultTank_Used1 : AssaultTank
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("AssaultTankGiver_Used1")
+	Stop
+  }
+}
+
+Actor AssaultTank_Used2 : AssaultTank
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("AssaultTankGiver_Used2")
+	Stop
+  }
+}
+
+Actor AssaultTank_Used3 : AssaultTank
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("AssaultTankGiver_Used3")
+	Stop
+  }
+}
+
+ACTOR AssaultTankGiver : MechGiver{Powerup.Type "AssaultTank"}
+ACTOR AssaultTankGiver_Used1 : AssaultTankGiver{Powerup.Type "AssaultTank_Used1"}
+ACTOR AssaultTankGiver_Used2 : AssaultTankGiver{Powerup.Type "AssaultTank_Used2"}
+ACTOR AssaultTankGiver_Used3 : AssaultTankGiver{Powerup.Type "AssaultTank_Used3"}
+
+ACTOR PowerAssaultTank : PowerMorph
+{
+  PowerMorph.PlayerClass "Mech_AssaultTank"
+  PowerMorph.MorphFlash "Nothing"
+  PowerMorph.UnMorphFlash "Nothing"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR PowerAssaultTank_Used1 : PowerAssaultTank{PowerMorph.PlayerClass "Mech_AssaultTank_Used1"}
+ACTOR PowerAssaultTank_Used2 : PowerAssaultTank{PowerMorph.PlayerClass "Mech_AssaultTank_Used2"}
+ACTOR PowerAssaultTank_Used3 : PowerAssaultTank{PowerMorph.PlayerClass "Mech_AssaultTank_Used3"}
+
+ACTOR Mech_AssaultTank : BaseHeavyMech
+{
+  Health 900
+  Player.DisplayName "Assault Tank"
+  Player.MaxHealth 900
+  Player.MorphWeapon "AssaultTank-Weapons"
+  Player.AttackZOffset 25
+  Scale 0.75  
+  Radius 48
+  Height 84
+  States
+  {
+  Spawn:
+    T2NK A 1 A_PlaySoundEx("tank/active","SoundSlot7",1)
+    Loop
+  See:
+    T2NK A 0 A_SpawnItemEx("TankDamage",0,0,4,0,0,0,0,0,0)
+	T2NK A 2 A_PlaySoundEx("tank/move","SoundSlot7",1)
+    Loop
+  Missile:
+    T2NK AAA 2 Bright A_SpawnItemEx("TankDamage",0,0,4,0,0,0,0,0,0)
+    Goto Spawn
+  Death:
+	T2NK A 4
+	T2NK A 0 A_StopSoundEx("SoundSlot6")
+	T2NK A 0 A_StopSoundEx("SoundSlot7")
+	T2NK A 4 A_PlaySound("ZTank/death")
+	T2NK AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 Bright A_SpawnItemEx("NewKaboomEffect",random(-64,64),random(-64,64),random(12,96))
+	TANK Z 0 A_Fall
+	TANK Z 0 A_SpawnItemEx("BigVehicleExplosionEffect")
+	TANK Z -1
+	Stop
+  }
+}
+
+ACTOR Mech_AssaultTank_Used1 : Mech_AssaultTank{Health 675}
+ACTOR Mech_AssaultTank_Used2 : Mech_AssaultTank{Health 450}
+ACTOR Mech_AssaultTank_Used3 : Mech_AssaultTank{Health 225}
+
+ACTOR AssaultTank-Weapons : MechWeapon
+{ 
+  Obituary "%o was destroyed by %k's Assault Tank."
+  States
+  {
+  Spawn:
+    TNT1 A 0 
+    Stop
+  Ready:
+    MHUD A 0 A_StopSoundEx("SoundSlot6")
+    MHUD A 1 A_WeaponReady
+    Goto Ready
+  Select:
+    MHUD B 1 A_Raise
+    Loop
+  Deselect:
+    MHUD B 0 A_Lower
+    Loop
+  Fire:
+    MHUD A 0 A_JumpIfInventory("MechPlasmaCasterReload",1,"Fire1")
+    MHUD A 0 A_GiveInventory("MechPlasmaCasterReload",1)
+    MHUD A 0 ACS_ExecuteAlways(3104,0,21)
+	MHUD A 0 ACS_ExecuteAlways(3113,0,9)
+	MHUD A 0 
+    Goto Ready
+  AltFire:
+  Fire1:
+    MHUD A 0 A_JumpIfInventory("MechRailgunReload",1,"Fire2")
+    MHUD A 0 A_GiveInventory("MechRailgunReload",1)
+    MHUD A 0 ACS_ExecuteAlways(3104,0,22)
+	MHUD A 0 ACS_ExecuteAlways(3113,0,10)
+	MHUD A 0 
+    Goto Ready
+  Fire2:
+    MHUD A 0 A_JumpIfInventory("MechBFGReload",1,"Fire3")
+    MHUD A 0 A_GiveInventory("MechBFGReload",1)
+    MHUD A 0 ACS_ExecuteAlways(3104,0,23)
+	MHUD A 0 ACS_ExecuteAlways(3113,0,11)
+	MHUD A 0 
+    Goto Ready
+  FireWait:
+    MHUD B 2
+    MHUD A 1 A_Refire
+    Goto Ready 
+  Fire3:	
+	MHUD A 0 Radius_Quake(2,2,0,1,0)
+	MHUD A 0 A_SpawnItemEx("TurretFlash",28,0,118)
+	MHUD A 0 A_SpawnItemEx("RifleCasing",28,0,118,Random(2,4),Random(3,6),Random(3,6),0)
+	MHUD A 0 A_PlaySoundEx("hminigun/fire2","SoundSlot6",1)
+    MHUD B 2 Bright A_FireCustomMissile("TankMinigunProj",random(-1,1),0,0,60,0,random(-1,1))
+    MHUD A 1 A_Refire
+    Goto Ready 
+  }
+}
+
+ACTOR AssaultTank-TankShoot : GrinderBattleMech-MiniRockets
+{
+States
+{
+  Use:
+	TNT1 A 0 
+	TNT1 A 0 A_PlaySoundEx("tank/fire","Voice")
+	TNT1 A 0 A_SpawnItemEx("TankFlash",196,0,86)
+    TNT1 A 0 A_FireCustomMissile("PlayerTankShoot",0,0,0,28)	
+	Stop
+}
+}
+
+ACTOR AssaultTank-MiniTankShoot1 : GrinderBattleMech-MiniRockets
+{
+States
+{
+  Use:
+	TNT1 A 0 
+	MHUD A 0 A_PlaySoundEx("rpg/fire",0,FALSE)
+	MHUD A 0 A_SpawnItemEx("TankFlash",30,40,126)
+	MHUD A 4 Bright A_FireCustomMissile("MiniTankShoot",1,0,25,68,0,-1)	
+	Stop
+}
+}
+
+ACTOR AssaultTank-MiniTankShoot2 : GrinderBattleMech-MiniRockets
+{
+States
+{
+  Use:
+	TNT1 A 0 
+	MHUD A 0 A_PlaySoundEx("rpg/fire",0,FALSE)
+	MHUD A 0 A_SpawnItemEx("TankFlash",30,-40,126)
+	MHUD A 4 Bright A_FireCustomMissile("MiniTankShoot",-1,0,-25,68,0,-1)	
+	Stop
+}
+}
+
+Actor PlayerTankShoot
+{
+Speed 150
+Damage 250
+Projectile
+-RANDOMIZE
+-NOGRAVITY
++EXTREMEDEATH
++MTHRUSPECIES
++FORCERADIUSDMG
++NODAMAGETHRUST
+DeathSound "artillery/explode"
+Gravity 0.05
+Decal BigRocketScorch
+States
+{
+  Spawn:
+    CSHO A 0 A_PlaySound ("artillery/fly",CHAN_BODY,1.0,1)
+	CSHO AAAAA 1 bright A_SpawnItemEx("SmokeFX4",0,0,0,0,0,1,0,128,0)
+    Loop
+  Death:
+	TNT1 A 0 
+	TNT1 A 0 A_NoGravity
+    TNT1 A 0 A_PlaySoundEx("blanksnd","Body",0)
+	TNT1 A 0 A_Explode(128,628,0)
+	TNT1 A 0 A_Explode(156,400,0)
+	TNT1 A 0 A_Explode(512,256)
+	TNT1 A 0 A_CustomMissile("MegaExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("MegaRocketEx")
+    Stop
+}
+}
+
+ACTOR TankShootKaBoom : ClientSideEffect
+{
+Scale 2.8
+Renderstyle Add
+PROJECTILE
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+States
+{   
+  Spawn:
+	BIGB ABCDEFGHIJKLMNOPQRSTU 1 Bright
+	Stop
+}
+}
+
+ACTOR MiniTankShoot
+{
+Projectile
+Speed 100
+Damage 80
++RANDOMIZE
++DEHEXPLOSION
++SKYEXPLODE
++MTHRUSPECIES
++FORCERADIUSDMG
++NODAMAGETHRUST
+DeathSound "weapons/rocklx"
+Decal RocketScorch
+States
+{
+  Spawn:
+    MIS2 A 0 A_PlaySound ("artillery/fly",CHAN_BODY,1.0,1)
+	MIS2 AAAAA 1 bright A_SpawnItemEx("SmokeFX4",0,0,0,0,0,1,0,128,0)
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(168,168)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+}
+}
+
+Actor TankMinigunProj : FastProjectile
+{
+Radius 2
+Height 0
+Speed 220
+Damage 6
+RenderStyle Add
+DamageType "Marine"
+Alpha 0.85
+Decal "BulletChip"
+Scale 0.9
++MISSILE
++RANDOMIZE
++BLOODSPLATTER
++MTHRUSPECIES
++NODAMAGETHRUST
+States
+{
+   Spawn:	
+	TRAC A 1 Bright
+	Loop
+   Death:
+	TNT1 A 0 A_SpawnItem("BulletPuff")
+	TNT1 A 1
+	Stop
+	}
+}
+
+ACTOR AssaultTank_UsedWait1
+{
+  Radius 12
+  Height 32
+  Scale 0.75
+  States
+  {
+  Spawn:
+    MECH GG 35
+    MECH G 1 A_SpawnItemEx("AssaultTank_Used1")
+    Stop
+  }
+}
+
+ACTOR AssaultTank_UsedWait2 : AssaultTank_UsedWait1
+{
+  States
+  {
+  Spawn:
+    MECH GG 35
+    MECH G 1 A_SpawnItemEx("AssaultTank_Used2")
+    Stop
+  }
+}
+
+ACTOR AssaultTank_UsedWait3 : AssaultTank_UsedWait1
+{
+  States
+  {
+  Spawn:
+    MECH GG 35
+    MECH G 1 A_SpawnItemEx("AssaultTank_Used3")
+    Stop
+  }
+}
+
+ACTOR AssaultTank_Destroyed
+{
+  Scale 0.75
+  States
+  {
+  Spawn:
+    MECH G 75
+	TANK A 4 A_PlaySound("ZTank/death")
+	TANK AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 Bright A_SpawnItemEx("NewKaboomEffect",random(-64,64),random(-64,64),random(12,96))
+	TANK Z 0 A_Fall
+	TANK Z 0 A_SpawnItemEx("BigVehicleExplosionEffect")
+	TANK Z -1
+	Stop
+  }
+}
+
+Actor TankDamage : MechStepDamage
+{
+States 
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 Radius_Quake(3,10,0,4,0)
+	TNT1 A 10 bright A_Explode(128,128,0)
+	Stop
+}  
+}

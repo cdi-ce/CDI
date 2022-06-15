@@ -1,0 +1,415 @@
+//================
+// Weapon Spawners
+//================
+
+ACTOR NewWeaponInvasionSpot : CustomWeaponInvasionSpot
+{
+//$Category Invasion Weapon Spawners
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR AssaultShotgunSpot : NewWeaponInvasionSpot 14900
+{
+	//$Title Assault Shotgun
+	//$Sprite SMAPA0
+	DropItem "Assault Shotgun  "
+}
+
+ACTOR QuadBarrelShotgunSpot : NewWeaponInvasionSpot 14901
+{
+	//$Title Quad Barrel Shotgun
+	//$Sprite QSGPA0
+	DropItem "Quad Barrel Shotgun "
+}
+
+ACTOR NewMinigunSpot : NewWeaponInvasionSpot 14902
+{
+	//$Title Minigun
+	//$Sprite MNGNA0
+	DropItem "Minigun  "
+}
+
+ACTOR NewGrenadeLauncherSpot : NewWeaponInvasionSpot 14903
+{
+	//$Title Grenade Launcher
+	//$Sprite GRLNA0
+	DropItem "Grenade Launcher"
+}
+
+ACTOR NewRailgunSpot : NewWeaponInvasionSpot 14904
+{
+	//$Title Railgun
+	//$Sprite SRCGA0
+	DropItem "Railgun  "
+}
+
+ACTOR NewBFG10KSpot : NewWeaponInvasionSpot 14905
+{
+	//$Title BFG10K
+	//$Sprite BFG2A0
+	DropItem "BFG10K  "
+}
+
+ACTOR DemonTechRifleSpot : NewWeaponInvasionSpot 14906
+{
+	//$Title Demon Tech Rifle
+	//$Sprite DTEPA0
+	DropItem "Demon Tech Rifle  "
+}
+
+ACTOR DemonTechBFG10KSpot : NewWeaponInvasionSpot 14907
+{
+	//$Title Demon Tech BFG10K
+	//$Sprite BFUGA0
+	DropItem "Demon Tech BFG10K "
+}
+
+ACTOR MP40Spot : NewWeaponInvasionSpot 14908
+{
+	//$Title MP40
+	//$Sprite MP4PA0
+	DropItem "MP40"
+}
+
+ACTOR LegendaryPlasmaticRifleSpot : NewWeaponInvasionSpot 14910
+{
+	//$Title Legendary Plasmatic Rifle
+	//$Sprite BTEPA0
+	DropItem "Legendary Plasmatic Rifle "
+}
+
+ACTOR LegendaryBFGSpot : NewWeaponInvasionSpot 14911
+{
+	//$Title Legendary BFG
+	//$Sprite GRMGX0
+	DropItem "Legendary BFG "
+}
+
+ACTOR ExplosiveMinigunSpot : NewWeaponInvasionSpot 14912
+{
+	//$Title Explosive Minigun
+	//$Sprite LGUNA0
+	DropItem "Explosive Minigun "
+}
+
+ACTOR BehemothCannonSpot : NewWeaponInvasionSpot 14913
+{
+	//$Title Behemoth Cannon
+	//$Sprite FHMRH0
+	DropItem "BehemothCannon"
+}
+
+ACTOR HomingRocketLauncherSpot : NewWeaponInvasionSpot 14914
+{
+	//$Title Homing Rocket Launcher
+	//$Sprite WHRLA0
+	DropItem "HomingRocketLauncher"
+}
+
+ACTOR PlasmaRepeaterSpot : NewWeaponInvasionSpot 14915
+{
+	//$Title Plasma Repeater
+	//$Sprite STPPA0
+	DropItem "PlasmaRepeater"
+}
+
+ACTOR TechVulcanSpot : NewWeaponInvasionSpot 14916
+{
+	//$Title Eradication Vulcan
+	//$Sprite VULCZ0
+	DropItem "TechVulcan"
+}
+
+ACTOR PulseShotgunSpot : NewWeaponInvasionSpot 14917
+{
+	//$Title Pulse Shotgun
+	//$Sprite STBEX0
+	DropItem "PulseShotgun"
+}
+
+ACTOR HexaBarrelShotgunSpot : NewWeaponInvasionSpot 14918
+{
+	//$Title Hexa Barrel Shotgun
+	//$Sprite HSGPA0
+	DropItem "Hexa-Shotgun "
+}
+
+ACTOR LegendaryPlasmaticCannonSpot : NewWeaponInvasionSpot 14919
+{
+	//$Title Legendary Plasmatic Cannon
+	//$Sprite LEGWZ0
+	DropItem "Legendary Plasmatic Cannon"
+}
+
+ACTOR UACTechDevastatorSpot : NewWeaponInvasionSpot 14920
+{
+	//$Title UAC Tech Devastator
+	//$Sprite CVUPA0
+	DropItem "UAC Tech Devastator"
+}
+
+ACTOR LegendaryAssaultShotgunSpot : NewWeaponInvasionSpot 14921
+{
+	//$Title Legendary Assault Shotgun
+	//$Sprite LMAPA0
+	DropItem "Legendary Assault Shotgun "
+}
+
+ACTOR LegendaryMachineGunSpot : NewWeaponInvasionSpot 14922
+{
+	//$Title Legendary Light Machine Gun
+	//$Sprite LMGLZ0
+	Scale 0.95
+	DropItem "Legendary Machine Gun"
+}
+
+ACTOR D-BFGSpot : NewWeaponInvasionSpot 14923
+{
+	//$Title D-BFG
+	//$Sprite BFG3A0
+	DropItem "D-BFG"
+}
+
+ACTOR TechErasusSpot : NewWeaponInvasionSpot 14924
+{
+	//$Title Erasus
+	//$Sprite ERGGZ0
+	DropItem "TechErasus"
+}
+
+ACTOR EFG9000Spot : NewWeaponInvasionSpot 14925
+{
+	//$Title EFG 9000
+	//$Sprite EFGGZ0
+	DropItem "EFG9000"
+}
+
+ACTOR DoubleGrenadeLauncherSpot : NewWeaponInvasionSpot 14926
+{
+	//$Title Double Grenade Launcher
+	//$Sprite DGLGA0
+	DropItem "DoubleGrenadeLauncher"
+}
+
+ACTOR MineLauncherSpot : NewWeaponInvasionSpot 14927
+{
+	//$Title Mine Launcher
+	//$Sprite PRXPA0
+	DropItem "MineLauncher"
+}
+
+ACTOR BFG4700Spot : NewWeaponInvasionSpot 14928
+{
+	//$Title BFG 4700
+	//$Sprite BFG8Z0
+	DropItem "BFG4700"
+}
+
+ACTOR UtilityGunSpot : NewWeaponInvasionSpot 14929
+{
+	//$Title Utility Gun
+	//$Sprite BKPKA0
+	DropItem "NewUtilityPack"
+}
+
+ACTOR PlasmaCasterSpot : NewWeaponInvasionSpot 14930
+{
+	//$Title Plasma Caster
+	//$Sprite PLCAZ0
+	DropItem "PlasmaCaster"
+}
+
+ACTOR ExplosiveSSGSpot : NewWeaponInvasionSpot 14931
+{
+	//$Title Explosive Super Shotgun
+	//$Sprite 3GN2A0
+	DropItem "ExplosiveSSG"
+}
+
+ACTOR ExplosiveRailgunSpot : NewWeaponInvasionSpot 14932
+{
+	//$Title Explosive Railgun
+	//$Sprite ERGPA0
+	DropItem "ExplosiveRailgun"
+}
+
+ACTOR HellStormBFGSpot : NewWeaponInvasionSpot 14933
+{
+	//$Title HellStorm BFG10K
+	//$Sprite HFG2A0
+	DropItem "HellStormBFG"
+}
+
+ACTOR DemonTechRepeaterSpot : NewWeaponInvasionSpot 14934
+{
+	//$Title "Demon Tech Repeater"
+	//$Sprite DTRPZ0
+	DropItem "Demon Tech Repeater"
+}
+
+ACTOR PerforatorSpot : NewWeaponInvasionSpot 14935
+{
+	//$Title Perforator
+	//$Sprite PLVZA0
+	DropItem "Perforator"
+}
+
+ACTOR RapidShotgunSpot : NewWeaponInvasionSpot 14936
+{
+	//$Title Rapid Shotgun
+	//$Sprite HCNGA0
+	DropItem "RapidShotgun"
+}
+
+ACTOR TripleRotaryMinigunSpot : NewWeaponInvasionSpot 14937
+{
+	//$Title Triple Rotary Minigun
+	//$Sprite 8GUNA0
+	DropItem "Triple Rotary Minigun"
+}
+
+ACTOR LegendaryPulverizerSpot : NewWeaponInvasionSpot 14938
+{
+	//$Title Legendary Pulverizer
+	//$Sprite PULVZ0
+	DropItem "LegendaryPulverizer"
+}
+
+ACTOR EradicatorBFGSpot : NewWeaponInvasionSpot 14939
+{
+	//$Title Eradicator BFG
+	//$Sprite EBFGZ0
+	DropItem "EradicatorBFG"
+}
+
+ACTOR LightningRifleSpot : NewWeaponInvasionSpot 14940
+{
+	//$Title Lightning Rifle
+	//$Sprite CDLPA0
+	DropItem "LightningRifle"
+}
+
+ACTOR BFG12000Spot : NewWeaponInvasionSpot 14941
+{
+	//$Title BFG 12000
+	//$Sprite BG12Z0
+	DropItem "BFG12000"
+}
+
+ACTOR RapidRocketLauncherSpot : NewWeaponInvasionSpot 14942
+{
+	//$Title Rapid Rocket Launcher
+	//$Sprite RRLHZ0
+	DropItem "RapidRocketLauncher"
+}
+
+ACTOR ErazorShotgunSpot : NewWeaponInvasionSpot 14943
+{
+	//$Title Erazor Shotgun
+	//$Sprite EZSGZ0
+	DropItem "ErazorShotgun"
+}
+
+ACTOR M79GrenadeLauncherSpot : NewWeaponInvasionSpot 14944
+{
+	//$Title M79 Grenade Launcher
+	//$Sprite M79PA0
+	DropItem "M79GrenadeLauncher"
+}
+
+ACTOR FreezerRifleSpot : NewWeaponInvasionSpot 14987
+{
+	//$Title Freezer Rifle
+	//$Sprite RIPGA0
+	DropItem "Freezer Rifle"
+}
+
+ACTOR QuadRocketLauncherSpot : NewWeaponInvasionSpot 14988
+{
+	//$Title Quad Rocket Launcher
+	//$Sprite QDRLW0
+	DropItem "QuadRocketLauncher"
+}
+
+ACTOR DemonTechMinigunSpot : NewWeaponInvasionSpot 14989
+{
+	//$Title Demon Tech Minigun
+	//$Sprite DTM0Z0
+	DropItem "Demon Tech Minigun"
+}
+
+ACTOR DemonTechRailgunSpot : NewWeaponInvasionSpot 14990
+{
+	//$Title Demon Tech Railgun
+	//$Sprite DRGIA0
+	Scale 0.8
+	DropItem "Demon Tech Railgun"
+}
+
+ACTOR SniperRifleSpot : NewWeaponInvasionSpot 14991
+{
+	//$Title Sniper Rifle
+	//$Sprite SNP2Z0
+	DropItem "SniperRifle"
+}
+
+ACTOR BFG3500Spot : NewWeaponInvasionSpot 14992
+{
+	//$Title BFG 3500
+	//$Sprite B9IGA0
+	DropItem "BFG3500"
+}
+
+ACTOR Proto-D-BFGSpot : NewWeaponInvasionSpot 14993
+{
+	//$Title Proto-D-BFG
+	//$Sprite WAFGZ0
+	Scale 1.25
+	DropItem "Proto-D-BFG"
+}
+
+ACTOR LegendaryChainsawSpot : NewWeaponInvasionSpot 14994
+{
+	//$Title Legendary Chainsaw
+	//$Sprite CLSWA0
+	DropItem "LegendaryChainsaw"
+}
+
+ACTOR LegendaryQuadShotgunSpot : NewWeaponInvasionSpot 14995
+{
+	//$Title Legendary Quad Shotgun
+	//$Sprite QS2SZ0
+	DropItem "Legendary Quad Shotgun"
+}
+
+ACTOR LegendaryGaussCannonSpot : NewWeaponInvasionSpot 14996
+{
+	//$Title Legendary Gauss Cannon
+	//$Sprite LERPA0
+	DropItem "Legendary Gauss Cannon"
+}
+
+ACTOR DemonTechPistolSpot : NewWeaponInvasionSpot 14997
+{
+	//$Title Demon Tech Pistol
+	//$Sprite DTPIZ0
+	DropItem "Demon Tech Pistol"
+}
+
+ACTOR DemonTechBallistaSpot : NewWeaponInvasionSpot 14998
+{
+	//$Title Demon Tech Ballista
+	//$Sprite DTBIA0
+	DropItem "Demon Tech Ballista"
+}
+
+ACTOR DemonTechRocketLauncherSpot : NewWeaponInvasionSpot 14999
+{
+	//$Title Demon Tech Rocket Launcher
+	//$Sprite DTRLZ0
+	DropItem "Demon Tech Rocket Launcher"
+}

@@ -1,0 +1,323 @@
+Actor Maephisto
+{
+Monster
+Speed 10
+Mass 99999
+Radius 60
+Height 110
+Health 15000
+Scale 1.5
+Decal Bulletchip
+SeeSound "maephisto/see"
+DeathSound "maephisto/death"
+ActiveSound "maephisto/idle"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Legendary", 0.25
+DamageFactor "BFGSplash", 0.3
+DamageFactor "PDTBFG", 0.1
+DamageFactor "PDTBFGTracer", 0.1
+DamageFactor "PlayerDevBall", 0.15
+DamageFactor "PlayerDevTracer", 0.15
+DamageFactor "MechStep", 0.0
+DamageFactor "FinalBossSector", 0.0
+DamageFactor "Pierce", 0.25
+DamageFactor "MarinePierce", 0.25
+DamageFactor "Kaboom", 0.2
+DamageFactor "MarineKaboom", 0.2
+DamageFactor 0.55
+RadiusDamageFactor 0.5
+MaxStepHeight 32
+MaxDropOffHeight 32
++DONTHARMSPECIES
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NOTIMEFREEZE
++DROPOFF
++NOPAIN
++DONTRIP
++NORADIUSDMG
++BOSS
++NOBLOCKMONST
++NOFEAR
+Obituary "%o was vaporised by the Maephisto."
+var int user_script;
+var int user_delay;
+var int user_part1;
+var int user_part2;
+var int user_part3;
+var int user_missile;
+Tag "\c[t1]Maephisto\c-"
+States
+{
+  Spawn:
+ 	TNT1 A 0 A_JumpIf(user_script == 1,3)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,12,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    MMDR E 10 A_Look
+    Loop	
+  See:
+ 	TNT1 A 0 A_JumpIf(user_script == 1,3)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,12,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_SetUserVar("user_missile",0)
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_Jump(52,"Fly")
+	TNT1 A 0 A_Jump(100,"Rush")
+    MMDR A 2 A_Hoof
+    MMDR ABBCC 2 A_Chase
+    MMDR D 2 A_Hoof
+    MMDR D 2 A_Chase
+	TNT1 A 0 A_Jump(52,"Teleport","Fly")
+    Loop	
+  Rush:
+	MMDR A 0 A_Hoof
+	MMDR AA 0 A_Chase
+	MMDR A 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)
+	MMDR AA 0 A_Chase
+	MMDR A 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)
+	MMDR AA 0 A_Chase
+	MMDR B 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)
+	MMDR AA 0 A_Chase
+	MMDR B 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)	   
+	MMDR A 0 A_Hoof
+	MMDR AA 0 A_Chase
+	MMDR C 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)
+	MMDR AA 0 A_Chase
+	MMDR C 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)
+	MMDR AA 0 A_Chase
+	MMDR D 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)
+	MMDR AA 0 A_Chase
+	MMDR D 2 A_SpawnItemEx("MaephistoGhost",0,0,0,0,0,0,0,128)	   
+	TNT1 A 0 A_Jump(48,"Teleport")
+	TNT1 A 0 A_Jump(75,"See")	
+	Loop	
+  Teleport:
+	MMDR E 1 A_UnSetShootable
+	MMDR EEEEEEEEEEEE 0 A_SpawnItemEx("TerminatorLineSpawner")
+	MMDR EEEEEEEEEEE 1 A_FadeOut(0.1,0)
+	MMDR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+	MMDR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+	MMDR E 1 A_PlayWeaponSound("boss/teleport")
+	MMDR EEEEEEEEEEEE 0 A_SpawnItemEx("TerminatorLineSpawner")
+	MMDR EEEEEEEEEEE 1 A_FadeIn(0.1)
+	MMDR E 1 A_SetShootable
+	Goto See
+  Fly:
+	MMDR E 5 A_FaceTarget
+	MMDR E 0 A_SetUserVar("user_delay",0)
+    MMDR E 0 ThrustThingZ(0,random(80,145),0,1)
+    MMDR EEEE 5 A_Recoil(-5)
+  FlyCheck:
+	MMDR E 0 A_JumpIf(user_delay >= 105,"Land")
+    MMDR E 0 A_SetUserVar("user_delay",user_delay+1)
+	MMDR E 0 A_Explode(12,256)
+    MMDR E 1 A_CheckFloor("Land")
+    Loop
+  Land:	
+	MMDR E 0
+	MMDR E 0 A_Explode(128,684)
+	MMDR E 0 Radius_Quake(175,8,512,1024,0)
+	MMDR E 1
+	Goto See	
+  Missile:
+	TNT1 A 0 A_Jump(192,"Railgun","Bolt","BlueStarCannon","Help","Laser","LegendaryBFG")
+  ExpMinigun:
+    MMDR EEE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("sentient/fire")
+   	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 30, 30, 150, Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+    MMDR H 1 Bright A_CustomMissile("HitlerExplosiveTracer",Random(140,150),-22,Random(3,-3))
+	TNT1 A 0 A_PlaySound("sentient/fire")
+   	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 30, 30, 150, Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+    MMDR I 1 Bright A_CustomMissile("HitlerExplosiveTracer",Random(140,150),-22,Random(3,-3))
+    MMDR I 0 A_CPosRefire    
+    Goto ExpMinigun+4 
+  Railgun:
+    TNT1 A 0 A_PlayWeaponSound("weapons/rgcharge")
+    MMDR EEEEEEEEEE 5 Bright A_FaceTarget
+	MMDR F 0 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("monsters/darkcyberrail")
+    MMDR F 0 A_CustomMissile("LegRevRailgunProj",85,55,0)	
+    MMDR F 5 Bright A_CustomMissile("LegRevRailgunProj",85,-55,0)
+	MMDR GGGG 3 Bright A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("monsters/darkcyberrail")
+    MMDR F 0 A_CustomMissile("LegRevRailgunProj",85,55,0)	
+    MMDR F 5 Bright A_CustomMissile("LegRevRailgunProj",85,-55,0)
+	MMDR GGGG 3 Bright A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("monsters/darkcyberrail")
+    MMDR F 0 A_CustomMissile("LegRevRailgunProj",85,55,0)	
+    MMDR F 5 Bright A_CustomMissile("LegRevRailgunProj",85,-55,0)
+	MMDR GGGG 3 Bright A_FaceTarget
+	TNT1 A 0 A_Jump(110,"Bolt")
+    Goto See 	
+  Bolt:
+  	TNT1 A 0 A_PlaySound("maephisto/see1")
+    MMDR EEEEEE 5 A_FaceTarget 
+  BoltCombo:
+    MMDR F 0 A_JumpIf(user_missile >= 28,"See")	 
+    MMDR F 0 A_SetUserVar("user_missile",user_missile+1)
+	MMDR F 0 A_FaceTarget	
+    MMDR F 0 A_CustomMissile("LegRevBall2",92,55,0)	
+    MMDR F 3 Bright A_CustomMissile("LegRevBall2",92,-55,0)
+    Loop	
+  BlueStarCannon:
+  	TNT1 A 0 A_PlaySound("maephisto/see2")
+    MMDR EEEEEE 5 A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+	MMDR EEEEEEEEEEEE 5 Bright A_SpawnItem("LFiendFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	MMDR F 0 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("star/fire")
+    MMDR F 0 A_CustomMissile("LegCyberKnightBlueStar",85,55,0)	
+    MMDR F 5 Bright A_CustomMissile("LegCyberKnightBlueStar",85,-55,0)
+	MMDR GGGGGGG 3 Bright A_FaceTarget
+	MMDR F 0 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("star/fire")
+    MMDR F 0 A_CustomMissile("LegCyberKnightBlueStar",85,55,0)	
+    MMDR F 5 Bright A_CustomMissile("LegCyberKnightBlueStar",85,-55,0)
+	MMDR GGGGGGG 3 Bright A_FaceTarget
+	MMDR F 0 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("star/fire")
+    MMDR F 0 A_CustomMissile("LegCyberKnightBlueStar",85,55,0)	
+    MMDR F 5 Bright A_CustomMissile("LegCyberKnightBlueStar",85,-55,0)
+	MMDR GGGGGGG 3 Bright A_FaceTarget
+	TNT1 A 0 A_Jump(110,"Laser")
+    Goto See
+  Laser:
+    MMDR EEEE 5 A_FaceTarget
+    MMDR E 0 A_PlaySound("maephisto/charge",CHAN_WEAPON,1,0,0)
+    MMDR JKLKJ 5 Bright A_FaceTarget
+    MMDR JKLKJ 4 Bright A_FaceTarget
+    MMDR JKLKJ 3 Bright A_FaceTarget
+    MMDR JKLKJ 2 Bright A_FaceTarget
+    MMDR JKLKJ 1 Bright A_FaceTarget 
+    MMDR JKLKJ 1 Bright A_FaceTarget 
+	TNT1 A 0 A_PlayWeaponSound("SuperLazer/Fire")
+	TNT1 A 0 A_SetUserVar("user_missile",0)
+  LazerLoop:
+	TNT1 A 0 A_JumpIf(user_missile >= 30,"LazerEnd")	 
+	TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+	MMDR MMM 1 Bright A_GiveInventory("MaephistoTripleLazer",1)
+	Loop
+  LazerEnd:
+	MMDR EEE 6 A_FaceTarget
+	Goto See
+/*
+  Laser:
+    MMDR EEEE 5 A_FaceTarget
+    MMDR E 0 A_PlaySound("maephisto/charge",CHAN_WEAPON,1,0,0)
+    MMDR JKLKJ 5 Bright A_FaceTarget
+    MMDR JKLKJ 4 Bright A_FaceTarget
+    MMDR JKLKJ 3 Bright A_FaceTarget
+    MMDR JKLKJ 2 Bright A_FaceTarget
+    MMDR JKLKJ 1 Bright A_FaceTarget 
+    MMDR JKLKJ 1 Bright A_FaceTarget 
+    MMDR M 0 A_PlaySound("maephisto/laser",Chan_AUTO,1,0,0)
+    MMDR MMMMMMMMMMMMMNNNNNNNNNNNOOOOOOOOOOOOOOO 1 Bright A_CustomMissile("MaephistoLaserBeam",125,0,0)
+    TNT1 A 0 A_Jump(110,"Help")
+    Goto See
+*/
+  Help:
+  	TNT1 A 0 A_PlaySound("maephisto/see2")
+	MMDR EEEEEEEEEEEE 5 Bright A_SpawnItemEx("AvatarLightningChargeSpawner")
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("CyberMonolithOfSinSummon",0,0,96,random(2,8),0,0,0,32)	
+	MMDR E 25 Bright
+    TNT1 A 0 A_Jump(110,"Help")
+	TNT1 A 0 A_Jump(110,"LegendaryBFG")
+    Goto See
+  LegendaryBFG:
+	TNT1 A 0 A_PlaySoundEx("Legcyber/BFG","GURUCHRG")
+	TNT1 A 0 A_SetInvulnerable
+    MMDR JKLKJJKLKJJKLKJJKLKJJKLJKLKJ 5 Bright A_SpawnItem("LSoulFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_PlayWeaponSound("Weapons/GuruFire")
+  	TNT1 A 0 A_PlayWeaponSound("Weapons/GuruAddFire")
+	MMDR M 1 Bright A_CustomMissile("DemonLegendaryBFGProjectile",105,0,0)    
+    MMDR NOOOOOOOOO 1 Bright A_FaceTarget   
+    Goto See
+  Death:
+    MMDR P 10 Bright A_Scream
+    MMDR Q 10 Bright A_NoBlocking
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(0,24))
+    MMDR RRRRR 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(0,24))
+    MMDR SSSSS 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))	
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    MMDR TTTTT 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItemEx("SuperBossExplosionEffect",0,0,0)
+    MMDR UUUUU 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    MMDR VVVVV 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+    MMDR W -1
+    Stop
+  }
+}
+
+ACTOR MaephistoGhost
+{
+Scale 1.4
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+  Spawn:
+    MMDR A 2 A_FadeOut(0.18)
+    Loop
+}
+}
+
+Actor MaephistoLaserBeam
+{
+  Radius 20
+  Height 20
+  Speed 80
+  Damage 300
+  RenderStyle Add
+  Alpha 1
+  DeathSound "weapons/bfgx"
+  DamageType "Hell"
+  Projectile
+  +RIPPER
+  Scale 1.5
+  Decal Scorch
+  States
+  {
+  Spawn:
+    KAMS A 1 Bright
+    Loop
+  Death:
+    KAXP B 3 Bright A_Explode(392,392)
+    KAXP CDEFGHIJKLM 3 Bright
+    Stop
+  }
+}
+
+Actor MaephistoTripleLazer : DarkAnniFlameFacing
+{
+States
+{
+  Pickup:
+	TNT1 A 1 A_FaceTarget(0.75,180)
+	TNT1 A 1 A_CustomMissile("DemonSuperLazerYellow",125,0,-5)
+	TNT1 A 1 A_CustomMissile("DemonSuperLazerYellow",125,0,5)
+	TNT1 A 1 A_CustomMissile("MaephistoLaserBeam",125,0,0)
+	Stop
+}
+}

@@ -1,0 +1,472 @@
+Actor IOSSlot1 : Inventory{Inventory.MaxAmount 29}
+Actor IOSMenu1 : Inventory{Inventory.MaxAmount 1}
+Actor IOSGhost : Inventory{Inventory.MaxAmount 1}
+
+ACTOR IconOfSinGiver : MechGiver{Powerup.Type "IconOfSin"}
+
+ACTOR PowerIconOfSin : PowerMorph
+{
+  PowerMorph.PlayerClass "Demon_IconOfSin"
+  PowerMorph.MorphFlash "TeleportFog"
+  PowerMorph.UnMorphFlash "TeleportFog"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Demon_IconOfSin : Demon_Cardihilator
+{
+  Health 999
+  Player.MaxHealth 999
+  Player.SoundClass "PIconOfSin"
+  Player.DisplayName "Icon Of Sin"
+  Player.MorphWeapon "IOS-W"
+  Player.ViewHeight 104
+  Player.AttackZOffset 44
+  Scale 0.75
+  PainChance 0
+  +NOPAIN
+  //+NOINTERACTION
+  +NEVERTARGET
+  +NOCLIP
+  //-SOLID
+  -SHOOTABLE
+  +INVULNERABLE
+  States
+  {
+  Spawn:
+	IC0H A 1
+	Loop
+  See:
+    IC0S ABCABCABC 3
+	Goto Spawn
+  Melee:
+  Missile:
+	IC0J ABAB 7 Bright
+	Goto Spawn
+  Pain:
+	TNT1 A 0 A_Pain
+    INFD AA 3
+    Goto See
+  Death:
+    IC0D Z 5 Bright A_ScreamAndUnBlock
+	TNT1 A -1
+    Stop
+  }
+}
+
+ACTOR IOS-W : Weapon
+{
++WEAPON.DONTBOB
++WEAPON.CHEATNOTWEAPON
++WEAPON.AMMO_OPTIONAL
++WEAPON.ALT_AMMO_OPTIONAL
++INVENTORY.UNDROPPABLE
+States
+{
+  Ready:
+    TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GhostTime")
+    IFWP A 1 A_WeaponReady
+    Loop
+  Deselect: 
+    IFWP A 1 A_Lower
+    Loop
+  Select:
+    IFWP A 1 A_Raise
+    Loop
+  GhostTime:
+    IFWP A 1 A_TakeInventory("HandGrenadeAction",1)
+	IFWP A 1 A_JumpIfInventory("IOSGhost",1,"UnSetGhost")
+  SetGhost:
+    IFWP A 1 A_GiveInventory("IOSGhost",1)
+	IFWP A 1 SetPlayerProperty(0,1,3)
+	IFWP A 3 A_SetTranslucent(0.9)
+	IFWP A 3 A_SetTranslucent(0.8)
+	IFWP A 3 A_SetTranslucent(0.7)
+	IFWP A 3 A_SetTranslucent(0.6)
+	IFWP A 3 A_SetTranslucent(0.5)
+	IFWP A 3 A_SetTranslucent(0.4)
+	IFWP A 3 A_SetTranslucent(0.3)
+	IFWP A 3 A_SetTranslucent(0.2)
+	IFWP A 3 A_SetTranslucent(0.1)
+	IFWP A 3 A_SetTranslucent(0.0)
+    Goto Ready	
+  UnSetGhost:
+    IFWP A 1 A_TakeInventory("IOSGhost",1)
+	IFWP A 1 SetPlayerProperty(0,0,3)
+	IFWP A 3 A_SetTranslucent(0.1)
+	IFWP A 3 A_SetTranslucent(0.2)
+	IFWP A 3 A_SetTranslucent(0.3)
+	IFWP A 3 A_SetTranslucent(0.4)
+	IFWP A 3 A_SetTranslucent(0.5)
+	IFWP A 3 A_SetTranslucent(0.6)
+	IFWP A 3 A_SetTranslucent(0.7)
+	IFWP A 3 A_SetTranslucent(0.8)
+	IFWP A 3 A_SetTranslucent(0.9)
+	IFWP A 3 A_SetTranslucent(1.0)
+    Goto Ready	
+  Fire:
+    IFWP C 1 Bright
+	IFWP CA 3 Bright
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 2,"Zombiemen")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 3,"Shotgunners")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 4,"Chaigunners")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 5,"Imps")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 6,"Fiends")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 7,"WeakMonsters")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 8,"WeakZombies")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 9,"MediumMonsters")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 10,"Skeletons")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 11,"Nobles")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 12,"Cacodemons")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 13,"CyberMonstersWeak")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 14,"CyberMonstersMedium")	
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 15,"CyberMonstersStrong")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 16,"BFGZombies")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 17,"HellFireMonster")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 18,"Spiders")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 19,"SpecopsLight")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 20,"SpecopsMedium")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 21,"SpecopsHeavy")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 22,"WeakNazis")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 23,"MediumNazis")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 24,"StrongNazis")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 25,"Annihilator")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 26,"DarkCyberdemon")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 27,"Cardinal")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 28,"Demolisher")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 29,"DarkDemolisher")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 30,"CerebralSentient")
+	UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("IOS Type",0,0,0) == 31,"ToddesRitter")
+	Goto FireEnd	
+  //Begin of the List
+  Zombiemen: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-Zombiemen",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Shotgunners: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-Shotgunners",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Chaigunners: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-Chaigunners",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Imps: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-Imps",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Fiends: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-Fiends",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  WeakMonsters: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-WeakMonsters",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  WeakZombies: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-WeakZombies",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  MediumMonsters: TNT1 AAAAA 0 A_SpawnItemEx("IOW-MediumMonsters",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Skeletons: TNT1 AAAAA 0 A_SpawnItemEx("IOW-Skeletons",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Nobles: TNT1 AAAAA 0 A_SpawnItemEx("IOW-Nobles",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Cacodemons: TNT1 AAAAA 0 A_SpawnItemEx("IOW-Cacodemons",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  CyberMonstersWeak: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-CyberMonstersWeak",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  CyberMonstersMedium: TNT1 AAAAA 0 A_SpawnItemEx("IOW-CyberMonstersMedium",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  CyberMonstersStrong: TNT1 AA 0 A_SpawnItemEx("IOW-CyberMonstersStrong",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  BFGZombies: TNT1 AAAAA 0 A_SpawnItemEx("IOW-BFG-Zombies",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  HellFireMonster: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-HellFireMonster",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Spiders: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-Spiders",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  SpecopsLight: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-SpecopsLight",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  SpecopsMedium: TNT1 AAAAA 0 A_SpawnItemEx("IOW-SpecopsMedium",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  SpecopsHeavy: TNT1 AA 0 A_SpawnItemEx("IOW-SpecopsHeavy",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  WeakNazis: TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("IOW-WeakNazis",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  MediumNazis: TNT1 AAAAA 0 A_SpawnItemEx("IOW-MediumNazis",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  StrongNazis: TNT1 AA 0 A_SpawnItemEx("IOW-StrongNazis",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Annihilator: TNT1 A 0 A_SpawnItemEx("IOW-Annihilator",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  DarkCyberdemon: TNT1 A 0 A_SpawnItemEx("IOW-DarkCyberdemon",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Cardinal: TNT1 A 0 A_SpawnItemEx("IOW-Cardinal",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  Demolisher: TNT1 A 0 A_SpawnItemEx("IOW-Demolisher",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  DarkDemolisher: TNT1 A 0 A_SpawnItemEx("IOW-DarkDemolisher",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  CerebralSentient: TNT1 A 0 A_SpawnItemEx("IOW-CerebralSentient",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  ToddesRitter: TNT1 A 0 A_SpawnItemEx("IOW-ToddesRitter",0,0,0,0,0,0,0,32,0) Goto FireEnd
+  //End of the List
+  FireEnd:
+	IFWP B 4 Bright
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  AltFire:
+	IFWP A 0 A_GunFlash
+	IFWP A 0 A_JumpIfInventory("IOSMenu1",1,"Nope")
+	IFWP A 0 A_GiveInventory("IOSMenu1",1)
+	IFWP A 1 ACS_NamedExecuteAlways("IOS Menu",0,0,0,0)
+	Goto Ready
+  Nope:
+	IFWP A 15 Bright A_PlaySound("sentry/warn")
+	Goto Ready
+  Spawn:
+    TNT1 A 1
+    Stop	  
+   }
+}
+
+Actor IOWBaseSpawner
+{
+Radius 22
+Height 56
+Speed 25
+Monster
++NODROPOFF
+-SHOOTABLE
+-COUNTKILL
+-SOLID
+MaxDropOffHeight 48
+MaxStepHeight 32
+var int user_limit;
+States
+{
+   Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_SetAngle(random(0,359))
+	TNT1 A 1 A_Recoil(-40)
+	TNT1 A 0 A_JumpIf(user_limit > 3,"Place")
+	TNT1 A 0 A_SetUserVar("user_limit",user_limit+1)
+	TNT1 A 1 A_Recoil(-4)
+	TNT1 A 2 A_Jump(48,"Place")
+    Goto Spawn+3
+   Place:
+	TNT1 A 0 
+	Goto Death
+   Death:
+    TNT1 A 0 A_SpawnItemEx("TeleportFog")
+	TNT1 A 5
+	TNT1 A 1 A_Fall
+	Stop	
+	}
+}
+
+Actor IOW-Zombiemen: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Zombiemen-Minions") Goto Death } }
+Actor IOW-Shotgunners: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Shotgunners-Minions") Goto Death } }
+Actor IOW-Chaigunners: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Chaigunners-Minions") Goto Death } }
+Actor IOW-Imps: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Imps-Minions") Goto Death } }
+Actor IOW-Fiends: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Fiends-Minions") Goto Death } }
+Actor IOW-WeakMonsters: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-WeakMonsters-Minions") Goto Death } }
+Actor IOW-WeakZombies: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-WeakZombies-Minions") Goto Death } }
+Actor IOW-MediumMonsters: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-MediumMonsters-Minions") Goto Death } }
+Actor IOW-Skeletons: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Skeletons-Minions") Goto Death } }
+Actor IOW-Nobles: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Nobles-Minions") Goto Death } }
+Actor IOW-Cacodemons: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Cacodemons-Minions") Goto Death } }
+Actor IOW-CyberMonstersWeak: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-CyberMonstersWeak-Minions") Goto Death } }
+Actor IOW-CyberMonstersMedium: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-CyberMonstersMedium-Minions") Goto Death } }
+Actor IOW-CyberMonstersStrong: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-CyberMonstersStrong-Minions") Goto Death } }
+Actor IOW-BFG-Zombies: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-BFG-Zombies-Minions") Goto Death } }
+Actor IOW-HellFireMonster: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-HellFireMonster-Minions") Goto Death } }
+Actor IOW-Spiders: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Spiders-Minions") Goto Death } }
+Actor IOW-SpecopsLight: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-SpecopsLight-Minions") Goto Death } }
+Actor IOW-SpecopsMedium: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-SpecopsMedium-Minions") Goto Death } }
+Actor IOW-SpecopsHeavy: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-SpecopsHeavy-Minions") Goto Death } }
+Actor IOW-WeakNazis: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-WeakNazis-Minions") Goto Death } }
+Actor IOW-MediumNazis: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-MediumNazis-Minions") Goto Death } }
+Actor IOW-StrongNazis: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-StrongNazis-Minions") Goto Death } }
+Actor IOW-Annihilator: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Annihilator-Minions") Goto Death } }
+Actor IOW-DarkCyberdemon: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-DarkCyberdemon-Minions") Goto Death } }
+Actor IOW-Cardinal: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Cardinal-Minions") Goto Death } }
+Actor IOW-Demolisher: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-Demolisher-Minions") Goto Death } }
+Actor IOW-DarkDemolisher: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-DarkDemolisher-Minions") Goto Death } }
+Actor IOW-CerebralSentient: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-CerebralSentient-Minions") Goto Death } }
+Actor IOW-ToddesRitter: IOWBaseSpawner { States{ Place: TNT1 A 0 A_SpawnItemEx("IOW-ToddesRitter-Minions") Goto Death } }
+
+ACTOR IOSRandomSpawner : RandomSpawner {+NEVERRESPAWN}
+
+ACTOR IOW-Zombiemen-Minions : IOSRandomSpawner
+{
+DropItem "Plasmagunner", 256, 10
+DropItem "Railgunner", 256, 4
+DropItem "RepeaterZombie", 256, 3
+DropItem "DemonTechZombie", 256, 2
+DropItem "DemonTechBallistaZombie", 256, 1
+DropItem "RocketZombie", 256, 1
+}
+
+ACTOR IOW-Shotgunners-Minions : IOSRandomSpawner
+{
+DropItem "ShotgunZombie", 256, 16
+DropItem "AssaultShotgunZombie", 256, 8
+DropItem "SuperShotgunZombie", 256, 4
+DropItem "QuadShotgunZombie", 256, 2
+DropItem "Hexa-ShotgunZombie", 256, 1
+}
+
+ACTOR IOW-Chaigunners-Minions : IOSRandomSpawner
+{
+DropItem "AssaultRifleZombie", 256, 10
+DropItem "Chaingunner", 256, 4
+DropItem "Minigunner", 256, 1
+}
+
+ACTOR IOW-Imps-Minions : IOSRandomSpawner
+{
+DropItem "Imp", 256, 9
+DropItem "VoidImp", 256, 4
+DropItem "Devil", 256, 2
+DropItem "PhaseImp", 256, 1
+}
+
+ACTOR IOW-Fiends-Minions : IOSRandomSpawner
+{
+DropItem "BullFiend", 256, 3
+DropItem "CyberFiend", 256, 1
+}
+
+ACTOR IOW-WeakMonsters-Minions : IOSRandomSpawner
+{
+DropItem "Plasmagunner", 256, 3
+DropItem "Railgunner", 256, 2
+DropItem "RepeaterZombie", 256, 2
+DropItem "ShotgunZombie", 256, 3
+DropItem "AssaultShotgunZombie", 256, 2
+DropItem "Imp", 256, 3
+DropItem "VoidImp", 256, 1
+}
+
+ACTOR IOW-WeakZombies-Minions : IOSRandomSpawner
+{
+DropItem "Plasmagunner", 256, 3
+DropItem "Railgunner", 256, 2
+DropItem "RepeaterZombie", 256, 2
+DropItem "ShotgunZombie", 256, 3
+DropItem "AssaultShotgunZombie", 256, 2
+}
+
+ACTOR IOW-MediumMonsters-Minions : IOSRandomSpawner
+{
+DropItem "Cacodemon~", 256, 2
+DropItem "Guardian", 256, 4
+DropItem "HellKnight~", 256, 4
+DropItem "Hectebus", 256, 2
+DropItem "SoulKeeper", 256, 1
+DropItem "Dualachnotron", 256, 2
+}
+
+ACTOR IOW-Skeletons-Minions : IOSRandomSpawner
+{
+DropItem "Guardian", 256, 4
+DropItem "Cadaver", 256, 1
+}
+
+ACTOR IOW-Nobles-Minions : IOSRandomSpawner
+{
+DropItem "HellKnight~", 256, 4
+DropItem "BaronOfHell~", 256, 1
+}
+
+ACTOR IOW-Cacodemons-Minions : IOSRandomSpawner
+{
+DropItem "Cacodemon~", 256, 3
+DropItem "Watcher", 256, 1
+}
+
+ACTOR IOW-CyberMonstersWeak-Minions : IOSRandomSpawner
+{
+DropItem "CyberImp", 256, 4
+DropItem "CyberFiend", 256, 4
+DropItem "RocketImp", 256, 1
+DropItem "DTechFiend", 256, 1
+}
+
+ACTOR IOW-CyberMonstersMedium-Minions : IOSRandomSpawner
+{
+DropItem "CyberNoble", 256, 4
+DropItem "Cybruiser", 256, 1
+DropItem "CyberBaron", 256, 1
+}
+
+ACTOR IOW-CyberMonstersStrong-Minions : IOSRandomSpawner
+{
+DropItem "Paladin", 256, 4
+DropItem "Cydestroyer", 256, 3
+DropItem "CyberHellArchon", 256, 2
+DropItem "CyberBruiserDemon", 256, 1
+}
+
+ACTOR IOW-BFG-Zombies-Minions : IOSRandomSpawner
+{
+DropItem "BFG15KMajor", 256, 8
+DropItem "BFGZombieman", 256, 8
+DropItem "BFG10KGeneral", 256, 5
+DropItem "EraserZombie", 256, 2
+DropItem "DTDevastatorZombie", 256, 1
+}
+
+ACTOR IOW-HellFireMonster-Minions : IOSRandomSpawner
+{
+DropItem "MagmaFiend1", 256, 12
+DropItem "Rictus", 256, 12
+DropItem "Hellion", 256, 12
+DropItem "PyroDemon", 256, 5
+DropItem "HellfireRevenant", 256, 5
+DropItem "Afrit", 256, 3
+DropItem "BruiserDemon", 256, 3
+DropItem "Cacomental", 256, 3
+DropItem "BombElemental", 256, 2
+DropItem "HellFireBaron", 256, 1
+}
+
+ACTOR IOW-Spiders-Minions : IOSRandomSpawner
+{
+DropItem "Dualachnotron", 256, 10
+DropItem "BabyMastermind", 256, 8
+DropItem "Fusionite", 256, 5
+DropItem "RailArachnotron", 256, 5
+DropItem "BabyDemolisher", 256, 2
+DropItem "BabySentient", 256, 1
+}
+
+ACTOR IOW-SpecopsLight-Minions : IOSRandomSpawner
+{
+DropItem "ZombieSpecops", 256, 1
+DropItem "ZombieSpecops3", 256, 1
+DropItem "ZombieSpecops4", 256, 1
+DropItem "ZombieSpecops5", 256, 1
+DropItem "ZombieSpecops6", 256, 1
+DropItem "ZombieSpecops7", 256, 1
+DropItem "ZombieSpecops8", 256, 1
+DropItem "ZombieSpecops10", 256, 1
+DropItem "ZombieSpecops11", 256, 1
+DropItem "ZombieSpecops19", 256, 1
+}
+
+ACTOR IOW-SpecopsMedium-Minions : IOSRandomSpawner
+{
+DropItem "ZombieSpecops2", 256, 1
+DropItem "ZombieSpecops16", 256, 1
+DropItem "ZombieSpecops17", 256, 1
+DropItem "ZombieSpecops9", 256, 1
+DropItem "ZombieSpecops18", 256, 1
+DropItem "ZombieSpecops20", 256, 1
+}
+
+ACTOR IOW-SpecopsHeavy-Minions : IOSRandomSpawner
+{
+DropItem "ZombieSpecOps12", 256, 8
+DropItem "ZombieSpecOps13", 256, 4
+DropItem "ZombieSpecops14", 256, 2
+DropItem "ZombieSpecops15", 256, 1
+}
+
+ACTOR IOW-WeakNazis-Minions : IOSRandomSpawner
+{
+DropItem "Guard", 256, 6
+DropItem "SSGunner", 256, 4
+DropItem "SSShotgunner", 256, 4
+DropItem "SSNazi", 256, 4
+DropItem "Officer", 256, 2
+}
+
+ACTOR IOW-MediumNazis-Minions : IOSRandomSpawner
+{
+DropItem "SSRocketMan", 256, 1
+DropItem "SSFlameCommando", 256, 1
+DropItem "SSCorporal", 256, 1
+DropItem "SSVeteran", 256, 1
+DropItem "SSSuperSoldier", 256, 1
+DropItem "SSUberRocketMan", 256, 1
+}
+
+ACTOR IOW-StrongNazis-Minions : IOSRandomSpawner
+{
+DropItem "SSGuardian", 256, 5
+DropItem "SSAssaultSoldier", 256, 5
+DropItem "SSHunter", 256, 5
+DropItem "SSEliteSoldier", 256, 5
+DropItem "SSShockTrooper", 256, 5
+DropItem "SSTechTrooper", 256, 1
+DropItem "SSUberSoldier", 256, 1
+}
+
+ACTOR IOW-Annihilator-Minions: IOSRandomSpawner{DropItem "CyberLord", 256, 1}
+ACTOR IOW-DarkCyberdemon-Minions: IOSRandomSpawner{DropItem "DarkCyberdemon", 256, 1}
+ACTOR IOW-Cardinal-Minions: IOSRandomSpawner{DropItem "Cardinal", 256, 1}
+ACTOR IOW-Demolisher-Minions: IOSRandomSpawner{DropItem "Demolisher", 256, 1}
+ACTOR IOW-DarkDemolisher-Minions: IOSRandomSpawner{DropItem "DarkDemolisher", 256, 1}
+ACTOR IOW-CerebralSentient-Minions: IOSRandomSpawner{DropItem "CerebralSentient", 256, 1}
+ACTOR IOW-ToddesRitter-Minions: IOSRandomSpawner{DropItem "TodesRitter", 256, 1}

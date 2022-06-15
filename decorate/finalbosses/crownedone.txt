@@ -1,0 +1,354 @@
+ACTOR CrownedOne
+{ 
+Health 23000
+Radius 140
+Height 192
+Mass 999999
+Speed 10
+Monster
+Obituary "%o was dethroned by the Crowned One."
++BOSS
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NORADIUSDMG
++DONTHARMSPECIES
++NOTIMEFREEZE
++DROPOFF
++DONTRIP
++NOPAIN
++NOFEAR
+Scale 5.0
+MeleeRange 512
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Cyber10K", 0.0
+DamageFactor "Legendary", 0.2
+DamageFactor "BFGSplash", 0.25
+DamageFactor "PDTBFG", 0.05
+DamageFactor "PDTBFGTracer", 0.05
+DamageFactor "PlayerDevBall", 0.15
+DamageFactor "PlayerDevTracer", 0.15
+DamageFactor "MechStep", 0.0
+DamageFactor "FinalBossSector", 0.0
+DamageFactor "Pierce", 0.25
+DamageFactor "MarinePierce", 0.25
+DamageFactor "Kaboom", 0.2
+DamageFactor "MarineKaboom", 0.2
+DamageFactor 0.35
+RadiusDamageFactor 0.5
+MinMissileChance 10
+SeeSound "CrownedOne/See"
+PainSound "CrownedOne/Pain"
+DeathSound "CrownedOne/Die"
+ActiveSound "CrownedOne/Act"
+MaxStepHeight 32
+MaxDropOffHeight 32
+var int user_script;
+var int user_missile;
+var int user_delay;
+var int user_part1;
+var int user_part2;
+var int user_part3;
+Tag "\c[e8]Crowned One\c-"
+States 
+{ 
+  Spawn: 
+	TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,19,0,0)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	HF4T A 10 A_Look 
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,19,0,0)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+	HF4T AABBCCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+	HF4T EEFF 3 A_Chase
+	Loop
+  Melee:
+	HF4T G 5 A_FaceTarget
+	HF4T G 0 ThrustThingZ(0,random(40,75),0,1)
+	HF4T G 0 A_Recoil(-2)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-2)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-2)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-2)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	Goto JumpCheck
+  Missile:
+    TNT1 A 0 A_Jump(164,"BFG10K","DTBFG10K","Jump","Sniper","Help")
+  Normal:
+  	TNT1 A 0 A_PlaySoundEx("CrownedOne/Attack","Body",0,2)
+	TNT1 A 0 A_SetUserVar("user_missile",0)
+	HF4T GGGG 8 A_FaceTarget
+  Normaling:
+    HF4T H 0 A_JumpIf(user_missile >= 30,"See")
+    HF4T H 0 A_SetUserVar("user_missile",user_missile+1)
+	HF4T H 0 A_FaceTarget
+    HF4T H 0 A_CustomMissile("CrownedOneComet",100,-135,random(-6,6))
+    HF4T H 2 Bright A_CustomMissile("CrownedOneComet",100,135,random(-6,6))	
+    Loop
+  BFG10K:
+  	TNT1 A 0 A_PlaySoundEx("CrownedOne/Attack","Body",0,2)
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	HF4T G 18 A_FaceTarget
+	HF4T I 6 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("Sentient10K",100,-135,random(-3,3))	
+    HF4T IG 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("Sentient10K",100,-135,random(-3,3))	
+    HF4T IG 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("Sentient10K",100,-135,random(-3,3))	
+    HF4T IG 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("Sentient10K",100,-135,random(-3,3))	
+    HF4T IG 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("Sentient10K",100,-135,random(-3,3))	
+    HF4T IG 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("Sentient10K",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("Sentient10K",100,-135,random(-3,3))	
+	TNT1 A 0 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+    HF4T IG 12 A_FaceTarget
+	TNT1 A 0 A_Jump(127,"DTBFG10K")
+	Goto See
+  DTBFG10K:
+	TNT1 A 0 A_PlaySoundEx("CrownedOne/Attack","Body",0,2)
+	HF4T G 15 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",100,135,random(-3,3))
+	HF4T H 6 Bright A_CustomMissile("UpdatedDemonDTBFG10KBall",100,-135,random(-3,3))
+	HF4T IG 12 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",100,135,random(-3,3))
+	HF4T H 6 Bright A_CustomMissile("UpdatedDemonDTBFG10KBall",100,-135,random(-3,3))
+	HF4T IG 12 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",100,135,random(-3,3))
+	HF4T H 6 Bright A_CustomMissile("UpdatedDemonDTBFG10KBall",100,-135,random(-3,3))
+	HF4T IG 12 A_FaceTarget
+	TNT1 A 0 A_Jump(127,"Sniper")
+	Goto See
+  Sniper:
+   	TNT1 A 0 A_PlaySoundEx("CrownedOne/Attack","Body",0,2)
+	HF4T G 18 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("CebComBrainBall",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("CebComBrainBall",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("CebComBrainBall",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("CebComBrainBall",100,-135,random(-3,3))	
+    HF4T IG 12 A_FaceTarget 
+  	TNT1 A 0 A_CustomMissile("CebComBrainBall",100,135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("CebComBrainBall",100,-135,random(-12,12))
+	TNT1 A 0 A_CustomMissile("CebComBrainBall",100,135,random(-3,3))
+	HF4T H 4 Bright A_CustomMissile("CebComBrainBall",100,-135,random(-3,3))	
+    HF4T IG 12 A_FaceTarget 
+  	TNT1 A 0 A_Jump(127,"Help")
+	Goto See
+  Help:
+	TNT1 A 0 A_PlaySound("warmachine/see")
+	HF4T GGGGGGGGGGGGGGGGG 3 Bright A_SpawnItemEx("CrownedOneParticleSpawner")
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MonolithOfSinSummon",0,0,96,random(2,8),0,0,0,32)			
+	HF4T G 25
+	TNT1 A 0 A_Jump(110,"Help")
+ 	TNT1 A 0 A_Jump(127,"Jump")
+    Goto See
+  Jump:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(1400,1)
+    Goto See
+    TNT1 A 0 A_PlaySoundEx("CrownedOne/Attack","Body",0,2)
+    HF4T G 0 A_FaceTarget
+	HF4T GGGG 2 A_SpawnItemEx("CrownedOneParticleSpawner")
+	HF4T G 0 A_FaceTarget
+	HF4T GGGG 2 A_SpawnItemEx("CrownedOneParticleSpawner")
+	HF4T G 0 A_FaceTarget
+	HF4T GGGG 2 A_SpawnItemEx("CrownedOneParticleSpawner")
+	HF4T G 0 A_FaceTarget
+	HF4T GGGG 2 A_SpawnItemEx("CrownedOneParticleSpawner")
+	HF4T G 0 A_FaceTarget
+	HF4T GGGG 2 A_SpawnItemEx("CrownedOneParticleSpawner")
+	HF4T G 0 A_FaceTarget
+	HF4T GGGG 2 A_SpawnItemEx("CrownedOneParticleSpawner")
+  Jumping:
+	HF4T G 5 A_FaceTarget
+	HF4T G 0 A_SetUserVar("user_delay",0)
+	HF4T G 0 ThrustThingZ(0,random(64,96),0,1)
+	HF4T G 0 A_Recoil(-10)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-10)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-10)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-10)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 0 A_Recoil(-10)
+	HF4T GGGGG 1 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+  JumpCheck:
+	HF4T G 0 A_JumpIf(user_delay >= 105,"Land")
+	HF4T G 0 A_SetUserVar("user_delay",user_delay+1)
+	HF4T G 0 A_Explode(14,256)
+	HF4T G 0 A_SpawnItemEx("CrownedOneGhost",0,0,0,0,0,0,0,128)	
+	HF4T G 1 A_CheckFloor("Land") 
+	Loop
+  Land:	
+	HF4T G 0
+	HF4T G 0 A_Explode(256,684)
+	HF4T G 0 A_Explode(32,1024)
+	HF4T G 0 A_Explode(512,128)
+	HF4T G 0 Radius_Quake(175,8,512,1024,0)
+	HF4T G 0 A_SpawnItemEx("CrownedOneLandKaboom",128,128,8)
+	HF4T G 0 A_SpawnItemEx("CrownedOneLandKaboom",128,-128,8)
+	HF4T G 0 A_SpawnItemEx("CrownedOneLandKaboom",-128,128,8)
+	HF4T G 0 A_SpawnItemEx("CrownedOneLandKaboom",-128,-128,8)
+	HF4T G 1
+	Goto See
+  Death:
+    TNT1 A 0 
+  	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+	TNT1 A 0 A_Scream
+    TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(80,-80),Random(80,-80),Random(20,156),0,0,0,0,128,0)
+	TNT1 AAAAAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(20,156), random(-100,100), random(0,360), 2, random(0,360))
+	HF4T J 15
+	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+    TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(80,-80),Random(80,-80),Random(20,156),0,0,0,0,128,0)
+	TNT1 AAAAAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(20,156), random(-100,100), random(0,360), 2, random(0,360))
+	HF4T K 15
+	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+    TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(80,-80),Random(80,-80),Random(20,156),0,0,0,0,128,0)
+	TNT1 AAAAAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(20,156), random(-100,100), random(0,360), 2, random(0,360))
+	HF4T L 15
+	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+    TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(80,-80),Random(80,-80),Random(20,156),0,0,0,0,128,0)
+	TNT1 AAAAAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(20,156), random(-100,100), random(0,360), 2, random(0,360))
+	HF4T M 15
+	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+    TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(80,-80),Random(80,-80),Random(20,156),0,0,0,0,128,0)
+	TNT1 AAAAAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(20,156), random(-100,100), random(0,360), 2, random(0,360))
+	HF4T N 5
+	HF4T O 3
+	HF4T P 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+	HF4T Q 3 A_NoBlocking
+	HF4T R -1 
+	Stop
+} 
+}
+
+ACTOR CrownedOneParticleSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("WhiteStar",random(192,-192),random(192,-192),random(0,128),0,0,random(2,8),0,128,0) 	
+	TNT1 A 1 A_SpawnItemEx("WhiteStar",random(192,-192),random(192,-192),random(0,128),0,0,random(2,8),0,128,0) 	
+    Stop  
+    }
+}
+
+ACTOR CrownedOneLandKaboom : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("ShockWave",0,0,0,0,0,0,0,128) 
+	TNT1 AAA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)  
+	TNT1 AAA 0 A_CustomMissile("SmokeFX3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAAA 0 A_CustomMissile("Kaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("Explosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItemEx("LandKaBoom")	
+    Stop  
+    }
+}
+
+ACTOR CrownedOneGhost
+{
+Scale 5
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    HF4T G 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR CrownedOneComet
+{
+Radius 14
+Height 14
+Speed 40
+Damage 16
+Scale 1.4
+Projectile
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
+MissileType CrownedOneCometTail
+MissileHeight 0
+Decal Scorch
+States
+{
+Spawn: 
+TNT1 A 0
+TNT1 A 0 ThrustThingZ(0,random(-12,12),0,1)
+Fly:
+COMT AAABBBCCC 1 Bright A_MissileAttack
+Loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_Explode(128,128)
+TNT1 A 0 A_SetTranslucent(0.75,1)
+TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+COMT D 3 Bright A_SpawnItemEx("CometDeathGlow",0,0,0,0,0,0,0,128,0)
+COMT E 3 Bright A_SpawnItemEx("CometDeath",0,0,0,0,0,0,0,128,0)
+Stop
+}
+}
+
+ACTOR CrownedOneCometTail : BFG9500Trail
+{
+Alpha 0.3
+Scale 1.8
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+FRTB ABCDEFGHI 1 Bright
+Stop
+}
+}

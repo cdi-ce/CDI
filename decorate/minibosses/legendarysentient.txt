@@ -1,0 +1,770 @@
+ACTOR LegendarySentient1 : LegendarySentient replaces LegendarySentient
+{
+Health 18000
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "PDTBFG", 0.1
+DamageFactor "PDTBFGTracer", 0.1
+DamageFactor "BFGSplash", 0.25
+DamageFactor "BFGSpray", 0.25
+DamageFactor "MechStep", 0.0
+DamageFactor "Pierce", 0.35
+DamageFactor "MarinePierce", 0.35
+DamageFactor "Kaboom", 0.3
+DamageFactor "MarineKaboom", 0.3
+DamageFactor 0.35
+DropItem ""
++DONTHARMSPECIES
++NOTIMEFREEZE
++NOFEAR
+-CANTSEEK
+MaxStepHeight 32
+MaxDropOffHeight 32
+RadiusDamageFactor 0.5
+var int user_script2;
+Tag "\c[z3]Legendary Sentient\c-"
+States
+{
+  Spawn:
+   	TNT1 A 0 A_JumpIf(user_script2 == 1,4)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,96,1,0)
+	TNT1 A 0 A_SpawnItemEx("LegSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script2",1)
+	LUPR AB 2 A_Look
+	Loop	
+  See:
+    TNT1 A 0 A_JumpIf(user_script2 == 1,4)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,96,1,0)
+	TNT1 A 0 A_SpawnItemEx("LegSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script2",1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_UnsetInvulnerable
+	LUPR AB 2 A_Chase
+	TNT1 A 0 A_Jump(30,"Evade")
+	TNT1 A 0 A_Jump(15,"Teleport")
+	TNT1 A 0 A_JumpIfTargetInLos(2)
+	TNT1 A 0 A_Jump(256,2)
+    TNT1 A 0 A_Jump(192,"Strafing")	
+	TNT1 A 0 
+	Loop	
+  Strafing:
+	LUPR A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	LUPR A 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR B 0 A_Chase("","Missile",CHF_DONTMOVE)
+	LUPR B 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_JumpIfTargetInLos(2)
+	TNT1 A 0 A_Jump(256,"See")
+	TNT1 A 0 A_Jump(8,"See")
+	Loop
+  Teleport:
+    LUPR A 1 A_UnSetShootable
+    LUPR AAAAAAAAAAAAA 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+    LUPR BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 0 A_Wander
+    LUPR N 2 
+    LUPR B 1 A_PlayWeaponSound("boss/teleport")
+    LUPR AAAAAAAAAAAAA 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+    LUPR AAABBBAAABBB 1 A_FadeIn(0.1)
+	LUPR A 1 A_SetShootable
+	Goto See
+  Missile:
+    TNT1 A 0 
+    TNT1 A 0 A_SetShootable
+    TNT1 A 0 A_UnsetInvulnerable
+    TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_Jump(32,"LegendaryBFG","LegendaryHolyProjectile","EradicationBFGUltimate")
+	TNT1 A 0 A_Jump(88,"LegendaryStorm","ProtonCannon","CerebralCommotion","RageSkull","WaitAttack")
+	TNT1 A 0 A_Jump(215,"LegendaryOrb","LegendaryRifle","PlasmaCannon","BFG9K","BFG10K","DTBFG10K","BFG12K","SuperLazer","AssaultProjectile","EradicationBFGAlt")
+  Normal:
+    TNT1 A 0 A_JumpIfCloser(1500,1)
+	Goto PlasmaCannon
+	LUPR AAA 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_SpawnItemEx("YellowShellCasing",10,12,40,random(2,6),0,random(1,3),random(80,90),128)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR F 1 A_CustomMissile("LegSentientExplosiveTracer",31,-6,random(-800,800)/100.00)
+	LUPR F 1 A_CustomMissile("LegSentientExplosiveTracer",31,-6,random(-800,800)/100.00)
+    TNT1 A 0 A_SpawnItemEx("YellowShellCasing",10,12,40,random(2,6),0,random(1,3),random(80,90),128)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR E 1 A_CustomMissile("LegSentientExplosiveTracer",31,6,random(-800,800)/100.00)
+	LUPR E 1 A_CustomMissile("LegSentientExplosiveTracer",31,6,random(-800,800)/100.00)
+	TNT1 A 0 A_StopSoundEx("Weapon")	
+	TNT1 A 0 A_Jump(8,"Evade","Missile")
+    TNT1 A 0 A_SpidRefire
+	Goto Normal+4
+  LegendaryOrb:
+	LUPR AAA 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR F 2 A_CustomMissile("LegendaryOrbProj",31,-6,random(-3,3))
+	TNT1 A 0 A_PlayWeaponSound("BlueDTRFire")
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR E 2 A_CustomMissile("LegendaryOrbProj",31,6,random(-3,3))
+	TNT1 A 0 A_StopSoundEx("Weapon")	
+	TNT1 A 0 A_Jump(8,"Evade","Missile")
+    TNT1 A 0 A_SpidRefire
+	Loop
+  LegendaryRifle:
+    TNT1 A 0 A_JumpIfCloser(1500,1)
+	Goto PlasmaCannon
+	LUPR AAA 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BlueDTRFire")
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR F 2 A_CustomMissile("SentientLegendaryProjectile",31,-6,random(-300,300)/100.00,0)
+	TNT1 A 0 A_PlayWeaponSound("BlueDTRFire")
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR E 2 A_CustomMissile("SentientLegendaryProjectile",31,6,random(-300,300)/100.00,0)
+	TNT1 A 0 A_StopSoundEx("Weapon")	
+	TNT1 A 0 A_Jump(8,"Evade","Missile")
+    TNT1 A 0 A_SpidRefire
+	Goto LegendaryRifle+4
+  PlasmaCannon:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegSentientCannonBall", 42, 0, 0)
+	LUPR O 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegSentientCannonBall", 42, 0, 0)
+	LUPR O 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegSentientCannonBall", 42, 0, 0)
+	LUPR O 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegSentientCannonBall", 42, 0, 0)
+	LUPR O 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegSentientCannonBall", 42, 0, 0)
+	LUPR O 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegSentientCannonBall", 42, 0, 0)
+	LUPR O 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","BFG9K","BFG9K")
+	Goto See
+  BFG9K:
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	LUPR NNNNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,-9)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,9)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,0)
+	LUPR NNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	LUPR NNNNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,-9)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,9)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,0)
+	LUPR NNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	LUPR NNNNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,-9)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,9)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",42,0,0)
+	LUPR NNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","BFG10K","BFG10K")
+	Goto See	
+  BFG10K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	LUPR NNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe",1)
+  BFG10KGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 36,"BFG10KEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("Legendary10KProjectile",42,0,random(-400,400)/100.00)
+	LUPR N 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(12,1)
+	Loop
+  BFG10KEnd:
+	TNT1 A 0 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	LUPR NNNNNN 3 A_GiveInventory("LegFlyingBossStrafe",1)	
+	TNT1 A 0 A_Jump(192,"Evade","DTBFG10K","DTBFG10K")
+	Goto See
+  DTBFG10K:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",34,0,0)
+	LUPR NNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",34,0,0)
+	LUPR NNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",34,0,0)
+	LUPR NNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	LUPR NNNNNNNNNNOOOO 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",34,0,0)
+	LUPR NNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","BFG12K","BFG12K")
+	Goto See
+  BFG12K:
+	LUPR NNNNN 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	LUPR NNNNNNN 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryDemonBFG12000Ball",42,0,0,0)
+	LUPR OOO 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	LUPR NNNNNNN 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryDemonBFG12000Ball",42,0,random(-3,3),0)
+	LUPR OOO 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	LUPR NNNNNNN 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryDemonBFG12000Ball",42,0,random(-3,3),0)
+	LUPR OOO 5 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR NNN 6 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","SuperLazer","SuperLazer")
+	Goto See
+  SuperLazer:
+	LUPR N 20 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("SuperLazer/Charge")
+	LUPR NNNNNNNNNN 8 A_FaceTarget	
+	TNT1 A 0 A_PlayWeaponSound("SuperLazer/Fire")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+  SuperLazerLoop:
+	TNT1 A 0 A_JumpIf(user_wait >= 30,"SuperLazerEnd")	 
+	TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	LUPR OOO 1 A_GiveInventory("LegendarySentientLazer",1)
+	TNT1 A 0 A_FaceTarget(0.75,180)
+	Loop
+  SuperLazerEnd:
+	LUPR NNN 6 A_FaceTarget
+	TNT1 A 0 A_Jump(192,"Evade","LegendaryStorm","LegendaryStorm")
+	Goto See
+  LegendaryStorm:
+    LUPR NNNN 4 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("sentient/laugh",5)
+	TNT1 A 0 Radius_Quake(40,350,0,90,0)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_UnSetInvulnerable
+  LegendaryStormGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 12,"LegendaryStormEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_GiveToTarget("LegSentStormBoltAttack",1)
+	TNT1 AAAAA 0 A_SpawnItemEx("LegSentientStormBoltSpawner",random(1650,-1650),random(1650,-1650),0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_JumpIfInventory("IsAwakenedLegendaryMonster",1,2)
+	TNT1 A 0 A_Jump(256,3)
+	TNT1 A 0 A_GiveToTarget("LegendaryRedeemerBigStormAttack",1)
+	TNT1 A 0 A_SpawnItemEx("LegendaryRedeemerBigStormSpawner",random(1650,-1650),random(1650,-1650),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	Loop
+  LegendaryStormEnd:
+	LUPR NNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","LegendaryLightning","LegendaryLightning")
+	Goto See
+  LegendaryLightning:
+    LUPR NNNN 4 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("sentient/laugh",5)
+	TNT1 A 0 Radius_Quake(40,350,0,90,0)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LUPR NNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	LUPR NNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","CerebralCommotion","CerebralCommotion")
+	Goto See
+  CerebralCommotion:
+    LUPR PPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("legsentient/laugh",5)  
+	TNT1 A 0 Radius_Quake(40,350,0,90,0)
+	LUPR PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe2",1)
+	TNT1 A 0 A_UnSetInvulnerable
+  CerebralCommotionGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 48,"CerebralCommotionEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX2",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("CCProjectile",65,0,random(-24,24))
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe2",1)
+	Loop
+  CerebralCommotionEnd:
+	LUPR PPPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe",1)  
+	TNT1 A 0 A_Jump(192,"Evade","ProtonCannon","ProtonCannon")
+	Goto See
+  ProtonCannon:
+    LUPR NNNN 4  A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("legsentient/laugh",5)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_UnsetInvulnerable
+  ProtonCannonGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 12,"ProtonCannonEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 0 A_PlaySound("Petrovec/Fire",1)
+    LUPR O 0 A_PlaySound("Petrovec/AddFire",6)
+    LUPR O 0 A_PlaySound("Petrovec/Ambient",5)
+	LUPR O 2 A_CustomMissile("ProtonCannonProj",42,0,0)
+	LUPR OONNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	Loop
+  ProtonCannonEnd:
+	LUPR OONNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","AssaultProjectile","AssaultProjectile")
+	Goto See
+  AssaultProjectile:
+    LUPR NNNN 4 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("legsentient/laugh",5)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_UnsetInvulnerable
+  AssaultProjectileGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 8,"AssaultProjectileEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+	LUPR O 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	LUPR O 2 A_CustomMissile("LegendaryAssaultProjectile",42,0,random(-4,4))
+	LUPR OONNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	Loop
+  AssaultProjectileEnd:
+	LUPR OONNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","EradicationBFGAlt","EradicationBFGAlt")
+	Goto See
+  EradicationBFGAlt:
+    LUPR NNNN 4 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("legsentient/laugh",5)
+	TNT1 A 0 A_PlayWeaponSound("obelisk/fire")
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 A_GiveInventory("LegFlyingBossStrafe3A",1)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 A_GiveInventory("LegFlyingBossStrafe3A",1)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 A_GiveInventory("LegFlyingBossStrafe3A",1)
+    TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_CustomMissile("LegendaryEradicationBFGFocusProj",42,0,0)
+	LUPR OOOONNNNNNNNNN 1 A_GiveInventory("LegFlyingBossStrafe3A",1)
+	TNT1 A 0 A_CustomMissile("LegendaryEradicationBFGFocusProj",42,0,random(-4,4))
+	LUPR OOOONNNNNNNNNN 1 A_GiveInventory("LegFlyingBossStrafe3A",1)
+	TNT1 A 0 A_CustomMissile("LegendaryEradicationBFGFocusProj",42,0,random(-4,4))
+	LUPR OOOONNNNNNNNNN 1 A_GiveInventory("LegFlyingBossStrafe3A",1)
+	LUPR OONNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_Jump(192,"Evade","RageSkull","RageSkull")
+	Loop
+  RageSkull:
+    LUPR PPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("legsentient/laugh",5)  
+	TNT1 A 0 Radius_Quake(40,350,0,90,0)
+	LUPR PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe2",1)
+	TNT1 A 0 A_UnSetInvulnerable
+  RageSkullGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 7,"RageSkullEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe2",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendarySentientRageSkull",-20,random(120,300),random(64,250),frandom(-3,3),frandom(0,10),frandom(-3,3),(180*random(0,1)),SXF_TRANSFERPOINTERS)
+	LUPR PPPPPPPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe2",1)
+	Loop
+  RageSkullEnd:
+	LUPR PPPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe",1)  
+	TNT1 A 0 A_Jump(192,"Evade","WaitAttack","WaitAttack")
+	Goto See
+  WaitAttack:
+    LUPR NNNN 4 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+    TNT1 A 0 A_PlaySound("sentient/laugh",5)
+	TNT1 A 0 Radius_Quake(40,350,0,90,0)
+	LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_UnSetInvulnerable
+  WaitAttackGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 7,"WaitAttackEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 AAAAAAA 0 A_SpawnItemEx("LegendarySentientWaitBall",0,0,90,frandom(-40,40),frandom(-40,40),frandom(10,40),0,SXF_TRANSFERPOINTERS)
+	LUPR PPPPPPPPPPPPP 2 A_GiveInventory("LegFlyingBossStrafe3",1)
+	Loop
+  WaitAttackEnd:
+	LUPR NNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","LegendaryBFG","LegendaryBFG")
+	Goto See
+  LegendaryBFG:
+    LUPR NNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+    TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+    LUPR N 3 A_PlaySound("legsentient/laugh",5)
+    TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+    LUPR N 3 A_PlaySound("Legcyber/BFG",6)
+    LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_JumpIfTargetInLos(2)
+    TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0
+	Goto LegendaryBFGGo
+	TNT1 A 0
+	TNT1 A 0 A_UnSetShootable
+    LUPR NNNNNNNN 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+    LUPR NNNNNNNNNN 1 A_FadeOut(0.1,0)
+	LUPR N 1 A_PlayWeaponSound("boss/teleport")
+    LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 0 A_Wander
+    TNT1 A 0 A_FaceTarget
+    LUPR NNNNNNNN 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	TNT1 A 0 A_SetShootable
+    LUPR NNNNNNNNNN 1 A_FadeIn(0.1)
+  LegendaryBFGGo:	
+    TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_PlaySound("Weapons/GuruFire",CHAN_WEAPON)
+    TNT1 A 0 A_PlaySound("Weapons/GuruAddFire",CHAN_WEAPON)
+    TNT1 A 0 A_CustomMissile("DemonLegendaryBFGProjectile",42,0,0,0)
+	LUPR O 1 A_SetShootable
+    LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","LegendaryHolyProjectile","LegendaryHolyProjectile")
+    Goto See
+  LegendaryHolyProjectile:
+    LUPR NNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+    TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+    LUPR N 3 A_PlaySound("legsentient/laugh",5)
+    TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_PlaySound("LegendaryHolyProjectile/Charge")
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging1",128,0,64)
+	LUPR NNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging2",128,0,64)
+	LUPR NNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging3",128,0,64)
+	LUPR NNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging4",128,0,64)
+	LUPR NNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging",128,0,64)
+	LUPR NNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+    TNT1 A 0 A_PlaySound("LegendaryHolyProjectile/Fire")
+	TNT1 A 0 A_CustomMissile("LegendaryHolyProjectile",42,0,0,0)
+	TNT1 A 0 A_UnsetInvulnerable
+	LUPR NNNNNNNNNNNNNNNN 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","EradicationBFGUltimate","EradicationBFGUltimate")
+	Goto See
+  EradicationBFGUltimate:
+    LUPR NNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+    TNT1 A 0 A_SetInvulnerable
+    TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+    LUPR N 3 A_PlaySound("legsentient/laugh",5)
+    TNT1 A 0 A_GiveInventory("LegFlyingBossStrafe",1)
+    LUPR NNNNNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+    LUPR N 3 A_PlayWeaponSound("EradicationBFG/UltimateCharge")
+    LUPR NNNNNNNNNNNNNNNNNNNNNNN 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_JumpIfTargetInLos(2)
+    TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0
+	Goto EradicationBFGUltimateGo
+	TNT1 A 0
+	TNT1 A 0 A_UnSetShootable
+    LUPR NNNNNNNN 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+    LUPR NNNNNNNNNN 1 A_FadeOut(0.1,0)
+	LUPR N 1 A_PlayWeaponSound("boss/teleport")
+    LUPR NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 0 A_Wander
+    TNT1 A 0 A_FaceTarget
+    LUPR NNNNNNNN 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	TNT1 A 0 A_SetShootable
+    LUPR NNNNNNNNNN 1 A_FadeIn(0.1)
+  EradicationBFGUltimateGo:	
+    TNT1 A 0 A_UnsetInvulnerable
+    TNT1 A 0 A_CustomMissile("LegendaryEradicationBFGUltimateBall",42,0,0,0)
+	LUPR O 1 A_SetShootable
+    LUPR OOOOONNNNNNNNNNNNNNNNNNNNNNNNN 2 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Jump(192,"Evade","Missile","Missile")
+    Goto See
+  Pain:
+	TNT1 A 0 A_Jump(30,"PainResurrect")
+	TNT1 A 0 A_Jump(25,"Teleport")
+	LUPR A 3 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Pain
+	LUPR A 3 A_GiveInventory("LegFlyingBossStrafe",1)	
+	TNT1 A 0 A_Jump(120,"Missile")
+	Goto See
+  PainResurrect:
+	LUPR A 3 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_Pain
+	LUPR A 3 A_GiveInventory("LegFlyingBossStrafe",1)	
+	TNT1 A 0 A_JumpIfInventory("LegSentientToken",3,"See")	
+	LUPR AAAA 3 A_GiveInventory("LegFlyingBossStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegSentientToken",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 Radius_Quake(10,80,0,24,0)
+	TNT1 A 0 A_GiveInventory("Health",850)
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+    TNT1 A 0 A_PlaySound("sentient/laugh")
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+  PainRessurrectLoop:
+    TNT1 A 0 A_JumpIf(user_wait >= 3,"PainRessurrectEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,30,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,90,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,150,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,210,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,270,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,330,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrectionEffect",10,0,360,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,10,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,20,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,30,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,40,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,50,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,70,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,80,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,90,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,100,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,110,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,130,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,140,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,150,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,160,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,170,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,190,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,200,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,210,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,220,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,230,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,250,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,260,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,270,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,280,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,290,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,310,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,320,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,330,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,340,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,350,0)
+	TNT1 A 0 A_CustomMissile("LegSentientMassResurrection",10,0,360,0)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	TNT1 A 0 A_SpawnItem("LegSentientBrainSFX",0,0,0,0)
+	LUPR P 3 A_GiveInventory("LegFlyingBossStrafe3",1)
+	Loop
+  PainRessurrectEnd:
+	TNT1 A 0 A_UnSetInvulnerable
+	LUPR AAAAAA 3 A_GiveInventory("LegFlyingBossStrafe",1)
+	Goto See
+  Death:
+    TNT1 A 0 A_StopSound(6)
+	TNT1 A 0 A_Scream
+	TNT1 A 0 A_GiveInventory("ImDead",1)
+	LUPR H 20  A_Fall
+	TNT1 A 0 A_GiveToTarget("EpicCrateStrongGiver",1)
+	TNT1 AAAAA 0 A_GiveToTarget("BossCrateGiver",1)
+    TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigBlueBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	TNT1 A 0 A_SpawnItem("DemonLegendaryBFGMiniProjectileDeath")
+	LUPR IIIIIIIIIIIIIIIIIIII 2  A_CustomMissile("KaboomLSD", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigBlueBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+    LUPR JJJJJJJJJJJJJJJJJJJJ 2  A_CustomMissile("KaboomLSD", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigBlueBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItem("DemonLegendaryBFGMiniProjectileDeath")
+    LUPR KKKKKKKKKKKKKKKKKKKK 2  A_CustomMissile("KaboomLSD", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigBlueBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    LUPR LLLLLLLLLLLLLLLLLLLL 2  A_CustomMissile("KaboomLSD", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAAAAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAAAAAAAA 0 A_CustomMissile("BigBlueBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile("SmokeFX3", random(10,60), random(30,-30), random(0,360), 2, random(0,360))	
+	TNT1 A 0 A_SpawnItem("DemonLegendaryBFGProjectileDeath")
+	LUPR LM 5
+	TNT1 A -1 A_KillMaster
+	Stop		
+}
+}
+
+Actor LegendarySentientWeak : LegendarySentient1
+{
+Health 16000
+DropItem "BonusCrateDrop" 1
+DamageFactor "BFGSplash", 0.5
+DamageFactor "PDTBFG", 0.4
+DamageFactor "PDTBFGTracer", 0.4
+DamageFactor "MechStep", 0.0
+DamageFactor "Pierce", 0.5
+DamageFactor "MarinePierce", 0.5
+DamageFactor "Kaboom", 0.4
+DamageFactor "MarineKaboom", 0.4 
+States
+{
+
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script2 == 1,7)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("LegSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script2",1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	LUPR AB 2 A_Look
+	Loop	
+  See:
+	TNT1 A 0 A_JumpIf(user_script2 == 1,7)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("LegSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script2",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	LUPR AB 2 A_Chase
+	TNT1 A 0 A_Jump(30,"Evade")
+	TNT1 A 0 A_Jump(15,"Teleport")
+	TNT1 A 0 A_JumpIfTargetInLos(2)
+	TNT1 A 0 A_Jump(256,2)
+    TNT1 A 0 A_Jump(88,"Strafing")
+	TNT1 A 0 
+	Loop
+  Missile:
+    TNT1 A 0 
+    TNT1 A 0 A_SetShootable
+    TNT1 A 0 A_UnsetInvulnerable
+    TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_Jump(32,"LegendaryBFG")
+	TNT1 A 0 A_Jump(88,"LegendaryStorm","ProtonCannon","CerebralCommotion","RageSkull","WaitAttack")
+	TNT1 A 0 A_Jump(215,"LegendaryRifle","PlasmaCannon","BFG9K","BFG10K","DTBFG10K","AssaultProjectile")
+	Goto Normal
+}
+}
+
+Actor LegSentientStormBoltAttack : CustomInventory
+{
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.AUTOACTIVATE       
+  +COUNTITEM
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  States
+  {
+  Pickup:
+    NULL A 1 
+	NULL AA 1 A_SpawnItemEx("LegSentientStormBoltSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,64)
+    Stop	
+  }
+}
+
+Actor LegendarySentientLazer : LegSentientStormBoltAttack
+{
+States
+{
+  Pickup:
+	TNT1 A 1 A_FaceTarget(0.75,180)
+	TNT1 A 1 A_CustomMissile("DemonSuperLazerYellow",42,0,0)
+	TNT1 A 1 A_GiveInventory("LegFlyingBossStrafe",1)
+	Stop
+}
+}
+
+ACTOR NerfedSentientGuruBall : SentientGuruBall
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(128,"LEGBFGSFX")
+	TNT1 A 0 A_PlaySound("Weapons/GuruFly",5,1.0,1)
+	TNT1 A 0 A_Explode(600,64,0,1)
+	TNT1 A 0 A_SpawnItemEx("GuruTrailSpark",random(28,-28),random(28,-28),random(28,-28),0,0,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GuruTrail",-3,0,0,0,0,0,0,0,0)
+	YBAL A 1 bright
+	loop
+    Goto Spawn
+  LEGBFGSFX:
+    TNT1 A 0 A_SpawnItemEx("GuruTrailSpark",random(28,-28),random(28,-28),random(28,-28),0,0,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GuruTrail",-3,0,0,0,0,0,0,0,0)
+	YBAL A 1 Bright A_SpawnItemEx("LegSentientDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GuruTrailSpark",random(28,-28),random(28,-28),random(28,-28),0,0,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GuruTrail",-3,0,0,0,0,0,0,0,0)
+	YBAL A 1 Bright A_SpawnItemEx("LegSentientDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GuruTrailSpark",random(28,-28),random(28,-28),random(28,-28),0,0,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GuruTrail",-3,0,0,0,0,0,0,0,0)
+	YBAL A 1 Bright A_SpawnItemEx("LegSentientDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GuruTrailSpark",random(28,-28),random(28,-28),random(28,-28),0,0,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GuruTrail",-3,0,0,0,0,0,0,0,0)
+	YBAL A 1 Bright A_SpawnItemEx("LegSentientDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    Goto Spawn
+  }
+}
+
+ACTOR LegSentientFireFollower
+{
++NOBLOCKMAP
++NOTELEPORT
++DONTSPLASH
++NOINTERACTION
++NOGRAVITY
+States
+{
+  Spawn:
+	TNT1 A 2 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	TNT1 A 0 A_SpawnItemEx("LegSentientFireSpawner",0,0,0,0,0,0,0,32)
+	TNT1 A 0 A_JumpIfInventory("ImDead",1,"Death",AAPTR_TARGET)
+	Loop
+  Death:
+	TNT1 A 1
+	Stop
+}
+}

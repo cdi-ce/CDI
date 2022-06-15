@@ -1,0 +1,228 @@
+//=================================================\\
+// ------------------ JetTrooper ----------------- \\
+//=================================================\\
+
+Actor JetTrooper : MechPickup
+{
+  States
+  {
+  Spawn:
+    MECH F 1 A_SpawnItemEx("SuitIndicator",0,0,64)
+    Loop
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("JetTrooperGiver")
+	Stop
+  Nope:
+	MECH F 1
+	Stop
+  }
+}
+
+ACTOR JetTrooperGiver : MechGiver{Powerup.Type "JetTrooper"}
+
+ACTOR PowerJetTrooper : PowerMorph
+{
+  PowerMorph.PlayerClass "Suit_JetTrooper"
+  PowerMorph.MorphFlash "Nothing"
+  PowerMorph.UnMorphFlash "Nothing"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Suit_JetTrooper : Suit_MaxSoldier
+{
+  Health 250
+  Player.MaxHealth 250
+  Player.DisplayName "Jet Trooper"
+  Player.MorphWeapon "JetTrooper-Weapons"
+  Species "Player"
+  +THRUSPECIES
+  States
+  {
+   Spawn:
+    SUT2 A 2 Bright A_SpawnItem("JetTrooperFireSpawner",0,0,0,0)
+    Loop
+   See:
+    SUT2 A 2 Bright A_SpawnItem("JetTrooperFireSpawner",0,0,0,0)
+    Loop
+   Missile:
+    SUT2 EEE 2 Bright A_SpawnItem("JetTrooperFireSpawner",0,0,0,0)
+    Goto Spawn
+   Melee:
+    SUT2 FFF 2 Bright A_SpawnItem("JetTrooperFireSpawner",0,0,0,0)
+    Goto Missile
+   Pain:
+    SUT2 G 2 Bright A_SpawnItem("JetTrooperFireSpawner",0,0,0,0)
+    SUT2 G 0 A_Pain
+	SUT2 GG 2 Bright A_SpawnItem("JetTrooperFireSpawner",0,0,0,0)
+    Goto Spawn
+   Death:
+	SUT2 HHHH 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	SUT2 I 6 Bright A_PlayerScream
+	SUT2 J 6 Bright A_NoBlocking
+	SUT2 K 6 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	SUT2 L 6 Bright A_SpawnItem("BodyCrash",0,0,0,0)
+	SUT2 MN 6 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	SUT2 O -1
+	Stop
+  }
+}
+
+ACTOR JetTrooperFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_PlaySound("monster/ambientfire2")
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+	TNT1 AA 0 A_SpawnItemEx("SentientFire",-20,random(-4,4),32,0,0,random(-4,-6),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+Actor JetTrooper-Weapons : Weapon
+{
+  +INVENTORY.UNDROPPABLE
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL
+  +WEAPON.CHEATNOTWEAPON
+  States
+  {
+  Ready:
+	MUS2 A 0
+	MUS2 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+    MUS2 A 1 A_WeaponReady
+    Loop
+  Deselect: 
+    MUS2 A 1 A_Lower
+    Loop
+  Select:
+    MUS2 A 1 A_Raise
+    Loop
+  Fire:
+	MUS2 B 0 A_GunFlash
+	MUS2 B 2 A_FireCustomMissile("JetTrooperPlasmaBall",0,0,16,12)
+	MUS2 C 1
+	MUS2 D 1 
+	MUS2 E 1 A_Refire
+    Goto Ready
+  AltFire:
+    MUS2 A 0 A_JumpIfInventory("MechRailgunReload",1,"Nope")
+    MUS2 A 0 A_GiveInventory("MechRailgunReload",1)
+    MUS2 A 0 ACS_ExecuteAlways(3104,0,9)
+	MUS2 A 0 A_GiveInventory("PowerJetFly",1)
+	MUS2 A 0 A_PlaySound("jetpack/fly")
+	MUS2 A 0 A_StopSoundEx("SoundSlot7")
+    MUS2 A 20 ThrustThingZ(0,55,0,0)
+	MUS2 A 2 A_Refire
+    Goto Ready
+  GrenadeCheck:
+	MUS2 A 0
+	MUS2 A 0 A_TakeInventory("HandGrenadeAction",1)
+	MUS2 A 0 A_JumpIfInventory("MechSeekerRocketReload",1,"AltFire")
+    MUS2 A 0 A_GiveInventory("MechSeekerRocketReload",1)
+    MUS2 A 0 ACS_ExecuteAlways(3113,0,21)
+	MUS2 A 0 ACS_ExecuteAlways(3104,0,1010)
+	MUS2 A 0 A_GunFlash
+	Goto Ready
+  Nope:
+    MUS2 A 15 A_PlaySound("sentry/warn")
+    Goto Ready
+  Flash:
+    MUS2 B 2 Bright A_Light1
+    MUS2 C 3 Bright A_Light2
+    MUS2 A 0 Bright A_Light0
+    Stop
+  Spawn:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR JetTrooper-HeavyRocket : MaxSoldier-MiniRocket1
+{       
+States
+{
+  Use:
+	TNT1 A 0 
+	TNT1 A 0 A_FireCustomMissile("HeavyRocket",0,0,0,18)
+	Stop
+}
+}
+
+Actor JetTrooperPlasmaBall
+{
+Scale 0.8
+Renderstyle Add
+Alpha 0.95
+PROJECTILE
+Decal "PlasmaDecal"
+DamageType "Marine"
+Speed 48
+Radius 12
+Height 6
++MTHRUSPECIES
+Damage 6
+SeeSound "weapons/cyborgplasmafire"
+DeathSound "weapons/cyborgplasmahit"
+Decal HeatScorch
+States
+{
+Spawn:
+JTB1 ABCD 3 Bright A_CustomMissile("JetTrooperPlasmaBallTrail",Random(-2,2),Random(-2,2))
+Loop
+Death:
+TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
+JTB1 EFG 2 Bright A_FadeOut(0.04)
+Stop
+}
+}
+
+ACTOR JetTrooperPlasmaBallTrail : MissileTrail
+{
+Scale 0.8
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+    TNT1 A 1
+    JTB1 ABCD 2 Bright A_FadeOut
+    Stop
+    }
+}
+
+ACTOR PowerJetFly : PowerupGiver
+{
+	Inventory.Amount 1
+	Powerup.Duration -5
+	Powerup.Type PowerFlight
+	Powerup.Color White 0.00
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+ACTOR JetTrooper_Destroyed
+{
+  States
+  {
+  Spawn:
+    MECH F 70
+	MECH FF 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH FFFFFF 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	MECH FF 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	MECH FF 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH FFFFFF 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	MECH FF 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+    MECH FF 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH FFFFFF 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	MECH FF 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+    MECH FF 0 A_SpawnItemEx("SmokeFX3",Random(-24,24),Random(-24,24),Random(4,48))
+    MECH FFFFFF 2 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+    Stop 	
+  }
+}

@@ -1,0 +1,388 @@
+//=====================================================\\
+// ----------------- Inferno Demon ------------------- \\
+//=====================================================\\
+
+ACTOR InfernoDemonGiver : MechGiver{Powerup.Type "InfernoDemon"}
+
+ACTOR PowerInfernoDemon : PowerMorph
+{
+  PowerMorph.PlayerClass "Demon_InfernoDemon"
+  PowerMorph.MorphFlash "TeleportFog"
+  PowerMorph.UnMorphFlash "TeleportFog"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Demon_InfernoDemon : Demon_Cardihilator
+{
+  Health 900
+  Player.MaxHealth 900
+  Player.SoundClass "PInfernoDemon"
+  Player.DisplayName "Inferno Demon"
+  Player.MorphWeapon "InfernoDemon-Weapons"
+  Player.ViewHeight 124
+  Player.AttackZOffset 44
+  Scale 1.25
+  PainChance 0
+  +NOPAIN
+  States
+  {
+   Spawn:
+    TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerRuneOfTheAbominationMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	INFD A 1
+	Loop
+   See:
+    TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerRuneOfTheAbominationMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	TNT1 A 0 A_PlaySound("infernodemon/step")
+    INFD AABB 3
+    TNT1 A 0 A_PlaySound("infernodemon/step")
+    INFD CCDD 3
+	Goto Spawn
+  Melee:
+  Missile:
+    INFD E 1
+	INFD E 0 A_JumpIfInventory("MissileType3",1,"Missile3")
+	INFD E 0 A_JumpIfInventory("MissileType2",1,"Missile2")
+    INFD ED 3
+	INFD F 7 Bright
+	INFD E 3
+	Goto Spawn
+  Missile2:
+	NBRN E 0 A_TakeInventory("MissileType2",1)
+	INFD HH 5 Bright
+	TNT1 A 0 Radius_Quake(10,80,0,24,0)
+    TNT1 A 0 A_PlaySound("infernodemon/see")
+	INFD HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("CardinalRageFlameSpawner")	
+    INFD IIIIIIII 3 Bright
+    Goto Spawn
+  Missile3:
+	NBRN E 0 A_TakeInventory("MissileType3",1)	
+	INFD HH 5 Bright
+	INFD FFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 Bright A_SpawnItemEx("CardinalRageFlameSpawner")	
+	INFD E 6 Bright
+    INFD FFFEEE 4 Bright
+    INFD FFFEEE 4 Bright
+    INFD F 4 Bright
+	Goto Spawn
+  Pain:
+	TNT1 A 0 A_Pain
+    INFD AA 3
+    Goto See
+  Death:
+    INFD J 5 Bright A_PlaySoundEx("infernodemon/death","body",0,1)
+    INFD K 5 Bright A_NoBlocking	
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD LLLLL 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))	
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD MMMMM 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD NNNNN 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD OOOOO 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD PPPPP 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD QQQQQ 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD RRRRR 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD SSSSS 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+    TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    INFD TTTTT 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+    INFD UV 5
+    INFD W -1
+    Stop
+  }
+}
+
+ACTOR InfernoDemon-Weapons : Weapon
+{
++WEAPON.DONTBOB
++WEAPON.CHEATNOTWEAPON
++WEAPON.AMMO_OPTIONAL
++WEAPON.ALT_AMMO_OPTIONAL
++INVENTORY.UNDROPPABLE 
+States
+{
+  Ready:
+    IFWP A 1 A_WeaponReady
+    Loop
+  Deselect: 
+    IFWP A 1 A_Lower
+    Loop
+  Select:
+    IFWP A 1 A_Raise
+    Loop
+  Fire:
+    IFWP C 1 Bright
+    IFWP C 1 Bright A_Jump(256,"InfernoDemon","BruiserDemon","PyroDemon","HellArchonComet","HellArchonBall","BombElemental","Famine","Cacomental")
+    IFWP C 1 Bright
+  InfernoDemon:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBall",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBall",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBall",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBall",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBall",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDBall",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready 
+  BruiserDemon:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBruiserDemonComet",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBruiserDemonComet",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBruiserDemonComet",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBruiserDemonComet",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBruiserDemonComet",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDBruiserDemonComet",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready 
+  PyroDemon:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDPyroDemonComet",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDPyroDemonComet",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDPyroDemonComet",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDPyroDemonComet",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDPyroDemonComet",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDPyroDemonComet",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  HellArchonComet:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonComet",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonComet",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonComet",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonComet",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonComet",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDHellArchonComet",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  HellArchonBall:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonBall",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonBall",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonBall",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonBall",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDHellArchonBall",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDHellArchonBall",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  BombElemental:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBombElementalBall",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBombElementalBall",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBombElementalBall",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBombElementalBall",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDBombElementalBall",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDBombElementalBall",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  Famine:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDFamineTracer",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDFamineTracer",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDFamineTracer",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDFamineTracer",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDFamineTracer",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDFamineTracer",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  Cacomental:
+	IFWP CA 3 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerIFDCacomentalTracer",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDCacomentalTracer",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDCacomentalTracer",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerIFDCacomentalTracer",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerIFDCacomentalTracer",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerIFDCacomentalTracer",1,0,34,0,0)
+	IFWP AC 3 Bright
+	IFWP A 2 A_Refire  
+	Goto Ready
+  AltFire:
+   	IFWP C 0 A_JumpIfInventory("MechRailgunReload",1,"AltFire2")
+    IFWP C 0 A_GiveInventory("MechRailgunReload",1)
+    IFWP C 0 ACS_ExecuteAlways(3104,0,19)
+	IFWP C 0 A_GiveInventory("MissileType2")
+	IFWP CC 5 Bright
+	IFWP CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCAAAAAAAAAAAAA 2 Bright
+	IFWP B 12 Bright A_FireCustomMissile("PlayerArchonLordMegaBall",0,0,34,0)
+	IFWP AACC 3 Bright
+	Goto Ready
+  AltFire2:
+   	IFWP C 0 A_JumpIfInventory("MechSeekerRocketReload",1,"Fire")
+    IFWP C 0 A_GiveInventory("MechSeekerRocketReload",1)
+    IFWP C 0 ACS_ExecuteAlways(3104,0,50)
+	IFWP C 0 A_GiveInventory("MissileType3")
+	IFWP CC 5 Bright
+	IFWP CCCCCCCCCCCCCCCCCCCCCCCCAAAAA 2 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerSpecilosComet",1,0,34,0,0)
+	IFWP AACC 5 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerSpecilosComet",1,0,34,0,0)
+	IFWP AACC 5 Bright
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",1,0,34,50,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-52,25,0,0)
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",1,0,52,25,0,0)	
+	IFWP B 0 A_FireCustomMissile("PlayerSpecilosComet",-1,0,-34,0,0)	
+	IFWP B 4 Bright A_FireCustomMissile("PlayerSpecilosComet",1,0,34,0,0)
+	IFWP AACC 5 Bright
+	Goto Ready
+  Spawn:
+    TNT1 A 1
+    Stop	  
+   }
+}
+
+ACTOR PlayerIFDBall
+{
+Radius 8
+Height 8
+Speed 30
+Damage 14
+Scale 1.0
+PROJECTILE
+RENDERSTYLE ADD
+ALPHA 0.95
+SeeSound "comet/launch"
+DeathSound "weapons/firex3"
+DamageType "Marine"
+Decal "DoomImpScorch"
++MTHRUSPECIES
+States
+{
+   Spawn: 
+      B4L3 AB 4 Bright A_SpawnItem("RedPuff",0,0)
+      loop
+   Death:
+      TNT1 AA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+      B4L3 C 5 Bright A_Explode(32,96,0)
+      B4L3 DE 5 Bright
+      stop
+   }
+}
+
+ACTOR PlayerIFDBombElementalBall : BombBall 
+{
+Speed 25
+Damage 14
++MTHRUSPECIES
++SCREENSEEKER
+DamageType "Marine"
+States
+{
+Spawn:
+    TNT1 A 0 A_SpawnItemEx("BombBallTrail",0,0,0,0,0,0,0,128) 
+    PBMB A 2 Bright	A_SeekerMissile(25,35,SMF_LOOK,45,2)
+	PBMB B 2 Bright A_SpawnItemEx("BombBallTrail",0,0,0,0,0,0,0,128)
+	Loop
+Death:
+	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom10", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))	
+    TNT1 A 1 A_SpawnItem("BombBallEx")
+    Stop
+    }
+}
+
+ACTOR PlayerIFDFamineTracer : FamineTracer
+{
+Speed 35
+Damage 12
++MTHRUSPECIES
++SCREENSEEKER
+Decal DoomImpScorch
+DamageType "Marine"
+States
+{
+Spawn:
+	NREB A 0 A_SeekerMissile(25,35,SMF_LOOK,45,2)
+	NREB AB 2 Bright A_SpawnItemEx("FamineTrailSmoke",0,0,6,0,0,0,0,128) 
+	Loop
+Death:
+	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom10", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))	
+    TNT1 A 1 A_SpawnItem("FamineTracerEx")
+    Stop
+    }
+}
+
+ACTOR PlayerIFDCacomentalTracer : HeleBall
+{
+Damage 16
+Speed 22
+Decal DoomImpScorch
+DamageType "Marine"
+States
+{
+Spawn:
+    HEFX AB 2 Bright A_CustomMissile("HeleTrail",Random(-2,2),Random(-2,2))
+    HEFX B 2 Bright A_CustomMissile("HeleTrail",Random(-2,2),Random(-2,2)) 
+    Loop	
+    }
+}
+
+ACTOR PlayerArchonLordMegaBall
+{
+Radius 10
+Height 10
+Speed 38
+Damage 400
+Scale 3
+DamageType "Marine"
++MTHRUSPECIES
++FORCERADIUSDMG
+PROJECTILE
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
+Decal RocketScorch
+States
+{
+Spawn:
+CMRA ABCDEFGHIJ 1 Bright A_SpawnItemEx("ArchonLordMegaBallTail",0,random(-16,16),random(-16,16))
+Loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_Explode(1024,256,0)
+TNT1 A 0 A_Explode(512,512,0)
+TNT1 A 0 A_Explode(192,684,0)
+TNT1 A 0 A_SetTranslucent(0.75,1)
+TNT1 A 0 A_SpawnItemEx("MegaExplosion")
+TNT1 A 0 A_SpawnItemEx("ArchonLordMegaBallExplosion")
+COMT DE 3 Bright
+Stop
+}
+}

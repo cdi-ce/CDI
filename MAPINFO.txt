@@ -1,0 +1,255 @@
+//===================
+// Custom Levels
+//===================
+
+GameInfo
+{
+	ForceKillScripts = TRUE
+	ForceSpawnEventScripts = TRUE
+    ForceDamageEventScripts = TRUE
+}
+
+DefaultMap
+{
+	KeepFullInventory
+	//ActivateOwnDeathSpecials
+	AllowRespawn
+	NoInFighting
+	AirSupply = 99999
+
+}
+
+Episode TEST01
+{
+	Name = "Testing Map"
+	NoSkillMenu
+}
+
+Episode CDM01
+{
+	Name = "Complex Doom Maps"
+}
+
+Map TEST01 "Test Map"
+{
+	LevelNum = 100
+	Sky1 = "STSKY8"
+	ActivateOwnDeathSpecials
+	Next = "TEST01"
+}
+
+Map CDM01 "Medieval Nation"
+{
+	LevelNum = 101
+	Sky1 = "STSKY1"
+	Music = "D_CDM01"
+	Next = "CDM02"
+}
+
+Map CDM02 "Forbidden Area"
+{
+	LevelNum = 102
+	Sky1 = "STSKY6"
+	Music = "D_CDM02"
+	Next = "CDM03"
+}
+
+Map CDM03 "Playground"
+{
+	LevelNum = 103
+	Sky1 = "STSKY1"
+	Music = "D_CDM03"
+	Next = "CDM04"
+}
+
+Map CDM04 "Nazi & Demons Part-1"
+{
+	LevelNum = 104
+	Sky1 = "STSKY7"
+	Music = "D_CDM04"
+	Next = "CDM05"
+}
+
+Map CDM05 "Infested Facility"
+{
+	LevelNum = 105
+	Sky1 = "STSKY5"
+	Music = "D_CDM05"
+	Next = "CDM06"
+}
+
+Map CDM06 "Dark City"
+{
+	LevelNum = 106
+	Sky1 = "STSKY8"
+	Music = "D_CDM06"
+	Next = "CDM07"
+}
+
+Map CDM07 "Canyon Adventures"
+{
+	LevelNum = 107
+	Sky1 = "SKY02"
+	Music = "D_CDM07"
+	Next = "CDM08"
+}
+
+Map CDM08 "Underground Laboratory"
+{
+	LevelNum = 108
+	Sky1 = "STSKY8"
+	Music = "D_CDM08a"
+	Next = "CDM09"
+}
+
+Map CDM09 "Country Gardens"
+{
+	LevelNum = 109
+	Sky1 = "SKY02"
+	Music = "D_CDM09"
+	Next = "CDM10"
+}
+
+Map CDM10 "Castle Of Corruption"
+{
+	LevelNum = 110
+	Sky1 = "STSKY9"
+	Music = "D_CDM10"
+	Next = "CDM11"
+}
+
+Map CDM11 "Dark Side of the Moon"
+{
+	LevelNum = 111
+	Sky1 = "STSKY8"
+	Music = "D_CDM11"
+	Next = "CDM12"
+}
+
+Map CDM12 "Hell"
+{
+	LevelNum = 112
+	Sky1 = "STSKY7"
+	Music = "D_CDM12"
+	Next = "CDM13"
+}
+
+Map CDM13 "Toxic Entrepot"
+{
+	LevelNum = 113
+	Sky1 = "STSKY8"
+	Music = "D_CDM13"
+	Next = "CDM14"
+}
+
+Map CDM14 "Between The 4 Gates"
+{
+	LevelNum = 114
+	Sky1 = "STSKY6"
+	Music = "D_CDM14"
+	Next = "CDM15"
+}
+
+Map CDM15 "Nazi & Demons Part-2"
+{
+	LevelNum = 115
+	Sky1 = "STSKY7"
+	Music = "D_CDM15"
+	Next = "CDM16"
+}
+
+Map CDM16 "Ancient Purgatory"
+{
+	LevelNum = 116
+	Sky1 = "STSKY6"
+	Music = "D_CDM16"
+	Next = "CDM17"
+}
+
+Map CDM17 "Hitler's Secret Bunker"
+{
+	LevelNum = 117
+	Sky1 = "STSKY8"
+	Music = "D_CDM17"
+	Next = "CDM18"
+}
+
+Map CDM18 "Onata Highway"
+{
+	LevelNum = 118
+	Sky1 = "STSKY8"
+	Music = "D_CDM18a"
+	Next = "CDM19"
+}
+
+Map CDM19 "Temple of the Millenium"
+{
+	LevelNum = 119
+	Sky1 = "SKY02"
+	Music = "D_CDM19"
+	Next = "CDM20"
+}
+
+Map CDM20 "Prison Outbreak"
+{
+	LevelNum = 120
+	Sky1 = "SKY02"
+	Music = "D_CDM20"
+	Next = "CDM21"
+}
+
+Map CDM21 "Sunset Valley"
+{
+	LevelNum = 121
+	Sky1 = "STSKY9"
+	Music = "D_CDM21"
+	Next = "CDM22"
+}
+
+Map CDM22 "Warp Room"
+{
+	LevelNum = 122
+	Sky1 = "STSKY8"
+	Music = "D_CDM22"
+	Next = "CDM23"
+}
+
+Map CDM23 "Dungeons of Purgatory"
+{
+	LevelNum = 123
+	Sky1 = "STSKY6"
+	Music = "D_CDM23"
+	Next = "CDM24"
+}
+
+Map CDM24 "Celestial Station"
+{
+	LevelNum = 124
+	Sky1 = "STSKY14"
+	Music = "D_CDM24"
+	Next = "CDM25"
+}
+
+Map CDM25 "Obsidian Furnace"
+{
+	LevelNum = 125
+	Sky1 = "STSKY9"
+	Music = "D_CDM25"
+	Next = "CDM26"
+}
+
+Map CDM26 "Demon Tech Refinery"
+{
+	LevelNum = 126
+	Sky1 = "STSKY9"
+	Music = "D_CDM26"
+	Next = "CDMBOSS"
+}
+
+Map CDMBOSS "The Tower of Sin"
+{
+	LevelNum = 199
+	Sky1 = "STSKY1"
+	Music = "D_CDBOSS"
+	Next = "CDM01"
+}

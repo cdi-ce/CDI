@@ -1,0 +1,3551 @@
+//=================
+// Monster Spawners
+//=================
+
+ACTOR NewMonsterInvasionSpot : CustomMonsterInvasionSpot
+{
+//$Category Invasion Monster Spawners
+//$Angled
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR PlasmaGunnerSpot : NewMonsterInvasionSpot 15300
+{
+	//$Title PlasmaGunner
+	//$Sprite ZMAYA2A8
+	Radius 20
+	Height 56
+	DropItem "PlasmaGunner"
+}
+
+ACTOR RailGunnerSpot : NewMonsterInvasionSpot 15301
+{
+	//$Title RailGunner
+	//$Sprite RPOSA2A8
+	Radius 20
+	Height 56
+	DropItem "RailGunner"
+}
+
+ACTOR DemonTechZombieSpot : NewMonsterInvasionSpot 15302
+{
+	//$Title Demon Tech Zombie
+	//$Sprite ZSP3A2A8
+	Radius 20
+	Height 56
+	DropItem "DemonTechZombie"
+}
+
+ACTOR RocketZombieSpot : NewMonsterInvasionSpot 15303
+{
+	//$Title Rocket Zombie
+	//$Sprite MPO2A2A8
+	Radius 20
+	Height 56
+	DropItem "RocketZombie"
+}
+
+ACTOR ShotgunZombieSpot : NewMonsterInvasionSpot 15304
+{
+	//$Title Shotgun Zombie
+	//$Sprite ZSP1A2A8
+	Radius 20
+	Height 56
+	DropItem "ShotgunZombie"
+}
+
+ACTOR AssaultShotgunZombieSpot : NewMonsterInvasionSpot 15305
+{
+	//$Title Assault Shotgun Zombie
+	//$Sprite ASGZA2A8
+	Radius 20
+	Height 56
+	DropItem "AssaultShotgunZombie"
+}
+
+ACTOR SuperShotgunZombieSpot : NewMonsterInvasionSpot 15306
+{
+	//$Title Super Shotgun Zombie
+	//$Sprite UDM2A2A8
+	Radius 20
+	Height 56
+	DropItem "SuperShotgunZombie"
+}
+
+ACTOR QuadShotgunZombieSpot : NewMonsterInvasionSpot 15307
+{
+	//$Title Quad Shotgun Zombie
+	//$Sprite QSZMA2A8
+	Radius 20
+	Height 56
+	DropItem "QuadShotgunZombie"
+}
+
+ACTOR AssaultRifleZombieSpot : NewMonsterInvasionSpot 15308
+{
+	//$Title Assault Rifle Zombie
+	//$Sprite ARZMA2A8
+	Radius 20
+	Height 56
+	DropItem "AssaultRifleZombie"
+}
+
+ACTOR ChaingunnerSpot : NewMonsterInvasionSpot 15309
+{
+	//$Title Chaingunner
+	//$Sprite DPOSA2
+	Radius 20
+	Height 56
+	DropItem "Chaingunner"
+}
+
+ACTOR MinigunnerSpot : NewMonsterInvasionSpot 15310
+{
+	//$Title Minigunner
+	//$Sprite CPS2A2A8
+	Radius 20
+	Height 56
+	DropItem "Minigunner"
+}
+
+ACTOR BFGZombiemanSpot : NewMonsterInvasionSpot 15311
+{
+	//$Title BFG Zombieman
+	//$Sprite BFGZA2
+	Radius 20
+	Height 56
+	DropItem "BFGZombieman"
+}
+
+ACTOR Imp1Spot : NewMonsterInvasionSpot 15312
+{
+	//$Title Imp
+	//$Sprite SIMPA2A8
+	Radius 20
+	Height 56
+	DropItem "Imp"
+}
+
+ACTOR VoidImpSpot : NewMonsterInvasionSpot 15313
+{
+	//$Title Void Imp
+	//$Sprite DRKSA2A8
+	Radius 20
+	Height 56
+	DropItem "VoidImp"
+}
+
+ACTOR DevilSpot : NewMonsterInvasionSpot 15314
+{
+	//$Title Devil
+	//$Sprite SLHVA2C8
+	Radius 20
+	Height 56
+	DropItem "Devil"
+}
+
+ACTOR PhaseImpSpot : NewMonsterInvasionSpot 15315
+{
+	//$Title Phase Imp
+	//$Sprite DIMPA2C8
+	Radius 20
+	Height 56
+	DropItem "PhaseImp"
+}
+
+ACTOR BullFiendSpot : NewMonsterInvasionSpot 15316
+{
+	//$Title Bull Fiend
+	//$Sprite SAR2A2A8
+	Radius 24
+	Height 48
+	DropItem "BullFiend"
+}
+
+ACTOR CyberFiendSpot : NewMonsterInvasionSpot 15317
+{
+	//$Title Cyber Fiend
+	//$Sprite CYFNA2A8
+	Radius 24
+	Height 48
+	DropItem "CyberFiend"
+}
+
+ACTOR MagmaFiendSpot : NewMonsterInvasionSpot 15318
+{
+	//$Title Magma Fiend
+	//$Sprite SAR3A2C8
+	Radius 24
+	Height 48
+	DropItem "MagmaFiend"
+}
+
+ACTOR DTechFiendSpot : NewMonsterInvasionSpot 15319
+{
+	//$Title Demon Tech Fiend
+	//$Sprite DPNKA2A8
+	Radius 24
+	Height 48
+	DropItem "DTechFiend"
+}
+
+ACTOR Spectre1Spot : NewMonsterInvasionSpot 15320
+{
+	//$Title Spectre
+	//$Sprite SAR2A2A8
+	Radius 24
+	Height 48
+	DropItem "Spectre~"
+}
+
+ACTOR LurkerSpot : NewMonsterInvasionSpot 15321
+{
+	//$Title Lurker
+	//$Sprite CYFNA2A8
+	Radius 24
+	Height 48
+	DropItem "Lurker"
+}
+
+ACTOR SpookSpot : NewMonsterInvasionSpot 15322
+{
+	//$Title Spook
+	//$Sprite SAR4A2A8
+	Radius 24
+	Height 48
+	DropItem "Spook"
+}
+
+ACTOR TerrorSoulSpot : NewMonsterInvasionSpot 15323
+{
+	//$Title Terror Soul
+	//$Sprite TERRA1
+	Radius 16
+	Height 56
+	DropItem "TerrorSoul"
+}
+
+ACTOR ForgottenOneSpot : NewMonsterInvasionSpot 15324
+{
+	//$Title Forgotten One
+	//$Sprite FRGOA1
+	Radius 16
+	Height 56
+	DropItem "ForgottenOne"
+}
+
+ACTOR PoisonSoulSpot : NewMonsterInvasionSpot 15325
+{
+	//$Title Poison Soul
+	//$Sprite PHNTA1
+	Radius 16
+	Height 56
+	DropItem "PoisonSoul"
+}
+
+ACTOR RictusSpot : NewMonsterInvasionSpot 15326
+{
+	//$Title Rictus
+	//$Sprite RICTA1
+	Radius 16
+	Height 56
+	DropItem "Rictus"
+}
+
+ACTOR Cacodemon1Spot : NewMonsterInvasionSpot 15327
+{
+	//$Title Cacodemon
+	//$Sprite CALIA2A8
+	Radius 30
+	Height 56
+	DropItem "Cacodemon~"
+}
+
+ACTOR WatcherSpot : NewMonsterInvasionSpot 15328
+{
+	//$Title Watcher
+	//$Sprite HED4A2A8
+	Radius 30
+	Height 56
+	DropItem "Watcher"
+}
+
+ACTOR CacomentalSpot : NewMonsterInvasionSpot 15329
+{
+	//$Title Cacomental
+	//$Sprite INFCA2A8
+	Radius 30
+	Height 56
+	DropItem "Cacomental"
+}
+
+ACTOR SoulKeeperSpot : NewMonsterInvasionSpot 15330
+{
+	//$Title Soul Keeper
+	//$Sprite PLEMA2A8
+	Radius 30
+	Height 56
+	DropItem "SoulKeeper"
+}
+
+ACTOR DefilerSpot : NewMonsterInvasionSpot 15331
+{
+	//$Title Defiler
+	//$Sprite DEFIA2A8
+	Radius 30
+	Height 56
+	DropItem "Defiler"
+}
+
+ACTOR PoisonElementalSpot : NewMonsterInvasionSpot 15332
+{
+	//$Title Poison Elemental
+	//$Sprite INFRA2A8
+	Radius 30
+	Height 56
+	DropItem "PoisonElemental"
+}
+
+ACTOR BombElementalSpot : NewMonsterInvasionSpot 15333
+{
+	//$Title Bomb Elemental
+	//$Sprite INFPA2A8
+	Radius 30
+	Height 56
+	DropItem "BombElemental"
+}
+
+ACTOR HectebusSpot1 : NewMonsterInvasionSpot 15334
+{
+	//$Title Hectebus
+	//$Sprite TABUA2A8
+	Radius 30
+	Height 64
+	DropItem "Hectebus"
+}
+
+ACTOR DaedabusSpot : NewMonsterInvasionSpot 15335
+{
+	//$Title Daedabus
+	//$Sprite HECTA2A8
+	Radius 30
+	Height 64
+	DropItem "Daedabus"
+}
+
+ACTOR BehemothSpot : NewMonsterInvasionSpot 15336
+{
+	//$Title Behemoth
+	//$Sprite FAT2A2D8
+	Radius 30
+	Height 64
+	DropItem "Behemoth"
+}
+
+ACTOR BarbatosSpot : NewMonsterInvasionSpot 15337
+{
+	//$Title Barbatos
+	//$Sprite FFATA2A8
+	Radius 30
+	Height 64
+	DropItem "Barbatos"
+}
+
+ACTOR DualachnotronSpot : NewMonsterInvasionSpot 15338
+{
+	//$Title Dual Achnotron
+	//$Sprite CSPIA2A8
+	Radius 36
+	Height 64
+	DropItem "Dualachnotron"
+}
+
+ACTOR FusioniteSpot : NewMonsterInvasionSpot 15339
+{
+	//$Title Fusionite
+	//$Sprite FSPIA2D8
+	Radius 36
+	Height 64
+	DropItem "Fusionite"
+}
+
+ACTOR BabyDemolisherSpot : NewMonsterInvasionSpot 15340
+{
+	//$Title Baby Demolisher
+	//$Sprite MSPIA2A8
+	Radius 36
+	Height 64
+	DropItem "BabyDemolisher"
+}
+
+ACTOR BabySentientSpot : NewMonsterInvasionSpot 15341
+{
+	//$Title Baby Sentient
+	//$Sprite MARPA2A8
+	Radius 36
+	Height 64
+	DropItem "BabySentient"
+}
+
+ACTOR GuardianSpot : NewMonsterInvasionSpot 15342
+{
+	//$Title Guardian
+	//$Sprite SKELA2D8
+	Radius 20
+	Height 56
+	DropItem "Guardian"
+}
+
+ACTOR CadaverSpot : NewMonsterInvasionSpot 15343
+{
+	//$Title Cadaver
+	//$Sprite RASKA2
+	Radius 20
+	Height 56
+	DropItem "Cadaver"
+}
+
+ACTOR HellfireRevenantSpot : NewMonsterInvasionSpot 15344
+{
+	//$Title HellFire Revenant
+	//$Sprite GREVA2D8
+	Radius 20
+	Height 56
+	DropItem "HellfireRevenant"
+}
+
+ACTOR FamineSpot : NewMonsterInvasionSpot 15345
+{
+	//$Title Famine
+	//$Sprite NREVA2D8
+	Radius 20
+	Height 56
+	DropItem "Famine"
+}
+
+ACTOR HellKnight1Spot : NewMonsterInvasionSpot 15346
+{
+	//$Title Hell Knight
+	//$Sprite LOHSA2A8
+	Radius 24
+	Height 64
+	DropItem "HellKnight~"
+}
+
+ACTOR PyroDemonSpot : NewMonsterInvasionSpot 15347
+{
+	//$Title Pyro Demon
+	//$Sprite PYROA2C8
+	Radius 24
+	Height 64
+	DropItem "PyroDemon"
+}
+
+ACTOR CyberNobleSpot : NewMonsterInvasionSpot 15348
+{
+	//$Title Cyber Knight
+	//$Sprite CBOSA2
+	Radius 24
+	Height 64
+	DropItem "CyberNoble"
+}
+
+ACTOR HellDukeSpot : NewMonsterInvasionSpot 15349
+{
+	//$Title Hell Duke
+	//$Sprite HDUKA2C8
+	Radius 24
+	Height 64
+	DropItem "HellDuke"
+}
+
+ACTOR BaronOfHell1Spot : NewMonsterInvasionSpot 15350
+{
+	//$Title Baron Of Hell
+	//$Sprite HFRYA2A8
+	Radius 24
+	Height 64
+	DropItem "BaronOfHell~"
+}
+
+ACTOR BruiserDemonSpot : NewMonsterInvasionSpot 15351
+{
+	//$Title Bruiser Demon
+	//$Sprite FRITA2A8
+	Radius 24
+	Height 64
+	DropItem "BruiserDemon"
+}
+
+ACTOR CybruiserSpot : NewMonsterInvasionSpot 15352
+{
+	//$Title Cybruiser
+	//$Sprite BRUSA2
+	Radius 24
+	Height 64
+	DropItem "Cybruiser"
+}
+
+ACTOR ExileSpot : NewMonsterInvasionSpot 15353
+{
+	//$Title Exile
+	//$Sprite VILEA2D8
+	Radius 20
+	Height 56
+	DropItem "Exile"
+}
+
+ACTOR DiabolistSpot : NewMonsterInvasionSpot 15354
+{
+	//$Title Diabolist
+	//$Sprite DIABA2D8
+	Radius 20
+	Height 56
+	DropItem "Diabolist"
+}
+
+ACTOR DarkHellionSpot : NewMonsterInvasionSpot 15355
+{
+	//$Title Dark Hellion
+	//$Sprite HELNA2D8
+	Radius 20
+	Height 56
+	DropItem "DarkHellion"
+}
+
+ACTOR DemolisherSpot : NewMonsterInvasionSpot 15356
+{
+	//$Title Demolisher
+	//$Sprite DEMOA2A8
+	Radius 70
+	Height 100
+	DropItem "Demolisher"
+}
+
+ACTOR DarkDemolisherSpot : NewMonsterInvasionSpot 15357
+{
+	//$Title Dark Demolisher
+	//$Sprite DEM2A2A8
+	Radius 70
+	Height 100
+	DropItem "DarkDemolisher"
+}
+
+ACTOR CerebralSentientSpot : NewMonsterInvasionSpot 15358
+{
+	//$Title Cerebral Sentient
+	//$Sprite SUPRA2A8
+	Radius 65
+	Height 100
+	DropItem "CerebralSentient"
+}
+
+ACTOR CyberLordSpot : NewMonsterInvasionSpot 15359
+{
+	//$Title Annihilator
+	//$Sprite ANNIA2C8
+	Radius 40
+	Height 110
+	DropItem "CyberLord"
+}
+
+ACTOR DarkCyberdemonSpot : NewMonsterInvasionSpot 15360
+{
+	//$Title Dark Cyberdemon
+	//$Sprite CBEPA2
+	Radius 40
+	Height 110
+	DropItem "DarkCyberdemon"
+}
+
+ACTOR CardinalSpot : NewMonsterInvasionSpot 15361
+{
+	//$Title Cardinal
+	//$Sprite CARDA2
+	Radius 40
+	Height 110
+	DropItem "Cardinal"
+}
+
+ACTOR GuardSpot : NewMonsterInvasionSpot 15362
+{
+	//$Title Nazi Guard
+	//$Sprite NGRIA2
+	Radius 20
+	Height 56
+	DropItem "Guard"
+}
+
+ACTOR SSNaziSpot : NewMonsterInvasionSpot 15363
+{
+	//$Title Nazi SS
+	//$Sprite SSWVA2
+	Radius 20
+	Height 56
+	DropItem "SSNazi"
+}
+
+ACTOR MutantSpot : NewMonsterInvasionSpot 15364
+{
+	//$Title Nazi Mutant
+	//$Sprite MUTNA2
+	Radius 20
+	Height 56
+	DropItem "Mutant"
+}
+
+ACTOR OfficerSpot : NewMonsterInvasionSpot 15365
+{
+	//$Title Nazi Officer
+	//$Sprite OPOSA2
+	Radius 20
+	Height 56
+	DropItem "Officer"
+}
+
+ACTOR NaziDogSpot : NewMonsterInvasionSpot 15366
+{
+	//$Title Nazi Dog
+	//$Sprite NDOGA2
+	Radius 20
+	Height 56
+	DropItem "NaziDog"
+}
+
+ACTOR HitlerSpot : NewMonsterInvasionSpot 15367
+{
+	//$Title Nazi Hitler
+	//$Sprite HTL1A2C8
+	Radius 20
+	Height 56
+	DropItem "Hitler"
+}
+
+ACTOR HitlerNoSuitSpot : NewMonsterInvasionSpot 15368
+{
+	//$Title Nazi Hitler No Suit
+	//$Sprite HTLRA2A8
+	Radius 20
+	Height 56
+	DropItem "HitlerNoSuit"
+}
+
+ACTOR PhaseOverlordSpot : NewMonsterInvasionSpot 15369
+{
+	//$Title Phase Overlord
+	//$Sprite BOS3A2C8
+	Radius 24
+	Height 64
+	DropItem "PhaseOverlord"
+}
+
+ACTOR BFGCacodemonSpot : NewMonsterInvasionSpot 15370
+{
+	//$Title BFG Cacodemon
+	//$Sprite BFCDA2A8
+	Radius 24
+	Height 44
+	DropItem "BFGCacodemon"
+}
+
+ACTOR VelociratorSpot : NewMonsterInvasionSpot 15371
+{
+	//$Title Velocirator
+	//$Sprite HIABA2D8
+	Radius 20
+	Height 56
+	DropItem "Velocirator"
+}
+
+ACTOR EraserZombieSpot : NewMonsterInvasionSpot 15372
+{
+	//$Title Eraser Zombie
+	//$Sprite PYRZA2
+	Radius 20
+	Height 56
+	DropItem "EraserZombie"
+}
+
+ACTOR LegZombieSpot : NewMonsterInvasionSpot 15373
+{
+	//$Title Legendary Zombie
+	//$Sprite LPOSA2A8
+	Radius 20
+	Height 56
+	DropItem "LegZombie"
+}
+
+ACTOR LegendaryImpSpot : NewMonsterInvasionSpot 15374
+{
+	//$Title Legendary Imp
+	//$Sprite LEGNA2A8
+	Radius 20
+	Height 56
+	DropItem "LegendaryImp"
+}
+
+ACTOR LegendaryAnnihilatorSpot : NewMonsterInvasionSpot 15375
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Legendary Annihilator
+	//$Sprite LANIA2C8
+	Radius 50
+    Height 115
+	DropItem "LegendaryAnnihilator"
+}
+
+ACTOR BabyCacoSpot : NewMonsterInvasionSpot 15376
+{
+	//$Title Baby Caco
+	//$Sprite CACBA2A8
+	Radius 18
+    Height 36
+	DropItem "BabyCaco"
+}
+
+ACTOR PaladinSpot : NewMonsterInvasionSpot 15377
+{
+	//$Title Paladin
+	//$Sprite HPALA2
+	Radius 24
+    Height 64
+	DropItem "Paladin"
+}
+
+ACTOR BossTerminatorSpot : NewMonsterInvasionSpot 15378
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Boss Terminator
+	//$Sprite TERMA2
+	Radius 28
+    Height 86
+	DropItem "BossTerminator"
+}
+
+ACTOR DarkCyberLordSpot : NewMonsterInvasionSpot 15379
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Dark Cyber Lord
+	//$Sprite DCYBA2C8
+	Radius 45
+    Height 110
+	DropItem "DarkCyberLord"
+}
+
+ACTOR LegendaryHellKnightSpot : NewMonsterInvasionSpot 15380
+{
+	//$Title Legendary Hell Knight
+	//$Sprite LNBLA2A8
+	Radius 24
+    Height 78
+	DropItem "LegendaryHellKnight"
+}
+
+ACTOR BFG10KGeneralSpot : NewMonsterInvasionSpot 15381
+{
+	//$Title BFG 10K General
+	//$Sprite BF10A2A8
+	Radius 20
+    Height 56
+	DropItem "BFG10KGeneral"
+}
+
+ACTOR SSShotgunnerSpot : NewMonsterInvasionSpot 15382
+{
+	//$Title Nazi Shotgunner
+	//$Sprite MGR2A2
+	Radius 20
+	Height 56
+	DropItem "SSShotgunner"
+}
+
+ACTOR SSRocketManSpot : NewMonsterInvasionSpot 15383
+{
+	//$Title Nazi Rocket Man
+	//$Sprite OTTOA0
+	Radius 20
+	Height 56
+	DropItem "SSRocketMan"
+}
+
+ACTOR SSUberRocketManSpot : NewMonsterInvasionSpot 15384
+{
+	//$Title Nazi Uber Rocket Man
+	//$Sprite GOERA0
+	Radius 20
+	Height 56
+	DropItem "SSUberRocketMan"
+}
+
+ACTOR SSSuperSoldierSpot : NewMonsterInvasionSpot 15385
+{
+	//$Title Nazi Super Soldier
+	//$Sprite HANSA0
+	Radius 24
+	Height 64
+	DropItem "SSSuperSoldier"
+}
+
+ACTOR SSEliteSoldierSpot : NewMonsterInvasionSpot 15386
+{
+	//$Title Nazi Elite Soldier
+	//$Sprite TRANA0
+	Radius 24
+	Height 64
+	DropItem "SSEliteSoldier"
+}
+
+ACTOR TodesRitterSpot : NewMonsterInvasionSpot 15387
+{
+	//$Title Nazi Todes Ritter
+	//$Sprite DKGTA0
+	Radius 40
+	Height 96
+	DropItem "TodesRitter"
+}
+
+ACTOR BossHitlerSpot : NewMonsterInvasionSpot 15388
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Nazi Boss Hitler
+	//$Sprite HTL1A2C8
+	Radius 40
+	Height 96
+	DropItem "BossHitler"
+}
+
+ACTOR DarkNobleSpot : NewMonsterInvasionSpot 15389
+{
+	//$Title Dark Noble
+	//$Sprite DNOBA2A8
+	Radius 24
+	Height 64
+	DropItem "DarkNoble"
+}
+
+ACTOR FleshWizardSpot : NewMonsterInvasionSpot 15390
+{
+	//$Title Flesh Wizard
+	//$Sprite LMWZA2A8
+	Radius 20
+	Height 64
+	DropItem "FleshWizard"
+}
+
+ACTOR RepeaterZombieSpot : NewMonsterInvasionSpot 15391
+{
+	//$Title Repeater Zombie
+	//$Sprite RPZMA2A8
+	Radius 20
+	Height 56
+	DropItem "RepeaterZombie"
+}
+
+ACTOR PhasePoeSpot : NewMonsterInvasionSpot 15392
+{
+	//$Title Phase Poe
+	//$Sprite POE1A2
+	Radius 30
+	Height 56
+	DropItem "PhasePoe"
+}
+
+ACTOR ArachnophyteSpot : NewMonsterInvasionSpot 15393
+{
+	//$Title Arachnophyte
+	//$Sprite APITA2A8
+	Radius 65
+	Height 100
+	DropItem "Arachnophyte"
+}
+
+ACTOR LordArchonSpot : NewMonsterInvasionSpot 15394
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Lord Archon
+	//$Sprite PYLDA2C8
+	Radius 72
+	Height 192
+	DropItem "LordArchon"
+}
+
+ACTOR SniperZombieSpot : NewMonsterInvasionSpot 15395
+{
+	//$Title Sniper Zombie
+	//$Sprite ZSNPA2A8
+	Radius 20
+	Height 56
+	DropItem "SniperZombie"
+}
+
+ACTOR ZombieSpecOpsSpot : NewMonsterInvasionSpot 15396
+{
+	//$Title Zombie Specops Machinegun
+	//$Sprite ZMCHA2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops"
+}
+
+ACTOR ZombieSpecOps2Spot : NewMonsterInvasionSpot 15397
+{
+	//$Title Zombie Specops Plasmagun
+	//$Sprite ZSP2A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops2"
+}
+
+ACTOR ZombieSpecOps3Spot : NewMonsterInvasionSpot 15398
+{
+	//$Title Zombie Specops Shotgun
+	//$Sprite ZPS1A2D8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops3"
+}
+
+ACTOR ZombieSpecOp4sSpot : NewMonsterInvasionSpot 15399
+{
+	//$Title Zombie Specops Double Shotgun
+	//$Sprite ZSP4A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops4"
+}
+
+ACTOR NewCyberdemonSpot : NewMonsterInvasionSpot 15500
+{
+	//$Title Cyber Demon
+	//$Sprite CYB2A2
+	Radius 40
+	Height 110
+	DropItem "NewCyberdemon"
+}
+
+ACTOR ZombieSpecOp5sSpot : NewMonsterInvasionSpot 15501
+{
+	//$Title Zombie Specops Assault Shotgun
+	//$Sprite ZSP5A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops5"
+}
+
+ACTOR ZombieSpecOp6sSpot : NewMonsterInvasionSpot 15502
+{
+	//$Title Zombie Specops Assault Rifle
+	//$Sprite ZSP6A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops6"
+}
+
+ACTOR ZombieSpecOp7sSpot : NewMonsterInvasionSpot 15503
+{
+	//$Title Zombie Specops Minigun
+	//$Sprite ZSP7A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops7"
+}
+
+ACTOR ZombieTankSpot : NewMonsterInvasionSpot 15504
+{
+	//$Title Zombie Tank
+	//$Sprite ZTNKA2
+	Radius 27
+	Height 72
+	DropItem "ZombieTank"
+}
+
+ACTOR ZombiePlasmaTankSpot : NewMonsterInvasionSpot 15505
+{
+	//$Title Zombie Plasma Tank
+	//$Sprite ZPTKA2
+	Radius 27
+	Height 72
+	DropItem "ZombiePlasmaTank"
+}
+
+ACTOR ZombieMissileTankSpot : NewMonsterInvasionSpot 15506
+{
+	//$Title Zombie Missile Tank
+	//$Sprite ZMTKA2
+	Radius 27
+	Height 72
+	DropItem "ZombieMissileTank"
+}
+
+ACTOR SabaothSpot : NewMonsterInvasionSpot 15507
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Sabaoth
+	//$Sprite SBTHA2
+	Radius 80
+	Height 100
+	DropItem "Sabaoth"
+}
+
+ACTOR SSGunnerSpot : NewMonsterInvasionSpot 15508
+{
+	//$Title Nazi Rifle Man
+	//$Sprite HG1WA2
+	Radius 20
+	Height 56
+	DropItem "SSGunner"
+}
+
+ACTOR SSFlameSoldierSpot : NewMonsterInvasionSpot 15509
+{
+	//$Title Nazi Flame Soldier
+	//$Sprite ELTFA2
+	Radius 20
+	Height 56
+	DropItem "SSFlameSoldier"
+}
+
+ACTOR SSShockTrooperSpot : NewMonsterInvasionSpot 15510
+{
+	//$Title Nazi Shock Trooper
+	//$Sprite WAFKA0
+	Radius 24
+	Height 64
+	DropItem "SSShockTrooper"
+}
+
+ACTOR LegendaryCyberdemonSpot : NewMonsterInvasionSpot 15511
+{
+	//$Title Legendary Cyberdemon
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Sprite CYBRA2
+	Radius 40
+    Height 100
+	DropItem "LegendaryCyberdemon"
+}
+
+ACTOR LegendaryRevenantSpot : NewMonsterInvasionSpot 15512
+{
+	//$Title Legendary Revenant
+	//$Sprite LREVA2D8
+	Radius 20
+    Height 84
+	DropItem "LegendaryRevenant"
+}
+
+ACTOR LegendarySentientSpot : NewMonsterInvasionSpot 15513
+{
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Sprite LUPRA2A8
+	Radius 65
+	Height 100
+	DropItem "LegendarySentient"
+}
+
+ACTOR Hexa-ShotgunZombieSpot : NewMonsterInvasionSpot 15514
+{
+	//$Title Hexa Shotgun Zombie
+	//$Sprite HSZIA2A8
+	Radius 20
+	Height 56
+	DropItem "Hexa-ShotgunZombie"
+}
+
+ACTOR AracnorbSpot : NewMonsterInvasionSpot 15515
+{
+	//$Title Aracnorb
+	//$Sprite ACNBA2A8
+	Radius 24
+	Height 56
+	DropItem "Aracnorb"
+}
+
+ACTOR AracnorbQueenSpot : NewMonsterInvasionSpot 15516
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Aracnorb Queen
+	//$Sprite ARNQA2A8
+	Radius 62
+	Height 137
+	DropItem "AracnorbQueen"
+}
+
+ACTOR FleshWizardImpSpot : NewMonsterInvasionSpot 15517
+{
+	//$Title Flesh Wizard Imp
+	//$Sprite LMWZA2A8
+	Radius 20
+	Height 64
+	DropItem "FleshWizardImp"
+}
+
+ACTOR FleshWizardDemonSpot : NewMonsterInvasionSpot 15518
+{
+	//$Title Flesh Wizard Demon
+	//$Sprite LMWZA2A8
+	Radius 20
+	Height 64
+	DropItem "FleshWizardDemon"
+}
+
+ACTOR HellArchonSpot : NewMonsterInvasionSpot 15519
+{
+	//$Title Hell Archon
+	//$Sprite HLARA2C8
+	Radius 24
+	Height 64
+	DropItem "HellArchon"
+}
+
+ACTOR BabyDarkDemolisherSpot : NewMonsterInvasionSpot 15520
+{
+	//$Title Dark Baby Demolisher
+	//$Sprite DMSPA2A8
+	Radius 26
+	Height 64
+	DropItem "BabyDarkDemolisher"
+}
+
+ACTOR CyberBaronSpot : NewMonsterInvasionSpot 15521
+{
+	//$Title Cyber Baron
+	//$Sprite CB0SA2
+	Radius 24
+	Height 64
+	DropItem "CyberBaron"
+}
+
+ACTOR CyberImpSpot : NewMonsterInvasionSpot 15522
+{
+	//$Title Cyber Imp
+	//$Sprite CIMPA2
+	Radius 20
+	Height 56
+	DropItem "CyberImp"
+}
+
+ACTOR DOverlordSpot : NewMonsterInvasionSpot 15523
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Daemonium Overlord
+	//$Sprite DAEMA2A8
+	Radius 80
+	Height 150
+	DropItem "DOverlord"
+}
+
+ACTOR PGMZombieSpot : NewMonsterInvasionSpot 15525
+{
+	//$Title PGM Zombie
+	//$Sprite ZSN2A2A8
+	Radius 20
+	Height 56
+	DropItem "PGMZombie"
+}
+
+ACTOR ZombieSpecOps8Spot : NewMonsterInvasionSpot 15526
+{
+	//$Title Zombie Specops Quad Shotgun
+	//$Sprite ZPS6A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops8"
+}
+
+ACTOR ZombieSpecOps9Spot : NewMonsterInvasionSpot 15527
+{
+	//$Title Zombie Specops Rocket Launcher
+	//$Sprite ZSP8A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops9"
+}
+
+ACTOR ZombieSpecOps10Spot : NewMonsterInvasionSpot 15528
+{
+	//$Title Zombie Specops Chaingun
+	//$Sprite ZSP9A2
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops10"
+}
+
+ACTOR CerebralCommanderSpot : NewMonsterInvasionSpot 15529
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Cerebral Commander
+	//$Sprite COMMA2A8
+	Radius 158
+    Height 228
+	DropItem "CerebralCommander"
+}
+
+ACTOR ZombieSpecops11Spot : NewMonsterInvasionSpot 15530
+{
+	//$Title Zombie Specops Pistol
+	//$Sprite ZPS2A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops11"
+}
+
+ACTOR ZombieSpecops12Spot : NewMonsterInvasionSpot 15531
+{
+	//$Title Zombie Specops BFG9000
+	//$Sprite ZPS3A2
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops12"
+}
+
+ACTOR ZombieSpecOps13Spot : NewMonsterInvasionSpot 15532
+{
+	//$Title Zombie Specops BFG10K
+	//$Sprite ZPS4A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops13"
+}
+
+ACTOR ZombieSpecOps14Spot : NewMonsterInvasionSpot 15533
+{
+	//$Title Zombie Specops DTBFG10K
+	//$Sprite PYRZA2
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops14"
+}
+
+ACTOR ZombieSpecOps15Spot : NewMonsterInvasionSpot 15534
+{
+	//$Title Zombie Specops Devastator
+	//$Sprite ZPS5A2
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops15"
+}
+
+ACTOR LegendaryAssaultCaptainSpot : NewMonsterInvasionSpot 15535
+{
+	//$Title Legendary Assault Captain
+	//$Sprite LASGA2A8
+	Radius 20
+	Height 56
+	DropItem "LegendaryAssaultCaptain"
+}
+
+ACTOR CydestroyerSpot : NewMonsterInvasionSpot 15536
+{
+	//$Title Cydestroyer
+	//$Sprite BR2SA2
+	Radius 24
+	Height 64
+	DropItem "Cydestroyer"
+}
+
+ACTOR LegendaryFiendSpot : NewMonsterInvasionSpot 15537
+{
+	//$Title Legendary Fiend
+	//$Sprite LFNDA2A8
+	Radius 24
+	Height 48
+	DropItem "LegendaryFiend"
+}
+
+ACTOR LegendaryBehemothSpot1 : NewMonsterInvasionSpot 15538
+{
+	//$Title Legendary Behemoth
+	//$Sprite LEG2A2D8
+	Radius 30
+	Height 64
+	DropItem "LegendaryBehemoth"
+}
+
+ACTOR SSCommanderSpot : NewMonsterInvasionSpot 15539
+{
+	//$Title Nazi Commander
+	//$Sprite SSLTA0
+	Radius 40
+	Height 96
+	DropItem "SSCommander"
+}
+
+ACTOR LegendaryCyberNobleSpot : NewMonsterInvasionSpot 15540
+{
+	//$Title Legendary Cyber Noble
+	//$Sprite LCBSA2
+	Radius 24
+    Height 78
+	DropItem "LegendaryCyberNoble"
+}
+
+ACTOR SSBaronSpot : NewMonsterInvasionSpot 15541
+{
+	//$Title Nazi Baron
+	//$Sprite VONSA0
+	Radius 40
+	Height 96
+	DropItem "SSBaron"
+}
+
+ACTOR SSEnforcerSpot : NewMonsterInvasionSpot 15542
+{
+	//$Title Nazi Enforcer
+	//$Sprite EFCRA0
+	Radius 40
+	Height 96
+	DropItem "SSEnforcer"
+}
+
+ACTOR SSAkimboSoldierSpot : NewMonsterInvasionSpot 15543
+{
+	//$Title Nazi Akimbo Soldier
+	//$Sprite AKWFA0
+	Radius 20
+	Height 56
+	DropItem "SSAkimboSoldier"
+}
+
+ACTOR SSHunterSpot : NewMonsterInvasionSpot 15544
+{
+	//$Title Nazi Hunter
+	//$Sprite THUGA0
+	Radius 24
+	Height 64
+	DropItem "SSHunter"
+}
+
+ACTOR LegendaryRedeemerSpot : NewMonsterInvasionSpot 15545
+{
+	//$Title Legendary Redeemer
+	//$Sprite LREDA2A8
+	Radius 31
+	Height 56
+	DropItem "LegendaryRedeemer"
+}
+
+ACTOR MinigunCyberdemonSpot : NewMonsterInvasionSpot 15546
+{
+	//$Title Cyber Demon Minigun
+	//$Sprite ZYBRA2
+	Radius 40
+	Height 110
+	DropItem "MinigunCyberdemon"
+}
+
+ACTOR HellFireCyberdemonSpot : NewMonsterInvasionSpot 15547
+{
+	//$Title HellFire Cyberdemon
+	//$Sprite HFCYA2
+	Radius 45
+	Height 110
+	DropItem "HellFireCyberdemon"
+}
+
+ACTOR LesserMutantSpot : NewMonsterInvasionSpot 15548
+{
+	//$Title Toxic Lesser Mutant
+	//$Sprite MUTAA2A8
+	Radius 20
+	Height 56
+	DropItem "LesserMutant"
+}
+
+ACTOR ToxicImpSpot : NewMonsterInvasionSpot 15549
+{
+	//$Title Toxic Imp
+	//$Sprite TIMPA2A8
+	Radius 20
+	Height 56
+	DropItem "ToxicImp"
+}
+
+ACTOR ToxicRevenantSpot : NewMonsterInvasionSpot 15550
+{
+	//$Title Toxic Revenant
+	//$Sprite NSKLA2D8
+	Radius 20
+	Height 56
+	DropItem "ToxicRevenant"
+}
+
+ACTOR ToxicKnightSpot : NewMonsterInvasionSpot 15551
+{
+	//$Title Toxic Knight
+	//$Sprite TKNGA2C8
+	Radius 24
+	Height 64
+	DropItem "ToxicKnight"
+}
+
+ACTOR ToxicDemonSpot : NewMonsterInvasionSpot 15552
+{
+	//$Title Toxic Demon
+	//$Sprite CUTHA2A8
+	Radius 24
+	Height 64
+	DropItem "ToxicDemon"
+}
+
+ACTOR TorturedSoulSpot : NewMonsterInvasionSpot 15553
+{
+	//$Title Toxic Tortured Soul
+	//$Sprite TORTA2A8
+	Radius 31
+	Height 56
+	DropItem "TorturedSoul"
+}
+
+ACTOR ToxicMasterSpot : NewMonsterInvasionSpot 15554
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Toxic Master
+	//$Sprite STSPA2A8
+	Radius 72
+	Height 192
+	DropItem "ToxicMaster"
+}
+
+ACTOR LegendaryCyberdemonWeakSpot : NewMonsterInvasionSpot 15555
+{
+    //$Title Legendary Cyberdemon Weak
+	//$Sprite CYBRA2
+	Radius 45
+    Height 100
+	DropItem "LegendaryCyberdemonWeak"
+}
+
+ACTOR LegendaryCyberdemonVeryWeakSpot : NewMonsterInvasionSpot 15556
+{
+    //$Title Legendary Cyberdemon Very Weak
+	//$Sprite CYBRA2
+	Radius 45
+    Height 100
+	DropItem "LegendaryCyberdemonVeryWeak"
+}
+
+ACTOR LegendaryCardinalSpot : NewMonsterInvasionSpot 15557
+{
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Title Legendary Cardinal
+	//$Sprite LARDB2
+	Radius 45
+    Height 100
+	DropItem "LegendaryCardinal1"
+}
+
+ACTOR LegendarySentientWeakSpot : NewMonsterInvasionSpot 15558
+{
+	//$Title Legendary Sentient Weak
+	//$Sprite LUPRA2A8
+	Radius 65
+	Height 100
+	DropItem "LegendarySentientWeak"
+}
+
+ACTOR LegendaryAnnihilatorWeakSpot : NewMonsterInvasionSpot 15559
+{
+	//$Title Legendary Annihilator Weak
+	//$Sprite LANIA2C8
+	Radius 50
+    Height 115
+	DropItem "LegendaryAnnihilatorWeak"
+}
+
+ACTOR TrueLegendaryCardinalSpot : NewMonsterInvasionSpot 15560
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title True Legendary Cardinal
+	//$Sprite TLRDA2
+	Radius 50
+    Height 115
+	DropItem "TrueLegendaryCardinal1"
+}
+
+ACTOR ZombieSpecOps16Spot : NewMonsterInvasionSpot 15561
+{
+	//$Title Zombie Specops Explosive Minigun
+	//$Sprite ZPS7A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops16"
+}
+
+ACTOR ZombieSpecOps17Spot : NewMonsterInvasionSpot 15562
+{
+	//$Title Zombie Specops Railgun
+	//$Sprite ZPS8A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops17"
+}
+
+ACTOR CardihilatorSpot : NewMonsterInvasionSpot 15563
+{
+	//$Title Cardihilator
+	//$Sprite CARHA2A8
+	Radius 40
+	Height 110
+	DropItem "Cardihilator"
+}
+
+ACTOR LegendaryBabySentientSpot : NewMonsterInvasionSpot 15564
+{
+	//$Title Legendary Baby Sentient
+	//$Sprite LBBSA2A8
+	Radius 36
+	Height 52
+	DropItem "LegendaryBabySentient"
+}
+
+ACTOR ShotgunCommandoSpot : NewMonsterInvasionSpot 15565
+{
+	//$Title Shotgun Commando
+	//$Sprite SGCDA2A8
+	Radius 20
+	Height 56
+	DropItem "ShotgunCommando"
+}
+
+ACTOR FreezerBehemothSpot : NewMonsterInvasionSpot 15566
+{
+	//$Title Freezer Behemoth
+	//$Sprite FRBHA2D8
+	Radius 30
+	Height 64
+	DropItem "FreezerBehemoth"
+}
+
+ACTOR LegendaryStealthTrooperSpot : NewMonsterInvasionSpot 15567
+{
+	//$Title Legendary Stealth Trooper
+	//$Sprite LCMDA2A8
+	Radius 20
+	Height 56
+	DropItem "LegendaryStealthTrooper"
+}
+
+ACTOR LegendaryCommandoSpot : NewMonsterInvasionSpot 15568
+{
+	//$Title Legendary Commando
+	//$Sprite LCOSA2
+	Radius 20
+	Height 56
+	DropItem "LegendaryCommando"
+}
+
+ACTOR SSFlameCommandoSpot : NewMonsterInvasionSpot 15569
+{
+	//$Title Nazi Flame Commando
+	//$Sprite FLSMA0
+	Radius 24
+	Height 64
+	DropItem "SSFlameCommando"
+}
+
+ACTOR FreezerZombieSpot : NewMonsterInvasionSpot 15570
+{
+	//$Title Freezer Zombie
+	//$Sprite FRZRA2A8
+	Radius 20
+	Height 56
+	DropItem "FreezerZombie"
+}
+
+ACTOR NewBelphegorSpot : NewMonsterInvasionSpot 15571
+{
+	//$Title Belphegor
+	//$Sprite NBRNA2A8
+	Radius 24
+	Height 64
+	DropItem "NewBelphegor"
+}
+
+ACTOR SSGuardianSpot : NewMonsterInvasionSpot 15572
+{
+	//$Title Nazi Guardian
+	//$Sprite NZSHA0
+	Radius 24
+	Height 64
+	DropItem "SSGuardian"
+}
+
+ACTOR RocketImpSpot : NewMonsterInvasionSpot 15573
+{
+	//$Title Rocket Imp
+	//$Sprite RIMPA2A8
+	Radius 20
+	Height 56
+	DropItem "RocketImp"
+}
+
+ACTOR BossArcradimusSpot : NewMonsterInvasionSpot 15574
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Boss Arcradimus
+	//$Sprite ARCRA1C1
+    Radius 72
+    Height 182
+	DropItem "BossArcradimus"
+}
+
+ACTOR BossArcHealerSpot : NewMonsterInvasionSpot 15575
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Boss ArcHealer
+	//$Sprite ARCXA0
+    Radius 24
+    Height 64
+	DropItem "ArcHealer"
+}
+
+ACTOR SandSpiritSpot : NewMonsterInvasionSpot 15576
+{
+	//$Title Sand Spirit
+	//$Sprite SOHSA2C8
+    Radius 24
+    Height 64
+	DropItem "SandSpirit"
+}
+
+ACTOR DTDevastatorZombieSpot : NewMonsterInvasionSpot 15577
+{
+	//$Title Devastator Zombie
+	//$Sprite DEVZA2
+	Radius 20
+	Height 56
+	DropItem "DTDevastatorZombie"
+}
+
+ACTOR CerebralCardinalSpot : NewMonsterInvasionSpot 15578
+{
+	//$Title Cerebral Cardinal
+	//$Sprite ARCYA2
+	Radius 65
+	Height 100
+	DropItem "CerebralCardinal1"
+}
+
+ACTOR NewSpiderMastermindSpot : NewMonsterInvasionSpot 15579
+{
+	//$Title Spider Mastermind
+	//$Sprite SPIDA2A8
+	Radius 70
+	Height 100
+	DropItem "NewSpiderMastermind"
+}
+
+ACTOR SuicideBomberSpot : NewMonsterInvasionSpot 15580
+{
+	//$Title Suicide Bomber
+	//$Sprite ZBMBA2
+	Radius 20
+	Height 56
+	DropItem "SuicideBomber"
+}
+
+ACTOR StoneImpSpot : NewMonsterInvasionSpot 15581
+{
+	//$Title Stone Imp
+	//$Sprite GIMPA2A8
+	Radius 20
+	Height 56
+	DropItem "StoneImp"
+}
+
+ACTOR StoneFiendSpot : NewMonsterInvasionSpot 15582
+{
+	//$Title Stone Fiend
+	//$Sprite STONA2A8
+	Radius 24
+	Height 48
+	DropItem "StoneDemon"
+}
+
+ACTOR CyberDemolisherSpot : NewMonsterInvasionSpot 15583
+{
+	//$Title Cyber Demolisher
+	//$Sprite CYDEA2
+	Radius 64
+	Height 100
+	DropItem "CyberDemolisher"
+}
+
+ACTOR AzazelSpot : NewMonsterInvasionSpot 15584
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Azazel
+	//$Sprite AZEWA2A8
+	Radius 66
+	Height 158
+	DropItem "Azazel"
+}
+
+ACTOR CorruptionServantSpot : NewMonsterInvasionSpot 15585
+{
+	//$Title Corrupted Servant
+	//$Sprite MDCSA2C8
+	Radius 24
+	Height 64
+	DropItem "CorruptionServant"
+}
+
+ACTOR CHelementalSpot : NewMonsterInvasionSpot 15586
+{
+	//$Title Corrupted Hades Elemental
+	//$Sprite INC2A2A8
+	Radius 24
+	Height 44
+	DropItem "CHelemental"
+}
+
+ACTOR CCrackoDemonSpot : NewMonsterInvasionSpot 15587
+{
+	//$Title Corrupted Cracko Demon
+	//$Sprite HED9A2A8
+	Radius 32
+	Height 52
+	DropItem "CCrackoDemon"
+}
+
+ACTOR CorruptionSpot : NewMonsterInvasionSpot 15588
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Corruption
+	//$Sprite DCSTA2A8
+	Radius 72
+	Height 152
+	DropItem "Corruption"
+}
+
+ACTOR DTechSpiderSpot : NewMonsterInvasionSpot 15589
+{
+	//$Title Demon Tech Spider
+	//$Sprite DTSDA2A8
+	Radius 26
+	Height 64
+	DropItem "DTechSpider"
+}
+
+ACTOR Afrit1Spot : NewMonsterInvasionSpot 15590
+{
+	//$Title Afrit
+	//$Sprite AFRTA2A8
+	Radius 24
+	Height 64
+	DropItem "Afrit"
+}
+
+ACTOR LegendarySoulSpot : NewMonsterInvasionSpot 15591
+{
+	//$Title Legendary Soul
+	//$Sprite LSOLA1
+	Radius 16
+	Height 56
+	DropItem "LegendarySoul"
+}
+
+ACTOR LegendaryTormentorSpot : NewMonsterInvasionSpot 15592
+{
+	//$Title Legendary Banished
+	//$Sprite LPAIA2A8
+	Radius 31
+	Height 56
+	DropItem "LegendaryTormentor"
+}
+
+ACTOR ApprenticeSpot : NewMonsterInvasionSpot 15593
+{
+	//$Title Apprentice
+	//$Sprite C4RDA2
+	Radius 40
+	Height 110
+	DropItem "Apprentice"
+}
+
+ACTOR HellGateImpSpot : NewMonsterInvasionSpot 15594
+{
+	//$Title Hell Gate Imp
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateImp"
+}
+
+ACTOR HellGateWeakSpot : NewMonsterInvasionSpot 15595
+{
+	//$Title Hell Gate Weak
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateWeak"
+}
+
+ACTOR HellGateNoblesSpot : NewMonsterInvasionSpot 15596
+{
+	//$Title Hell Gate Nobles
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateNobles"
+}
+
+ACTOR HellGateFiendsSpot : NewMonsterInvasionSpot 15597
+{
+	//$Title Hell Gate Fiends
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateFiends"
+}
+
+ACTOR HellGateChaingunnersSpot : NewMonsterInvasionSpot 15598
+{
+	//$Title Hell Gate Chaingunners
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateChaingunners"
+}
+
+ACTOR HellGateCacoSpot : NewMonsterInvasionSpot 15599
+{
+	//$Title Hell Gate Caco
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateCaco"
+}
+
+ACTOR HellGateMediumSpot : NewMonsterInvasionSpot 15600
+{
+	//$Title Hell Gate Medium
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateMedium"
+}
+
+ACTOR HellGateCybersSpot : NewMonsterInvasionSpot 15601
+{
+	//$Title Hell Gate Cybers
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateCybers"
+}
+
+ACTOR HellGateNaziSpot : NewMonsterInvasionSpot 15602
+{
+	//$Title Hell Gate Nazi
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateNazi"
+}
+
+ACTOR HellGateShotgunnersSpot : NewMonsterInvasionSpot 15603
+{
+	//$Title Hell Gate Shotgunners
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateShotgunners"
+}
+
+ACTOR HellGateZombiemenSpot : NewMonsterInvasionSpot 15604
+{
+	//$Title Hell Gate Zombiemen
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateZombiemen"
+}
+
+ACTOR HellGateFlyersSpot : NewMonsterInvasionSpot 15605
+{
+	//$Title Hell Gate Flyers
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateFlyers"
+}
+
+ACTOR HellGateBabyCacoSoulsSpot : NewMonsterInvasionSpot 15606
+{
+	//$Title Hell Gate BabyCacoSouls
+	//$Sprite LRD6A0
+	Radius 90
+	Height 64
+	DropItem "HellGateBabyCacoSouls"
+}
+
+ACTOR RailArachnotronSpot : NewMonsterInvasionSpot 15607
+{
+	//$Title Railgun Arachnotron
+	//$Sprite RSPIA2A8
+	Radius 36
+	Height 64
+	DropItem "RailArachnotron"
+}
+
+ACTOR ColdNightmareSpot : NewMonsterInvasionSpot 15608
+{
+	//$Title Cold Nightmare
+	//$Sprite CNSPA2C8
+	Radius 24
+	Height 56
+	DropItem "ColdNightmare"
+}
+
+ACTOR CryoImpSpot : NewMonsterInvasionSpot 15609
+{
+	//$Title Cryo Imp
+	//$Sprite ICEYA2C8
+	Radius 20
+	Height 56
+	DropItem "CryoImp"
+}
+
+ACTOR CryoDemonSpot : NewMonsterInvasionSpot 15610
+{
+	//$Title Cryo Demon
+	//$Sprite CRYOA2C8
+	Radius 24
+	Height 64
+	DropItem "CryoDemon"
+}
+
+ACTOR MaephistoSpot : NewMonsterInvasionSpot 15611
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Maephisto
+	//$Sprite MMDRA2
+	Radius 60
+    Height 110
+	DropItem "Maephisto"
+}
+
+ACTOR ZombieSpecops18Spot : NewMonsterInvasionSpot 15612
+{
+	//$Title Zombie Specops Demon Tech Rifle
+	//$Sprite ZPS0A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops18"
+}
+
+ACTOR ZombieSpecops19Spot : NewMonsterInvasionSpot 15613
+{
+	//$Title Zombie Specops Submachinegun
+	//$Sprite ZPS9A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops19"
+}
+
+ACTOR ZombieSpecops20Spot : NewMonsterInvasionSpot 15614
+{
+	//$Title Zombie Specops Homing Rocket Launcher
+	//$Sprite ZSP3A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops20"
+}
+
+ACTOR SSAssaultSoldierSpot : NewMonsterInvasionSpot 15615
+{
+	//$Title Nazi Assault Soldier
+	//$Sprite NZSGA0
+	Radius 24
+	Height 64
+	DropItem "SSAssaultSoldier"
+}
+
+ACTOR InfernoDemonSpot : NewMonsterInvasionSpot 15616
+{
+	//$Title Inferno Demon
+	//$Sprite INFDA2A8
+	Radius 45
+	Height 110
+	DropItem "InfernoDemon"
+}
+
+ACTOR HellWarriorSpot : NewMonsterInvasionSpot 15617
+{
+	//$Title Hell Warrior
+	//$Sprite HWARA2
+	Radius 24
+	Height 64
+	DropItem "HellWarrior"
+}
+
+ACTOR HellChampionSpot : NewMonsterInvasionSpot 15618
+{
+	//$Title Hell Champion
+	//$Sprite HW2RA2
+	Radius 28
+	Height 76
+	DropItem "HellChampion"
+}
+
+ACTOR MinisterOfHellSpot : NewMonsterInvasionSpot 15619
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Minister of Hell
+	//$Sprite L0HSA2A8
+	Radius 72
+	Height 192
+	DropItem "MinisterOfHell"
+}
+
+ACTOR ZombieAssaultTankSpot : NewMonsterInvasionSpot 15620
+{
+	//$Title Zombie Assault Tank
+	//$Sprite ZT4KA2A8
+	Radius 64
+	Height 100
+	Scale 0.75
+	DropItem "ZombieAssaultTank"
+}
+
+ACTOR InfestorSpot : NewMonsterInvasionSpot 15621
+{
+	//$Title Infestor
+	//$Sprite R0SEA0
+	Radius 48
+	Height 64
+	DropItem "Infestor"
+}
+
+ACTOR FodderSpot : NewMonsterInvasionSpot 15622
+{
+	//$Title Fodder
+	//$Sprite ZFODA2A8
+	Radius 15
+	Height 56
+	DropItem "Fodder"
+}
+
+ACTOR DWraithSpot : NewMonsterInvasionSpot 15623
+{
+	//$Title Wraith
+	//$Sprite 3WRTA2A8
+	Radius 15
+	Height 56
+	DropItem "DWraith"
+}
+
+ACTOR SSCorporalSpot : NewMonsterInvasionSpot 15624
+{
+	//$Title Nazi Corporal
+	//$Sprite NZGRA0
+	Radius 20
+	Height 56
+	DropItem "SSCorporal"
+}
+
+ACTOR SSTechSuitSpot : NewMonsterInvasionSpot 15625
+{
+	//$Title Nazi TechSuit
+	//$Sprite NZPAA0
+	Radius 20
+	Height 56
+	DropItem "SSTechSuit"
+}
+
+ACTOR SSVeteranSpot : NewMonsterInvasionSpot 15626
+{
+	//$Title Nazi Veteran
+	//$Sprite NZVTA0
+	Radius 24
+	Height 64
+	DropItem "SSVeteran"
+}
+
+ACTOR SSUberMutantSpot : NewMonsterInvasionSpot 15627
+{
+	//$Title Nazi Uber Mutant
+	//$Sprite NZUMA0
+	Radius 24
+	Height 64
+	DropItem "SSUberMutant"
+}
+
+ACTOR SSTechTrooperSpot : NewMonsterInvasionSpot 15628
+{
+	//$Title Nazi Tech Trooper
+	//$Sprite NZODA0
+	Radius 24
+	Height 64
+	DropItem "SSTechTrooper"
+}
+
+ACTOR SSUberSoldierSpot : NewMonsterInvasionSpot 15629
+{
+	//$Title Nazi Uber Soldier
+	//$Sprite NZPSA0
+	Radius 24
+	Height 64
+	DropItem "SSUberSoldier"
+}
+
+ACTOR SSHitlerCloneSpot : NewMonsterInvasionSpot 15630
+{
+	//$Title Nazi Hitler Clone
+	//$Sprite HITLA0
+	Radius 40
+	Height 96
+	DropItem "SSHitlerClone"
+	Scale 1.75
+}
+
+ACTOR SalamanderSpot : NewMonsterInvasionSpot 15631
+{
+	//$Title Salamander
+	//$Sprite SALAA2A8
+	Radius 20
+	Height 56
+	DropItem "Salamander"
+}
+
+ACTOR NaziWarMachineSpot : NewMonsterInvasionSpot 15632
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Nazi War Machine
+	//$Sprite NWARA0
+	Radius 70
+    Height 140
+	DropItem "NaziWarMachine"
+}
+
+ACTOR SSReviverSpot : NewMonsterInvasionSpot 15633
+{
+	//$Title Nazi Reviver
+	//$Sprite SCHBA0
+	Radius 20
+	Height 56
+	DropItem "SSReviver"
+}
+
+ACTOR AugmentedAnnihilatorSpot : NewMonsterInvasionSpot 15634
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Augmented Annihilator
+	//$Sprite ANOPA2C8
+	Radius 64
+	Height 209
+	YScale 1.9
+	XScale 1.6
+	DropItem "AugmentedAnnihilator"
+}
+
+ACTOR TankDeadabusSpot : NewMonsterInvasionSpot 15635
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Tank Deadabus
+	//$Sprite BS1WA2A8
+	Radius 80
+    Height 150
+	Scale 2.0
+	DropItem "TankDeadabus"
+}
+
+ACTOR ZombieTankCampingSpot : NewMonsterInvasionSpot 15636
+{
+	//$Title Zombie Tank(Camping)
+	//$Sprite ZTNKA2
+	Radius 27
+	Height 72
+	DropItem "ZombieTankCamping"
+}
+
+ACTOR ZombiePlasmaTankCampingSpot : NewMonsterInvasionSpot 15637
+{
+	//$Title Zombie Plasma Tank(Camping)
+	//$Sprite ZPTKA2
+	Radius 27
+	Height 72
+	DropItem "ZombiePlasmaTankCamping"
+}
+
+ACTOR ZombieMissileTankCampingSpot : NewMonsterInvasionSpot 15638
+{
+	//$Title Zombie Missile Tank(Camping)
+	//$Sprite ZMTKA2
+	Radius 27
+	Height 72
+	DropItem "ZombieMissileTankCamping"
+}
+
+ACTOR ZombieAssaultTankCampingSpot : NewMonsterInvasionSpot 15639
+{
+	//$Title Zombie Assault Tank(Camping)
+	//$Sprite ZT4KA2A8
+	Radius 64
+	Height 100
+	Scale 0.75
+	DropItem "ZombieAssaultTankCamping"
+}
+
+ACTOR SSScientistSpot : NewMonsterInvasionSpot 15640
+{
+	//$Title Nazi Scientist
+	//$Sprite SCBOA0
+	Radius 20
+	Height 56
+	DropItem "SSScientist"
+}
+
+ACTOR SSUberDoctorSpot : NewMonsterInvasionSpot 15641
+{
+	//$Title Nazi Uber Doctor
+	//$Sprite DRSHA0
+	Radius 24
+	Height 64
+	DropItem "SSUberDoctor"
+}
+
+ACTOR SSEliteVeteranSpot : NewMonsterInvasionSpot 15642
+{
+	//$Title Nazi Elite Veteran
+	//$Sprite BO10A0
+	Radius 24
+	Height 64
+	DropItem "SSEliteVeteran"
+}
+
+ACTOR SSUtilityGuySpot : NewMonsterInvasionSpot 15643
+{
+	//$Title Nazi Utility Guy
+	//$Sprite IR0NA0
+	Radius 24
+	Height 64
+	DropItem "SSUtilityGuy"
+}
+
+ACTOR SSSentryGunSpot : NewMonsterInvasionSpot 15644
+{
+	//$Title Nazi Sentry Gun
+	//$Sprite TOROA0
+	Radius 20
+	Height 56
+	DropItem "SSSentryGun"
+}
+
+ACTOR SSScoutBotSpot : NewMonsterInvasionSpot 15645
+{
+	//$Title Nazi Scout Bot
+	//$Sprite EDS2A0
+	Radius 20
+	Height 56
+	DropItem "SSScoutBot"
+}
+
+ACTOR SSBattleBotSpot : NewMonsterInvasionSpot 15646
+{
+	//$Title Nazi Battle Bot
+	//$Sprite BLTAA0
+	Radius 20
+	Height 56
+	DropItem "SSBattleBot"
+}
+
+ACTOR SSMeleeBotSpot : NewMonsterInvasionSpot 15647
+{
+	//$Title Nazi Melee Bot
+	//$Sprite LOBEA0
+	Radius 20
+	Height 56
+	DropItem "SSMeleeBot"
+}
+
+ACTOR SSSuperBattleBotSpot : NewMonsterInvasionSpot 15648
+{
+	//$Title Nazi Super Battle Bot
+	//$Sprite RHANA0
+	Radius 24
+	Height 64
+	DropItem "SSSuperBattleBot"
+}
+
+ACTOR ToxicFiendSpot : NewMonsterInvasionSpot 15649
+{
+	//$Title Toxic Fiend
+	//$Sprite TOXDA2C8
+	Radius 24
+	Height 48
+	DropItem "ToxicFiend"
+}
+
+ACTOR DraugrSpot : NewMonsterInvasionSpot 15650
+{
+	//$Title Draugr
+	//$Sprite SK32A2
+	Radius 20
+	Height 56
+	DropItem "Draugr"
+}
+
+ACTOR ExplosiveMinigunnerSpot : NewMonsterInvasionSpot 15651
+{
+	//$Title Explosive Minigunner
+	//$Sprite EXP2A2A8
+	Radius 20
+	Height 56
+	DropItem "ExplosiveMinigunner"
+}
+
+ACTOR BFG15KMajorSpot : NewMonsterInvasionSpot 15652
+{
+	//$Title BFG15K Major
+	//$Sprite 15KZA2A8
+	Radius 20
+	Height 56
+	DropItem "BFG15KMajor"
+}
+
+ACTOR ElementalOfHellSpot : NewMonsterInvasionSpot 15653
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Elemental Of Hell
+	//$Sprite ELAMA2A8
+	Radius 110
+    Height 280
+	Scale 5.0
+	DropItem "ElementalOfHell"
+}
+
+
+ACTOR HellFireBaronSpot : NewMonsterInvasionSpot 15654
+{
+	//$Title HellFire Baron
+	//$Sprite HFBIA2A8
+	Radius 24
+	Height 64
+	DropItem "HellFireBaron"
+}
+
+ACTOR InfernalistSpot : NewMonsterInvasionSpot 15655
+{
+	//$Title Infernalist
+	//$Sprite IFLIA2D8
+	Radius 24
+	Height 64
+	DropItem "Infernalist"
+}
+
+ACTOR WidowMakerSpot : NewMonsterInvasionSpot 15656
+{
+	//$Title Widow Maker
+	//$Sprite WDMKA2A8
+	Radius 20
+	Height 56
+	DropItem "WidowMaker"
+}
+
+ACTOR WarSpot : NewMonsterInvasionSpot 15657
+{
+	//$Title War
+	//$Sprite WARRA2A8
+	Radius 20
+	Height 56
+	DropItem "War"
+}
+
+ACTOR HellionSpot : NewMonsterInvasionSpot 15658
+{
+	//$Title Hellion
+	//$Sprite H2LNA2D8
+	Radius 20
+	Height 56
+	DropItem "Hellion"
+}
+
+ACTOR DarkCybruiserSpot : NewMonsterInvasionSpot 15659
+{
+	//$Title Dark Cybruiser
+	//$Sprite UBRSA2
+	Radius 24
+	Height 64
+	DropItem "DarkCybruiser"
+}
+
+ACTOR DarkCydestroyerSpot : NewMonsterInvasionSpot 15660
+{
+	//$Title Dark Cydestroyer
+	//$Sprite DB2SA2
+	Radius 24
+	Height 64
+	DropItem "DarkCydestroyer"
+}
+
+ACTOR CerebralCacodemonSpot : NewMonsterInvasionSpot 15661
+{
+	//$Title Cerebral Cacodemon
+	//$Sprite CCACA2A8
+	Radius 24
+	Height 56
+	DropItem "CerebralCacodemon"
+}
+
+ACTOR CorpulantSpot : NewMonsterInvasionSpot 15662
+{
+	//$Title Corpulant
+	//$Sprite FOFOA2A8
+	Radius 30
+	Height 64
+	DropItem "Corpulant"
+}
+
+ACTOR ChaosSoulSpot : NewMonsterInvasionSpot 15663
+{
+	//$Title Dark Umbra
+	//$Sprite CHOSA8A2
+	Radius 16
+	Height 56
+	DropItem "ChaosSoul"
+}
+
+ACTOR ChaosElementalSpot : NewMonsterInvasionSpot 15664
+{
+	//$Title Dark Beholder
+	//$Sprite CHELA2A8
+	Radius 31
+	Height 56
+	DropItem "ChaosElemental"
+}
+
+ACTOR DarkCyberImpSpot : NewMonsterInvasionSpot 15665
+{
+	//$Title Dark Cyber Imp
+	//$Sprite DCIPA2
+	Radius 20
+	Height 56
+	DropItem "DarkCyberImp"
+}
+
+ACTOR LesserCardinalSpot : NewMonsterInvasionSpot 15666
+{
+	//$Title Lesser Cardinal
+	//$Sprite MCRDA2
+	Radius 24
+	Height 64
+	DropItem "LesserCardinal"
+}
+
+ACTOR BabyMastermindSpot : NewMonsterInvasionSpot 15667
+{
+	//$Title Baby Mastermind
+	//$Sprite CSP0A2A8
+	Radius 36
+	Height 64
+	DropItem "BabyMastermind"
+}
+
+ACTOR CardihilatorDemolisherSpot : NewMonsterInvasionSpot 15668
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Cardihilator Demolisher
+	//$Sprite SDMOA2
+	Radius 70
+	Height 100
+	Scale 1.1
+	DropItem "CardihilatorDemolisher"
+}
+
+ACTOR SSPurgeTrooperSpot : NewMonsterInvasionSpot 15669
+{
+	//$Title Nazi Purge Trooper
+	//$Sprite PUTRA0
+	Radius 32
+	Height 80
+	DropItem "SSPurgeTrooper"
+}
+
+ACTOR ArchdukeOfHellSpot : NewMonsterInvasionSpot 15670
+{
+	//$Title Archduke Of Hell
+	//$Sprite ARDUA2A8
+	Radius 40
+	Height 110
+	Scale 1.75
+	DropItem "ArchdukeOfHell"
+}
+
+ACTOR JudgeOfPurgatorySpot : NewMonsterInvasionSpot 15671
+{
+	//$Title Judge Of Purgatory
+	//$Sprite JUPUA2C8
+	Radius 40
+	Height 110
+	Scale 1.75
+	DropItem "JudgeOfPurgatory"
+}
+
+ACTOR HellishAvatarSpot : NewMonsterInvasionSpot 15672
+{
+	//$Title Hellish Avatar
+	//$Sprite AVATA2C8
+	Radius 40
+	Height 110
+	Scale 1.25
+	DropItem "HellishAvatar"
+}
+
+ACTOR InfernalEmperorSpot : NewMonsterInvasionSpot 15673
+{
+	//$Title Infernal Emperor
+	//$Sprite IFEPA2C8
+	Radius 40
+	Height 110
+	Scale 1.15
+	DropItem "InfernalEmperor"
+}
+
+ACTOR PestilenceSpot : NewMonsterInvasionSpot 15674
+{
+	//$Title Dark Revenant
+	//$Sprite PSEVB2E8
+	Radius 20
+	Height 44
+	DropItem "Pestilence"
+}
+
+ACTOR GeneralRoasterockSpot : NewMonsterInvasionSpot 15675
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title General Roasterock
+	//$Sprite ROSTA2
+	Radius 30
+    Height 70
+	Scale 1.25
+	DropItem "GeneralRoasterock"
+}
+
+ACTOR GeneralRoasterockWeakSpot : NewMonsterInvasionSpot 15676
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title General Roasterock Weak
+	//$Sprite ROSTA2
+	Radius 30
+    Height 70
+	Scale 1.25
+	DropItem "GeneralRoasterockWeak"
+}
+
+ACTOR NewDarkImpSpot : NewMonsterInvasionSpot 15677
+{
+	//$Title Dark Imp
+	//$Sprite DR3SA2A8
+	Radius 20
+	Height 56
+	DropItem "NewDarkImp"
+}
+
+ACTOR DarkVoidImpSpot : NewMonsterInvasionSpot 15678
+{
+	//$Title Dark Imp(Void)
+	//$Sprite DRKFA2A8
+	Radius 20
+	Height 56
+	DropItem "DarkVoidImp"
+}
+
+ACTOR DarkDevilSpot : NewMonsterInvasionSpot 15679
+{
+	//$Title Dark Imp(Devil)
+	//$Sprite DDVLA2C8
+	Radius 20
+	Height 56
+	DropItem "DarkDevil"
+}
+
+ACTOR IllusSpot : NewMonsterInvasionSpot 15680
+{
+	//$Title Illus
+	//$Sprite ILLSA2A8
+	Radius 22
+	Height 60
+	DropItem "Illus"
+}
+
+ACTOR CyberHellArchonSpot : NewMonsterInvasionSpot 15681
+{
+	//$Title Cyber Hell Archon
+	//$Sprite CRCYA2
+	Radius 24
+	Height 64
+	DropItem "CyberHellArchon"
+}
+
+ACTOR CyberBruiserDemonSpot : NewMonsterInvasionSpot 15682
+{
+	//$Title Cyber Bruiser Demon
+	//$Sprite BRCYA2
+	Radius 24
+	Height 64
+	DropItem "CyberBruiserDemon"
+}
+
+ACTOR DemonTechBallistaZombieSpot : NewMonsterInvasionSpot 15683
+{
+	//$Title Demon Tech Ballista Zombie
+	//$Sprite ZMBYA2A8
+	Radius 20
+	Height 56
+	DropItem "DemonTechBallistaZombie"
+}
+
+ACTOR DementedTerminatorSpot : NewMonsterInvasionSpot 15684
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Demented Terminator
+	//$Sprite DTRMA2
+	Radius 35
+    Height 110
+	DropItem "DementedTerminator"
+}
+
+ACTOR CrownedOneSpot : NewMonsterInvasionSpot 15685
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Crowned One
+	//$Sprite HF4TA2A8
+	Radius 140
+    Height 192
+	DropItem "CrownedOne"
+}
+
+ACTOR DemolisherMkIISpot : NewMonsterInvasionSpot 15686
+{
+	//$Title Demolisher MkII
+	//$Sprite DMK2A2A8
+	Radius 65
+	Height 100
+	DropItem "DemolisherMkII"
+}
+
+ACTOR BattleLordOfHellSpot : NewMonsterInvasionSpot 15687
+{
+	//$Title Battlelord Of Hell
+	//$Sprite HLGDA2
+	Radius 40
+	Height 110
+	Scale 2.15
+	DropItem "BattleLordOfHell"
+}
+
+ACTOR BlindFiendSpot : NewMonsterInvasionSpot 15688
+{
+	//$Title Blind Fiend
+	//$Sprite BPBIA2A8
+	Radius 24
+	Height 48
+	DropItem "BlindFiend"
+}
+
+ACTOR HeadOfHadesSpot : NewMonsterInvasionSpot 15689
+{
+    //$Category "Invasion Monster Spawners/Boss"
+	//$Title Head Of Hades
+	//$Sprite HEHAA8A2
+	Radius 100
+    Height 160
+	DropItem "HeadOfHades"
+}
+
+ACTOR IronFiendSpot : NewMonsterInvasionSpot 15690
+{
+	//$Title Iron Fiend
+	//$Sprite IFINA2A8
+	Radius 24
+	Height 48
+	DropItem "IronFiend"
+}
+
+ACTOR CacobotSpot : NewMonsterInvasionSpot 15691
+{
+	//$Title Cacobot
+	//$Sprite CABTA2A8
+	Radius 30
+	Height 56
+	DropItem "Cacobot"
+}
+
+ACTOR SpecilosSpot : NewMonsterInvasionSpot 15692
+{
+	//$Title Specilos
+	//$Sprite SPC2A2D8
+	Radius 30
+	Height 64
+	DropItem "Specilos"
+}
+
+ACTOR BersekerOfHellSpot : NewMonsterInvasionSpot 15693
+{
+	//$Title Berseker Of Hell
+	//$Sprite INCBA2
+	Radius 80
+	Height 138
+	Scale 2.0
+	DropItem "BersekerOfHell"
+}
+
+ACTOR DemobusSpot : NewMonsterInvasionSpot 15694
+{
+	//$Title Demobus
+	//$Sprite BFATA2A8
+	Radius 30
+	Height 64
+	DropItem "Demobus"
+}
+
+ACTOR SuperImpSpot : NewMonsterInvasionSpot 15695
+{
+	//$Title Super Imp
+	//$Sprite LROOA2A8
+	Radius 20
+	Height 56
+	DropItem "SuperImp"
+}
+
+ACTOR CyberFodderSpot : NewMonsterInvasionSpot 15696
+{
+	//$Title Cyber Fodder
+	//$Sprite ZFOCA2A8
+	Radius 15
+	Height 56
+	DropItem "CyberFodder"
+}
+
+ACTOR SamaelSpot : NewMonsterInvasionSpot 15697
+{
+	//$Title Samael
+	//$Sprite SAMLA2A8
+	Radius 36
+	Height 64
+	DropItem "Samael"
+}
+
+ACTOR HellFireCyHunterSpot : NewMonsterInvasionSpot 15698
+{
+	//$Title HellFire CyHunter
+	//$Sprite CYHUA2
+	Radius 24
+	Height 64
+	DropItem "HellFireCyHunter"
+}
+
+ACTOR PhaseFiendSpot : NewMonsterInvasionSpot 15699
+{
+	//$Title Phase Fiend
+	//$Sprite ADEMA2C8
+	Radius 24
+	Height 48
+	DropItem "PhaseFiend"
+}
+
+ACTOR ObserverSpot : NewMonsterInvasionSpot 15700
+{
+	//$Title Observer
+	//$Sprite OBVSA2A8
+	Radius 18
+	Height 40
+	DropItem "Observer"
+}
+
+ACTOR CyberTrooperSpot : NewMonsterInvasionSpot 15701
+{
+	//$Title Cyber Trooper
+	//$Sprite AZ1HA2A8
+	Radius 20
+	Height 56
+	DropItem "CyberTrooper"
+}
+
+ACTOR CyberSlayerSpot : NewMonsterInvasionSpot 15702
+{
+	//$Title Cyber Slayer
+	//$Sprite HRZRA2
+	Radius 20
+	Height 56
+	DropItem "CyberSlayer"
+}
+
+ACTOR CyberBruteSpot : NewMonsterInvasionSpot 15703
+{
+	//$Title Cyber Brute
+	//$Sprite CBRTA2
+	Radius 24
+	Height 59
+	DropItem "CyberBrute"
+}
+
+ACTOR SSExplosiveSoldierSpot : NewMonsterInvasionSpot 15704
+{
+	//$Title Nazi Explosive Soldier
+	//$Sprite EMSSA0
+	Radius 24
+	Height 64
+	DropItem "SSExplosiveSoldier"
+}
+
+ACTOR SSEradicatorSpot : NewMonsterInvasionSpot 15705
+{
+	//$Title Nazi Eradicator
+	//$Sprite PANZA0
+	Radius 32
+	Height 80
+	DropItem "SSEradicator"
+}
+
+ACTOR SSCyborgHitlerSpot : NewMonsterInvasionSpot 15706
+{
+	//$Title Nazi Cyborg Hitler
+	//$Sprite DOLFA0
+	Radius 32
+	Height 80
+	DropItem "SSCyborgHitler"
+}
+
+ACTOR SSGeneralAkhanovSpot : NewMonsterInvasionSpot 15707
+{
+	//$Title Nazi General Akhanov
+	//$Sprite AKHAA0
+	Radius 40
+	Height 96
+	DropItem "SSGeneralAkhanov"
+}
+
+ACTOR PistolZombieSpot : NewMonsterInvasionSpot 15708
+{
+	//$Title Pistol Zombie
+	//$Sprite P0SSA2
+	Radius 20
+	Height 56
+	DropItem "PistolZombie"
+}
+
+ACTOR HomingRocketZombieSpot : NewMonsterInvasionSpot 15709
+{
+	//$Title Homing Rocket Zombie
+	//$Sprite MMGIA2A8
+	Radius 20
+	Height 56
+	DropItem "HomingRocketZombie"
+}
+
+ACTOR SoulOfPurgatorySpot : NewMonsterInvasionSpot 15710
+{
+	//$Title Soul Of Purgatory
+	//$Sprite ISULA8A2
+	Radius 16
+	Height 56
+	DropItem "SoulOfPurgatory"
+}
+
+ACTOR ElementalOfPurgatorySpot : NewMonsterInvasionSpot 15711
+{
+	//$Title Elemental Of Purgatory
+	//$Sprite IMCCA2A8
+	Radius 30
+	Height 56
+	DropItem "ElementalOfPurgatory"
+}
+
+ACTOR OverlordOfPurgatorySpot : NewMonsterInvasionSpot 15712
+{
+	//$Title Overlord Of Purgatory
+	//$Sprite 0VERA2A8
+    Scale 1.5
+	Radius 84
+	Height 100
+	DropItem "OverlordOfPurgatory"
+}
+
+ACTOR MRLZombieSpot : NewMonsterInvasionSpot 15713
+{
+	//$Title MRL Zombieman
+	//$Sprite MP0SA2A8
+	Radius 20
+	Height 56
+	DropItem "MRLZombie"
+}
+
+ACTOR PyroZombieSpot : NewMonsterInvasionSpot 15714
+{
+	//$Title Pyro Zombie
+	//$Sprite FLMZA2A8
+	Radius 20
+	Height 56
+	DropItem "PyroZombie"
+}
+
+ACTOR MaledictSpot : NewMonsterInvasionSpot 15715
+{
+	//$Title Maledict
+	//$Sprite MALDA2A8
+	Radius 84
+	Height 100
+    Scale 1.5
+	DropItem "Maledict"
+}
+
+ACTOR HellFireAfritSpot : NewMonsterInvasionSpot 15716
+{
+	//$Title HellFire Afrit
+	//$Sprite HFBSA2A8
+	Radius 24
+	Height 64
+	DropItem "HellFireAfrit"
+}
+
+ACTOR HellFireIfritSpot : NewMonsterInvasionSpot 15717
+{
+	//$Title HellFire Ifrit
+	//$Sprite HIFRA2A8
+	Radius 24
+	Height 64
+	DropItem "HellFireIfrit"
+}
+
+ACTOR SummonerSpot : NewMonsterInvasionSpot 15718
+{
+	//$Title Summoner
+	//$Sprite SUMNA2D8
+	Radius 20
+	Height 56
+	DropItem "Summoner"
+}
+
+ACTOR SSGrenadierSpot : NewMonsterInvasionSpot 15719
+{
+	//$Title Nazi Grenadier
+	//$Sprite WZGRA0
+	Radius 20
+	Height 56
+	DropItem "SSGrenadier"
+}
+
+ACTOR SSAssaultMutantSpot : NewMonsterInvasionSpot 15720
+{
+	//$Title Nazi Assault Mutant
+	//$Sprite SMT1A0
+	Radius 24
+	Height 64
+	DropItem "SSAssaultMutant"
+}
+
+ACTOR DarkPaladinSpot : NewMonsterInvasionSpot 15721
+{
+	//$Title Dark Paladin
+	//$Sprite DPALA2
+	Radius 24
+    Height 64
+	DropItem "DarkPaladin"
+}
+
+ACTOR AssaultWarlordSpot : NewMonsterInvasionSpot 15722
+{
+	//$Title Assault Warlord
+	//$Sprite ASWAA2A8
+	Radius 24
+	Height 64
+	DropItem "AssaultWarlord"
+}
+
+ACTOR ConquerorLichSpot : NewMonsterInvasionSpot 15723
+{
+	//$Title Conqueror Lich
+	//$Sprite CQLHA2A8
+	Radius 40
+	Height 110
+    Scale 1.25
+	DropItem "ConquerorLich"
+}
+
+ACTOR CardihilationSpot : NewMonsterInvasionSpot 15724
+{
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Title Cardihilation
+	//$Sprite CRHLA2A8
+	Radius 40
+	Height 110
+	Scale 1.25
+	DropItem "Cardihilation"
+}
+
+ACTOR MonolithOfSinSpot : NewMonsterInvasionSpot 15725
+{
+	//$Title Monolith Of Sin
+	//$Sprite ICSWA0
+	Radius 48
+	Height 64
+    Scale 0.3
+	DropItem "MonolithOfSin"
+}
+
+ACTOR DarkRocketImpSpot : NewMonsterInvasionSpot 15726
+{
+	//$Title Dark Rocket Imp
+	//$Sprite KIMPA2A8
+	Radius 20
+	Height 56
+	DropItem "DarkRocketImp"
+}
+
+ACTOR DarkCyberSlayerSpot : NewMonsterInvasionSpot 15727
+{
+	//$Title Dark Cyber Slayer
+	//$Sprite DRHRA2
+	Radius 20
+	Height 56
+	DropItem "DarkCyberSlayer"
+}
+
+ACTOR ArchbaronOfHellSpot : NewMonsterInvasionSpot 15728
+{
+	//$Title Archbaron Of Hell
+	//$Sprite B3LPA2A8
+	Radius 24
+	Height 64
+	DropItem "ArchbaronOfHell"
+}
+
+ACTOR CyberArchBaronSpot : NewMonsterInvasionSpot 15729
+{
+	//$Title Cyber Archbaron
+	//$Sprite CB3LA2
+	Radius 24
+	Height 64
+	DropItem "CyberArchBaron"
+}
+
+ACTOR InfernalKnightSpot : NewMonsterInvasionSpot 15730
+{
+	//$Title Infernal Knight
+	//$Sprite ST4XA2C8
+	Radius 24
+	Height 64
+	DropItem "InfernalKnight"
+}
+
+ACTOR HellFireCardinalSpot : NewMonsterInvasionSpot 15731
+{
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Title HellFire Cardinal
+	//$Sprite HFCDA2
+	Radius 64
+	Height 128
+	DropItem "HellFireCardinal"
+}
+
+ACTOR ImpWarriorSpot : NewMonsterInvasionSpot 15732
+{
+	//$Title ImpWarrior
+	//$Sprite WARIA2
+	Radius 20
+	Height 56
+	DropItem "ImpWarrior"
+}
+
+ACTOR CyberSoulSpot : NewMonsterInvasionSpot 15733
+{
+	//$Title Cyber Soul
+	//$Sprite CYCBA2A8
+	Radius 20
+	Height 56
+	DropItem "CyberSoul"
+}
+
+ACTOR ArgentineElementalSpot : NewMonsterInvasionSpot 15734
+{
+	//$Title Argentine Elemental
+	//$Sprite CPANA2A8
+    Radius 30
+	Height 56
+	DropItem "ArgentineElemental"
+}
+
+ACTOR DarkMonolithOfSinSpot : NewMonsterInvasionSpot 15735
+{
+	//$Title Dark Monolith Of Sin
+	//$Sprite ICSVA0
+	Radius 48
+	Height 64
+    Scale 0.3
+	DropItem "DarkMonolithOfSin"
+}
+
+ACTOR CyberMonolithOfSinSpot : NewMonsterInvasionSpot 15736
+{
+	//$Title Cyber Monolith Of Sin
+	//$Sprite ICSYA0
+	Radius 48
+	Height 64
+    Scale 0.3
+	DropItem "CyberMonolithOfSin"
+}
+
+ACTOR SSScientistMutantSpot : NewMonsterInvasionSpot 15737
+{
+	//$Title Nazi Scientist Mutant
+	//$Sprite SMT4A0
+	Radius 24
+	Height 64
+	DropItem "SSScientistMutant"
+}
+
+ACTOR SSHeavySentryGunSpot : NewMonsterInvasionSpot 15738
+{
+	//$Title Nazi Heavy Sentry Gun
+	//$Sprite TOR0A0
+	Radius 20
+	Height 56
+	DropItem "SSHeavySentryGun"
+}
+
+ACTOR SSTechUnitSpot : NewMonsterInvasionSpot 15739
+{
+	//$Title Nazi Tech Unit
+	//$Sprite BOB3A0
+	Radius 20
+	Height 56
+	DropItem "SSTechUnit"
+}
+
+ACTOR SSImprovedTechUnitSpot : NewMonsterInvasionSpot 15740
+{
+	//$Title Nazi Improved Tech Unit
+	//$Sprite BOB2A0
+	Radius 20
+	Height 56
+	DropItem "SSImprovedTechUnit"
+}
+
+ACTOR LegendaryArchvileSpot : NewMonsterInvasionSpot 15741
+{
+	//$Title Legendary Archvile
+	//$Sprite LVLLA1D1
+	Radius 20
+	Height 56
+	DropItem "LegendaryArchvile"
+}
+
+ACTOR DarkCacodemonSpot : NewMonsterInvasionSpot 15742
+{
+	//$Title Dark Cacodemon
+	//$Sprite DCACA2A8
+	Radius 30
+	Height 56
+	DropItem "DarkCacodemon"
+}
+
+ACTOR CyberNaziDogSpot : NewMonsterInvasionSpot 15743
+{
+	//$Title Nazi Dog (cyber)
+	//$Sprite DG03A2A8
+	Radius 20
+	Height 56
+	DropItem "CyberNaziDog"
+}
+
+ACTOR RocketNaziDogSpot : NewMonsterInvasionSpot 15744
+{
+	//$Title Nazi Dog (rocket)
+	//$Sprite PERRA2A8
+	Radius 20
+	Height 56
+	DropItem "RocketNaziDog"
+}
+
+ACTOR EradicatorZombieSpot : NewMonsterInvasionSpot 15745
+{
+	//$Title Eradicator Zombie
+	//$Sprite RP0SA2A8
+	Radius 20
+	Height 56
+	DropItem "EradicatorZombie"
+}
+
+ACTOR GrenadierZombieSpot : NewMonsterInvasionSpot 15746
+{
+	//$Title Grenadier Zombie
+	//$Sprite PNGZA2A8
+	Radius 20
+	Height 56
+	DropItem "GrenadierZombie"
+}
+
+ACTOR CyberInfernalNobleSpot : NewMonsterInvasionSpot 15747
+{
+	//$Title Cyber Infernal Noble
+	//$Sprite PBRUA2
+	Radius 24
+	Height 64
+	DropItem "CyberInfernalNoble"
+}
+
+ACTOR PhaseNightmareSpot : NewMonsterInvasionSpot 15748
+{
+	//$Title Phase Nightmare
+	//$Sprite PHNMA2C8
+	Radius 24
+	Height 48
+	DropItem "PhaseNightmare"
+}
+
+ACTOR PhaseSoulSpot : NewMonsterInvasionSpot 15749
+{
+	//$Title Phase Soul
+	//$Sprite PSKUA8A2
+	Radius 16
+	Height 56
+	DropItem "PhaseSoul"
+}
+
+ACTOR PhaseCarrierSpot : NewMonsterInvasionSpot 15750
+{
+	//$Title Phase Carrier
+	//$Sprite PELEA2A8
+	Radius 30
+	Height 56
+	DropItem "PhaseCarrier"
+}
+
+ACTOR PhaseArchonSpot : NewMonsterInvasionSpot 15751
+{
+	//$Title Phase Archon
+	//$Sprite PWRLA2C8
+	Radius 24
+	Height 64
+	DropItem "PhaseArchon"
+}
+
+ACTOR PhaseArchdukeSpot : NewMonsterInvasionSpot 15752
+{
+	//$Title Phase Archduke
+	//$Sprite PLBBA2A8
+	Radius 40
+	Height 110
+	Scale 1.75
+	DropItem "PhaseArchduke"
+}
+
+ACTOR NailgunnerSpot : NewMonsterInvasionSpot 15753
+{
+	//$Title Nailgunner
+	//$Sprite NLBCA2
+	Radius 20
+	Height 56
+	DropItem "Nailgunner"
+}
+
+ACTOR BeaconCarrierZombieSpot : NewMonsterInvasionSpot 15754
+{
+	//$Title Beacon Carrier Zombie
+	//$Sprite EASZA2A8
+	Radius 20
+	Height 56
+	DropItem "BeaconCarrierZombie"
+}
+
+ACTOR DarkBFGCommandoSpot : NewMonsterInvasionSpot 15755
+{
+	//$Title Dark BFG Commando
+	//$Sprite DKCDA2A8
+	Radius 20
+	Height 56
+	DropItem "DarkBFGCommando"
+}
+
+ACTOR ZombieCommanderSpot : NewMonsterInvasionSpot 15756
+{
+	//$Title Zombie Commander 
+	//$Sprite ZC0MA2
+	Radius 20
+	Height 56
+	DropItem "ZombieCommander"
+}
+
+ACTOR PhaseCadaverSpot : NewMonsterInvasionSpot 15757
+{
+	//$Title Phase Cadaver
+	//$Sprite PGHLA2
+	Radius 20
+	Height 56
+	DropItem "PhaseCadaver"
+}
+
+ACTOR PhaseCacodemonSpot : NewMonsterInvasionSpot 15758
+{
+	//$Title Phase Cacodemon
+	//$Sprite PHCCA2A8
+	Radius 30
+	Height 56
+	DropItem "PhaseCacodemon"
+}
+
+ACTOR KnightOfPurgatorySpot : NewMonsterInvasionSpot 15759
+{
+	//$Title Knight Of Purgatory
+	//$Sprite SATGA2C8
+	Radius 24
+	Height 70
+	DropItem "KnightOfPurgatory"
+}
+
+ACTOR CryoSoulSpot : NewMonsterInvasionSpot 15760
+{
+	//$Title Cryo Soul
+	//$Sprite CRSOA8A2
+	Radius 16
+	Height 56
+	DropItem "CryoSoul"
+}
+
+ACTOR HellFrostRevenantSpot : NewMonsterInvasionSpot 15761
+{
+	//$Title HellFrost Revenant
+	//$Sprite CREVA2D8
+	Radius 20
+	Height 56
+	DropItem "HellFrostRevenant"
+}
+
+ACTOR LegendaryEmperorSpot : NewMonsterInvasionSpot 15762
+{
+	//$Title Legendary Emperor
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Sprite LGEPA2C8
+	Radius 40
+    Height 110
+	DropItem "LegendaryEmperor"
+}
+
+ACTOR BFG12KCaptainSpot : NewMonsterInvasionSpot 15763
+{
+	//$Title BFG12K Captain
+	//$Sprite B2GZA2
+	Radius 20
+	Height 56
+	DropItem "BFG12KCaptain"
+}
+
+ACTOR PhaseExileSpot : NewMonsterInvasionSpot 15764
+{
+	//$Title Phase Exile
+	//$Sprite PVILA2D8
+	Radius 20
+	Height 56
+	DropItem "PhaseExile"
+}
+
+ACTOR BabyOverseerSpot : NewMonsterInvasionSpot 15765
+{
+	//$Title Baby Overseer
+	//$Sprite BOVSA2A8
+	Radius 36
+	Height 64
+	DropItem "BabyOverseer"
+}
+
+ACTOR SacrosanctObserverSpot : NewMonsterInvasionSpot 15766
+{
+	//$Title Sacrosanct Observer
+	//$Sprite SACWA2A8
+	Radius 36
+	Height 64
+	DropItem "SacrosanctObserver"
+}
+
+ACTOR OverseerSpot : NewMonsterInvasionSpot 15767
+{
+	//$Title Overseer
+	//$Sprite OV3RA2A8
+	Radius 65
+	Height 100
+	DropItem "Overseer"
+}
+
+ACTOR SacrosanctOverseerSpot : NewMonsterInvasionSpot 15768
+{
+	//$Title Sacrosanct Overseer
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Sprite AOVRA2A8
+	Radius 158
+	Height 228
+    Scale 2.5
+	DropItem "SacrosanctOverseer"
+}
+
+ACTOR AsagTheDroughtSpot : NewMonsterInvasionSpot 15769
+{
+	//$Title Asag The Drought
+	//$Category "Invasion Monster Spawners/Boss"
+	//$Sprite DEMXA2A8
+	Radius 128
+	Height 192
+    Scale 2.8
+	DropItem "AsagTheDrought"
+}
+
+ACTOR PhaseCybruiserSpot : NewMonsterInvasionSpot 15770
+{
+	//$Title Phase Cybruiser
+	//$Sprite PBRIA2
+	Radius 24
+	Height 64
+	DropItem "PhaseCybruiser"
+}
+
+ACTOR PhaseBabyDemolisherSpot : NewMonsterInvasionSpot 15771
+{
+	//$Title Phase Baby Demolisher
+	//$Sprite PBD0A2A8
+	Radius 26
+	Height 64
+	DropItem "PhaseBabyDemolisher"
+}
+
+ACTOR PhaseShotgunCommandoSpot : NewMonsterInvasionSpot 15772
+{
+	//$Title Phase Shotgun Commando
+	//$Sprite PSGCA2A8
+	Radius 20
+	Height 56
+	DropItem "PhaseShotgunCommando"
+}
+
+ACTOR PhaseMonolithOfSinSpot : NewMonsterInvasionSpot 15773
+{
+	//$Title Phase Monolith Of Sin
+	//$Sprite PCSVA0
+	Radius 48
+	Height 64
+    Scale 0.3
+	DropItem "PhaseMonolithOfSin"
+}
+
+ACTOR PhaseTechFiendSpot : NewMonsterInvasionSpot 15774
+{
+	//$Title Phase Tech Fiend
+	//$Sprite PPNKA2A8
+	Radius 24
+	Height 48
+	DropItem "PhaseTechFiend"
+}
+
+ACTOR PhaseHarvesterSpot : NewMonsterInvasionSpot 15775
+{
+	//$Title Phase Harvester
+	//$Sprite PF0DA2A8
+	Radius 20
+	Height 56
+	DropItem "PhaseHarvester"
+}
+
+ACTOR CyberMancubusSpot : NewMonsterInvasionSpot 15776
+{
+	//$Title Cyber Mancubus
+	//$Sprite CFATA2D8
+	Radius 30
+	Height 64
+	DropItem "CyberMancubus"
+}
+
+
+ACTOR AugmentedArachnotronSpot : NewMonsterInvasionSpot 15777
+{
+	//$Title Augmented Arachnotron
+	//$Sprite SCRPA2A8
+	Radius 36
+	Height 64
+	DropItem "AugmentedArachnotron"
+}
+
+ACTOR CarcassSpot : NewMonsterInvasionSpot 15778
+{
+	//$Title Carcass
+	//$Sprite CARCA2
+	Radius 24
+	Height 64
+	DropItem "Carcass"
+}
+
+ACTOR ElementalCarrierSpot : NewMonsterInvasionSpot 15779
+{
+	//$Title Elemental Carrier
+	//$Sprite ELCRA2A8
+	Radius 30
+	Height 56
+	DropItem "ElementalCarrier"
+}
+
+ACTOR CacolordSpot : NewMonsterInvasionSpot 15780
+{
+	//$Title Cacolord
+	//$Sprite CCLDA2A8
+	Radius 30
+	Height 56
+	DropItem "Cacolord"
+}
+
+ACTOR HellforgeCyberFiendSpot : NewMonsterInvasionSpot 15781
+{
+	//$Title Hellforge Cyber Fiend
+	//$Sprite CYF3A2C8
+	Radius 24
+	Height 48
+	DropItem "HellforgeCyberFiend"
+}
+
+ACTOR SynthElementalSpot : NewMonsterInvasionSpot 15782
+{
+	//$Title Synth Elemental
+	//$Sprite SYNEA2A8
+	Radius 30
+	Height 56
+	DropItem "SynthElemental"
+}
+
+ACTOR SynthSoulSpot : NewMonsterInvasionSpot 15783
+{
+	//$Title SynthSoul
+	//$Sprite SNSLA2A8
+	Radius 16
+	Height 56
+	DropItem "SynthSoul"
+}
+
+ACTOR DjinnSpot : NewMonsterInvasionSpot 15784
+{
+	//$Title Djinn
+	//$Sprite DJINA2D8
+	Radius 20
+	Height 56
+	DropItem "Djinn"
+}
+
+ACTOR ImpOfPurgatorySpot : NewMonsterInvasionSpot 15785
+{
+	//$Title Imp Of Purgatory
+	//$Sprite IPPGA2A8
+	Radius 20
+	Height 56
+	DropItem "ImpOfPurgatory"
+}
+
+ACTOR MarauderSpot : NewMonsterInvasionSpot 15786
+{
+	//$Title Marauder
+	//$Sprite MARDA2A8
+	Radius 20
+    Height 56
+	DropItem "Marauder"
+}

@@ -1,0 +1,300 @@
+//==============
+// Item Spawners
+//==============
+
+ACTOR NewAmmoInvasionSpot : CustomPickupInvasionSpot
+{
+//$Category Invasion Ammunition Spawners
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR AmmoPackSpot : NewAmmoInvasionSpot 15000
+{
+	//$Title Ammo Pack
+	//$Sprite ASATA0
+	DropItem "AmmoPack"
+}
+
+ACTOR HandGrenadeAmmoSpot : NewAmmoInvasionSpot 15001
+{
+	//$Title Hand Grenade Ammo
+	//$Sprite GRNPA0
+	DropItem "HandGrenadeAmmo"
+}
+
+ACTOR MineAmmoSpot : NewAmmoInvasionSpot 15002
+{
+	//$Title Mine Ammo
+	//$Sprite LMINA0
+	DropItem "MineAmmo"
+}
+
+ACTOR DemonAmmoSpot : NewAmmoInvasionSpot 15003
+{
+	//$Title Demon Ammo
+	//$Sprite DAMGA0
+	DropItem "DemonAmmo"
+}
+
+ACTOR DemonAmmoBoxSpot : NewAmmoInvasionSpot 15004
+{
+	//$Title Demon Ammo Box
+	//$Sprite DAMOA0
+	DropItem "DemonAmmoBox"
+}
+
+ACTOR BackPackSpot1 : NewAmmoInvasionSpot 15005
+{
+	//$Title Back Pack
+	//$Sprite BPAKA0
+	DropItem "BackPack"
+}
+
+ACTOR LDemonAmmoSpot : NewAmmoInvasionSpot 15006
+{
+	//$Title Legendary Cell
+	//$Sprite BAMGA0
+	DropItem "LDemonAmmo"
+}
+
+ACTOR LDemonAmmoBoxSpot : NewAmmoInvasionSpot 15007
+{
+	//$Title Legendary Cell Pack
+	//$Sprite BAMOA0
+	DropItem "LDemonAmmoBox"
+}
+
+ACTOR TankSpot : NewAmmoInvasionSpot 15008
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Tank
+	//$Sprite MECHA0
+	DropItem "Tank"
+}
+
+ACTOR MissileTankSpot : NewAmmoInvasionSpot 15009
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Missile Tank
+	//$Sprite MECHB0
+	DropItem "MissileTank"
+}
+
+ACTOR PlasmaTankSpot : NewAmmoInvasionSpot 15010
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Plasma Tank
+	//$Sprite MECHC0
+	DropItem "PlasmaTank"
+}
+
+ACTOR PrototypeSpot : NewAmmoInvasionSpot 15011
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Prototype
+	//$Sprite MECHD0
+	DropItem "Prototype"
+}
+
+ACTOR MaxSoldierSpot : NewAmmoInvasionSpot 15012
+{
+    //$Category "Invasion Ammunition Spawners/Suits"
+	//$Title Max Soldier
+	//$Sprite MECHE0
+	DropItem "MaxSoldier"
+}
+
+ACTOR JetTrooperSpot : NewAmmoInvasionSpot 15013
+{
+    //$Category "Invasion Ammunition Spawners/Suits"
+	//$Title Jet Trooper
+	//$Sprite MECHF0
+	DropItem "JetTrooper"
+}
+
+ACTOR LegendaryShellSpot : NewAmmoInvasionSpot 15014
+{
+	//$Title Legendary Shell
+	//$Sprite LESSA0
+	DropItem "LegendaryShell"
+}
+
+ACTOR LegendaryShellBoxSpot : NewAmmoInvasionSpot 15015
+{
+	//$Title Legendary Shell Box
+	//$Sprite LBOXA0
+	DropItem "LegendaryShellBox"
+}
+
+ACTOR FullRefilePackSpot : NewAmmoInvasionSpot 15016
+{
+	//$Title Full Refile Pack 
+	//$Sprite BPK0A0
+	DropItem "FullRefilePack"
+}
+
+ACTOR NecroSuitSpot : NewAmmoInvasionSpot 15017
+{
+    //$Category "Invasion Ammunition Spawners/Suits"
+	//$Title Necro Suit
+	//$Sprite ARMOA1
+	DropItem "NecroSuit"
+}
+
+ACTOR BonusCrateSpot : NewAmmoInvasionSpot 15018
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title Bonus Crate
+	//$Sprite UCRTA0
+	DropItem "BonusCratePickup"
+	Scale 0.3
+}
+
+ACTOR LegendaryBulletMagSpot : NewAmmoInvasionSpot 15019
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title Legendary Bullet Mag
+	//$Sprite LBLPA0
+	DropItem "LegendaryBulletMag"
+}
+
+ACTOR LegendaryBulletBoxSpot : NewAmmoInvasionSpot 15020
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title Legendary Bullet Box
+	//$Sprite LCBXA0
+	DropItem "LegendaryBulletBox"
+}
+
+ACTOR DCellSpot : NewAmmoInvasionSpot 15021
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title DCell
+	//$Sprite BG3CA0
+	DropItem "DCell"
+}
+
+ACTOR DCellPackSpot : NewAmmoInvasionSpot 15022
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title DCell Pack
+	//$Sprite BG3BA0
+	DropItem "DCellPack"
+}
+
+ACTOR EnforcerSpot : NewAmmoInvasionSpot 15023
+{
+    //$Category "Invasion Ammunition Spawners/Suits"
+	//$Title Enforcer
+	//$Sprite AGRDA1
+	DropItem "Enforcer"
+}
+
+ACTOR GrinderBattleMechSpot : NewAmmoInvasionSpot 15024
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title GrinderBattleMech
+	//$Sprite GRIDO1
+	DropItem "GrinderBattleMech"
+	Scale 0.4
+}
+
+ACTOR AssaultTankSpot : NewAmmoInvasionSpot 15025
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Assault Tank
+	//$Sprite MECHG0
+	DropItem "AssaultTank"
+	Scale 0.75
+}
+
+ACTOR EpicCrateSpot : NewAmmoInvasionSpot 15026
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title Epic Crate
+	//$Sprite UCRTX0
+	DropItem "EpicCrate"
+	Scale 0.3
+}
+
+ACTOR AttackHelicopterSpot : NewAmmoInvasionSpot 15027
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Attack Helicopter
+	//$Sprite HEL1A1
+	DropItem "AttackHelicopter"
+} 
+
+ACTOR FlameTankSpot : NewAmmoInvasionSpot 15028
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Flame Tank
+	//$Sprite MECHH0
+	DropItem "FlameTank"
+}
+
+ACTOR AssaultHelicopterSpot : NewAmmoInvasionSpot 15029
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Assault Helicopter
+	//$Sprite HEL3A1
+	Scale 1.6 
+	DropItem "AssaultHelicopter"
+}
+
+ACTOR BattleSuitSpot : NewAmmoInvasionSpot 15030
+{
+    //$Category "Invasion Ammunition Spawners/Suits"
+	//$Title Battle Suit
+	//$Sprite BTB4A1
+	DropItem "BattleSuit"
+}
+
+ACTOR PurifierBotSpot : NewAmmoInvasionSpot 15031
+{
+    //$Category "Invasion Ammunition Spawners/Suits"
+	//$Title Purifier Bot
+	//$Sprite PUSUA1
+	DropItem "PurifierBot"
+}
+
+ACTOR CombatBackpackSpot : NewAmmoInvasionSpot 15032
+{
+    //$Category "Invasion Ammunition Spawners"
+	//$Title Combat Backpack
+	//$Sprite CBP2A0
+	DropItem "CombatBackpack"
+}
+
+ACTOR MainBattleTankSpot : NewAmmoInvasionSpot 15033
+{
+    //$Category "Invasion Ammunition Spawners/Mechs"
+	//$Title Main Battle Tank
+	//$Sprite MECHI0
+	DropItem "MainBattleTank"
+}
+
+ACTOR EradicationCellSpot : NewAmmoInvasionSpot 15034
+{
+	//$Title Eradication Cell
+	//$Sprite EC3LA0
+	DropItem "EradicationCell"
+}
+
+ACTOR EradicationCellPackSpot : NewAmmoInvasionSpot 15035
+{
+	//$Title Eradication CellPack
+	//$Sprite EC3LD0
+	DropItem "EradicationCellPack"
+}
+
+ACTOR WeaponUpgraderSpot : NewAmmoInvasionSpot 15036
+{
+	//$Title Weapon Upgrader
+	//$Sprite WPUPA0
+	DropItem "WeaponUpgrader"
+}

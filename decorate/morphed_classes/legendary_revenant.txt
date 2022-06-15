@@ -1,0 +1,541 @@
+//==========================================================\\
+// ----------------- Legendary Revenant ------------------- \\
+//==========================================================\\
+
+ACTOR LegendaryRevenantGiver : MechGiver{Powerup.Type "LegendaryRevenant"}
+
+ACTOR PowerLegendaryRevenant : PowerMorph
+{
+  PowerMorph.PlayerClass "Legendary_Revenant"
+  PowerMorph.MorphFlash "TeleportFog"
+  PowerMorph.UnMorphFlash "TeleportFog"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Legendary_Revenant : Demon_Cydestroyer
+{
+  Health 750
+  Player.MaxHealth 750
+  Player.SoundClass "PLegendaryRevenant"
+  Player.DisplayName "Legendary Revenant"
+  Player.MorphWeapon "LegendaryRevenant-Weapons "
+  Player.ForwardMove 1.3
+  Player.SideMove 1.3
+  Player.JumpZ 10
+  DamageFactor 0.35
+  BloodColor "Blue"
+  PainChance 0
+  +NORADIUSDMG
+  +NOPAIN
+  Scale 1.1
+  States
+  {
+   Spawn:
+  	TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerLegendaryDemonRuneMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+    LREV A 10 Bright
+    Loop
+   See: 
+	TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerLegendaryDemonRuneMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    LREV AAABBBCCC 2 Bright
+	LREV DDDEEEFFF 2 Bright
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    Goto Spawn	
+  Melee:
+  Missile:
+    LREV J 1 Bright
+	LREV J 0 A_JumpIfInventory("MissileType6",1,"Missile6")
+	LREV J 0 A_JumpIfInventory("MissileType5",1,"Missile5")
+	LREV J 0 A_JumpIfInventory("MissileType4",1,"Missile4")
+	LREV J 0 A_JumpIfInventory("MissileType3",1,"Missile3")
+	LREV J 0 A_JumpIfInventory("MissileType2",1,"Missile2")
+    LREV JKJKJK 7 Bright
+    Goto Spawn
+  Missile2:	
+    LREV G 0 A_TakeInventory("MissileType2",1)
+    LREV GHIRSTGHI 3 Bright
+    Goto See
+  Missile3:
+    LREV J 0 A_TakeInventory("MissileType3",1)
+    LREV J 35 Bright
+    LREV K 84 Bright
+    Goto Spawn
+  Missile4:
+    LREV J 0 A_TakeInventory("MissileType4",1)
+    LREV J 80 Bright
+    LREV K 10 Bright
+    Goto Spawn
+  Missile5:
+    LREV J 0 A_TakeInventory("MissileType5",1)
+    LREV J 35 Bright
+    LREV K 10 Bright
+    Goto Spawn	
+  Missile6:
+    LREV J 0 A_TakeInventory("MissileType6",1)
+    LREV J 116 Bright
+    LREV K 10 Bright
+    LREV J 25 Bright
+    LREV K 35 Bright
+    Goto Spawn	
+  Pain:
+	TNT1 A 0 A_Pain
+    LREV AA 3 Bright
+    Goto See
+  Death:
+	LREV LLLLL 3 A_SpawnItemEx("PainfulDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 A 0 A_PlaySoundEx("legendaryrevenant/death","body",0,1)
+	LREX AAABBBCCCDDDEEE 2 Bright A_SpawnItemEx("PainfulDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-10,10),random(-10,10),random(0,10),0,SXF_TRANSFERPOINTERS)
+	TNT1 A 0 A_NoBlocking
+	LREX FFGGHH 3 Bright A_SpawnItemEx("PainfulDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-10,10),random(-10,10),random(0,10),0,SXF_TRANSFERPOINTERS)
+	LREX IJ 8
+	LREX K -1
+	Stop
+  }
+}
+
+ACTOR "LegendaryRevenant-Weapons " : Weapon
+{
+  +WEAPON.DONTBOB
+  +WEAPON.CHEATNOTWEAPON
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL
+  +INVENTORY.UNDROPPABLE
+  States
+  {
+  Ready:
+    TNT1 A 0 A_GiveInventory("CanHold",1)
+    TNT1 A 0 A_GiveInventory("CanHalfHold",1)
+    TNT1 A 0 A_TakeInventory("AttackCharge",10)
+    LRDY ABCDEFGHIJKL 4 Bright A_WeaponReady
+    Loop
+  Deselect: 
+    LRDY A 1 A_Lower
+    Loop
+  Select:
+    LRDY A 1 A_Raise
+    Loop
+  Fire:
+    LRDY A 1 Bright A_JumpIfInventory("AttackCharge",10,"Fire3")
+    LRDY A 0 A_GiveInventory("AttackCharge",1)
+    LRDY A 1 Bright 
+    LRDY A 1 Bright A_Refire
+  Fire1:
+    LVRD B 0 A_JumpIfInventory("AttackCharge",10,"Fire3")
+    LVRD B 0 A_JumpIfInventory("AttackCharge",5,"Fire2")
+	LVRD B 0 A_TakeInventory("AttackCharge",10)
+	LVRD B 0 A_GunFlash	
+    LVRD B 2 Bright
+	LVRD C 0 A_PlayWeaponSound("LegCannon/Fire")
+	LVRD C 0 A_FireCustomMissile("PlayerLegendaryCannonBigBall",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("PlayerLegendaryCannonBigBall",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 6 Bright
+	LVRD B 2 Bright
+	LVRD C 0 A_PlayWeaponSound("LegCannon/Fire")
+	LVRD C 0 A_FireCustomMissile("PlayerLegendaryCannonBigBall",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("PlayerLegendaryCannonBigBall",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 6 Bright
+	LVRD B 2 Bright
+	LVRD C 0 A_PlayWeaponSound("LegCannon/Fire")
+	LVRD C 0 A_FireCustomMissile("PlayerLegendaryCannonBigBall",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("PlayerLegendaryCannonBigBall",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 6 Bright
+    Goto Ready
+  Fire2:
+    LVRD D 0 A_JumpIfInventory("MechBFGReload",1,"Fire2Reset")
+    LVRD D 0 A_GiveInventory("MechBFGReload",1)
+    LVRD D 0 ACS_ExecuteAlways(3104,0,28)
+    LVRD D 0 A_GiveInventory("MissileType3")
+	LVRD D 0 A_GunFlash	
+    LVRD D 35 Bright A_PlaySoundEx("legendaryrevenant/attack1",5)
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright	
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD B 0 A_FireCustomMissile("NewPlayerLegRevBall2",0,0,-18,25)	
+	LVRD B 1 Bright A_FireCustomMissile("NewPlayerLegRevBall2",0,0,18,25)	
+	LVRD C 1 Bright
+	LVRD E 8 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  Fire2Reset:
+    LVRD D 1 Bright A_TakeInventory("AttackCharge",10)
+	Goto Fire1
+  Fire3:
+	LVRD D 0 A_JumpIfInventory("MechSeekerRocketReload",1,"Fire2")
+    LVRD D 0 A_GiveInventory("MechSeekerRocketReload",1)
+    LVRD D 0 ACS_ExecuteAlways(3104,0,27)
+    LVRD D 0 A_GiveInventory("MissileType4")
+	LVRD D 0 A_GunFlash	
+    LVRD D 20 Bright A_PlaySoundEx("legendaryrevenant/attack2",5)
+	LVRD B 60 Bright A_PlayWeaponSound("lrball3/charge")
+	LVRD C 0 A_PlayWeaponSound("lrball3/shot")
+	LVRD C 0 A_FireCustomMissile("NewPlayerLegRevBall3",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("NewPlayerLegRevBall3",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 8 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready	
+  AltFire:
+    LRDY A 1 Bright A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    LRDY A 0 A_GiveInventory("AttackCharge",1)
+    LRDY A 1 Bright
+    LRDY A 1 Bright A_Refire
+  AltFire1:
+    LPNC A 0 A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    LPNC A 0 A_JumpIfInventory("AttackCharge",5,"AltFire2")
+	LPNC A 0 A_TakeInventory("AttackCharge",10)
+	LPNC A 0 A_GiveInventory("MissileType2")
+	LPNC A 0 A_GunFlash
+    LPNC A 2 Bright
+	LPNC B 3 Bright A_FireCustomMissile("NewPlayerLegRevFloorDeadHands",0,0,0,0)	
+	LPNC CD 3 Bright
+	LPNC B 3 Bright A_FireCustomMissile("NewPlayerLegRevFloorDeadHands",0,0,0,0)	
+	LPNC CD 3 Bright
+	LPNC B 3 Bright A_FireCustomMissile("NewPlayerLegRevFloorDeadHands",0,0,0,0)	
+	LPNC CD 3 Bright
+	LPNC A 15 Bright
+    Goto Ready	
+  AltFire2:
+    //LVRD D 0 A_GiveInventory("MissileType5")
+	LVRD D 0 A_GunFlash	
+    LVRD B 2 Bright
+	LVRD C 0 A_PlayWeaponSound("LegendaryPulverizer/Fire")
+	LVRD C 0 A_FireCustomMissile("PlayerLegendaryPulverizerProj",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("PlayerLegendaryPulverizerProj",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 6 Bright
+	LVRD B 2 Bright
+	LVRD C 0 A_PlayWeaponSound("LegendaryPulverizer/Fire")
+	LVRD C 0 A_FireCustomMissile("PlayerLegendaryPulverizerProj",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("PlayerLegendaryPulverizerProj",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 6 Bright
+	LVRD B 2 Bright
+	LVRD C 0 A_PlayWeaponSound("LegendaryPulverizer/Fire")
+	LVRD C 0 A_FireCustomMissile("PlayerLegendaryPulverizerProj",0,0,-18,25)	
+	LVRD C 3 Bright A_FireCustomMissile("PlayerLegendaryPulverizerProj",0,0,18,25)	
+	LVRD D 3 Bright
+	LVRD E 6 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  AltFire3:
+    LVRD D 0 A_JumpIfInventory("MechRocketReload",1,"AltFire2")
+    LVRD D 0 A_GiveInventory("MechRocketReload",1)
+    LVRD D 0 ACS_ExecuteAlways(3104,0,29)
+    LVRD D 0 A_GiveInventory("MissileType6")
+	LVRD D 0 A_GunFlash	
+    LVRD D 16 Bright A_PlaySoundEx("LegendaryRevenant/Prepare",5)
+	LVRD B 100 Bright
+	LVRD C 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	LVRD C 0 A_FireCustomMissile("PlayerRegenantAssaultProjectile",0,0,-18,25)	
+	LVRD C 10 Bright A_FireCustomMissile("PlayerRegenantAssaultProjectile",0,0,18,25)	
+	LVRD D 10 Bright
+	LVRD D 15 Bright
+	LVRD C 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	LVRD C 0 A_FireCustomMissile("PlayerRegenantAssaultProjectile",0,0,-18,25)	
+	LVRD C 10 Bright A_FireCustomMissile("PlayerRegenantAssaultProjectile",0,0,18,25)	
+	LVRD D 10 Bright
+	LVRD D 15 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  Spawn:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR PlayerLegendaryDemonRuneMarkFollower : PlayerDemonRuneMarkFollower
+{
+States
+{
+  Spawn:
+    TNT1 A 35
+  Go:
+	TNT1 A 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	TNT1 A 0 A_SpawnItemEx("PlayerLegendaryDemonRuneMark",0,0,64,0,0,0,0,32)
+	TNT1 A 0 A_JumpIfInventory("IsDemon",1,2,AAPTR_TARGET)
+	TNT1 A 0 A_Jump(256,"Death")
+	TNT1 A 0
+	Loop
+  Death:
+	TNT1 A 1
+	Stop
+	}
+}
+
+ACTOR PlayerLegendaryDemonRuneMark : PlayerDemonRuneMark
+{
+Renderstyle Normal
+Alpha 1.0
+Scale 1.0
+States
+{
+  Spawn:
+	LDRN A 2 Bright
+	Stop
+}	
+}
+
+Actor NewPlayerLegRevBall : PlayerLegRevBall
+{
+Damage 14
+DamageType "Marine"
++MTHRUSPECIES
++SCREENSEEKER
+-THRUSPECIES
+    States
+    {
+	Spawn:
+	    TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+        LRB1 A 2 Bright A_CustomMissile("LegRevBallFX",0,0,0,0)
+	    TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+        LRB1 B 2 Bright A_CustomMissile("LegRevBallFX",0,0,0,0)
+	    TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+        LRB1 C 2 Bright A_CustomMissile("LegRevBallFX",0,0,0,0)
+	    TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+        LRB1 D 2 Bright A_CustomMissile("LegRevBallFX",0,0,0,0)		
+	Loop
+	}     
+}
+
+Actor PlayerLegendaryCannonBigBall : LegendaryCannonBigBall
+{
+Damage 20
++SEEKERMISSILE
++SCREENSEEKER
+DamageType "Marine"
+States
+{
+  Spawn:
+	TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+	LRBA A 1 Bright A_SpawnItemEx("LegRevBall3Trail")
+    Loop
+  Death:
+	TNT1 A 0 A_SetScale(1.0)
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveBlue", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AA 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("LNCometDeath",0,0,0,0,0,0,0,128,0)
+    TNT1 A 0 A_Explode(64,300,0,0,250)
+    QRE3 ABCDEF 5 Bright
+    Stop
+}
+}
+
+ACTOR NewPlayerLegRevFloorDeadHands : PlayerLegRevFloorDeadHands
+{
+DamageType "Marine"
++MTHRUSPECIES
+-THRUSPECIES
+States
+{
+   Spawn:
+    LRHD MNO 2 A_SpawnItemEx("NewPlayerLRUndeadHand",random(-16,16),random(-16,16))
+    Loop
+   Death: 
+    TNT1 A 0
+    TNT1 AAAAAAA 0 A_SpawnItemEx("NewPlayerLRUndeadHand",random(-48,48),random(-48,48))
+    TNT1 A 1
+    Stop
+	}
+}
+
+Actor NewPlayerLRUndeadHand : PlayerLRUndeadHand
+{
+DamageType "Marine"
++MTHRUSPECIES
+-THRUSPECIES
+}
+
+Actor NewPlayerLegRevBall2 : PlayerLegRevBall2
+{
+DamageType "Marine"
++MTHRUSPECIES
+-THRUSPECIES
+}
+
+Actor NewPlayerLegRevBall3 : PlayerLegRevBall3
+{
+DamageType "Marine"
++MTHRUSPECIES
+-THRUSPECIES
+Decal BFG9500LightningBlue
+States
+{
+  Death:
+    TNT1 A 0 A_Explode(128,128,0)
+    TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 A 0 A_SpawnItemEx("LNCometDeath",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+    TNT1 AAAAAAAA 0 A_SpawnItemEx("NewPlayerLegRevSmallBall3",Random(-8,8),Random(-8,8),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION)	
+    TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("NewPlayerLegRevSmallBall3",Random(-8,8),Random(-8,8),Random(-8,8),Random(45,70),0,Random(-3,3),Random(-14,14),SXF_NOCHECKPOSITION)
+	MMSD A 8 bright A_Explode(38, 140, 0)
+    Stop
+  }
+}
+
+Actor NewPlayerLegRevSmallBall3 : PlayerLegRevSmallBall3
+{
+DamageType "Marine"
++MTHRUSPECIES
+-THRUSPECIES
+Decal DoomImpScorch
+}
+
+ACTOR NewPlayerLegRevRailgunProj : PlayerLegRevRailgunProj
+{
+DamageType "Marine"
++MTHRUSPECIES
+-THRUSPECIES
+}
+
+ACTOR NewPlayerLegRevRocket : PlayerLegRevRocket
+{
+DamageType "Marine"
+Damage 30
++MTHRUSPECIES
+-THRUSPECIES
+States
+{
+  Spawn:
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2))
+	LROC A 2 Bright A_CustomMissile("ProjectileTrailParticleBlue",Random(4,6),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2))	
+	LROC B 2 Bright A_CustomMissile("ProjectileTrailParticleBlue",Random(4,6),Random(-2,2))
+	Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(156,156,0)
+    TNT1 AAA 0 A_CustomMissile("BlueExplosionKaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("BlueRocketExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("BlueRocketExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("LegendaryDebris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("BlueRocketEx")
+    Stop
+}
+}

@@ -1,0 +1,878 @@
+Actor ElementalOfHell
+{
+  Health 17000
+  Radius 110
+  Height 280
+  Scale 5
+  Mass 999999
+  Speed 5
+  Monster
+  +BOSS
+  +FLOAT
+  +NOGRAVITY
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +NORADIUSDMG
+  +DONTHARMSPECIES
+  +NOTIMEFREEZE
+  +NOPAIN
+  +DONTRIP
+  +NOFEAR
+  Species "Hell"
+  DamageFactor "Hell", 0.0 
+  DamageFactor "Cyber10K", 0.0
+  DamageFactor "Legendary", 0.2
+  DamageFactor "BFGSplash", 0.25
+  DamageFactor "PDTBFG", 0.05
+  DamageFactor "PDTBFGTracer", 0.05
+  DamageFactor "PlayerDevBall", 0.15
+  DamageFactor "PlayerDevTracer", 0.15
+  DamageFactor "MechStep", 0.0
+  DamageFactor "FinalBossSector", 0.0
+  DamageFactor "Pierce", 0.25
+  DamageFactor "MarinePierce", 0.25
+  DamageFactor "Kaboom", 0.2
+  DamageFactor "MarineKaboom", 0.2
+  DamageFactor 0.35
+  RadiusDamageFactor 0.5
+  MinMissileChance 10
+  SeeSound "pain/sight"
+  PainSound "pain/pain"
+  DeathSound "pain/death"
+  ActiveSound "pain/active"
+  Obituary "%o couldn't sustain the huge amount of pain inflicted by the Elemental of Hell"
+  var int user_script;
+  var int user_delay;
+  var int user_part1;
+  var int user_part2;
+  var int user_part3;
+  var int user_missile;
+  Tag "\c[s0]Elemental \c[i7]of Hell\c-"
+  States
+  {
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,17,0,0)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+    ELAM A 10 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,17,0,0)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_UnSetInvulnerable
+    ELAM AAAAAABBBBBBCCCCCC 1 A_Chase
+	TNT1 A 0 A_Jump(110,"Avoid","Rush","Teleport")
+    Loop
+  Rush:
+	ELAM AAAAAAAAAA 0 A_Chase
+    ELAM A 1 A_SpawnItemEx("ElementalOfHellGhost")
+	ELAM AAAAAAAAAA 0 A_Chase
+    ELAM B 1 A_SpawnItemEx("ElementalOfHellGhost")
+	ELAM AAAAAAAAAA 0 A_Chase
+    ELAM C 1 A_SpawnItemEx("ElementalOfHellGhost")
+	TNT1 A 0 A_Jump(12,"See","Avoid","Teleport")
+    Loop
+  Avoid:
+	ELAM F 0
+	ELAM F 0 A_SetAngle(angle+random(0,359))
+	ELAM F 0 A_Recoil(-50)
+	ELAM F 0 A_FaceTarget
+	ELAM GGGGGGGGGGGGG 1 A_SpawnItemEx("ElementalOfHellGhost2")
+	TNT1 A 0 A_Jump(64,"Avoid","Teleport")
+	TNT1 A 0 A_Jump(145,"See")
+	ELAM F 1 A_Stop
+    Goto Avoid 
+  Teleport:
+    ELAM A 1 A_UnSetShootable
+	ELAM AAAAAAAAAA 0 A_SpawnItemEx("EOHFlameSpawner")
+	ELAM AAAAAAAAAAA 1 A_FadeOut(0.1,0)
+	ELAM AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	ELAM AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	ELAM AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	ELAM AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+    ELAM A 1 A_PlayWeaponSound("boss/teleport")
+	ELAM AAAAAAAAAA 0 A_SpawnItemEx("EOHFlameSpawner")
+	ELAM AAAAAAAAAAA 1 A_FadeIn(0.1)
+    ELAM A 1 A_SetShootable
+    Goto See
+  Missile:
+    ELAM D 0 A_JumpIfCloser(2000,2)
+	ELAM D 0 A_Jump(256,2)
+	ELAM D 0 A_Jump(24,"SelfExplode")
+	ELAM D 0 A_Jump(28,"GiantSoul")
+	ELAM D 1 A_Jump(175,"FastBalls","StormBall","StrongBall")
+    ELAM D 1 A_Jump(256,"Comets","BrainBall","Spread","SoulKeeper","SoulRain")
+    Goto See
+   SoulRain:
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_PlaySoundEx("pain/sight","Body",0,2)
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_SpawnItemEx("EOHSoulRainSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0) ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+    Goto See	
+  FastBalls:
+    ELAM DDDEEE 5 A_FaceTarget
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,0,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,-75,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,75,random(-2,2))
+	ELAM F 12 Bright A_FaceTarget
+	ELAM F 0 A_CustomMissile("EOHFastProj",240,0,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,-75,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,75,random(-2,2))
+	ELAM F 12 Bright A_FaceTarget
+	ELAM F 0 A_CustomMissile("EOHFastProj",240,0,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,-75,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,75,random(-2,2))
+	ELAM F 12 Bright A_FaceTarget
+	ELAM F 0 A_CustomMissile("EOHFastProj",240,0,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,-75,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,75,random(-2,2))
+	ELAM F 12 Bright A_FaceTarget
+	ELAM F 0 A_CustomMissile("EOHFastProj",240,0,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,-75,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,75,random(-2,2))
+	ELAM F 12 Bright A_FaceTarget
+	ELAM F 0 A_CustomMissile("EOHFastProj",240,0,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",280,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,-50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",200,50,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,-75,random(-2,2))
+    ELAM F 0 A_CustomMissile("EOHFastProj",240,75,random(-2,2))
+	ELAM F 12 Bright A_FaceTarget
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See
+  Spread:
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 4 Bright A_FaceTarget
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,6)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,-6)
+    ELAM F 24 Bright A_CustomMissile("LegSoulBigBall",150,0,0)
+    ELAM F 0 A_FaceTarget
+    ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,6)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,-6)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,12)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,-12)
+    ELAM F 24 Bright A_CustomMissile("LegSoulBigBall",150,0,0)
+	ELAM F 0 A_FaceTarget
+    ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,6)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,-6)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,12)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,-12)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,18)
+	ELAM F 0 A_CustomMissile("LegSoulBigBall",150,0,-18)
+    ELAM F 24 Bright A_CustomMissile("LegSoulBigBall",150,0,0)
+    ELAM E 4 bright A_FaceTarget
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See	
+  Comets:
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 4 Bright A_FaceTarget
+    ELAM F 0 A_CustomMissile("HDComet",240,0,0)
+    ELAM F 0 A_CustomMissile("HDComet",280,-50,0)
+    ELAM F 0 A_CustomMissile("HDComet",280,50,0)
+    ELAM F 0 A_CustomMissile("HDComet",200,-50,0)
+    ELAM F 0 A_CustomMissile("HDComet",200,50,0)
+    ELAM F 0 A_CustomMissile("HDComet",240,-75,0)
+    ELAM F 0 A_CustomMissile("HDComet",240,75,0)
+    ELAM FFF 7 Bright A_FaceTarget
+    ELAM F 0 A_CustomMissile("HDComet",240,0,0)
+    ELAM F 0 A_CustomMissile("HDComet",280,-50,0)
+    ELAM F 0 A_CustomMissile("HDComet",280,50,0)
+    ELAM F 0 A_CustomMissile("HDComet",200,-50,0)
+    ELAM F 0 A_CustomMissile("HDComet",200,50,0)
+    ELAM F 0 A_CustomMissile("HDComet",240,-75,0)
+    ELAM F 0 A_CustomMissile("HDComet",240,75,0)
+    ELAM F 7 Bright A_FaceTarget
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See
+  StrongBall:
+    ELAM NO 9 A_FaceTarget
+	ELAM P 0 A_CustomMissile("EOHStrongBall",260,120,random(-1,1))
+    ELAM P 6 Bright A_CustomMissile("EOHStrongBall",260,-120,random(-1,1))
+    ELAM QR 9 Bright A_FaceTarget
+	ELAM S 0 A_CustomMissile("EOHStrongBall",110,120,random(-1,1))
+    ELAM S 6 Bright A_CustomMissile("EOHStrongBall",110,-120,random(-1,1))
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See	
+  StormBall:
+    ELAM NO 4 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM P 0 A_FaceTarget
+    ELAM P 0 A_CustomMissile("EOHStormBall",260,120,random(-7,7))
+    ELAM P 2 Bright A_CustomMissile("EOHStormBall",260,-120,random(-7,7))
+    ELAM QR 4 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+    ELAM S 0 A_FaceTarget
+    ELAM S 0 A_CustomMissile("EOHStormBall",110,120,random(-7,7))
+    ELAM S 2 Bright A_CustomMissile("EOHStormBall",110,-120,random(-7,7))
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See
+  BrainBall:
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 4 Bright A_FaceTarget
+    ELAM F 8 Bright A_CustomMissile("CebComBrainBall",150,0,random(-5,5))
+    ELAM F 0 A_FaceTarget
+    ELAM F 8 Bright A_CustomMissile("CebComBrainBall",150,0,random(-5,5))
+    ELAM F 0 A_FaceTarget
+    ELAM F 8 Bright A_CustomMissile("CebComBrainBall",150,0,random(-5,5))
+	ELAM F 0 A_FaceTarget
+    ELAM F 8 Bright A_CustomMissile("CebComBrainBall",150,0,random(-5,5))
+	ELAM F 0 A_FaceTarget
+    ELAM F 8 Bright A_CustomMissile("CebComBrainBall",150,0,random(-5,5))
+	ELAM F 0 A_FaceTarget
+    ELAM F 8 Bright A_CustomMissile("CebComBrainBall",150,0,random(-5,5))
+    ELAM E 4 bright A_FaceTarget
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See
+  SoulKeeper:
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 8 Bright A_PainAttack("SoulKeeper")
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 8 Bright A_PainAttack("SoulKeeper")
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 8 Bright A_PainAttack("SoulKeeper")
+    ELAM D 5 A_FaceTarget
+    ELAM E 5 A_FaceTarget
+    ELAM F 8 Bright A_PainAttack("SoulKeeper")
+    TNT1 A 0 A_Jump(110,"SoulKeeper")
+	TNT1 A 0 A_Jump(128,"Missile")
+	TNT1 A 0 A_Jump(128,"Avoid","Teleport")
+    Goto See
+  GiantSoul:
+	//TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_PlaySoundEx("pain/sight","Body",0,2)
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM D 0 A_FaceTarget ELAM D 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM E 0 A_FaceTarget ELAM E 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM F 0 A_FaceTarget ELAM F 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+    TNT1 A 0 A_PlaySoundEx("rictus/attack","Body",0,2)
+	ELAM F 8 Bright A_CustomMissile("EOHGiantSoulProj",75,0,0)
+	//TNT1 A 0 A_UnSetInvulnerable
+	ELAM EEEEEE 4 bright A_FaceTarget
+    Goto See
+  SelfExplode:
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_PlaySoundEx("pain/sight","Body",0,2)
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(5) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(10) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")	
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(-20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")
+	ELAM G 0 A_Stop ELAM G 0 A_Recoil(20) ELAM G 2 Bright A_SpawnItemEx("EOHFlameSpawner")	
+    TNT1 A 0 A_SpawnItemEx("MegaExplosion")
+	TNT1 A 0 A_CustomMissile("EOHMegaExplosion")
+	ELAM G 8 Bright ACS_NamedExecuteAlways("Elemental Of Hell Self Explode",0,0,0,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	ELAM EEEEEE 4 bright A_FaceTarget
+    Goto See
+  Death:
+	ELAM H 10 A_ScreamAndUnblock
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(100,-100),Random(100,-100),Random(20,256),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud",random(20,256),0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("BigExplosion",0,0,random(150,170),2,random(80,100))
+	ELAM HHHHHHHHHHHHHHHHH 2 Bright A_CustomMissile("Kaboom",random(20,256),random(140,-140),random(0,360),2,random(0,360))
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(100,-100),Random(100,-100),Random(20,256),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud",random(20,256),0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("BigExplosion",0,0,random(150,170),2,random(80,100))
+	TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("Explode",random(20,160),random(20,-20),random(0,360),2,random(0,360))
+	ELAM IIIIIIIIIIIIIIIII 2 Bright A_CustomMissile("Kaboom",random(20,256),random(140,-140),random(0,360),2,random(0,360))
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(100,-100),Random(100,-100),Random(20,256),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud",random(20,256),0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("BigExplosion",0,0,random(150,170),2,random(80,100))
+	TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("Explode",random(20,160),random(20,-20),random(0,360),2,random(0,360))
+	ELAM JJJJJJJJJJJJJJJJJ 2 Bright A_CustomMissile("Kaboom",random(20,256),random(140,-140),random(0,360),2,random(0,360))
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(100,-100),Random(100,-100),Random(20,256),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud",random(20,256),0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("BigExplosion",0,0,random(150,170),2,random(80,100))
+	TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("Explode",random(20,160),random(20,-20),random(0,360),2,random(0,360))
+	ELAM KKKKKKKKKKKKKKKKK 2 Bright A_CustomMissile("Kaboom",random(20,256),random(140,-140),random(0,360),2,random(0,360))
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(100,-100),Random(100,-100),Random(20,256),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud",random(20,256),0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("BigExplosion",0,0,random(150,170),2,random(80,100))
+	TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("Explode",random(20,160),random(20,-20),random(0,360),2,random(0,360))
+	ELAM LLLLLLLLLLLLLLLLL 2 Bright A_CustomMissile("Kaboom",random(20,256),random(140,-140),random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("MegaExplosion")
+	TNT1 A 0 A_CustomMissile("EOHMegaExplosion")
+	ELAM M 8 Bright ACS_NamedExecuteAlways("Elemental Of Hell Self Explode",0,0,0,0)
+    Stop
+  }
+}
+
+
+ACTOR EOHFastProj
+{
+Radius 7
+Height 7
+Speed 56
+Damage 24
+Scale 1.50
+Projectile
+Seesound "legsoul/attack1"
+DeathSound "legsoul/explode1" 
+RenderStyle Translucent
+Decal DoomImpScorch
+Alpha 0.7
+States
+{
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LS41 AB 3 Bright
+	TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LS41 CD 3 Bright
+    Loop
+  Death:
+    TNT1 A 0
+    TNT1 AAAAAA 0 A_CustomMissile("Kaboom11", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AA 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_Explode(38,158)
+    LS41 EFGHIJ 3 Bright
+    LS41 K 1
+    Stop
+  }
+}
+
+ACTOR EOHStrongBall
+{
+Radius 8
+Height 8
+Speed 34
+Damage 50
+Scale 1.0
+PROJECTILE
+RENDERSTYLE ADD
+Decal Scorch
+ALPHA 0.95
+SeeSound "monsters/newfireshoot"
+DeathSound "monsters/newfireexplode"
+Scale 3.0
+States
+{
+   Spawn: 
+   	  TNT1 A 0 A_CStaffMissileSlither
+      LFB2 A 1 Bright A_SpawnItemEx("EOHStrongBallTrail",0,0,0,0,0,0,0,128)
+	  TNT1 A 0 A_CStaffMissileSlither
+      LFB2 A 1 Bright A_SpawnItemEx("EOHStrongBallTrail",0,0,0,0,0,0,0,128)
+      Loop
+   Death:
+	  TNT1 A 0
+	  TNT1 A 0 A_Explode(32,64,0)
+	  TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	  TNT1 AAA 0 A_CustomMissile("LegendaryKaboom6", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0 A_CustomMissile("BlueKaboom", 0, 0, random(0,360), 2, random(0,360))	
+	  TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX2", 0, 0, random(0,360), 2, random(0,360))	  
+      LFB2 C 5 Bright A_Explode(128,222,0)
+      LFB2 DE 5 Bright
+      Stop
+   }
+}
+
+Actor EOHStrongBallTrail
+{       
+PROJECTILE
++NOCLIP
++CLIENTSIDEONLY
+Scale 3.0
+Renderstyle ADD
+Alpha 0.6
+Scale 2.6
+States
+{   
+   Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+	LFB2 AB 4 Bright A_FadeOut(0.05)
+	Stop
+   Toaster:
+    TNT1 A 0
+	Stop	
+	}
+}
+
+ACTOR EOHStormBall : LegBanBall3
+{
+Radius 6
+Height 12
+Speed 64
+Damage 14
+PROJECTILE
+RENDERSTYLE ADD
+Alpha 0.80
+DeathSound "legbanished/explode2"
++FORCEXYBILLBOARD
+-SEEKERMISSILE
+Decal DoomImpScorch
+Scale 1.5
+States
+{
+  Fly:
+	LAN3 ABC 2 Bright A_SpawnItemEx("LegBanBall3Trail",0,0,2,0,0,0,0,128,0)
+	Loop	
+   }
+}
+
+ACTOR EOHSoulRainSpawner : RainCometSpawner
+{
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Wander
+	TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Wander
+	TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Wander
+    TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 35 A_CustomMissile("EOHSoulRain",-18,random(-30,30),random(0,359),CMF_AIMDIRECTION,random(-35,-56))
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Wander
+FadeOut:
+	TNT1 A 2 A_FadeOut(0.06)
+    Goto FadeOut
+	}
+}
+
+ACTOR EOHSoulRain : RainComet
+{
+DamageType "Hell"
+Gravity 0.0
++NOGRAVITY
++SEEKERMISSILE
+Speed 28
+SeeSound "forgotten/sight"
+DeathSound "forgotten/death"
+Damage 11
+Decal Scorch
+States
+{
+Spawn:
+TNT1 A 0 A_SeekerMissile(15,5,SMF_LOOK)
+FRGO C 2 Bright A_SpawnItem("ForgottenOneFireSpawner",0,0,0,0)
+TNT1 A 0 A_SeekerMissile(15,5,SMF_LOOK)
+FRGO D 2 Bright A_SpawnItem("ForgottenOneFireSpawner",0,0,0,0)
+Loop
+  Death:
+    TNT1 A 0
+    TNT1 A 0 A_SetTranslucent(0.75,1)
+    FRGO EFGH 4 Bright
+    TNT1 AA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    FRGO I 4 Bright
+    FRGO JK 4 Bright
+    Stop
+}
+}
+
+Actor EOHGiantSoulProj
+{		
+Radius 8
+Height 8
+Speed 55
+Damage 150
+Scale 3.0
+SeeSound "rictus/attack"
+DeathSound "rictus/die"
+Damagetype "Hell"
+PROJECTILE
++RANDOMIZE
++DONTREFLECT
++MTHRUSPECIES
++SEEKERMISSILE
++FORCERADIUSDMG
++EXPLODEONWATER
++SKYEXPLODE
+Decal Scorch
+States
+{
+  Spawn:
+    RICT B 0 A_SpawnItem("EOHGiantSoulProjGhost",0,0,0,0)
+    RICT B 1 Bright A_SeekerMissile(25,35)
+    Loop
+   Death:
+    TNT1 A 0
+	TNT1 A 0 A_Explode(1588,788,0)
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 A_SpawnItemEx("MegaExplosion")
+	TNT1 AA 0 A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 A 0 A_SpawnItemEx("SoulPart2",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 AA 0 A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+    TNT1 AA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    MISL B 5 Bright
+	MISL CD 4 Bright
+    Stop
+  }
+}
+
+ACTOR EOHMegaExplosion
+{
++NOCLIP
+DamageType "Hell"
+Projectile
+States
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_Explode(1024,3000,0)
+	Stop
+  }
+}
+
+ACTOR EOHGiantSoulProjGhost
+{
+Scale 2.9
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    RICT B 2 A_FadeOut(0.06)
+    Loop
+    }
+}
+
+ACTOR EOHFlameSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ArcradimusFire",random(128,-128),random(128,-128),random(0,196),0,0,random(4,12),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR ElementalOfHellGhost
+{
+Scale 4.8
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    ELAM A 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR ElementalOfHellGhost2 : ElementalOfHellGhost
+{
+States
+{
+Spawn:
+    ELAM F 2 A_FadeOut(0.18)
+    Loop
+    }
+}

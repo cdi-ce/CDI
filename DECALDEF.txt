@@ -1,0 +1,241 @@
+Decal Creeperballdecal
+{
+	Pic SRBAJ0
+	Fullbright
+	Randomflipx
+	X-Scale 0.5
+	Y-Scale 0.5
+	Animator Creeperanim
+}
+
+decal DBFGScorch1
+{
+	pic BFGSCRC1
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal DBFGScorch2
+{
+	pic BFGSCRC2
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decalgroup DBFGScorch
+{
+	DBFGScorch1	1
+	DBFGScorch2	1
+}
+
+decal DBFGLightning1
+{
+	pic BFGLITE1
+	shade "00 80 ff"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal DBFGScorch
+}
+
+decal DBFGLightning2
+{
+	pic BFGLITE2
+	shade "00 80 ff"
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal DBFGScorch
+}
+
+decalgroup DBFGLightning
+{
+	DBFGLightning1	1
+	DBFGLightning2	1
+}
+
+DECAL DBFG9500Lightning
+{
+Pic B3DEA0
+Add 1.0
+X-Scale 0.25
+Y-Scale 0.25
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway2
+LowerDecal BFGScorch
+}
+
+Generator Enforcer-Weapons BulletChip
+Generator New10KProjectile BFG15KLightning
+
+Decal BigScorch
+{
+Pic SCORCH1
+Shade "00 00 00"
+X-Scale 2.4
+Y-Scale 2.4
+RandomFlipx
+RandomFlipy
+}
+
+Decal NukeScorch
+{
+Pic SCORCH1
+Shade "00 00 00"
+X-Scale 5.0
+Y-Scale 5.0
+RandomFlipx
+RandomFlipy
+}
+
+Decal NukeRocketScorch
+{
+Pic RKDEA0
+Add 1.0
+X-Scale 1.6
+Y-Scale 1.6
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal NukeScorch
+}
+
+Decal BigRocketScorch
+{
+Pic RKDEA0
+Add 1.0
+X-Scale 0.8
+Y-Scale 0.8
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal BigScorch
+}
+
+Decal BigGreenScorch
+{
+Pic RKDGA0
+Add 1.0
+X-Scale 0.8
+Y-Scale 0.8
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal BigScorch
+}
+
+Decal HugeGreenScorch
+{
+Pic RKDGA0
+Add 1.0
+X-Scale 1.6
+Y-Scale 1.6
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal NukeScorch
+}
+
+Decal BigRedScorch
+{
+Pic RRKDA0
+Add 1.0
+X-Scale 0.8
+Y-Scale 0.8
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal BigScorch
+}
+
+Decal HugeRedScorch
+{
+Pic RRKDA0
+Add 1.0
+X-Scale 1.6
+Y-Scale 1.6
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal NukeScorch
+}
+
+Decal BigYellowScorch
+{
+Pic LRDEA0
+Add 1.0
+X-Scale 0.8
+Y-Scale 0.8
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal BigScorch
+}
+
+Decal HugeYellowScorch
+{
+Pic LRDEA0
+Add 1.0
+X-Scale 1.6
+Y-Scale 1.6
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal NukeScorch
+}
+
+Decal PhaseRifleProjectileScorch
+{
+Pic PDTEA0
+Add 1.0
+X-Scale 0.06
+Y-Scale 0.06
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal DoomImpScorch
+}
+
+Decal Phase15KBallScorch
+{
+Pic PDTEA0
+Add 1.0
+X-Scale 0.15
+Y-Scale 0.15
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal Scorch
+}
+
+/*
+Decal BulletChip
+Decal LegBulletChip
+Decal Scorch
+Decal RocketScorch
+Decal DoomImpScorch
+Decal GreenRocketScorch
+Decal HeatScorch
+Decal BFG9500LightningRed
+Decal DBFGLightning
+Decal Cardinal15KLightning
+Decal BaronScorch
+Decal LegRocketScorch
+Decal BFG10KLightning
+Decal BFG9500Lightning
+Decal DTRScorch
+*/

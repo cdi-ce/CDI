@@ -1,0 +1,324 @@
+//=========================================================\\
+// --------------------- Purifier Bot --------------------- \\
+//=========================================================\\
+
+Actor PurifierBot : MechPickup
+{
+  Scale 0.7
+  States
+  {
+  Spawn:
+    PUSU A 1 A_SpawnItemEx("SuitIndicator",0,0,80)
+    Loop
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("PurifierBotGiver")
+	Stop
+  Nope:
+	PUSU A 1
+	Stop
+  }
+}
+
+Actor PurifierBot_Used1 : PurifierBot
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("PurifierBotGiver_Used1")
+	Stop
+  }
+}
+
+Actor PurifierBot_Used2 : PurifierBot
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("PurifierBotGiver_Used2")
+	Stop
+  }
+}
+
+Actor PurifierBot_Used3 : PurifierBot
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("PurifierBotGiver_Used3")
+	Stop
+  }
+}
+
+Actor PurifierBotGiver : MechGiver{Powerup.Type "PurifierBot"}
+ACTOR PurifierBotGiver_Used1 : PurifierBotGiver{Powerup.Type "PurifierBot_Used1"}
+ACTOR PurifierBotGiver_Used2 : PurifierBotGiver{Powerup.Type "PurifierBot_Used2"}
+ACTOR PurifierBotGiver_Used3 : PurifierBotGiver{Powerup.Type "PurifierBot_Used3"}
+
+Actor PowerPurifierBot : PowerMorph
+{
+  PowerMorph.PlayerClass "Mech_PurifierBot"
+  PowerMorph.MorphFlash "Nothing"
+  PowerMorph.UnMorphFlash "Nothing"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR PowerPurifierBot_Used1 : PowerPurifierBot{PowerMorph.PlayerClass "Mech_PurifierBot_Used1"}
+ACTOR PowerPurifierBot_Used2 : PowerPurifierBot{PowerMorph.PlayerClass "Mech_PurifierBot_Used2"}
+ACTOR PowerPurifierBot_Used3 : PowerPurifierBot{PowerMorph.PlayerClass "Mech_PurifierBot_Used3"}
+
+Actor Mech_PurifierBot : BaseMech
+{
+	Health 600
+	Radius 20
+    Height 56
+	Scale 0.7
+	Speed 0.8
+	Mass 500
+	Player.MaxHealth 600
+	Player.ForwardMove 0.7
+	Player.SideMove 0.45
+	Player.JumpZ 9
+	Player.SoundClass Mech
+	Player.DisplayName "Purifier Bot"
+	Player.AttackZOffset 30
+	Player.DamageScreenColor Blue, 0.1
+	Player.ViewHeight 64
+	Player.MorphWeapon "PurifierBot-Weapons"
+	PainChance 0
+	DamageFactor 0.4
+	RadiusDamageFActor 0.7
+	+NOBLOOD
+	States
+	{
+  Spawn:
+	PUSU A 1
+	Loop
+  See:
+	PUSU AABB 3
+	TNT1 A 0 A_PlaySound("baby/walk")
+	PUSU CCDD 3
+	TNT1 A 0 A_PlaySound("baby/walk")
+	Goto Spawn
+  Melee:
+  Missile:
+	PUSU F 7 Bright
+	Goto Spawn
+  Death:
+	PUSU A 0 A_NoBlocking
+	PUSU A 0 A_PlaySound("ZTank/death")
+	TNT1 A 0 A_SpawnItemEx("ShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	PUSU AAAAAAAAAAAAAAAAA 2 bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	PUSU GGGGGGGGGGGGGGGGG 2 bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItemEx("ShockWave",0,0,0,0,0,0,0,128) 
+	TNT1 AAA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)  
+	TNT1 AAA 0 A_CustomMissile("SmokeFX3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAAAA 0 A_CustomMissile("Kaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AA 0 A_SpawnItemEx("M79GrenadeKaBoom",random(-40,40),random(-40,40),0,0,0,0,0,128)
+	TNT1 A 0 Bright A_CustomMissile("Explosion",0,0,random(80,100),2,random(80,100))
+	PUSU H -1
+	Stop
+}
+}
+
+ACTOR Mech_PurifierBot_Used1 : Mech_PurifierBot{Health 450}
+ACTOR Mech_PurifierBot_Used2 : Mech_PurifierBot{Health 300}
+ACTOR Mech_PurifierBot_Used3 : Mech_PurifierBot{Health 150}
+
+Actor PurifierBot-Weapons  : MechWeapon
+{
+  Obituary "%o was destroyed by %k's purifier bot."
+  Decal DoomImpScorch	
+  States
+  {	
+  Ready:
+	MHUD A 0
+	MHUD A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+    MHUD A 1 A_WeaponReady
+    Goto Ready
+  Fire:
+    MHUD A 0 A_JumpIfInventory("MechRocketReload",1,"FireGo")
+    MHUD A 0 A_GiveInventory("MechRocketReload",1)
+	MHUD B 0 A_PlayWeaponSound("erasus/load")
+    MHUD B 0 ACS_ExecuteAlways(3104,0,51)
+	MHUD A 0 ACS_ExecuteAlways(3113,0,18)
+	MHUD A 0 
+    Goto Ready	
+  FireGo:
+	MHUD B 0 A_GunFlash
+	MHUD B 0 A_PlaySound("drone/fire")
+	MHUD B 0 A_FireCustomMissile("ErasusSmallProj",0,0,14,0)
+    MHUD B 1 Bright A_FireCustomMissile("ErasusSmallProj",0,0,-14,0)
+	MHUD B 0 A_FireCustomMissile("ErasusSmallProj",0,0,14,0)
+    MHUD B 1 Bright A_FireCustomMissile("ErasusSmallProj",0,0,-14,0)
+	MHUD B 0 A_FireCustomMissile("ErasusSmallProj",0,0,14,0)
+    MHUD B 1 Bright A_FireCustomMissile("ErasusSmallProj",0,0,-14,0)
+	MHUD B 0 A_FireCustomMissile("ErasusSmallProj",0,0,14,0)
+    MHUD B 1 Bright A_FireCustomMissile("ErasusSmallProj",0,0,-14,0)
+	MHUD B 0 A_FireCustomMissile("ErasusSmallProj",0,0,14,0)
+    MHUD B 1 Bright A_FireCustomMissile("ErasusSmallProj",0,0,-14,0)
+    MHUD A 1 A_Refire
+    Goto Ready
+  AltFire:
+	MHUD A 0 A_JumpIfInventory("MechSeekerRocketReload",1,"AltFireGo")
+    MHUD A 0 A_GiveInventory("MechSeekerRocketReload",1)
+    MHUD B 0 ACS_ExecuteAlways(3104,0,52)
+	MHUD A 0 ACS_ExecuteAlways(3113,0,19)
+	MHUD A 0 
+    Goto Ready	
+  AltFireGo:
+	MHUD B 0 A_GunFlash
+	MHUD B 0 A_PlaySound("plasmaminigun/fire")
+	MHUD B 0 Radius_Quake(2,2,0,1,0)
+	MHUD B 0 A_SpawnItemEx("RedCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	MHUD B 0 A_SpawnItemEx("RedCasing",25,8,25,Random(2,4),Random(3,6),Random(3,6),0)
+    MHUD B 4 Bright A_FireBullets(4.3,2.6,2,15,"VulcanPlasmaPuff")
+    MHUD A 1 A_Refire
+    Goto Ready
+  GrenadeCheck:
+	MHUD A 0 A_JumpIfInventory("MechRailgunReload",1,"GrenadeCheckNope")
+    MHUD A 0 A_GiveInventory("MechRailgunReload",1)
+    MHUD B 0 ACS_ExecuteAlways(3104,0,53)
+	MHUD B 0 A_TakeInventory("HandGrenadeAction",1)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+	MHUD B 3 Bright A_SpawnItemEx("PurifierDroneMarker",104,0,16)
+	MHUD A 3
+    MHUD B 3 Bright A_SpawnItemEx("PurifierDrone",104,0,16,0,0,0,0,32)
+	Goto Ready
+  GrenadeCheckNope:
+	MHUD B 0
+	MHUD B 0 A_TakeInventory("HandGrenadeAction",1)
+	MHUD B 15 A_PlayWeaponSound("sentry/warn")
+	Goto Ready
+  }
+}
+
+ACTOR PurifierBot-Weapons-Erasus : CustomInventory
+{       
+Inventory.Amount 1
+Inventory.MaxAmount 1
++INVENTORY.QUIET
++INVENTORY.UNDROPPABLE
++INVENTORY.ALWAYSPICKUP
++INVENTORY.AUTOACTIVATE
+States
+{
+  Use:
+	TNT1 A 0 
+	TNT1 A 0 A_FireCustomMissile("ErasusProj2",0,0,-28,28)
+	TNT1 A 0 A_FireCustomMissile("ErasusProj2",0,0,28,28)
+	Stop
+}
+}
+
+ACTOR PurifierBot-Weapons-Vulvan : CustomInventory
+{       
+Inventory.Amount 1
+Inventory.MaxAmount 1
++INVENTORY.QUIET
++INVENTORY.UNDROPPABLE
++INVENTORY.ALWAYSPICKUP
++INVENTORY.AUTOACTIVATE
+States
+{
+  Use:
+	TNT1 A 0 
+	TNT1 A 0 A_PlayWeaponSound("vulcan/altfire")
+	TNT1 A 0 A_FireCustomMissile("VulcanLazer",0,0,-20,28)
+	TNT1 A 0 A_FireCustomMissile("VulcanLazer",0,0,20,28)
+	TNT1 A 0 A_FireCustomMissile("VulcanLazer",0,0,-28,28)
+	TNT1 A 0 A_FireCustomMissile("VulcanLazer",0,0,28,28)
+	TNT1 A 0 A_FireCustomMissile("VulcanLazer",0,0,-36,28)
+	TNT1 A 0 A_FireCustomMissile("VulcanLazer",0,0,36,28)
+	Stop
+}
+}
+
+ACTOR PurifierBot_UsedWait1
+{
+  Radius 12
+  Height 32
+  Scale 0.7
+  States
+  {
+  Spawn:
+    PUSU AA 35
+    PUSU A 1 A_SpawnItemEx("PurifierBot_Used1")
+    Stop
+  }
+}
+
+ACTOR PurifierBot_UsedWait2 : PurifierBot_UsedWait1
+{
+  States
+  {
+  Spawn:
+    PUSU AA 35
+    PUSU A 1 A_SpawnItemEx("PurifierBot_Used2")
+    Stop
+  }
+}
+
+ACTOR PurifierBot_UsedWait3 : PurifierBot_UsedWait1
+{
+  States
+  {
+  Spawn:
+    PUSU AA 35
+    PUSU A 1 A_SpawnItemEx("PurifierBot_Used3")
+    Stop
+  }
+}
+
+ACTOR PurifierBot_Destroyed
+{
+  Scale 1.2
+  States
+  {
+  Spawn:
+    PUSU A 70	
+	Death:
+	PUSU A 0 A_NoBlocking
+	PUSU A 0 A_PlaySound("ZTank/death")
+	TNT1 A 0 A_SpawnItemEx("ShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	PUSU AAAAAAAAAAAAAAAAA 2 bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	PUSU GGGGGGGGGGGGGGGGG 2 bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItemEx("ShockWave",0,0,0,0,0,0,0,128) 
+	TNT1 AAA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)  
+	TNT1 AAA 0 A_CustomMissile("SmokeFX3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAAAA 0 A_CustomMissile("Kaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AA 0 A_SpawnItemEx("M79GrenadeKaBoom",random(-40,40),random(-40,40),0,0,0,0,0,128)
+	TNT1 A 0 Bright A_CustomMissile("Explosion",0,0,random(80,100),2,random(80,100))
+	PUSU H -1
+	Stop
+  }
+}

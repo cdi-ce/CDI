@@ -1,0 +1,5590 @@
+//============
+// Old Weapons
+//============
+
+ACTOR "Chainsaw  " : "Chainsaw " replaces "Chainsaw "
+{
+Inventory.PickupMessage "\c[S7]Chainsaw"
+States
+{
+  Ready:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfInventory("PowerInsanitySphere",1,"ReadyInsanity")
+	TNT1 A 0 A_PlaySound("weapons/sawidle",CHAN_WEAPON,1.0,1)
+	SAWH ABCD 2 A_WeaponReady
+	Loop
+  ReadyInsanity:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("PowerInsanitySphere",1,1)
+	Goto Ready
+	TNT1 A 0 A_PlaySound("weapons/sawidle",CHAN_WEAPON,1.0,1)
+	SAWH ABCD 1 A_WeaponReady
+	Loop		
+  Fire:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfInventory("PowerInsanitySphere",1,"Insanity")
+	SAWL AB 1
+  Hold:
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	SAWN A 2 A_Saw("weapons/sawfull","weapons/sawhit",Random(2,4),"SawScreech")
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	SAWN B 2 A_Saw("weapons/sawfull","weapons/sawhit",Random(2,4),"SawScreech")	
+	TNT1 A 0 A_Refire
+	SAWL BA 1
+	Goto Ready
+  Insanity:
+	SAWL AB 1
+  InsanityHold:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("PowerInsanitySphere",1,1)
+	Goto Hold
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	SAWN A 1 A_Saw("weapons/sawfull","weapons/sawhit",Random(24,56),"SawScreech",0,192)
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	SAWN B 1 A_Saw("weapons/sawfull","weapons/sawhit",Random(24,56),"SawScreech",0,192)	 
+	TNT1 A 0 A_Refire("InsanityHold")
+	SAWL BA 1
+	Goto Ready
+}
+}
+
+ACTOR "Combat Shotgun " : "Combat Shotgun" replaces "Combat Shotgun"
+{
+Inventory.PickupMessage "\c[Q4]Combat Shotgun"
+Decal BulletChip
+States
+{
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReadyUpgraded")
+    TNT1 A 0 A_PlayWeaponSound("weapons/12gsgcock")
+    SG1R ABCDE 1
+	SG1R F 2
+	SG1R G 3
+	SG1R FE 2
+	SG1R H 1
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",1,"Ready2")
+	Goto Ready3
+  Ready2:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReadyUpgraded")
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",1,1)
+	Goto Ready3
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	SHTG A 1 A_WeaponReady
+	Loop
+  Ready3:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReadyUpgraded")
+    TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",1,"Ready2")   
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	SHTD A 1 A_WeaponReady
+	Loop
+  Deselect:
+    TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"DeselectUpgraded")
+	SHTG A 1 A_Lower
+    Goto Deselect+2 
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting: 
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"FireUpgraded")
+    TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_PlaySound("weapons/12gaugefire",CHAN_WEAPON)
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 AAAA 0 A_FireCustomMissile("SGTracer",Random(6,-6),0,0,Random(6,-6))
+    SHTF A 2 Bright A_FireBullets(3.8,2.4,7,Random(5,7),"ModdedBulletPuff")
+    SHTF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	SHTF CDEF 1
+    SHTG BCDEFG 1
+    SHTG G 1 A_PlaySound("weapons/12gsgcock")
+	SHTG HI 2
+    SHTG J 2 A_SpawnItemEx("ShellCasing",30,-2,25,Random(2,4),Random(3,6),Random(3,6),0)
+    SHTG IHGF 2
+    SHTG EDCB 1
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",1,3)
+	SHTD A 2
+	TNT1 A 0 A_ReFire
+    Goto Ready3
+	SHTG A 2
+	TNT1 A 0 A_ReFire
+    Goto Ready+11
+  Empty:
+    SHTD A 10 A_PlayWeaponSound("weapons/click")	
+  AltFire:
+    TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",9,2)
+    TNT1 A 0 A_JumpIfInventory("NewShell",1,2)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReadyUpgradedLoop")
+	Goto Ready+11
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"AltFireUpgraded")
+	SHTG BCD 1
+	SHTG EFG 2
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",1,"Reload")
+    SHTR ABC 1	
+	SHTR D 1 A_PlaySound("Weapons/ShellLoad")
+	SHTR E 1
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("ShotgunMagazine",1)
+	SHTR FGHI 1
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    SHER A 1 A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+    SHER B 2
+    SHTG G 2 A_PlayWeaponSound("weapons/12gsgcock")
+	SHTG HIJIH 2
+    TNT1 A 0 A_JumpIfInventory("NewShell",1,1)
+	Goto Full	
+	SHER BA 2
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",9,"Full")   
+    SHTR ABC 1
+	SHTR D 1 A_PlaySound("Weapons/ShellLoad")
+	SHTR E 1
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("ShotgunMagazine",1)
+	SHTR FGHI 1
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheckReloading")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheckReloading")
+	SHTR A 1 A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"Reload")
+  Full:
+	SHTG GFEDCB 1
+	SHTG A 3
+	Goto Ready+11
+  // UPGRADE: EXPLOSIVE SHOTGUN
+  ReadyUpgraded:
+	TNT1 A 0 A_PlaySound("ExplosiveShotgun/Pump",1)
+	HLSQ ABCDEFGH 1
+  ReadyUpgradedLoop:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	HLSA A 1 A_WeaponReady
+	Loop
+  DeselectUpgraded:
+	HLSA A 1 A_Lower
+	Wait
+  FireUpgraded:
+	TNT1 A 0 A_JumpIfNoAmmo("EmptyUpgraded")
+	TNT1 A 0 A_PlaySound("ExplosiveShotgun/Fire",7)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(-4,4),0,0,0,0,frandom(-3,3))
+	TNT1 A 0 A_FireBullets(4.0,3.0,8,Random(5,7),"ModdedBulletPuff")
+	HLSF A 1 Bright
+	HLSF B 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	HLSF CDEGI 1  
+	HLSC ABCDEFGHIJK 1
+	TNT1 A 0 A_PlaySound("ExplosiveShotgun/Pump",1)
+	HLSC LM 1
+	HLSC N 2 A_SpawnItemEx("OrangeShellCasing",30,-1,25,Random(2,4),Random(3,6),Random(3,6),0)
+	HLSC MMLKJOHGEFEDCBA 1
+	HLSA A 4
+	Goto ReadyUpgradedLoop
+  EmptyUpgraded:
+	HLSA A 10 A_PlayWeaponSound("weapons/click")
+  AltFireUpgraded:
+    TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",9,"ReadyUpgradedLoop")
+    TNT1 A 0 A_JumpIfInventory("NewShell",1,1)
+	goto RealyReady
+	HLSC ABCDEFGH 1
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",1,"ReloadUpgraded")
+    HLSR ABCDE 1	
+	HLSR F 1 A_PlaySound("Weapons/ShellLoad")
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("ShotgunMagazine",1)
+	HLSR GHIJ 1
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    HLSR A 1 A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+	TNT1 A 0 A_PlayWeaponSound("ExplosiveShotgun/Pump")
+	HLSC IJKLM 1
+	HLSC N 2
+	HLSC MLK 1
+    TNT1 A 0 A_JumpIfInventory("NewShell",1,1)
+	Goto FullUpgraded
+  ReloadUpgraded:
+    HLSR ABCDE 1	
+	HLSR F 1 A_PlaySound("Weapons/ShellLoad")
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("ShotgunMagazine",1)
+	HLSR GHIJ 1
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    HLSR A 1 A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+	TNT1 A 0 A_JumpIfInventory("ShotgunMagazine",9,"FullUpgraded")
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"ReloadUpgraded")
+  FullUpgraded:
+    HLSC HGFEDCBA 1
+	HLSA A 4
+	Goto ReadyUpgradedLoop
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,2)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeTossUpgraded")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReadyUpgradedLoop")
+	Goto Ready+11
+  GrenadeCheckReloading:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,2)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeTossUpgraded")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReloadUpgraded")
+	Goto Reload
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,2)
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineTossUpgraded")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReadyUpgradedLoop")
+	Goto Ready+11
+  MineCheckReloading:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,2)
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineTossUpgraded")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderCombatShotgun",1,"ReloadUpgraded")
+	Goto Reload
+  GrenadeTossUpgraded:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	HLSQ HGFEDCBA 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	HLSQ ABCDEFGH 1
+	Goto ReadyUpgradedLoop
+  MineTossUpgraded:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	HLSQ HGFEDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	HLSQ ABCDEFGH 1
+	Goto ReadyUpgradedLoop
+
+}
+}
+
+ACTOR "Assault Shotgun  " : "Assault Shotgun " Replaces "Assault Shotgun "
+{
+Scale 0.85
+Weapon.PreferredSkin "AssaultSG-Marine"
+Weapon.SelectionOrder 4500
+Weapon.KickBack 80
+Weapon.AmmoUse 1
+Weapon.AmmoGive 16
+Weapon.AmmoGive2 8
+Weapon.SlotNumber 3
+Weapon.AmmoType "V25ShotgunDrum"
+Weapon.AmmoType2 "NewShell"
+Inventory.PickupSound "AShotgun/Cock"
+Inventory.PickupMessage "\c[Q4]Assault Shotgun"
+Obituary "%o was blown away by %k's Assault Shotgun."
+Decal BulletChip
++WEAPON.AMMO_OPTIONAL
++WEAPON.NOALERT
++INVENTORY.UNDROPPABLE
+States
+{
+  Ready:
+    TNT1 A 0 A_PlayWeaponSound("AShotgun/Cock")
+	ASGR ABCDE 1
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"ReadyUpgraded")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    SMAG A 1 A_WeaponReady
+    Goto Ready+6
+  ReadyUpgraded:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    ASGG A 1 A_WeaponReady
+    Loop
+  Deselect: 
+    TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"DeselectUpgraded")
+    SMAG A 1 A_Lower
+    Goto Deselect+1
+  DeselectUpgraded:
+	ASGG A 1 A_Lower
+	Loop
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting: 
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"FireUpgraded")
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_PlaySound("AShotgun/Fire")
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_SpawnItemEx("ShellCasing",30,5,25,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 AAAA 0 A_FireCustomMissile("SGTracer",Random(5,-5),0,0,0,0,Random(5,-5))
+    SMAF A 2 Bright A_FireBullets(6.0,3.2,7,Random(5,7),"ModdedBulletPuff")
+    SMAF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+    SMAG BCDE 1
+	SMAG FA 2
+    Goto Ready+6
+  FireUpgraded:
+	TNT1 A 0 A_JumpIfNoAmmo("EmptyUpgraded")
+	TNT1 A 0 A_PlaySound("AssaultExplosiveShotgun/Fire")
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(-4,4),0,0,0,0,frandom(-3,3))
+    ASGG L 2 Bright A_FireBullets(4.0,3.0,8,Random(5,7),"ModdedBulletPuff")
+    ASGG M 2 Bright
+    ASGG NNNN 1
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",30,-1,25,Random(2,4),Random(3,6),Random(3,6),0)
+    ASGG A 2 A_PlaySound("AssaultExplosiveShotgun/Pump",7)
+    ASGG A 2
+    ASGG A 0 A_ReFire
+    Goto ReadyUpgraded
+  Empty:
+    SMAG A 10 A_PlayWeaponSound("weapons/click")
+  AltFire:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"AltFireUpgraded")
+  	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",16,2)
+    TNT1 A 0 A_JumpIfInventory("NewShell",1,2)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"ReadyUpgraded")
+	Goto Ready+6
+	SMAR ABCDEF 1
+	SMAR GO 2
+	SMAR N 2 A_PlayWeaponSound("AShotgun/DrumOut")
+	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",1,"MaxReload")
+	SMAR H 3
+	SMAR I 2
+	SMAR JKL 1
+	SMAR M 25 A_FireCustomMissile("EmptyDrumSpawner", 0, 0, 10, 1) 
+	SMAR LKJ 1
+	SMAR I 2
+	SMAR P 6 A_PlayWeaponSound("AShotgun/DrumIn")
+	SMAR NOG 2
+	SMAR FEDCBA 1
+	SMAG A 5
+	SMCK AB 2
+	SMCK C 4 A_PlayWeaponSound("AShotgun/Cock")
+	SMCK D 3
+	SMCK A 2
+	SMAG A 3	
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"Reload")
+  Reload:
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("V25ShotgunDrum",1)
+	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",16,2)
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"Reload")
+	TNT1 A 0
+	Goto Ready+6
+  MaxReload:
+  	SMAR H 3
+	SMAR I 2
+	SMAR JKL 1
+	SMAR M 25 A_FireCustomMissile("EmptyDrumSpawner", 0, 0, 10, 1) 
+	SMAR LKJ 1
+	SMAR I 2
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"Reload2")
+  Reload2:
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("V25ShotgunDrum",1)
+	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",16,"Full")
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"Reload2")
+  Full:
+	SMAR P 6 A_PlayWeaponSound("AShotgun/DrumIn")
+	SMAR NOG 2
+	SMAR FEDCBA 1
+	SMAG A 3
+	Goto Ready+6
+  EmptyUpgraded:
+    ASGG A 10 A_PlayWeaponSound("weapons/click")
+  AltFireUpgraded:
+  	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",30,2)
+    TNT1 A 0 A_JumpIfInventory("NewShell",1,2)
+	TNT1 A 0
+	Goto Ready+6
+	ASGG ABCCDD 1
+	ASGG EF 2
+	ASGG G 2 A_PlayWeaponSound("AShotgun/DrumOut")
+	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",1,"MaxReloadUpgraded")
+	ASGG H 3
+	ASGG I 2
+	ASGG JJJ 1
+	ASGG K 25 A_FireCustomMissile("EmptyDrumSpawner", 0, 0, 10, 1) 
+	ASGG JJJ 1
+	ASGG I 2
+	ASGG G 6 A_PlayWeaponSound("AShotgun/DrumIn")
+	ASGG FFE 2
+	ASGG DDCCBA 1
+	ASGG A 5
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"ReloadUpgraded")
+  ReloadUpgraded:
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("V25ShotgunDrum",1)
+	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",30,2)
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"ReloadUpgraded")
+	TNT1 A 0
+	Goto ReadyUpgraded
+  MaxReloadUpgraded:
+	ASGG H 3
+	ASGG I 2
+	ASGG JJJ 1
+	ASGG K 25 A_FireCustomMissile("EmptyDrumSpawner", 0, 0, 10, 1) 
+	ASGG JJJ 1
+	ASGG I 2
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"ReloadUpgraded2")
+  ReloadUpgraded2:
+	TNT1 A 0 A_TakeInventory("NewShell",1)
+	TNT1 A 0 A_GiveInventory("V25ShotgunDrum",1)
+	TNT1 A 0 A_JumpIfInventory("V25ShotgunDrum",30,"FullUpgraded")
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"ReloadUpgraded2")
+  FullUpgraded:
+	ASGG G 6 A_PlayWeaponSound("AShotgun/DrumIn")
+	ASGG FFE 2
+	ASGG DDCCBA 1
+	ASGG A 5
+	Goto ReadyUpgraded
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,2)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeTossUpgraded")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"ReadyUpgraded")
+	Goto Ready+6
+  GrenadeToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	ASGR EDCBA 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 3
+	HGRN EFGHI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	Goto Ready+1
+  GrenadeTossUpgraded:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	ASGG A 1 Bright Offset(0,30)
+	ASGG A 1 Bright Offset(0,40)
+	ASGG A 1 Bright Offset(0,50)
+	ASGG A 1 Bright Offset(0,60)
+	ASGG A 1 Bright Offset(0,70)
+	TNT1 A 4 Offset(0,10)
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	ASGG A 1 Bright Offset(0,70)
+	ASGG A 1 Bright Offset(0,60)
+	ASGG A 1 Bright Offset(0,50)
+	ASGG A 1 Bright Offset(0,40)
+	ASGG A 1 Bright Offset(0,30)
+	Goto ReadyUpgraded
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,2)
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineTossUpgraded")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultShotgun",1,"ReadyUpgraded")
+	Goto Ready+6
+  MineToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	ASGR EDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	Goto Ready+1
+  MineTossUpgraded:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	ASGG A 1 Bright Offset(0,30)
+	ASGG A 1 Bright Offset(0,40)
+	ASGG A 1 Bright Offset(0,50)
+	ASGG A 1 Bright Offset(0,60)
+	ASGG A 1 Bright Offset(0,70)
+	TNT1 A 8 Offset(0,10)
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	ASGG A 1 Bright Offset(0,70)
+	ASGG A 1 Bright Offset(0,60)
+	ASGG A 1 Bright Offset(0,50)
+	ASGG A 1 Bright Offset(0,40)
+	ASGG A 1 Bright Offset(0,30)
+	Goto ReadyUpgraded
+  Spawn:
+    SMAP A -1
+    Stop
+}
+}
+
+ACTOR V25ShotgunDrum : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 16
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 16
+	Inventory.Icon "ASTHA0"
+	+IGNORESKILL
+}
+
+ACTOR "Quad Barrel Shotgun " : "Quad Barrel Shotgun"  replaces "Quad Barrel Shotgun"
+{
+Decal Bulletchip
+Inventory.PickupMessage "\c[Q4]Quad Barrel Shotgun"
+States
+{
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderQuadBarrelShotgun",1,"QuadFireUpgraded")
+	TNT1 A 0 A_JumpIfInventory("QuadShell",4,"QuadFire")
+	TNT1 A 0 A_JumpIfInventory("NewShell",2,"Reload")
+	Goto Empty
+  QuadFire:
+	TNT1 A 0 A_PlaySound("weapons/qsgfire")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(2)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("QuadShell",4)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(10,-10))
+    QS4F A 2 Bright A_FireBullets(11.8,7.3,52,5,"ModdedBulletPuff")
+    QS4F B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	QSGN CFG 1
+	QSGN H 2
+	QSER A 3
+	QSER B 6
+	QSGN GFEDC 2
+  QuadReloadCheck:
+  	TNT1 A 0 A_JumpIfInventory("NewShell",4,2)
+	QSGN S 2
+	Goto Ready+9
+	TNT1 A 0
+	Goto ReloadFourShells+3
+  QuadFireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("NewShell",4,1)
+	Goto EmptyUpgraded
+	TNT1 A 0 A_PlaySound("weapons/qsgfire")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(2)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("NewShell",4,TIF_NOTAKEINFINITE)
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(10,-10))
+    QS4F A 2 Bright A_FireBullets(11.8,7.3,52,5,"ModdedBulletPuff")
+    QS4F B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	QSGN CFG 1
+	QSGN H 2
+	QSER A 3
+	QSER B 6
+	QSGN GFEDC 2
+    QSGN A 10
+    QSGN A 10 A_Refire
+	Goto Ready+9
+  EmptyUpgraded:
+    QSGN A 10 A_PlayWeaponSound("weapons/click")
+	Goto Ready+9
+  AltFire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderQuadBarrelShotgun",1,"AltFireUpgraded")
+    TNT1 A 0 A_JumpIfInventory("QuadShell",4,"FireUpper")
+	TNT1 A 0 A_JumpIfInventory("QuadShell",2,1)
+	Goto Reload
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("QuadShell",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+    QSGF C 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	QSGF D 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	QREC ABCDE 1
+	QSGN A 1
+    Goto Ready+9
+  AltFireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("NewShell",2,1)
+	Goto EmptyUpgraded
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("NewShell",2,TIF_NOTAKEINFINITE)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+	TNT1 A 0 A_Jump(256,"AltFireUpgradedUpper","AltFireUpgradedLower")
+  AltFireUpgradedUpper:
+    QSGF A 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	QSGF B 2 Bright A_Light2
+    Goto AltFireUpgradedEnd
+  AltFireUpgradedLower:
+    QSGF C 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	QSGF D 2 Bright A_Light2
+    Goto AltFireUpgradedEnd
+  AltFireUpgradedEnd:
+	TNT1 A 0 A_Light0
+	QREC ABCDE 1
+    QSGN A 10
+    QSGN A 1 A_Refire
+    Goto Ready+9
+  FireUpper:
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("QuadShell",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+    QSGF A 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	QSGF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	QREC ABCDE 1
+	QSGN A 1
+    Goto Ready+9	
+  Empty:
+    QSGN A 10 A_PlayWeaponSound("weapons/click")
+	TNT1 A 0 A_JumpIfInventory("NewShell",4,"ReloadFourShells")
+	Goto Ready+9
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("QuadShell",2,"ReloadTwoShells")
+	TNT1 A 0 A_JumpIfInventory("NewShell",4,"ReloadFourShells")
+	Goto Empty
+  ReloadFourShells:
+	QSGN SRQ 1
+	QSGN PJ 1
+	QSGN K 1
+	TNT1 AAAA 0 A_SpawnItemEx("SSGShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	QSGN L 1
+	QSGR A 4 A_PlayWeaponSound("weapons/qsgopen")
+	QSGR B 1
+	QSGR CD 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("QuadShell",2)
+	QSGR E 2 A_PlayWeaponSound("weapons/qsgshellslide")
+	QSGR F 2
+	QSGR G 2
+	QSGR H 1
+	QSGR I 1
+	QSGR JK 1
+	QSGR LM 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("QuadShell",2)
+	QSGR N 2 A_PlayWeaponSound("weapons/qsgshellslide")	
+	QSGR O 2
+	QSGR P 1
+	QSGR Q 1
+	QSGN MNO 1
+	QSGN P 1 A_PlayWeaponSound("weapons/qsgclose")
+	QSGN QRS 1
+	QSGN A 1
+    Goto Ready+9
+  ReloadTwoShells:
+    TNT1 A 0 A_JumpIfInventory("NewShell",2,1)
+	Goto Ready+9
+	QSGN SRQ 1
+	QSGN P 1
+	QSEX A 1
+	QSEX B 1
+	TNT1 AA 0 A_SpawnItemEx("SSGShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	QSEX C 1
+	QSGR I 4 A_PlayWeaponSound("weapons/qsgopen")
+	QSGR JK 1
+	QSGR LM 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("QuadShell",2)
+	QSGR N 2 A_PlayWeaponSound("weapons/qsgshellslide")	
+	QSGR O 2
+	QSGR P 1
+	QSGR Q 1
+	QSGN MNO 1
+	QSGN P 1 A_PlayWeaponSound("weapons/qsgclose")
+	QSGN QRS 1
+	QSGN A 1
+	Goto Ready+9
+}
+}
+
+ACTOR "Hexa-Shotgun " : "Hexa-Shotgun" replaces "Hexa-Shotgun"
+{
+Weapon.AmmoGive 6
+Weapon.AmmoGive2 12
+Tag "Hexa Barrel Shotgun"
+Decal Bulletchip
+Inventory.PickupMessage "\c[Q4]Hexa Barrel Shotgun"
+States
+{
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderHexa-Shotgun",1,"HexaFireUpgraded")
+	TNT1 A 0 A_JumpIfInventory("HexaShell",6,"HexaFire")
+	TNT1 A 0 A_JumpIfInventory("NewShell",2,1)
+	Goto Empty
+	TNT1 A 0 A_JumpIfInventory("HexaShell",4,"ReloadTwoShells")
+	TNT1 A 0 A_JumpIfInventory("NewShell",4,1)
+	Goto Empty
+	TNT1 A 0 A_JumpIfInventory("HexaShell",2,"ReloadFourShells")
+	Goto Empty
+  HexaFire:
+	TNT1 A 0 A_PlaySound("weapons/hsgfire")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(2)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("HexaShell",6)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(10,-10))
+    HS4F A 1 Bright A_FireBullets(11.8,7.3,52,5,"ModdedBulletPuff")
+    HS4F A 1 Bright A_FireBullets(13.8,7.3,26,5,"ModdedBulletPuff")
+    HS4F B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	HSGN CFG 1
+	HSGN H 2
+	HSER A 3
+	HSER B 6
+	HSGN GFEDC 2
+  HexaReloadCheck:
+  	TNT1 A 0 A_JumpIfInventory("NewShell",6,2)
+	HSGN S 2
+	Goto Ready+9
+	TNT1 A 0
+	Goto ReloadSixShells+3
+  HexaFireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("NewShell",6,1)
+	Goto EmptyUpgraded
+	TNT1 A 0 A_PlaySound("weapons/hsgfire")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(2)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("NewShell",6,TIF_NOTAKEINFINITE)
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(10,-10))
+    HS4F A 1 Bright A_FireBullets(11.8,7.3,52,5,"ModdedBulletPuff")
+    HS4F A 1 Bright A_FireBullets(13.8,7.3,26,5,"ModdedBulletPuff")
+    HS4F B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	HSGN CFG 1
+	HSGN H 2
+	HSER A 3
+	HSER B 6
+	HSGN GFEDC 2
+    HSGN A 20
+    HSGN A 10 A_Refire
+	Goto Ready+9
+  EmptyUpgraded:
+    HSGN A 10 A_PlayWeaponSound("weapons/click")
+	Goto Ready+9
+  AltFire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderHexa-Shotgun",1,"AltFireUpgraded")
+    TNT1 A 0 A_JumpIfInventory("HexaShell",6,"FireUpper")
+    TNT1 A 0 A_JumpIfInventory("HexaShell",4,"FireMiddle")
+	TNT1 A 0 A_JumpIfInventory("HexaShell",2,1)
+	Goto Reload
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("HexaShell",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+    HSGF E 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	HSGF F 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	HSRC ABCDE 1
+	HSGN A 1
+    Goto Ready+9
+  AltFireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("NewShell",2,1)
+	Goto EmptyUpgraded
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("NewShell",2,TIF_NOTAKEINFINITE)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+	TNT1 A 0 A_Jump(256,"AltFireUpgradedUpper","AltFireUpgradedMiddle","AltFireUpgradedLower")
+  AltFireUpgradedUpper:
+    HSGF A 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	HSGF B 2 Bright A_Light2
+    Goto AltFireUpgradedEnd
+  AltFireUpgradedMiddle:
+    HSGF C 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	HSGF D 2 Bright A_Light2
+    Goto AltFireUpgradedEnd
+  AltFireUpgradedLower:
+    HSGF E 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	HSGF F 2 Bright A_Light2
+    Goto AltFireUpgradedEnd
+  AltFireUpgradedEnd:
+	TNT1 A 0 A_Light0
+	HSRC ABCDE 1
+	HSGN A 5
+	HSGN A 1 A_Refire
+    Goto Ready+9
+  FireUpper:
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("HexaShell",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+    HSGF A 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	HSGF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	HSRC ABCDE 1
+	HSGN A 1
+    Goto Ready+9	
+  FireMiddle:
+    TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")	
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("HexaShell",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,0,0,Random(8,-8))
+    HSGF C 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	HSGF D 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	HSRC ABCDE 1
+	HSGN A 1
+    Goto Ready+9	
+  Empty:
+    HSGN A 10 A_PlayWeaponSound("weapons/click")
+	TNT1 A 0 A_JumpIfInventory("NewShell",6,"ReloadSixShells")
+	Goto Ready+9
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("HexaShell",2,"ReloadTwoShells")
+	TNT1 A 0 A_JumpIfInventory("HexaShell",4,"ReloadFourShells")
+	TNT1 A 0 A_JumpIfInventory("NewShell",6,"ReloadSixShells")
+	Goto Empty	
+  ReloadSixShells:
+	HSGN SRQ 1
+	HSGN PJ 1
+	HSGN K 1
+	TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	HSGN L 1
+	HSGR A 4 A_PlayWeaponSound("weapons/qsgopen")
+	HSGR B 1
+	HSGR CD 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("HexaShell",2)
+	HSGR E 2 A_PlayWeaponSound("weapons/qsgshellslide")
+	HSGR F 2
+	HSGR G 1
+	HSGR H 1
+	HSGR I 1
+	HSGR JK 1
+	HSGR LM 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("HexaShell",2)
+	HSGR N 2 A_PlayWeaponSound("weapons/qsgshellslide")
+	HSGR O 2
+	HSGR P 1
+	HSGR Q 1
+	HSGR R 1
+	HSGR ST 1
+	HSGR U 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("HexaShell",2)
+	HSGR V 2 A_PlayWeaponSound("weapons/qsgshellslide")	
+	HSGR W 2
+	HSGR X 1
+	HSGR Y 1
+	HSGN MNO 1
+	HSGN P 1 A_PlayWeaponSound("weapons/qsgclose")
+	HSGN QRS 1
+	HSGN A 1
+    Goto Ready+9
+  ReloadFourShells:
+    TNT1 A 0 A_JumpIfInventory("NewShell",4,1)
+	Goto Ready+9
+	HSGN SRQ 1
+	HSGN P 1
+	HSEX A 1
+	HSEX B 1
+	TNT1 AAAA 0 A_SpawnItemEx("SSGShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	HSEX C 1
+	HSGR I 4 A_PlayWeaponSound("weapons/qsgopen")
+	HSGR JK 1
+	HSGR LM 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("HexaShell",2)
+	HSGR N 2 A_PlayWeaponSound("weapons/qsgshellslide")	
+	HSGR O 2
+	HSGR P 1
+	HSGR Q 1
+	HSGR RS 1
+	HSGR TU 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("HexaShell",2)
+	HSGR V 2 A_PlayWeaponSound("weapons/qsgshellslide")	
+	HSGR W 2
+	HSGR X 1
+	HSGR Y 1
+	HSGN MNO 1
+	HSGN P 1 A_PlayWeaponSound("weapons/qsgclose")
+	HSGN QRS 1
+	HSGN A 1
+	Goto Ready+9
+  ReloadTwoShells:
+    TNT1 A 0 A_JumpIfInventory("NewShell",2,1)
+	Goto Ready+9
+	HSGN SRQ 1
+	HSGN P 1
+	HSEX A 1
+	HSEX B 1
+	TNT1 AA 0 A_SpawnItemEx("SSGShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	HSEX C 1
+	HSGR Q 4 A_PlayWeaponSound("weapons/qsgopen")
+	HSGR RS 1
+	HSGR TU 1
+	TNT1 A 0 A_TakeInventory("NewShell",2)
+	TNT1 A 0 A_GiveInventory("HexaShell",2)
+	HSGR V 2 A_PlayWeaponSound("weapons/qsgshellslide")	
+	HSGR W 2
+	HSGR X 1
+	HSGR Y 1
+	HSGN MNO 1
+	HSGN P 1 A_PlayWeaponSound("weapons/qsgclose")
+	HSGN QRS 1
+	HSGN A 1
+	Goto Ready+9
+}
+}
+
+ACTOR "Railgun  " : "Railgun " replaces "Railgun "
+{
+  Weapon.AmmoGive 70
+  Weapon.AmmoGive2 70
+  Weapon.AmmoType "NewCellCharge"
+  Inventory.PickupMessage "\c[m5]Railgun"
+  States
+  {
+  Ready:
+    TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,"ReadyPulse")
+    TNT1 A 0 A_PlayWeaponSound("weapons/railselect")
+	RAEU ABCDE 1
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_TakeInventory("RailgunZoomed",1)
+	TNT1 A 0 A_ZoomFactor(1)
+	RAIR A 1 A_WeaponReady
+    Goto Ready+7
+  ReadyZoomed:
+	RSCP A 1 A_WeaponReady
+	Goto ReadyLoop+2	
+  ReadyPulse:
+    TNT1 A 0 A_PlayWeaponSound("weapons/railselect")
+	RAIU ABCDE 1
+    Goto ReadyLoop
+  ReadyLoop:
+	TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,2)
+	TNT1 A 0
+	Goto Ready+7
+	TNT1 A 0 A_PlayWeaponSound("weapons/railgunhum")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady	
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RAIL C 1 A_WeaponReady
+    Goto ReadyLoop+2
+  ReadyZoomed:
+	TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,2)
+	TNT1 A 0 Bright
+	Goto Ready+7
+	TNT1 A 0 A_PlayWeaponSound("weapons/railgunhum")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    RSCP A 1 Bright A_WeaponReady(WRF_NOBOB)
+    Goto ReadyZoomed+2	
+  Deselect:
+    TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,"Deselect2")
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_TakeInventory("RailgunZoomed",1)
+	TNT1 A 0 A_ZoomFactor(1)
+	RAIR A 1 A_Lower
+    Goto Deselect+2
+  Deselect2:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_TakeInventory("RailgunZoomed",1)
+	TNT1 A 0 A_ZoomFactor(1)
+	RAIL A 1 A_Lower
+    Goto Deselect2+1	
+  Select:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+  	TNT1 A 0 
+  	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderRailgun",1,"FireUpdated")
+    TNT1 A 0 A_JumpIfInventory("RailgunZoomed",1,"FireZoomed")
+    TNT1 A 0 A_JumpIfNoAmmo("Empty")
+    TNT1 A 0 A_AlertMonsters  
+	TNT1 A 0 Radius_Quake(12,4,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_FireCustomMissile("RailgunImpact",0,0)
+	RAIF A 2 Bright A_RailAttack(300,0,1,"00 85 FF",None,RGF_FULLBRIGHT,0,"PlayerRailPuff",0,0,0,40,0.65,0,"NewRailgunTrail")
+	RAIF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,"ChargedRecoil")
+	RAER ABCD 2
+	RAER EFG 1
+	RAIR A 40
+    Goto Ready+7
+  FireUpdated:
+    TNT1 A 0 A_JumpIfInventory("NewCell",20,1)
+    Goto Empty
+    TNT1 A 0 A_AlertMonsters  
+	TNT1 A 0 Radius_Quake(12,4,0,1,0)
+    TNT1 A 0 A_GunFlash
+    TNT1 A 0 A_JumpIfInventory("RailgunZoomed",1,"FireZoomedUpdated")
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_FireCustomMissile("GaussCannonImpact",0,0)
+	TNT1 A 0 A_TakeInventory("NewCell",20,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_RailAttack(1200,0,0,"00 FF 85",None,0,0,"GaussCannonRailPuff",0,0,0,35,0.5,0.5,"GaussCannonTrail")
+    RAIF A 2 Bright A_PlayWeaponSound("GaussCannon/Fire")
+	RAIF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	RAER ABCD 2
+	RAER EFG 1
+	RAIR A 60
+    Goto ReadyLoop
+  FireZoomed:
+  	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderRailgun",1,"FireZoomedUpdated")
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+    TNT1 A 0 A_AlertMonsters  
+	TNT1 A 0 Radius_Quake(12,4,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light2
+	TNT1 A 0 A_FireCustomMissile("RailgunImpact",0,0)
+	RSCP A 4 Bright A_RailAttack(300,0,1,"00 85 FF",None,RGF_FULLBRIGHT,0,"PlayerRailPuff",0,0,0,40,0.65,0,"NewRailgunTrail")
+	RSCP A 50 A_Light0
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	Goto ReadyZoomed
+  FireZoomedUpdated:
+	TNT1 A 0 A_Light2
+	TNT1 A 0 A_FireCustomMissile("GaussCannonImpact",0,0)
+	TNT1 A 0 A_TakeInventory("NewCell",20,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_RailAttack(1200,0,0,"00 FF 85",None,0,0,"GaussCannonRailPuff",0,0,0,35,0.5,0.5,"GaussCannonTrail")
+	RSCP A 4 Bright A_PlayWeaponSound("GaussCannon/Fire")
+	RSCP A 70 A_Light0
+	Goto ReadyZoomed
+  Empty:
+    RAIR A 15 A_PlaySound("weapons/click2")
+  AltFire:
+	TNT1 A 0 A_ZoomFactor(1)
+    TNT1 A 0 A_JumpIfInventory("NewCellCharge",70,2)
+    TNT1 A 0 A_JumpIfInventory("NewCell",10,2)
+	TNT1 A 0
+	Goto ReadyLoop
+	TNT1 A 0 A_ZoomFactor(1)	
+	RAIR ABCDEFG 1
+	RAIR H 4 A_PlayWeaponSound("weapons/cellreload")
+	RAIR IJKL 2
+	RAIR M 1
+	RAIR N 1 A_FireCustomMissile("CellCasingSpawner", random(-13,-15), 0, 2, 1)
+	RAIR OPQR 1
+	RAIR ST 2
+	RAIR U 20
+	RAIR VWX 1
+	RAIR YZ 2
+	RARL A 2
+	TNT1 A 0 A_JumpIfInventory("NewCell",10,"Reload")	
+	RARL B 4
+	RARL C 3
+	RARL DE 2
+	RAIR A 30
+	RAIF J 10 A_PlayWeaponSound("weapons/plasmacellin")
+	Goto ReadyLoop+2
+  Reload:
+    TNT1 A 0 A_TakeInventory("NewCell",10)
+	TNT1 A 0 A_GiveInventory("NewCellCharge",10)
+	TNT1 A 0 A_JumpIfInventory("NewCellCharge",70,"Full")
+	TNT1 A 0 A_JumpIfInventory("NewCell",1,"Reload")
+	Goto AltFire+33
+  Full:
+    TNT1 A 0 A_JumpIfInventory("RailgunZoomed",1,"ZoomAgain")
+	Goto AltFire+33
+  ZoomAgain:
+	RAIL A 3 A_ZoomFactor(5)
+	RAIL BC 3
+	Goto ReadyZoomed
+  GrenadeToss:
+	TNT1 A 0 A_ZoomFactor(1)
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,"GrenadeToss2")
+	RAEU EDCBA 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("RailgunZoomed",1,"ZoomAgain")
+	Goto Ready+2
+  GrenadeToss2:
+	RAIU EDCBA 1
+	TNT1 A 6
+	HGRN ABC 1
+	HGRN D 3
+	HGRN EFGHI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("RailgunZoomed",1,"ZoomAgain")
+	Goto ReadyPulse+1
+  MineToss:
+	TNT1 A 0 A_ZoomFactor(1)
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("NewCellCharge",10,"MineToss2")
+	RAEU EDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5 A_JumpIfInventory("RailgunZoomed",1,"ZoomAgain")
+	Goto Ready+2
+  MineToss2:
+	RAIU EDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5 A_JumpIfInventory("RailgunZoomed",1,"ZoomAgain")
+	Goto ReadyPulse+1
+}
+}
+
+ACTOR NewCellCharge : Ammo
+{
+Inventory.Amount 0
+Inventory.MaxAmount 70
+Ammo.BackpackAmount 0
+Ammo.BackpackMaxAmount 70
+Inventory.Icon "HRAIA0"
++IGNORESKILL
+}
+
+Actor "Explosive Minigun " : Weapon replaces "Explosive Minigun"
+{
+Weapon.Selectionorder 690
+Weapon.KickBack 50
+Weapon.PreferredSkin "ExplosiveMinigun-Marine"
+Weapon.AmmoType "BulletMag"
+Weapon.AmmoGive 20
+Weapon.AmmoUse 1
+//Weapon.UpSound "weapons/explosiveminigunpickup"
+Weapon.UpSound ""
+//AttackSound "sentient/fire"
+AttackSound ""
+Inventory.PickupSound "weapons/explosiveminigunpickup"
+Inventory.PickupMessage "\c[z4]Explosive Minigun"
+Obituary "%o was ripped to bloody chunks by %k's Explosive Minigun."
++INVENTORY.UNDROPPABLE
++WEAPON.NOAUTOAIM
+States 
+{
+  Spawn:
+	CHNG X -1
+	Stop
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,"ReadyUpgraded")
+	CHNG A 1 A_WeaponReady
+	Loop
+  ReadyUpgraded:
+	IMMG A 1 A_WeaponReady
+	Loop
+  ReadySpin:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,"ReadySpinUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspin", 5)
+	CHNG ABCDABCDABCD 1 A_WeaponReady
+	Loop
+  ReadySpinUpgraded:
+	TNT1 A 0 A_PlaySound("weapons/expmgunspin", 5)
+	IMMG ABCDABCDABCD 1 A_WeaponReady
+	Loop
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive2",1)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive",1)
+	TNT1 A 0 A_PlaySound("weapons/weapondown", 5)
+  Deselecting:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,"DeselectingUpgraded")
+	CHNG A 1 A_Lower
+	TNT1 A 0 A_Lower
+	Loop
+  DeselectingUpgraded:
+	IMMG A 1 A_Lower
+	TNT1 A 0 A_Lower
+	Loop
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive2",1)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,2)
+	TNT1 A 0 A_PlaySound("weapons/explosiveminigunpickup",7)
+	Goto Selecting
+	TNT1 A 0 A_PlaySound("ImprovedMinigun/Up",7)
+	Goto SelectingUpgraded
+  Selecting: 
+	TNT1 A 0 A_Raise
+	CHNG A 1 A_Raise
+    Wait
+  SelectingUpgraded: 
+	TNT1 A 0 A_Raise
+	IMMG A 1 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,"FireUpgraded")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")   
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive2",1,"Firing")
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive",1,"Firing")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart", 5)
+	CHNG ABC 2
+	CHNG DABCDABC 1
+  Firing:
+	TNT1 A 0 A_GiveInventory("ExpMinigunActive",1)
+	TNT1 A 0 A_PlaySound("weapons/expmgunspin", 5)
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_PlaySound("sentient/fire", CHAN_WEAPON)
+	TNT1 A 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(4,-4),0,0,Random(4,-4))
+	CHNF A 1 Bright A_FireBullets(4.8,2.4,-1,Random(6,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")   
+	CHNF BC 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_PlaySound("sentient/fire", CHAN_WEAPON)   
+	TNT1 A 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(4,-4),0,0,Random(4,-4))
+	CHNF D 1 Bright A_FireBullets(4.8,2.4,-1,Random(6,10),"ModdedBulletPuff")
+	CHNF E 1 Bright
+  Hold:
+	TNT1 A 0 A_GiveInventory("ExpMinigunActive",1)
+	TNT1 A 0 A_PlaySound("weapons/expmgunspin", 5)
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_PlaySound("sentient/fire", CHAN_WEAPON)
+	TNT1 A 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(4,-4),0,0,Random(4,-4))
+	CHNF F 1 Bright A_FireBullets(4.8,2.4,-1,Random(6,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")
+	CHNF G 1 Bright
+	CHNF HI 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_PlaySound("sentient/fire", CHAN_WEAPON)   
+	TNT1 A 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(4,-4),0,0,Random(4,-4))
+	CHNF J 1 Bright A_FireBullets(4.8,2.4,-1,Random(6,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")   
+	CHNF KL 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,3),Random(-3,-5),Random(3,5),0)
+	TNT1 A 0 A_PlaySound("sentient/fire", CHAN_WEAPON)   
+	TNT1 A 0 A_FireCustomMissile("PlayerExplosiveTracer",Random(4,-4),0,0,Random(4,-4))
+	CHNF M 1 Bright A_FireBullets(4.8,2.4,-1,Random(6,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")   
+	TNT1 A 0 A_ReFire
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive2",1,"ReadySpin")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstop", 5)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive",1)
+	CHNG ABCDABCD 1
+	CHNG ABCD 2
+	CHNG ABCD 3
+	Goto Ready
+  FireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDownUpgraded")   
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive2",1,"FiringUpgraded")
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive",1,"FiringUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart",7)
+	IMMG BCD 2
+	IMMG ABCDABCD 1
+  FiringUpgraded:
+	TNT1 A 0 A_PlaySound("weapons/expmgunspin",7)
+	TNT1 A 0 A_PlaySound("hitler/fire",CHAN_WEAPON)
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",2,TIF_NOTAKEINFINITE)
+	IMMG E 1 Bright A_FireBullets(4.3,2.6,-1,random(90,140),"ImprovedMinigunBulletPuff",FBF_NORANDOM|FBF_USEAMMO)
+	TNT1 A 0 A_Recoil(2)
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDownUpgraded")
+	IMMG ABC 1 A_Light0
+	TNT1 A 0 A_PlaySound("hitler/fire",CHAN_WEAPON)
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",2,TIF_NOTAKEINFINITE)
+	IMMG F 1 Bright A_FireBullets(4.3,2.6,-1,random(90,140),"ImprovedMinigunBulletPuff",FBF_NORANDOM|FBF_USEAMMO)
+	TNT1 A 0 A_Recoil(2)
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDownUpgraded")
+	IMMG ABC 1 A_Light0
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive2",1,"ReadySpinUpgraded")
+	TNT1 A 0 A_ReFire("FiringUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/mgunspinstop")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstop",7)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive",1)
+	IMMG ABCDABCD 1
+	IMMG ABCD 2
+	IMMG ABCD 3
+	Goto ReadyUpgraded
+  AltFire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,"EmptySpinDownUpgradedUpgraded")
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive2",1,"EmptySpinDown")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart", 5)
+	CHNG ABC 2
+	CHNG DABCDABCD 1
+	TNT1 A 0 A_GiveInventory("ExpMinigunActive2",1)
+	Goto ReadySpin
+  EmptySpinDownUpgradedUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("ExpMinigunActive2",1,"EmptySpinDownUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart", 5)
+	IMMG ABC 2
+	IMMG DABCDABCD 1
+	TNT1 A 0 A_GiveInventory("ExpMinigunActive2",1)
+	Goto ReadySpinUpgraded
+  EmptySpinDown:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderExplosiveMinigun",1,"EmptySpinDownUpgraded")
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive",1)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive2",1)
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstop", 5)
+	CHNG ABCDABCD 1
+	CHNG ABCD 2
+	CHNG ABCD 3
+	Goto Ready
+  EmptySpinDownUpgraded:
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive",1)
+	TNT1 A 0 A_TakeInventory("ExpMinigunActive2",1)
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstop", 5)
+	IMMG ABCDABCD 1
+	IMMG ABCD 2
+	IMMG ABCD 3
+	Goto ReadyUpgraded
+}
+}
+
+Actor ImprovedMinigunBulletPuff : ModdedBulletPuff
+{
+DamageType "MarinePierce"
++MTHRUSPECIES
++FOILINVUL
++NODAMAGETHRUST
++FORCERADIUSDMG
++PUFFONACTORS
++ALWAYSPUFF
+States
+{
+  Spawn:
+	TNT1 A 0
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItem("RocketEx")
+	TNT1 A 1 A_Explode(48,144,0)
+	Stop
+}
+}
+
+Actor LegendaryPlasmaticCannonType1 : Inventory{Inventory.MaxAmount 1}
+Actor LegendaryPlasmaticCannonType2 : Inventory{Inventory.MaxAmount 1}
+Actor "Legendary Plasmatic Cannon " : "Legendary Plasmatic Cannon" replaces "Legendary Plasmatic Cannon"
+{
+Weapon.AmmoUse 8
+Weapon.AmmoUse2 36
+Inventory.PickupMessage "\c[z3]Legendary Plasmatic Cannon"
+States
+{
+  Spawn:
+    LEGW Z -1
+    Loop
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+    LCAN A 1 A_WeaponReady
+    Loop
+  Select:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+    LCAN A 1 A_Raise
+    Loop
+  Fire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("LegendaryPlasmaticCannonType1",1,"Fire2")
+    TNT1 A 0 A_GunFlash
+	LCAN B 2 Bright
+	TNT1 A 0 A_PlaySound("LegCannon/Fire",1)
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+    LCAN C 2 Bright A_FireCustomMissile("LegendaryCannonBigBall",0,1,0,0)
+    LCAN DE 2 Bright
+	LCAN FFFGGGHHHAAA 1
+	LCAN A 3 A_Refire
+    Goto Ready
+  Fire2:
+	LCAN A 18 Bright A_PlaySound("legendarycannon/charge",7)
+	LCAN BBB 1 Bright
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)	
+	TNT1 A 0 A_PlaySound("LegCannon/Fire2",1)
+	TNT1 A 0 A_FireCustomMissile("LegendaryCannonProj",frandom(-5,5),0,0,0,0,frandom(-3,3))
+	TNT1 AA 0 A_FireCustomMissile("LegendaryCannonProj",frandom(-5,5),1,0,0,0,frandom(-3,3))
+    LCAN CCCDDDEEE 1 Bright
+	TNT1 A 0 A_JumpIfNoAmmo(2)
+	TNT1 A 0 A_Refire("Fire2")
+	TNT1 A 0 A_PlaySound("legendarycannon/steam",7)
+    LCAN FFFFFFGGGGGGHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_FireCustomMissile("LegendaryCannonSmoke",0,0,1,0)
+    Goto Ready	
+  AltFire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("LegendaryPlasmaticCannonType2",1,"AltFire2")
+	LCAN A 35 Bright A_PlayWeaponSound("legendarycannon/charge")
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)	
+	LCAN C 0 A_PlayWeaponSound("star/fire")
+    LCAN B 2 Bright A_FireCustomMissile("LegendaryCannonProjBlueStar",0,1,0,0)
+    LCAN CDE 2 Bright
+	LCAN FGH 3
+	TNT1 A 0 A_PlaySound("legendarycannon/steam")
+	TNT1 A 0 A_FireCustomMissile("LegendaryCannonSmoke",0,0,1,6)
+	LCAN AAAAAAAAAAAAAAAAAAAAAAA 3 A_FireCustomMissile("LegendaryCannonSmoke",0,0,1,6)
+	LCAN A 3 A_Refire
+    Goto Ready
+  AltFire2:
+	LCAN A 2 A_JumpIfInventory("LDemonAmmo",64,1)
+    Goto DryFire
+	LCAN A 62 Bright A_PlayWeaponSound("lrball3/charge")
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)	
+	LCAN C 0 A_PlayWeaponSound("lrball3/shot")
+	LCAN C 0 A_TakeInventory("LDemonAmmo",64,TIF_NOTAKEINFINITE)
+    LCAN B 0 A_FireCustomMissile("LegendaryCannonFocusBall",random(-4,4),0,0,0)
+    LCAN B 2 Bright A_FireCustomMissile("LegendaryCannonFocusBall",0,0,0,0)
+    LCAN CDE 2 Bright
+	LCAN FGH 3
+	TNT1 A 0 A_PlaySound("legendarycannon/steam")
+	TNT1 A 0 A_FireCustomMissile("LegendaryCannonSmoke",0,0,1,6)
+	LCAN AAAAAAAAAAAAAAAAAAAAAAA 3 A_FireCustomMissile("LegendaryCannonSmoke",0,0,1,6)
+	LCAN A 3 A_Refire
+    Goto Ready
+  GrenadeCheck:
+	LCAN A 0
+	LCAN A 0 A_TakeInventory("HandGrenadeAction",1)
+	LCAN A 0 A_JumpIfInventory("LegendaryPlasmaticCannonType1",1,4)
+	LCAN A 0 A_PlayWeaponSound("Weapon/Mod2")
+	LCAN A 0 A_Print("Primary Fire: Spread Homing Mod")
+	LCAN A 15 A_GiveInventory("LegendaryPlasmaticCannonType1",1)
+	Goto Ready
+	LCAN A 0 A_Print("Primary: Explosive Mod")
+	LCAN A 0 A_PlayWeaponSound("Weapon/Mod3")
+	LCAN A 15 A_TakeInventory("LegendaryPlasmaticCannonType1",1)
+	Goto Ready
+  MineCheck:
+	LCAN A 0
+	LCAN A 0 A_TakeInventory("MineAction",1)
+	LCAN A 0 A_JumpIfInventory("LegendaryPlasmaticCannonType2",1,4)
+	LCAN A 0 A_PlayWeaponSound("Weapon/Mod4")
+	LCAN A 0 A_Print("Secondary Fire: Focus Mod")
+	LCAN A 15 A_GiveInventory("LegendaryPlasmaticCannonType2",1)
+	Goto Ready
+	LCAN A 0 A_Print("Secondary Fire: Blue Star Mod")
+	LCAN A 0 A_PlayWeaponSound("Weapon/Mod5")
+	LCAN A 15 A_TakeInventory("LegendaryPlasmaticCannonType2",1)
+	Goto Ready
+  DryFire:
+    LCAN A 0 A_Print("Requires 64 ammunitions!")
+    LCAN A 10 A_PlayWeaponSound("weapons/click3")
+    Goto Ready
+  }
+}
+
+Actor LegendaryCannonFocusBall : LegRevBall3
+{
+Damage 100
+-EXTREMEDEATH
++MTHRUSPECIES
++SKYEXPLODE
+DamageType "Legendary"
+Decal BFG9500LightningBlue
+States
+{
+  Death:
+    TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 A 0 A_SpawnItemEx("LNCometDeath",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+    TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LegendaryCannonFocusProj",Random(-8,8),Random(-8,8),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION)	
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LegendaryCannonFocusProj",Random(-8,8),Random(-8,8),Random(-8,8),Random(45,70),0,Random(-3,3),Random(-14,14),SXF_NOCHECKPOSITION)
+	MMSD A 8 bright A_Explode(192,192,0)
+	Stop
+}
+}
+
+Actor LegendaryCannonFocusProj : LegRevSmallBall3
+{
++MTHRUSPECIES
++SKYEXPLODE
+DamageType "Legendary"
+Decal DoomImpScorch
+States
+{
+  Spawn:
+    LRBA A 0
+	LRBA A 0 A_CountDown
+    LRBA A 0 A_SeekerMissile(25,50,SMF_LOOK|SMF_PRECISE)
+	LRB3 AA 1 Bright A_SpawnItemEx("LegRevBall3Trail2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	LRBA A 0 A_SeekerMissile(25,50,SMF_LOOK|SMF_PRECISE)
+	LRB3 BB 1 Bright A_SpawnItemEx("LegRevBall3Trail2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	LRBA A 0 A_SeekerMissile(25,50,SMF_LOOK|SMF_PRECISE)
+	LRB3 CC 1 Bright A_SpawnItemEx("LegRevBall3Trail2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	LRBA A 0 A_SeekerMissile(25,50,SMF_LOOK|SMF_PRECISE)
+	LRB3 DD 1 Bright A_SpawnItemEx("LegRevBall3Trail2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+    Loop
+}
+}
+
+Actor LegendaryCannonBigBall
+{
+Radius 8
+Height 10
+Speed 90
+Damage 70
+Scale 0.1
+Projectile 
++MTHRUSPECIES
++FORCERADIUSDMG
++NOTIMEFREEZE
++SKYEXPLODE
+Decal BFG9500LightningBlue
+DeathSound "lrball3/exp"
+DamageType "Legendary"
+RenderStyle Add
+States
+{
+  Spawn:
+	LRBA A 1 Bright A_SpawnItemEx("LegRevBall3Trail")
+    Loop
+  Death:
+	TNT1 A 0 A_SetScale(1.0)
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveBlue", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AA 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("LNCometDeath",0,0,0,0,0,0,0,128,0)
+    TNT1 A 0 A_Explode(220,300,0,0,250)
+    QRE3 ABCDEF 5 Bright
+    Stop
+}
+}
+
+Actor LegendaryCannonProjBlueStar
+{
+Radius 12
+Height 12
+Speed 45
+Damage 250
+Scale 3.2
+Projectile
+RenderStyle Add
++SEEKERMISSILE
++EXTREMEDEATH
++SPAWNSOUNDSOURCE
++DONTREFLECT
++NOTIMEFREEZE
++MTHRUSPECIES
++FORCERADIUSDMG
++SKYEXPLODE
++BRIGHT
+Alpha 0.8
+DamageType "Legendary"
+DeathSound "star/explode"
+Decal LegRocketScorch
+Obituary "%o was mechanized by a Legendary Hell Knight that was given a second chance."
+States
+{
+  Spawn:
+	TNT1 A 0 A_SeekerMissile(25,50,SMF_LOOK|SMF_PRECISE)
+	LRB1 AB 2 A_CustomMissile("BluestarFX",0,0,0,0)
+	TNT1 A 0 A_SeekerMissile(25,50,SMF_LOOK|SMF_PRECISE)
+	LRB1 CD 2 A_CustomMissile("BluestarFX",0,0,0,0)
+	Loop
+  Death:
+	TNT1 A 0 A_Explode(256,256)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_CustomMissile("BlueDiggerExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItem("BlueDiggerEx")
+	LRB1 ABCDABCDABCDABCD 2 A_Fire
+	TNT1 A 0 A_Explode(256,256)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_CustomMissile("BlueDiggerExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItem("BlueDiggerEx")
+	LRB1 ABCDABCDABCDABCD 2 A_Fire
+	TNT1 A 0 A_Explode(256,256)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_CustomMissile("BlueDiggerExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItem("BlueDiggerEx")
+	LRB1 ABCDABCDABCDABCD 2 A_Fire
+	TNT1 A 0 A_Explode(256,256)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_CustomMissile("BlueDiggerExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItem("BlueDiggerEx")
+	LRB1 ABCDABCDABCDABCDABCDABCDABCDABCD 2 A_Fire
+	TNT1 A 0 A_Explode(484,512)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+    TNT1 A 0 A_SpawnItemEx("BlueHugeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("BlueDTech10KShockwave", 0, 0, 15, 0, 0, 0, 0, 128)
+	TNT1 A 20 A_SpawnItem("BlueDTBFGEx",0,-10)
+	TNT1 A 0 A_SpawnItem("BlueDiggerEx")
+	LRB1 EFGHIJKLMNO 3 Bright
+	Stop
+}
+}
+
+ACTOR MLegendaryCannonProjBlueStar : LegendaryCannonProjBlueStar{DamageType "Marine"}
+
+ACTOR "Legendary Machine Gun" : Weapon replaces "Legendary AK-47"
+{
+Tag "Legendary Machine Gun"
+Weapon.PreferredSkin "LegLMG-Marine"
+Weapon.AmmoType "LLMGMagazine"
+Weapon.AmmoType2 "LegendaryBulletMag"
+Weapon.SelectionOrder 380
+Weapon.KickBack 200
+Weapon.AmmoGive 76
+Weapon.AmmoGive2 20
+Weapon.AmmoUse 1
+Scale 0.95
+Inventory.PickupSound "weapons/LMGReload3"
+Obituary "%o was turned into swiss cheese by %k's Legendary Machine Gun."
+Inventory.PickupMessage "\c[z3]Legendary Machine Gun"
+Decal LegBulletChip
++WEAPON.AMMO_OPTIONAL
++WEAPON.NOALERT
++INVENTORY.UNDROPPABLE
+States
+{
+  Ready:
+	TNT1 A 0 A_PlayWeaponSound("weapons/LMGReload3")
+	LMGG BCDEFA 1
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	LMGG A 1 A_WeaponReady
+	Goto Ready+7
+  Deselect:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	LMGG A 1 A_Lower
+	Goto Deselect+1
+  Select:
+	TNT1 A 0 A_Raise
+	Wait
+  Spawn:
+	LMGL Z -1
+	Stop
+  Fire:
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")	
+	TNT1 A 0 A_PlaySound("weapons/LMGFire",5)
+	TNT1 A 0 A_AlertMonsters	
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("LegRifleCasing",30,3,25,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_Light1
+	LMGF A 3 Bright A_FireCustomMissile("PlayerLegendaryBlueTracerBullet",0,1,0,0)
+	TNT1 A 0 A_Light0
+	LMGF B 1
+	LMGF C 1
+	LMGG A 1
+	TNT1 A 0 A_JumpIfInventory("LLMGMagazine",1,1)
+	Goto Ready+7
+	TNT1 A 0 A_PlaySound("weapons/LMGFire",5)
+	TNT1 A 0 A_AlertMonsters	
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("LegRifleCasing",30,3,25,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_Light2
+	LMGF D 3 Bright A_FireCustomMissile("PlayerLegendaryBlueTracerBullet",0,1,0,0)
+	TNT1 A 0 A_Light0
+	LMGF B 1
+	LMGF C 1
+	LMGG A 1
+	TNT1 A 0 A_ReFire
+	Goto Ready+7
+  Flash:
+	TNT1 A 0
+	Goto LightDone
+  Empty:
+	LMGG A 10 A_PlayWeaponSound("weapons/click")
+  AltFire:
+	TNT1 A 0 A_JumpIfInventory("LLMGMagazine",76,2)
+	TNT1 A 0 A_JumpIfInventory("LegendaryBulletMag",1,2)
+	TNT1 A 0
+	Goto Ready+7
+	TNT1 A 0 A_JumpIfInventory("LLMGMagazine",1,"MaxReload")
+	LMGR A 1 A_PlayWeaponSound("weapons/LMGReload2")
+	LMGR BCD 1
+	LMGR E 1 A_FireCustomMissile("LegendaryEmptyDrumSpawner", 0, 0, 0, 1)
+	LMGR F 1
+	LMGR GG 25
+	LMGR HIJK 1 A_PlayWeaponSound("weapons/LMGReload1")
+	LMGR L 8	
+	LMGR MN 2
+	LMGR OP 1
+	LMGR QRSTU 1
+	LMGR V 2
+	LMGR W 3 A_PlayWeaponSound("weapons/LMGReload3")
+	LMGR X 4
+	LMGR Y 3
+	LMGR Z 2
+	TNT1 A 0 A_JumpIfInventory("LegendaryBulletMag",1,"Reload")
+  Reload:
+	TNT1 A 0 A_TakeInventory("LegendaryBulletMag",1)
+	TNT1 A 0 A_GiveInventory("LLMGMagazine",1)
+	TNT1 A 0 A_JumpIfInventory("LLMGMagazine",75,2)
+	TNT1 A 0 A_JumpIfInventory("LegendaryBulletMag",1,"Reload")
+	TNT1 A 0
+	Goto Ready+7
+  MaxReload:
+	LMGR A 1 A_PlayWeaponSound("weapons/LMGReload2")
+	LMGR BCD 1
+	LMGR E 1 A_FireCustomMissile("LegendaryEmptyDrumSpawner", 0, 0, 0, 1)
+	LMGR F 1
+	LMGR GG 25
+	LMGR HIJK 1 A_PlayWeaponSound("weapons/LMGReload1")
+	TNT1 A 0 A_JumpIfInventory("LegendaryBulletMag",1,"Reload2")
+  Reload2:
+	TNT1 A 0 A_TakeInventory("LegendaryBulletMag",1)
+	TNT1 A 0 A_GiveInventory("LLMGMagazine",1)
+	TNT1 A 0 A_JumpIfInventory("LLMGMagazine",76,"Full")
+	TNT1 A 0 A_JumpIfInventory("LegendaryBulletMag",1,"Reload2")
+  Full:
+	LMGR L 8	
+	LMGR MN 2
+	LMGR OPQRS 1
+	LMGG A 2
+	Goto Ready+7
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto Ready+7
+  GrenadeToss:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	LMGR ABCDEFG 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	Goto Ready+1
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto Ready+7
+  MineToss:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	LMGR ABCDEFG 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	Goto Ready+1		
+}
+}
+
+ACTOR LegendaryPlayerBulletPuff : LegendaryASGBulletPuff replaces LegendaryASGBulletPuff {+MTHRUSPECIES}
+
+ACTOR PlayerLegendaryBlueTracerBullet : LegendaryBlueTracer
+{
+Speed 450
+Damage 29
++MTHRUSPECIES
++FORCERADIUSDMG
++NODAMAGETHRUST
++NOEXTREMEDEATH
+Decal LegBulletChip
+DamageType "Legendary"
+States
+{
+  Spawn:
+    BRAC A 1 Bright
+	Loop
+  Death:
+    TNT1 A 0 A_Jump(24,"Explosion","Explosion","Lightning")
+	TNT1 A 0 A_SpawnItemEx("NewLegendaryMachineGunBulletPuffGlowX",0,0,0,0,0,0,0,128|32,0)
+	TNT1 A 0 A_SpawnItemEx("NewLegendaryMachineGunBulletPuffGlowY",0,0,0,0,0,0,0,128|32,0)
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("PlayerLegSawScreech",0,0,0,0,0,0,0,128|32,0)
+	TNT1 A 0 A_PlayWeaponSound("Machinegun/Explode")
+    TNT1 AAAAA 1 A_Explode(3,8,0)
+    TNT1 AAAAA 1 A_Explode(6,16,0)
+    TNT1 AAAAA 1 A_Explode(12,48,0)
+    TNT1 AA 1 A_Explode(16,64,0)
+	Stop
+  Explosion:
+    TNT1 A 0
+    TNT1 A 0 A_Explode(256,256,0)
+	TNT1 A 0 A_PlayWeaponSound("legstorm/explode")
+	TNT1 A 0 A_SpawnItemEx("BlueGuruStormBoltStruckGlowX",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_SpawnItemEx("BlueGuruStormBoltStruckGlowY",0,0,0,0,0,0,0,128,0)
+	TNT1 AAAAAAA 2 A_SpawnItemEx("BlueGuruSpray",random(20,-20),random(20,-20),random(30,-5),0,0,0,0,128,0)
+    Stop
+  Lightning:
+    TNT1 A 0
+    TNT1 A 0 A_Explode(512,384,0)
+	TNT1 A 0 Radius_Quake(5,15,0,20,0)
+	TNT1 A 0 A_SpawnItem("LegendaryArchvileLightning")
+	TNT1 A 0 A_SpawnItemEx("NewLegendaryMachineGunBulletPuffGlowX",0,0,0,0,0,0,0,128|32,0)
+	TNT1 A 0 A_SpawnItemEx("NewLegendaryMachineGunBulletPuffGlowY",0,0,0,0,0,0,0,128|32,0)
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("PlayerLegSawScreech",0,0,0,0,0,0,0,128|32,0)
+	TNT1 A 0 A_PlayWeaponSound("Machinegun/Explode")
+    TNT1 AAAAA 1 A_Explode(3,8,0)
+    TNT1 AAAAA 1 A_Explode(6,16,0)
+    TNT1 AAAAA 1 A_Explode(12,48,0)
+    TNT1 AA 1 A_Explode(16,64,0)
+    Stop
+}
+}
+
+ACTOR LLMGMagazine : Ammo 
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 76
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 76
+	Inventory.Icon "LMGLZ0"
+	+IGNORESKILL
+}
+
+Actor "Legendary BFG " : Weapon replaces "Legendary BFG"
+{
+Inventory.PickupSound "misc/w_pkup"
+Inventory.PickupMessage "\c[z3]Legendary BFG"
+Obituary "%o was rekt off the planet with k's Legendary BFG."
+Weapon.PreferredSkin "LegendaryBFG-Marine"
+Weapon.AmmoGive 200
+Weapon.AmmoType "LDemonAmmo"
+Weapon.AmmoUse 200
+Weapon.AmmoUse2 40
+Weapon.AmmoType2 "LDemonAmmo"
+Weapon.KickBack 90
+Weapon.SlotNumber 8
+Weapon.UpSound "Weapons/GuruUp"
+Inventory.PickupSound "Weapons/GuruUp"
++NOAUTOFIRE
++INVENTORY.UNDROPPABLE
+Tag "Legendary BFG"
+States
+{
+  Spawn:
+	GRMG X -1
+	Loop
+  Select:
+    TNT1 A 0 a_playweaponsound("Weapons/GuruUp")
+  Selecting:
+  	GRMU A 0 A_Raise
+  	GRMU A 1 A_Raise
+  	Loop
+  Deselect:
+    TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+  	TNT1 A 0 A_StopSound(5)
+    TNT1 A 0 A_StopSound(6)
+	TNT1 A 0 A_ZoomFactor(1)
+  Deselecting:
+  	TNT1 A 0 A_Lower
+  	GRMU A 1 A_Lower
+  	Loop
+  Ready:
+  	GRMG A 0 A_PlaySound("Weapons/GuruIdle",5,1.0,1)
+  	GRMG ABCDEFGHIJIHGFEDCB 1 A_WeaponReady
+  	Loop
+  Fire:
+  	TNT1 A 0 A_PlaySound("Weapons/GuruTrigger",1)
+  	GRMG ABCDEFGHIJ 1
+  	TNT1 A 0 A_PlaySound("Weapons/GuruCharge",6)
+  	GRMG IHGFED 1
+	TNT1 A 0 A_GiveInventory("GuruCharge",5)
+  Gurucharger:
+	TNT1 A 0 A_TakeInventory("GuruCharge",1)
+	GRMC ABCDEFGHIJKLMNOPQRST 1 Bright A_Quake (4, 2, 0, 2,"none")
+    TNT1 A 0 A_JumpIfInventory("GuruCharge",1,"Gurucharger")
+	GRMC ABC 1 Bright A_Quake (4, 2, 0, 2,"none")
+    TNT1 A 0 A_StopSound(5)
+    TNT1 A 0 A_PlaySound("Weapons/GuruFire",5)
+  	TNT1 A 0 A_PlaySound("Weapons/GuruAddFire",6)
+  	TNT1 A 0 A_FireCustomMissile("LegendaryBFGProjectile", 0, 1, 12, 0)
+  	TNT1 A 0 A_Recoil(65)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_SetBlend("Yellow",0.5,60)
+	TNT1 A 0 A_SetBlend("White",0.25,60)
+	TNT1 A 0 A_ZoomFactor(0.975)
+	GRMF A 4 Bright
+	TNT1 A 0 A_ZoomFactor(0.95)
+	GRMF B 4 Bright
+	GRMF C 4 Bright A_ZoomFactor(0.955)
+	GRMF D 4 Bright A_ZoomFactor(0.96)
+	GRMF E 5 Bright A_ZoomFactor(0.965)
+	GRMF F 5 Bright A_ZoomFactor(0.97)
+	GRMF G 5 Bright A_ZoomFactor(0.975)
+	GRMF H 6 Bright A_ZoomFactor(0.98)
+	GRMF I 6 Bright A_ZoomFactor(0.99)
+	GRMF J 6 Bright A_ZoomFactor(1)
+	Goto Ready
+  AltFire:
+  	TNT1 A 0 A_PlaySound("Weapons/GuruAddFire",6)
+	TNT1 A 0 A_FireCustomMissile("PlayerLaserBeam",0,1,0,0)
+  	TNT1 A 0 A_Recoil(25)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_SetBlend("Yellow",0.25,35)
+	TNT1 A 0 A_SetBlend("White",0.125,35)
+	GRMF A 4 Bright A_ZoomFactor(0.975)
+	TNT1 A 0 A_FireCustomMissile("FastLegendaryMiniProjectile",3,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("FastLegendaryMiniProjectile",-3,0,0,0)
+	GRMF B 4 Bright A_ZoomFactor(0.95)
+	GRMF C 4 Bright A_ZoomFactor(0.955)
+	GRMF D 4 Bright A_ZoomFactor(0.96)
+	GRMF E 5 Bright A_ZoomFactor(0.965)
+	GRMF F 5 Bright A_ZoomFactor(0.97)
+	GRMF G 5 Bright A_ZoomFactor(0.975)
+	GRMF H 6 Bright A_ZoomFactor(0.98)
+	GRMF I 6 Bright A_ZoomFactor(0.99)
+	GRMF J 6 Bright A_ZoomFactor(1)
+	Goto Ready
+  Flash:
+	TNT1 A 7 Bright A_Light2
+	TNT1 A 4 Bright A_Light1
+	TNT1 A 0 A_Light0
+	Stop
+}
+}
+
+Actor PlayerLaserBeam : LegCyberLaserBeam
+{
+DamageType "LegendaryGuruPlayer"
++NODAMAGETHRUST
++FORCERADIUSDMG
++MTHRUSPECIES
++SKYEXPLODE
+States
+{
+  Death:
+	TNT1 A 0 A_SetUserVar("user_boomc", 0)
+	TNT1 A 0 A_SpawnItemEx("powbolt_boomflash",0,0,0, 0,0,0)
+	TNT1 A 0 A_SpawnItemEx("powbolt_boomflashB",0,0,0, 0,0,0)
+	TNT1 A 0 A_SpawnItemEx("powbolt_boom",0,0,0, 0,0,0)
+	TNT1 A 0 A_SpawnItemEx("powbolt_boom2",0,random(60,70),50,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("powbolt_boom3",0,random(-70,-60),-50,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("pbolt_boomwave",0,0,0,0,0,0)
+	TNT1 A 0 A_Quake(5,20,0,864, " ")
+	TNT1 A 0 A_Explode(850,128,0)
+  Boom:
+	TNT1 A 0 A_JumpIf(user_boomc>=5,"boom2")
+	TNT1 A 0 A_Explode(128,32,0)
+	TNT1 A 1 A_SetUserVar("user_boomc",user_boomc+1)
+	Loop
+  Boom2:
+	TNT1 A 0 A_SetUserVar("user_boomc",0)
+	TNT1 A 0 A_SpawnItemEx("pbolt_boomwave",0,0,0,0,0,0)
+  Boom2s:
+	TNT1 A 0 A_JumpIf(user_boomc>=20,"boomend")
+	TNT1 A 0 A_Explode(128,32,0)
+	TNT1 A 2 A_SetUserVar("user_boomc",user_boomc+1)
+	Loop
+  Boomend:
+	TNT1 A 1
+	Stop
+}
+}
+
+ACTOR "Legendary Plasmatic Rifle " : "Legendary Plasmatic Rifle" replaces "Legendary Plasmatic Rifle"
+{
+Tag "Legendary Rifle"
+Inventory.PickupMessage "\c[z3]Legendary Rifle"
+States
+{
+   Deselect:
+	 BTEK A 1 A_Lower
+     Goto Deselect+2
+   Select:
+     TNT1 A 0
+	 TNT1 A 0 A_Raise
+	 Wait
+   Fire:
+	 TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	 TNT1 A 0 A_AlertMonsters
+     TNT1 A 0 A_GunFlash
+	 TNT1 A 0 Radius_Quake(4,2,0,1,0)
+     TNT1 A 0 A_Light1
+     TNT1 A 0 A_Jump(16,"SuperPlasma")
+	 TNT1 A 0 A_PlayWeaponSound("BlueDTRFire")
+     BTKF A 1 Bright A_FireCustomMissile("NewPlayerLegendaryProjectile",Random(100,-100)/100.00,1,0,0,0,Random(100,-100)/100.00)
+	 BTKF B 1 Bright A_Light2
+     BTKF C 2 A_Light0
+     TNT1 A 0 A_ReFire
+     Goto ReadyLoop
+   SuperPlasma:
+	 TNT1 A 0 A_PlayWeaponSound("SuperPlama/Fire")
+     BTKF A 1 Bright A_FireCustomMissile("PlayerSuperLegPlasma",Random(100,-100)/100.00,1,0,0,0,Random(100,-100)/100.00)
+	 BTKF B 1 Bright A_Light2
+     BTKF C 2 A_Light0
+     TNT1 A 0 A_ReFire
+     Goto ReadyLoop
+}
+}
+
+ACTOR "Legendary Assault Shotgun " : "Legendary Assault Shotgun" replaces "Legendary Assault Shotgun"
+{
+Inventory.PickupMessage "\c[z3]Legendary Assault Shotgun"
+States
+{
+  Fire:
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_PlaySound("Weapons/LegAutoShotgun",1)
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_SpawnItemEx("BlueShellCasing",30,5,25,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 AAAAAA 0 A_FireCustomMissile("BlueSGTracer",random(5,-5),0,0,0,0,random(5,-5))
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("LegendaryAssaultShotgunProjectile",random(4,-4),0,0,0,0,random(4,-4))
+    LGSG B 1 Bright A_FireBullets(6.2,3.4,7,random(10,16),"LegendaryPlayerBulletPuff")
+    LGSG C 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+    LGSG DEFG 1
+	LGSG HI 2
+    Goto Ready+6
+}
+}
+
+Actor LegendaryAssaultShotgunProjectile
+{
+Projectile
+Radius 5
+Height 5
+Speed 100
+Damage 15
++RANDOMIZE
++NOTIMEFREEZE
++MTHRUSPECIES
++FORCERADIUSDMG
++NODAMAGETHRUST
+RenderStyle Add
+Alpha 0.8
+DeathSound "lrball2/exp"
+Decal Scorch
+DamageType "Legendary"
+States
+{
+  Spawn: 
+  	LRB2 A 0 A_ChangeVelocity(1,0.5*random(-3,3),0.5*random(-2,2),CVF_RELATIVE)
+    LRB2 A 1 Bright A_SpawnItemEx("LegRevBall2Trail",0,0,0,0,0,0,0,128)
+  	LRB2 A 0 A_ChangeVelocity(1,0.5*random(-3,3),0.5*random(-2,2),CVF_RELATIVE)
+    LRB2 B 1 Bright A_SpawnItemEx("LegRevBall2Trail",0,0,0,0,0,0,0,128)
+  	LRB2 A 0 A_ChangeVelocity(1,0.5*random(-3,3),0.5*random(-2,2),CVF_RELATIVE)
+    LRB2 C 1 Bright A_SpawnItemEx("LegRevBall2Trail",0,0,0,0,0,0,0,128)	
+    Loop
+  Death:
+  	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("LegendaryKaboom6", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 A 0
+    TNT1 A 0 A_SetScale(0.5)
+    TNT1 A 0 A_SpawnItemEx("PlayerLegSawScreech")
+  	TNT1 A 0 A_PlaySound("monster/ambientfire",7,1.0,1)
+    BFCF ABCDEFGHIJKLM 2 Bright A_Explode(8,32)
+  	TNT1 A 0 A_Jump(32,"Growing")
+	TNT1 A 0 A_StopSound(7)
+    BFCF NOP 2 A_FadeOut(0.2)
+	Stop
+  Growing:
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF A 2 Bright A_SetScale(0.6)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF B 2 Bright A_SetScale(0.7)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF C 2 Bright A_SetScale(0.8)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF D 2 Bright A_SetScale(0.9)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF E 2 Bright A_SetScale(1.0)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF F 2 Bright A_SetScale(1.5)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF G 2 Bright A_SetScale(1.6)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF H 2 Bright A_SetScale(1.7)
+    TNT1 A 0 A_Explode(16,64)
+    BFCF I 2 Bright A_SetScale(1.8)
+    BFCF JKLM 2 Bright A_Explode(16,64)
+ Flame:
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner",0,0,0,0,0,0,0,128)
+    BFCF ABCDEFGHIJKLM 2 Bright A_Explode(24,86)
+    BFCF ABCDEFGHIJKLM 2 Bright A_Explode(24,86)
+    BFCF ABCDEFGHIJKLM 2 Bright A_Explode(24,86)
+    BFCF ABCDEFGHIJKLM 2 Bright A_Explode(24,86)
+    BFCF ABCDEFGHIJKLM 2 Bright A_Explode(24,86)
+	TNT1 A 0 A_StopSound(7)
+    BFCF NOP 2 A_FadeOut(0.2)
+    Stop
+}
+}
+
+ACTOR "Plasma Rifle " : "Plasma Rifle" replaces "Plasma Rifle"
+{
+Decal RailScorch
+Weapon.AmmoType "NewPlasmaCell"
+Inventory.PickupMessage "\c[m5]Plasma Rifle"
+States
+{
+  Ready:
+	TNT1 A 0 A_PlayWeaponSound("weapons/pickuphr")
+	PRAS ABCDEFG 1
+  Ready2:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    PKPL A 1 A_WeaponReady
+    Loop
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+  Deselecting:
+	PKPL A 1 A_Lower
+    Loop
+  Select:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderPlasmaRifle",1,"FireUpgraded")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_PlaySound("weapons/hrfire")
+	PLSF B 2 A_FirePlasma
+	PKPL A 1 Bright
+	TNT1 A 0 A_Refire
+	TNT1 A 0 A_JumpIfInventory("NewPlasmaCell",1,"Recoil")
+	Goto Empty
+  FireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("NewPlasmaCell",5,1)
+	Goto Empty
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_PlaySound("OverchargedPlasmarifle/Fire")
+    TNT1 A 0 A_TakeInventory("NewPlasmaCell",5,TIF_NOTAKEINFINITE)
+	PLSF B 4 A_FireCustomMissile("OverchargedPlasmaRifleProj",0,0)
+	PKPL A 1 Bright Offset(0,32)
+	PKPL A 1 Bright Offset(0,36)
+	PKPL A 1 Bright Offset(0,40)
+	PKPL A 1 Bright Offset(0,44)
+	PKPL A 1 Bright Offset(0,40)
+	PKPL A 1 Bright Offset(0,36)
+	PKPL A 1 Bright Offset(0,32)
+	TNT1 A 0 A_Refire
+	TNT1 A 0 A_JumpIfInventory("NewPlasmaCell",5,"Recoil")
+	Goto Empty
+  Recoil:
+	PKPL DEF 1
+	PKPL G 10
+	PKPL FEDCBA 1
+	Goto Ready2
+  Empty:
+    PKPL A 10 A_PlayWeaponSound("weapons/click3")
+  AltFire:
+  	TNT1 A 0 A_JumpIfInventory("NewPlasmaCell",100,2)
+    TNT1 A 0 A_JumpIfInventory("NewCell",1,2)
+	TNT1 A 0
+	Goto Ready2
+	TNT1 A 0 A_PlayWeaponSound("weapons/plasmacellout")
+	PLZR B 1 A_FireCustomMissile("PlasmaCellCasingSpawner", 0, 0, 0, 1) 
+	PLZR CD 2
+	PLZR E 10
+	PLZR FGH 1
+	TNT1 A 0 A_JumpIfInventory("NewCell",1,"Reload")
+	PLZR I 2
+	PLZR J 8 A_PlayWeaponSound("weapons/plasmacellin")
+	PLZR KL 2
+	PLZR M 1
+	PKPL A 2
+	Goto Ready2
+  Reload:
+	TNT1 A 0 A_TakeInventory("NewCell",1)
+	TNT1 A 0 A_GiveInventory("NewPlasmaCell",1)
+	TNT1 A 0 A_JumpIfInventory("NewPlasmaCell",100,"Full")
+	TNT1 A 0 A_JumpIfInventory("NewCell",1,"Reload")
+	Goto AltFire+12
+  Full:
+    TNT1 A 0
+    Goto AltFire+12
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto Ready2
+  GrenadeToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	PRAS GFEDCBA 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	Goto Ready+1
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto Ready2
+  MineToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	PRAS GFEDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	Goto Ready+1
+}
+}
+
+ACTOR NewPlasmaCell : Ammo
+{
+Inventory.Amount 0
+Inventory.MaxAmount 100
+Ammo.BackpackAmount 0
+Ammo.BackpackMaxAmount 100
+Inventory.Icon "PLASA0"
++IGNORESKILL
+}
+
+ACTOR FasterNewPlasmaBall : NewPlasmaBall replaces NewPlasmaBall
+{
+Speed 55
+Damage 6
+Decal HeatScorch
+}
+
+Actor PlasmaRifleType : Inventory{Inventory.MaxAmount 1}
+
+ACTOR "Rocket Launcher " : "Rocket Launcher" replaces "Rocket Launcher"
+{
+Weapon.AmmoType "NewRocketDrum"
+Weapon.AmmoGive 10
+Weapon.AmmoGive2 10
+Inventory.PickupMessage "\c[G5]Rocket Launcher"
+States
+{
+  Ready:
+	TNT1 A 0 A_PlayWeaponSound("weapons/pickupml")
+	MISU ABCDE 1
+    MISG A 1 A_WeaponReady
+    Goto Ready+6
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	MISG A 1 A_Lower
+    Goto Deselect+4
+  Select:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+  	TNT1 A 0 
+  	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderRocketLauncher",1,"FireUpdated")
+    TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+    TNT1 A 0 A_Light1 
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+    MISF AB 1 Bright
+	MISF C 1 Bright A_Light2
+    MISF D 1 Bright A_FireCustomMissile("UpdatedRocket")
+	MISF E 2 A_Light0
+	MISF FGHI 1
+	MISF J 3 A_PlaySound("rocket/drumspin")
+	MISF K 3
+	MISG A 4
+	TNT1 A 0 A_ReFire
+    Goto Ready+6
+  FireUpdated:
+    TNT1 A 0 A_JumpIfInventory("Missile",3,2)
+    TNT1 A 0 A_Jump(256,"Empty")
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+    TNT1 A 0 A_Light1 
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+    MISF AB 1 Bright
+	MISF C 1 Bright A_Light2
+    MISF D 0 A_TakeInventory("Missile",3,TIF_NOTAKEINFINITE)
+    MISF D 2 Bright A_FireCustomMissile("UpdatedHeavyRocket",0,0,0,-14)
+	MISF E 3 A_Light0
+	MISF FGHI 4
+	MISG A 4
+	TNT1 A 0 A_ReFire
+    Goto Ready+6
+  Empty:
+    MISG A 4 A_PlayWeaponSound("weapons/click4")
+	MISF JK 3
+  AltFire:
+  	TNT1 A 0 A_JumpIfInventory("NewRocketDrum",10,2)
+    TNT1 A 0 A_JumpIfInventory("Missile",1,2)
+	TNT1 A 0
+	Goto Ready+6
+	TNT1 A 0 A_JumpIfInventory("NewRocketDrum",1,"MaxReload")
+	MISR A 2 A_PlaySound("weapons/rocketdrumin")
+	MISR B 2
+	MISR C 2 A_FireCustomMissile("RocketEmptyDrumSpawner", 0, 0, 0, 1)
+	MISR DE 2
+	MISR F 8
+	MISR GH 2
+	MISR I 3
+	MISR J 5
+	MISR KL 2
+	MISR M 1
+	MISF J 5 A_PlaySound("rocket/drumspin")
+	MISF K 3
+	MISG A 2
+	TNT1 A 0 A_JumpIfInventory("Missile",1,"Reload")
+  Reload:
+	TNT1 A 0 A_TakeInventory("Missile",1)
+	TNT1 A 0 A_GiveInventory("NewRocketDrum",1)
+	TNT1 A 0 A_JumpIfInventory("NewRocketDrum",10,2)
+	TNT1 A 0 A_JumpIfInventory("Missile",1,"Reload")
+	TNT1 A 0
+	Goto Ready+6
+  MaxReload:
+	MISR A 2 A_PlayWeaponSound("weapons/rocketdrumin")
+	MISR B 2
+	MISR C 2 A_FireCustomMissile("RocketEmptyDrumSpawner", 0, 0, 0, 1)
+	MISR DE 2
+	MISR F 8
+	MISR GH 2
+	MISR I 3
+	TNT1 A 0 A_JumpIfInventory("NewRocketDrum",1,"Reload2")	
+  Reload2:
+	TNT1 A 0 A_TakeInventory("Missile",1)
+	TNT1 A 0 A_GiveInventory("NewRocketDrum",1)
+	TNT1 A 0 A_JumpIfInventory("NewRocketDrum",10,"Full")
+	TNT1 A 0 A_JumpIfInventory("Missile",1,"Reload2")	
+  Full:
+	MISR J 5
+	MISR KL 2
+	MISR M 1
+	MISG A 2
+	Goto Ready+6
+}
+}
+
+ACTOR NewRocketDrum : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 10
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 10
+	Inventory.Icon "HRLKA0"
+	+IGNORESKILL
+}
+
+ACTOR UpdatedRocket : NewRocket
+{
++SKYEXPLODE
+Damage 30
+Speed 42
+Decal RocketScorch
+States
+{
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Explode
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("RocketExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("RocketExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+}
+}
+
+Actor HeavyRocket
+{
+Radius 11
+Height 8
+Speed 44
+Damage 60
+Projectile
++RANDOMIZE
++DEHEXPLOSION
++MTHRUSPECIES
++SKYEXPLODE
+SeeSound "HeavyRocket/fire"
+DeathSound "weapons/rocklx"
+Scale 1.5
+Decal RocketScorch
+States
+{
+  Spawn:
+	TNT1 A 0 A_CustomMissile("RocketSmoke",Random(8,12),Random(-2,2)) 
+	TNT1 AAA 0 A_CustomMissile("NewRockeParticleTrail",Random(8,12),Random(-2,2)) 
+	TNT1 A 0 A_PlaySoundEx("rpg/fly","SoundSlot7",1) 
+    MIS9 A 1 Bright
+    Loop
+  Death:
+	TNT1 A 0 
+    TNT1 A 0 A_StopSoundEx("SoundSlot7")
+	TNT1 A 0 A_Explode(9,328)
+	TNT1 A 0 A_Explode(48,225)
+	TNT1 A 0 A_Explode(144,148)
+	TNT1 A 0 A_CustomMissile("DiggerExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("DiggerEx")
+	Stop
+}
+}
+
+Actor UpdatedHeavyRocket : HeavyRocket
+{
++FORCERADIUSDMG
++FOILINVUL
+DamageType "MarinePierce"
+Speed 62
+States
+{
+  Death:
+	TNT1 A 0 
+    TNT1 A 0 A_StopSoundEx("SoundSlot7")
+	TNT1 A 0 A_Explode(16,328)
+	TNT1 A 0 A_Explode(64,225)
+	TNT1 A 0 A_Explode(192,156)
+	TNT1 A 0 A_CustomMissile("DiggerExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("DiggerEx")
+	Stop
+}
+}
+
+Actor MHeavyRocket : HeavyRocket
+{
+-MTHRUSPECIES
+DamageType "Marine"
+}
+
+ACTOR "Grenade Launcher " : "Grenade Launcher" replaces "Grenade Launcher"
+{
+Weapon.AmmoType "NewGrenadeDrum"
+Weapon.AmmoGive 12
+Weapon.AmmoGive2 12
+Inventory.PickupMessage "\c[G5]Grenade Launcher"
+States
+{
+  Deselect:
+  	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	GREN A 1 A_Lower
+    Goto Deselect+4
+  Select:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Ready:
+    TNT1 A 0 A_PlayWeaponSound("Weapons/GrenadePickup")
+	GRUP ABCDE 1
+    GREN A 1 A_WeaponReady
+    Goto Ready+6
+  Fire:
+  	TNT1 A 0 
+  	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderGrenadeLauncher",1,"FireUpdated")
+    TNT1 A 0 A_JumpIfNoAmmo("AltFire")
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+    TNT1 A 0 A_Light1 
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    GREF BC 1 Bright
+	GREF D 1 Bright A_Light2
+    GREF E 1 Bright A_FireCustomMissile("UpdatedGrenade",0,TRUE,0,0,0,6.328125)
+	TNT1 A 0 A_Light0
+	GREF FGH 3
+	GRER PQR 2
+	GREN A 1
+	TNT1 A 0 A_ReFire
+    Goto Ready+6	
+  FireUpdated:
+    TNT1 A 0 
+    TNT1 A 0 A_JumpIfInventory("Missile",5,1)
+    Goto Empty
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+    TNT1 A 0 A_Light1 
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    GREF BC 2 Bright
+	GREF D 2 Bright A_Light2
+    TNT1 A 0 A_TakeInventory("Missile",5,TIF_NOTAKEINFINITE)
+    GREF E 2 Bright A_FireCustomMissile("HeavyGrenade",0,0,0,0,0,6.328125)
+	TNT1 A 0 A_Light0
+	GREF FGH 8
+	GREN A 6
+	TNT1 A 0 A_ReFire
+    Goto Ready+6
+  SecondaryFireUpdated:
+    TNT1 A 0 
+    TNT1 A 0 A_JumpIfInventory("Missile",7,1)
+    Goto Empty
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+    TNT1 A 0 A_Light1 
+	TNT1 A 0 Radius_Quake(4,3,0,1,0)
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    GREF BC 2 Bright
+	GREF D 2 Bright A_Light2
+    TNT1 A 0 A_TakeInventory("Missile",7,TIF_NOTAKEINFINITE)
+    TNT1 AAAAAA 0 A_FireCustomMissile("MiniGrenade2",random(-6,6),0,0,0,0,6.328125+random(-6,6))
+    GREF E 2 Bright A_FireCustomMissile("MiniGrenade2",0,0,0,0,0,6.328125)
+	TNT1 A 0 A_Light0
+	GREF FGH 8
+	GREN A 6
+	TNT1 A 0 A_ReFire
+    Goto Ready+6
+  Empty:
+    GREN A 4 A_PlayWeaponSound("weapons/click4")
+	GRER PQR 2
+    Goto Ready+6
+  AltFire:
+  	TNT1 A 0 
+  	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderGrenadeLauncher",1,"SecondaryFireUpdated")
+  	TNT1 A 0 A_JumpIfInventory("NewGrenadeDrum",12,2)
+    TNT1 A 0 A_JumpIfInventory("Missile",1,2)
+    TNT1 A 0
+    Goto Empty
+	TNT1 A 0 A_JumpIfInventory("NewGrenadeDrum",12,"MaxReload")
+	GRER A 2 A_PlayWeaponSound("Weapons/GrenadeReload")
+	GRER B 2
+	GRER C 2 A_FireCustomMissile("RocketEmptyDrumSpawner", 0, 0, 0, 1)
+	GRER DE 2
+	GREE A 8 
+	GRER FG 1
+	GRER HJK 2
+	GRER L 5
+	GRER MN 3
+	GRER O 3 A_PlaySound("Weapons/GrenadeCycle")	
+	GRER PQR 2
+	GREN A 5	
+	TNT1 A 0 A_JumpIfInventory("Missile",1,"Reload")
+  Reload:
+	TNT1 A 0 A_TakeInventory("Missile",1)
+	TNT1 A 0 A_GiveInventory("NewGrenadeDrum",1)
+	TNT1 A 0 A_JumpIfInventory("NewGrenadeDrum",12,2)
+	TNT1 A 0 A_JumpIfInventory("Missile",1,"Reload")
+	TNT1 A 0
+	Goto Ready+6
+  MaxReload:
+	GRER A 2 A_PlayWeaponSound("Weapons/GrenadeReload")
+	GRER B 2
+	GRER C 2 A_FireCustomMissile("RocketEmptyDrumSpawner",0,0,0,1)
+	GRER DE 2
+	GREE A 8
+	GRER FG 1
+	GRER HJK 2
+	GRER L 5
+	GRER MNO 3
+	TNT1 A 0 A_JumpIfInventory("NewGrenadeDrum",1,"Reload2")	
+  Reload2:
+	TNT1 A 0 A_TakeInventory("Missile",1)
+	TNT1 A 0 A_GiveInventory("NewGrenadeDrum",1)
+	TNT1 A 0 A_JumpIfInventory("NewGrenadeDrum",12,"Full")
+	TNT1 A 0 A_JumpIfInventory("Missile",1,"Reload2")	
+  Full:
+	GREN A 5
+	Goto Ready+6
+}
+}
+
+ACTOR NewGrenadeDrum : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 12
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 2
+	Inventory.Icon "HDGLA0"
+	+IGNORESKILL
+}
+
+ACTOR UpdatedGrenade : RifleGrenade
+{
+Damage 20
+Scale 0.5
++MTHRUSPECIES
++SKYEXPLODE
++CANBOUNCEWATER
+States
+{
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_StopSound
+  SpawnLoop:
+    NGRN A 1 A_CustomMissile("GrenadeTrail",Random(-1,1),Random(-1,1))     		
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(156,138)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+}
+}
+
+Actor GrenadeTime : Inventory { inventory.maxamount 35 }
+
+ACTOR HeavyGrenade : UpdatedGrenade
+{
+Speed 45
+Damage 60
+Scale 1.7
+-DOOMBOUNCE
++FORCERADIUSDMG
+DamageType "Marine"
+States
+{
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_StopSound
+  SpawnLoop:
+	TNT1 A 0 
+	TNT1 A 0 A_PlaySound("artillery/fly",CHAN_BODY,1.0,1)
+    5DKP A 1 A_CustomMissile("RocketSmoke",Random(4,6),Random(-2,2))  		
+    Loop
+  Death:
+	TNT1 A 0 
+    TNT1 A 0 A_StopSoundEx("SoundSlot7")
+	TNT1 A 0 A_Explode(16,428,0)
+	TNT1 A 0 A_Explode(76,325,0)
+	TNT1 A 0 A_Explode(196,192,1)
+	TNT1 A 0 A_CustomMissile("DiggerExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 AAAAAA 0 A_SpawnItemEx("MiniGrenade",random(4,-4),random(4,-4),random(4,-4),random(4,20),0,random(2,8),random(0,359))
+    TNT1 AAAAAA 0 A_SpawnItemEx("MiniGrenade",random(4,-4),random(4,-4),random(4,-4),random(4,20),0,random(2,8),random(0,359),0,85)
+	TNT1 A 1 A_SpawnItem("DiggerEx")
+    Stop
+}
+}
+
+ACTOR MiniGrenade
+{
+Projectile
+Radius 8
+Height 8
+Speed 40
+Damage 18
+Gravity 1.0
+Mass 100
+BounceFactor 0.8
+DamageType "Marine"
+-NOGRAVITY
++DOOMBOUNCE
++FORCERADIUSDMG
++CANBOUNCEWATER
++SKYEXPLODE
++BRIGHT
+BounceCount 4
+SeeSound "MiniGrenade/Beep"
+DeathSound "weapons/rocklx"
+States
+{
+  Spawn:
+	MGRN AB 3
+	Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(128,192)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("RocketExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("RocketExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+}
+}
+
+ACTOR MiniGrenade2 : MiniGrenade {Damage 10}
+
+ACTOR ThrownGrenade
+{
+Height 2
+Radius 2
+Speed 30
+Scale 0.4
+WallBounceFactor 0.16
+BounceFactor 0.36
+Gravity 0.6
+Mass 400
+Damage 8
++MISSILE
++DROPOFF
+-MOVEWITHSECTOR
++MTHRUSPECIES
++DONTFALL
++CANBOUNCEWATER
++DOOMBOUNCE
++NOTELEPORT
++FORCERADIUSDMG
+-EXTREMEDEATH
+-NODAMAGETHRUST
+-GRENADETRAIL
+-ROCKETTRAIL
+DamageType "Explosion"
+SeeSound "weapons/hgrenadebounce"
+Obituary "%o was fragged by %k's hand grenade."
+States
+{
+  Spawn:
+	TNT1 AAA 0 A_StopSound
+	HGN1 A 3
+	HGN1 BCDEFGHABCDEFGHABCDEFGH 3 A_GiveInventory("GrenadeTime",1)
+	Goto Death
+ Crash:
+ Death:
+	TNT1 A 0
+	TNT1 A 0 A_ChangeFlag(MOVEWITHSECTOR,1)
+	HGN1 H 1
+	HGN1 H 1 A_GiveInventory("GrenadeTime",1)
+	HGN1 H 1 A_JumpIfInventory("GrenadeTime",35,"XDeath")
+	Goto Death+2
+  XDeath:
+	TNT1 A 0 
+	TNT1 A 0
+	HGN1 H 1 Bright A_ChangeFlag(EXTREMEDEATH,1)
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySound("weapons/hgrenadeex",CHAN_BODY)
+	TNT1 A 0 A_PlaySound("Explosion",CHAN_WEAPON)
+	TNT1 A 0 A_PlaySound("FAREXPL",CHAN_VOICE)
+	TNT1 A 0 Radius_Quake(2,24,0,15,0)
+	TNT1 A 0 A_Explode(16,428,0)
+	TNT1 A 0 A_Explode(200,300,0,0)
+	TNT1 A 0 A_Explode(100,150,0,0)
+	TNT1 A 0 A_CustomMissile("DiggerExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("DiggerEx")
+    Stop
+}
+}
+
+ACTOR LiveMine
+{
+Scale 0.85
+Radius 10
+Height 8
+Damage 1
+Health 1
+Mass 0x7FFFFFFF
+Species "Player"
+DamageType "Explosion"
+DamageType "Mine"
++MISSILE
++THRUSPECIES
++FORCERADIUSDMG
++MOVEWITHSECTOR
++NOBLOOD
++SHOOTABLE
+States
+{
+  Spawn:
+	LMIN A 30 A_ChangeFlag(NOBLOCKMAP,0)
+	LMIN B 10 Bright A_ChangeFlag(NOBLOCKMAP,1)
+	Loop
+  Death:
+	TNT1 A 0 A_Die
+  Explode:
+	LMIN B 15 Bright A_PlaySound("weapons/minebeep")
+	TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_Explode(186,162)
+	TNT1 A 0 A_PlaySound("weapons/mineexplode")
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+}
+}
+
+Actor BFG10KCooldown : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 50
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 50
+	Inventory.Icon "BFG2A0"
+	+IGNORESKILL
+}
+
+Actor "BFG10K  " : "BFG10K " replaces "BFG10K "
+{
+Weapon.AmmoUse 10
+Weapon.AmmoType2 "BFG10KCooldown"
+Tag "BFG 10000"
+Inventory.PickupMessage "\c[g4]BFG 10000"
+States
+{
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,"ReadyUpdated")
+    TNT1 A 0 A_JumpIfNoAmmo("ReadyEmpty")
+    TNT1 A 0 A_PlayWeaponSound("weapons/bfg15kidle")
+    BG2G AAABBBCCCDDD 1 A_WeaponReady
+    Loop
+  ReadyEmpty:
+    TNT1 A 0 A_JumpIfInventory("NewCell",10,"Ready")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,2)
+    BGE2 A 1 A_WeaponReady
+	Loop
+  ReadyUpdated:
+	TNT1 A 0 A_JumpIfNoAmmo("ReadyEmptyUpdated")
+	TNT1 A 0 A_PlayWeaponSound("weapons/bfg15kidle")
+	EG2G AAABBBCCCDDD 1 A_WeaponReady
+	Loop
+  ReadyEmptyUpdated:
+    TNT1 A 0 A_JumpIfInventory("NewCell",10,"ReadyUpdated")
+    EGE2 A 1 A_WeaponReady
+	Loop
+  Deselect:
+  	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+    TNT1 A 0 A_JumpIfNoAmmo("DeselectingEmpty")
+  Deselecting:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,2)
+	BG2G A 1 A_Lower
+    Loop	
+  DeselectingUpdated:
+    EG2G A 1 A_Lower
+    Loop
+  DeselectingEmpty:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,2)
+	BGE2 A 1 A_Lower
+    Loop
+  DeselectingEmptyUpdated:	
+    EGE2 A 1 A_Lower
+    Loop
+  Select:
+	TNT1 A 0
+    TNT1 A 0 A_Playsound("weapons/pickup15k")
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+    TNT1 A 0 A_JumpIfNoAmmo("SelectingEmpty")
+  Selecting:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,2)
+    BG2G A 1 A_Raise
+    Loop
+  SelectingUpdated:
+    EG2G A 1 A_Raise
+    Loop
+  SelectingEmpty:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,2)
+    BGE2 A 1 A_Raise
+    Loop
+  SelectingEmptyUpdated:
+    EGE2 A 1 A_Raise
+    Loop
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,"FireUpdated")
+    BG2G E 25 A_PlayWeaponSound("weapons/charge15k")
+    BG2G F 4
+    BG2G GHIJ 1
+    Goto Hold
+  Hold:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,"HoldUpdated")
+    BG2E A 1 Bright A_GunFlash
+    BG2G K 1 Bright
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 Radius_Quake(6,3,0,1,0)
+	BG2E B 1 Bright A_FireCustomMissile("New10KProjectile",Random(100,-100)/100.00,1,0,0,0,Random(100,-100)/100.00)
+    BG2G LMNO 1
+    TNT1 A 0 A_ReFire
+    BG2G O 35 A_PlaySound("weapons/bfg15kcooldown") 
+    Goto Ready
+  FireUpdated:
+	EG2G E 25 A_PlayWeaponSound("weapons/charge15k")
+	EG2G F 4
+	EG2G GHIJ 1
+  HoldUpdated:
+	TNT1 A 0
+	EG2E A 1 Bright A_GunFlash
+	EG2G K 1 Bright
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 Radius_Quake(6,3,0,1,0)
+	EG2E B 1 Bright A_FireCustomMissile("Upgraded10KProjectile",Random(100,-100)/100.00,1,0,0,0,Random(100,-100)/100.00)
+	EG2G LMNO 1
+	TNT1 A 0 A_ReFire("HoldUpdated")
+	EG2G O 35 A_PlaySound("weapons/bfg15kcooldown") 
+	Goto Ready
+  AltFire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG10K",1,3)
+	TNT1 A 0 A_Print("Secondary Fire Requires Weapon Upgrade!")
+    BG2G A 10 A_PlaySound("weapon/off")
+	Goto Ready
+	TNT1 A 0 A_JumpIfInventory("NewCell",200,3)
+	TNT1 A 0 A_Print("Secondary Fire Requires 200 Cells!")
+    EG2G A 10 A_PlaySound("weapon/off")
+	Goto Ready
+	TNT1 A 0 A_JumpIfInventory("BFG10KCooldown",1,2) 
+	TNT1 A 0 A_Jump(256,3)
+	TNT1 A 0 A_Print("The Secondary Fire is in cooldown!")
+    EG2G A 10 A_PlaySound("weapon/off")
+	Goto Ready
+	EG2G E 25 A_PlayWeaponSound("AugmentedBFG10k/Charge")
+	EG2G F 4
+	EG2G GHIJ 1
+	EG2E A 1 Bright A_GunFlash
+	EG2G K 1 Bright
+	TNT1 A 0 A_PlaySound("AugmentedBFG10k/Fire")
+	TNT1 A 0 Radius_Quake(6,3,0,1,0)
+	TNT1 A 0 A_GiveInventory("BFG10KCooldown",50) 
+	EG2E B 1 Bright A_FireCustomMissile("Upgraded10KBall",Random(100,-100)/100.00,1,0,0,0,Random(100,-100)/100.00)
+	EG2G LMNO 1
+	EG2G O 35 A_PlaySound("weapons/bfg15kcooldown") 
+	Goto Ready
+}
+}
+
+ACTOR New10KProjectile : 10KProjectile
+{
+Damage 30
+Scale 0.15
+Alpha 0.85
+RenderStyle Add
++FORCERADIUSDMG
++NODAMAGETHRUST
++MTHRUSPECIES
++SKYEXPLODE
+Decal BFG15KLightning
+States
+{
+   Death:
+   XDeath:  
+	TNT1 A 0
+	TNT1 A 0 A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.85,0.85)
+	TNT1 A 0 A_SpawnItemEx("BFGShockwave",0,0,0,0,0,0,0,128)
+	TNT1 AAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAA 0 A_CustomMissile("Kaboom13",0,0,random(0,360),2,random(0,360))
+    BFE1 A 4 Bright A_Explode(256,156)
+    BFE1 BCDEF 4 Bright A_SpawnItemEx("SmallGreenLightningEffect",0,0,0,0,0,0,0,0,64)
+	Stop
+}
+}
+
+ACTOR Upgraded10KProjectile : New10KProjectile
+{
+Damage 60
++FOILINVUL
+DamageType "MarinePierce"
+States
+{
+   Death:
+   XDeath:  
+	TNT1 A 0
+	TNT1 A 0 A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.85,0.85)
+	TNT1 A 0 A_SpawnItemEx("UpgradedBFG10KExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 AAAA 0 A_SpawnItemEx("HugeUpgradedBFGExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAA 0 A_CustomMissile("BlueExplosionKaboom",0,0,random(0,360),2,random(0,360))
+    PFE3 A 4 Bright A_Explode(256,156)
+    PFE3 BCDEF 4 Bright A_SpawnItemEx("SmallBlueLightningEffect",0,0,0,0,0,0,0,0,64)
+	Stop
+}
+}
+
+ACTOR Upgraded10KBall : BFG9500Ball
+{
+Speed 58
+Damage 192
+-THRUSPECIES
++MTHRUSPECIES
++FORCERADIUSDMG
++SKYEXPLODE
++FOILINVUL
+Decal BFG9500Lightning
+Scale 3.0
+Damage 256
+DamageType "MarinePierce"
+DeathSound ""
+var int user_delay;
+States
+{
+  Spawn:	
+	EPS1 AB 1 Bright A_SpawnItemEx("UpgradedBFG9500BallParticle",frandom(-96,96),frandom(-96,96),frandom(-96,96),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(user_delay >= 150,"DeathEnd")
+	TNT1 A 0 A_SetUserVar("user_delay",user_delay+1)
+	TNT1 A 0 A_CustomMissile("Upgraded10KMiniBall",24,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	TNT1 A 0 A_Explode(16,512,0)
+	EPS1 AB 1 Bright A_SpawnItemEx("UpgradedBFG9500BallParticle",frandom(-96,96),frandom(-96,96),frandom(-96,96),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	Loop
+  DeathEnd:
+	TNT1 A 0 
+	TNT1 A 0 A_PlaySound("BFG9K/Explode")
+	TNT1 A 0 A_SpawnItemEx("HugeUpgradedBFGExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("BigBlueLightningSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("BlueHugeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("HugeUpgradedBFGExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAAAAAAA 0 A_SpawnItemEx("BlueHugeExplosionKaboom",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4))  
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_Explode(384,512,0)
+    PFE3 ABCDEF 8 Bright
+    Stop    
+}
+}
+
+Actor Upgraded10KMiniBall : BFG15KBall
+{
+Height 15
+Radius 15
+Decal BFG15KLightning
+Speed 35
+Damage 32
+Scale 0.4
++MTHRUSPECIES
++FORCERADIUSDMG
++NODAMAGETHRUST
++SKYEXPLODE
++HEXENBOUNCE
++SEEKERMISSILE
++FOILINVUL
++CANBOUNCEWATER
+BounceCount 16
+BounceFactor 1.0
+WallBounceFactor 1.0
+ExplosionDamage 50
+ExplosionRadius 64
+ReactionTime 72
+SeeSound "weapons/bfg15kfire"
+DeathSound "weapons/bfg95explode"
+DamageType "MarinePierce"
+var int user_delay;
+States
+{
+  Spawn:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIf(user_delay >= 35,"Fly")
+	TNT1 A 0 A_Countdown	
+	TNT1 A 0 A_SetUserVar("user_delay",user_delay+1)
+    TNT1 A 0 A_ChangeVelocity(frandom(-5,5),frandom(-5,5),frandom(-3,3),0)
+	EPS1 AB 2 Bright
+	Loop
+  Fly:
+    TNT1 A 0 A_Countdown
+    TNT1 A 0 A_SeekerMissile(30,45,SMF_LOOK)
+    EPS1 AB 2 Bright
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("UpgradedBFGExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("UpgradedBFG9500ParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AA 0 A_CustomMissile("BlueSmallExplosionKaboom",0,0,random(0,360),2,random(0,360))      
+    EPE1 A 4 Bright A_Explode(144,192)
+    EPE1 BCDEF 4 Bright
+    Stop
+}
+}
+
+Actor BFG95KCooldown : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 20
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 20
+	Inventory.Icon "BF95A0"
+	+IGNORESKILL
+}
+
+ACTOR "BFG9500 " : BFG9500 replaces BFG9500
+{
+Weapon.AmmoUse 50
+Weapon.AmmoGive 100
+Weapon.AmmoType2 "BFG95KCooldown"
+Inventory.PickupMessage "\c[m4]BFG 9500"
+States
+{
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG9500",1,2)
+    BFGG A 1 A_WeaponReady
+    Loop
+	PFGG A 1 A_WeaponReady
+	Loop
+  Select:
+	TNT1 A 0
+    TNT1 A 0 A_PlayWeaponSound("weapons/bfgpickup")
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG9500",1,2)
+	BFGG A 1 A_Raise
+	Loop
+	PFGG A 1 A_Raise
+	Loop
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+  Deselecting:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG9500",1,2)
+	BFGG A 1 A_Lower
+	Loop
+	PFGG A 1 A_Lower
+	Loop
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG9500",1,"FireUpgraded")
+	TNT1 A 0 A_Light1
+    BFGG A 2 Bright A_PlaySound("weapons/bfgf")
+    BFGC ABCDE 2 Bright Radius_Quake(2,2,0,1,0)
+    BFGC FGHI 1 Bright Radius_Quake(3,2,0,1,0)
+    BFGC FGHIF 1 Bright Radius_Quake(4,2,0,1,0)
+	BFGC GH 1 Bright Radius_Quake(6,2,0,1,0)
+	TNT1 A 0 A_Light2
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(12,4,0,1,0)
+	DBFF A 4 Bright A_FireCustomMissile("UpdatedBFG9500Ball",0,1)
+	DBFF B 3 Bright
+	TNT1 A 0 A_Light0
+	BFGR ABCD 1
+	BFGR EFG 2
+	BFGG A 20 A_ReFire
+    Goto Ready	
+  FireUpgraded:
+	TNT1 A 0 A_Light1
+	PFGG A 2 Bright A_PlaySound("weapons/bfgf",CHAN_WEAPON)
+	PFGC ABCDE 2 Bright Radius_Quake(2,2,0,1,0)
+	PFGC FGHI 1 Bright Radius_Quake(3,2,0,1,0)
+	PFGC FGHIF 1 Bright Radius_Quake(4,2,0,1,0)
+	PFGC GH 1 Bright Radius_Quake(6,2,0,1,0)
+	TNT1 A 0 A_Light2
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(12,4,0,1,0)
+	PBFF A 4 Bright A_FireCustomMissile("UpgradedBFG9500Ball",0,1)
+	PBFF B 3 Bright
+	TNT1 A 0 A_Light0
+	PFGR ABCD 1
+	PFGR EFG 2
+	PFGG A 20 A_ReFire
+	Goto Ready  
+  AltFire:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBFG9500",1,3)
+	TNT1 A 0 A_Print("Secondary Fire Requires Weapon Upgrade!")
+    BFGG A 10 A_PlaySound("weapon/off")
+	Goto Ready
+	TNT1 A 0 A_JumpIfInventory("NewCell",100,3)
+	TNT1 A 0 A_Print("Secondary Fire Requires 100 Cells!")
+    PFGG A 10 A_PlaySound("weapon/off")
+	Goto Ready
+	TNT1 A 0 A_JumpIfInventory("BFG95KCooldown",1,2) 
+	TNT1 A 0 A_Jump(256,3)
+	TNT1 A 0 A_Print("The Secondary Fire is in cooldown!")
+    PFGG A 10 A_PlaySound("weapon/off")
+	Goto Ready
+	TNT1 A 0 A_Light1
+    PFGG A 2 Bright A_PlaySound("AugmentedBFG9500/Fire")
+    PFGC ABCDE 2 Bright Radius_Quake(2,2,0,1,0)
+    PFGC FGHI 1 Bright Radius_Quake(3,2,0,1,0)
+    PFGC FGHIF 1 Bright Radius_Quake(4,2,0,1,0)
+	PFGC GH 1 Bright Radius_Quake(6,2,0,1,0)
+	TNT1 A 0 A_Light2
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(12,4,0,1,0)
+	TNT1 A 0 A_GiveInventory("BFG95KCooldown",20) 
+	TNT1 A 0 A_TakeInventory("NewCell",100,TIF_NOTAKEINFINITE)
+	PBFF ABABABABABABAB 2 Bright A_FireCustomMissile("MiniUpgradedBFG9500Ball",random(-4,4),FALSE,random(-5,5),random(-5,5),0,random(-3,3))
+	TNT1 A 0 A_Light0
+	PFGR ABCD 1
+	PFGR EFG 2
+	PFGG A 20
+    Goto Ready
+}
+}
+
+ACTOR UpdatedBFG9500Ball : BFG9500Ball
+{
+Speed 58
+Damage 128
+-THRUSPECIES
++MTHRUSPECIES
++FORCERADIUSDMG
++SKYEXPLODE
+Decal BFG9500Lightning
+Scale 1.5
+States
+{
+  Spawn:	
+	BFS3 AB 3 Bright A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-60,60),frandom(-60,60),frandom(-60,60),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenLightningSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenDiggerExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4))  
+	BFE3 AB 8 Bright 
+	TNT1 A 0 A_ChangeFlag(NODAMAGETHRUST,TRUE)
+	TNT1 A 0 A_BFGSpray("CustomSpray",64,32)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",404,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_Explode(192,384,0)
+    BFE3 CDEF 8 Bright
+    Stop    
+}
+}
+
+ACTOR UpgradedBFG9500Ball : UpdatedBFG9500Ball
+{
+Speed 75
+Damage 228
++FOILINVUL
+Decal BFG9500Lightning
+DamageType "MarinePierce"
+States
+{
+  Spawn:	
+	PFS3 AB 3 Bright A_SpawnItemEx("UpgradedBFG9500BallParticle",frandom(-60,60),frandom(-60,60),frandom(-60,60),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("HugeUpgradedBFGExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("BlueLightningSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("BlueDiggerExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("HugeUpgradedBFGExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAAAAAAA 0 A_SpawnItemEx("BlueDiggerExplosionKaboom",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4))  
+	PFE3 AB 8 Bright 
+	TNT1 A 0 A_ChangeFlag(NODAMAGETHRUST,TRUE)
+	TNT1 A 0 A_BFGSpray("UpgradedSpray",64,32)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",25,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_Explode(272,512,0)
+    PFE3 CDEF 8 Bright
+    Stop    
+}
+}
+
+ACTOR MiniUpgradedBFG9500Ball : UpgradedBFG9500Ball
+{
+Speed 79
+Damage 80
+Decal Scorch
+Scale 0.5
+DeathSound "AugmentedBFG9500/Explode"
+DamageType "MarinePierce"
+States
+{
+  Spawn:	
+	PFS3 AB 3 Bright
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("UpgradedBFGExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("UpgradedBFG9500ParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+    TNT1 AAA 0 A_SpawnItemEx("BlueExplosionKaboom",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4))  
+	PFE3 AB 4 Bright 
+	TNT1 A 0 A_ChangeFlag(NODAMAGETHRUST,TRUE)
+	TNT1 A 0 A_BFGSpray("MiniUpgradedSpray",24,6)
+	TNT1 A 0 A_RadiusGive("MiniUpgradedBFGBallEffect",192,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_Explode(156,128,0)
+    PFE3 CDEF 4 Bright
+    Stop    
+}
+}
+
+ACTOR "Demon Tech BFG10K " : "Demon Tech BFG10K" replaces "Demon Tech BFG10K"
+{
+Weapon.AmmoGive 300
+Weapon.AmmoUse2 20
+Weapon.AmmoType2 "DemonAmmo"
+Inventory.PickupMessage "\c[l2]Demon Tech BFG10K"
+States
+{
+  Ready:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"ReadyUpgraded")
+    TNT1 A 0 A_JumpIfNoAmmo("Ready2")
+	TNT1 A 0 A_PlayWeaponSound("weapons/dtech10kidle")
+    DBFI AAAABBBBCCCCBBBB 1 A_WeaponReady
+    Loop
+  Ready2:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"Ready2Upgraded")
+    TNT1 A 0 A_JumpIfInventory("DemonAmmo",100,"Ready")
+	DBFE A 1 A_WeaponReady
+	Loop
+  ReadyUpgraded:
+    TNT1 A 0 A_JumpIfNoAmmo("Ready2Upgraded")
+	TNT1 A 0 A_PlayWeaponSound("weapons/dtech10kidle")
+    SBFI AAAABBBBCCCCBBBB 1 A_WeaponReady
+    Loop
+  Ready2Upgraded:
+    TNT1 A 0 A_JumpIfInventory("DemonAmmo",150,"Ready")
+	SBFE A 1 A_WeaponReady
+	Loop
+  Select:
+	TNT1 A 0
+    TNT1 A 0 A_PlayWeaponSound("weapons/dtech10kpickup")
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:   
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfNoAmmo("Selecting2")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"SelectingUpgraded")
+    DBFI A 1 A_Raise
+    Loop
+  Selecting2:
+	TNT1 A 0    
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"Selecting2Upgraded")
+    DBFE A 1 A_Raise
+    Loop	
+  SelectingUpgraded:
+    SBFI A 1 A_Raise
+    Loop
+  Selecting2Upgraded:   
+    SBFE A 1 A_Raise
+    Loop
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfNoAmmo("Deselecting2")
+  Deselecting:
+	TNT1 A 0    
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"DeselectingUpgraded")
+	DBFI A 1 A_Lower
+    Loop
+  Deselecting2:
+	TNT1 A 0    
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"Deselecting2Upgraded")
+	DBFE A 1 A_Lower
+    Loop
+  DeselectingUpgraded:
+	SBFI A 1 A_Lower
+    Loop
+  Deselecting2Upgraded:
+	SBFE A 1 A_Lower
+    Loop
+  Fire:
+	TNT1 A 0    
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"FireUpgraded")
+	TNT1 A 0 A_Light1
+    TNT1 A 0 A_PlayWeaponSound("Cardinal/9k")
+	DBFG C 2 Bright Radius_Quake(1,2,0,1,0)
+    DBFG DE 2 Bright Radius_Quake(2,2,0,1,0)
+    DBFG FGH 2 Bright Radius_Quake(4,2,0,1,0)
+	DBFG IJK 1 Bright Radius_Quake(6,3,0,1,0)
+	DBFG L 15 Bright Radius_Quake(8,3,0,1,0)
+	TNT1 A 0 A_Light2
+    TNT1 A 0 A_GunFlash	
+	DBFG M 2 Bright Radius_Quake(10,4,0,1,0)
+	TNT1 A 0 A_Recoil(10)	
+	TNT1 A 0 Radius_Quake(12,6,0,1,0)
+	DBFG N 2 Bright A_FireCustomMissile("UpdatedDTBFG10KBall",0,1,0,0)	
+	DBFG OP 1 Bright
+	TNT1 A 0 A_Light0
+	DBFG QRST 2 Bright
+	TNT1 A 0 Radius_Quake(3,10,0,1,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam")
+	DBFE AAAAAAAAAAAA 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
+	DBFE A 20
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",100,1)
+	Goto Ready2
+	DBFE A 60 A_PlayWeaponSound("weapons/dtech10kcharge")
+	DBFE A 10 A_PlayWeaponSound("weapons/plasmacellin")
+	Goto Ready
+  FireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",150,1)
+	Goto Nope
+	TNT1 A 0 A_Light1
+    TNT1 A 0 A_PlayWeaponSound("Cardinal/9k")
+	SBFG C 2 Bright Radius_Quake(1,2,0,1,0)
+    SBFG DE 2 Bright Radius_Quake(2,2,0,1,0)
+    SBFG FGH 2 Bright Radius_Quake(4,2,0,1,0)
+	SBFG IJK 1 Bright Radius_Quake(6,3,0,1,0)
+	SBFG L 15 Bright Radius_Quake(8,3,0,1,0)
+	TNT1 A 0 A_Light2
+    TNT1 A 0 A_GunFlash	
+	SBFG M 2 Bright Radius_Quake(10,4,0,1,0)
+	TNT1 A 0 A_Recoil(10)	
+	TNT1 A 0 Radius_Quake(12,6,0,1,0)
+	TNT1 A 0 A_TakeInventory("DemonAmmo",150,TIF_NOTAKEINFINITE)
+	SBFG N 2 Bright A_FireCustomMissile("UpgradedDTBFG10KBall",0,0,0,0)	
+	SBFG OP 1 Bright
+	TNT1 A 0 A_Light0
+	SBFG QRST 2 Bright
+	TNT1 A 0 Radius_Quake(3,10,0,1,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam")
+	SBFE AAAAAAAAAAAA 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
+	SBFE A 20
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",150,1)
+	Goto Ready2Upgraded
+	SBFE A 60 A_PlayWeaponSound("weapons/dtech10kcharge")
+	SBFE A 10 A_PlayWeaponSound("weapons/plasmacellin")
+	Goto ReadyUpgraded
+  Nope:
+	TNT1 A 0
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Print("Primary Fire Requires 150 Demon Cells!")
+    SBFE A 10 A_PlaySound("weapon/off")
+	Goto Ready2Upgraded
+  AltFire:
+	TNT1 A 0    
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechBFG10K",1,"AltFireUpgraded")
+	TNT1 A 0 A_Light1
+    TNT1 A 0 A_PlayWeaponSound("LesserCardinal/BFGCharge")
+	DBFG C 2 Bright Radius_Quake(1,2,0,1,0)
+    DBFG DE 2 Bright Radius_Quake(2,2,0,1,0)
+    DBFG FGH 2 Bright Radius_Quake(4,2,0,1,0)
+	DBFG IJK 1 Bright Radius_Quake(6,3,0,1,0)
+	DBFG L 15 Bright Radius_Quake(8,3,0,1,0)
+	TNT1 A 0 A_Light2
+    TNT1 A 0 A_GunFlash	
+	DBFG M 2 Bright Radius_Quake(10,4,0,1,0)
+	TNT1 A 0 A_Recoil(10)	
+	TNT1 A 0 Radius_Quake(12,6,0,1,0)
+	TNT1 A 0 A_FireCustomMissile("MiniDTBFGBall",-7,1,0,0)
+	TNT1 A 0 A_FireCustomMissile("MiniDTBFGBall",7,1,0,0)
+	TNT1 A 0 A_FireCustomMissile("MiniDTBFGBall",0,1,0,0,0,7)
+	TNT1 A 0 A_FireCustomMissile("MiniDTBFGBall",0,1,0,0,0,-7)
+	DBFG N 2 Bright A_FireCustomMissile("MiniDTBFGBall",0,1,0,0)	
+	DBFG OP 1 Bright
+	TNT1 A 0 A_Light0
+	DBFG QRST 2 Bright
+	TNT1 A 0 Radius_Quake(3,10,0,1,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam")
+	DBFE AAAAAAAAAAAA 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
+	DBFE A 20
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",100,1)
+	Goto Ready2
+	DBFE A 60 A_PlayWeaponSound("weapons/dtech10kcharge")
+	DBFE A 10 A_PlayWeaponSound("weapons/plasmacellin")
+	Goto Ready
+  AltFireUpgraded:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",150,1)
+	Goto Nope
+	TNT1 A 0 A_Light1
+    TNT1 A 0 A_PlayWeaponSound("Cardinal/9k")
+	SBFG C 2 Bright Radius_Quake(1,2,0,1,0)
+    SBFG DE 2 Bright Radius_Quake(2,2,0,1,0)
+    SBFG FGH 2 Bright Radius_Quake(4,2,0,1,0)
+	SBFG IJK 1 Bright Radius_Quake(6,3,0,1,0)
+	SBFG L 15 Bright Radius_Quake(8,3,0,1,0)
+	TNT1 A 0 A_Light2
+    TNT1 A 0 A_GunFlash	
+	SBFG M 2 Bright Radius_Quake(10,4,0,1,0)
+	TNT1 A 0 A_Recoil(10)	
+	TNT1 A 0 Radius_Quake(12,6,0,1,0)
+	TNT1 A 0 A_TakeInventory("DemonAmmo",150,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",-3.5,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",3.5,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",-7,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",7,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",0,0,0,0,0,3.5)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",0,0,0,0,0,-3.5)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",0,0,0,0,0,7)
+	TNT1 A 0 A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",0,0,0,0,0,-7)
+	SBFG N 2 Bright A_FireCustomMissile("UpgradedDTBFG10KBallMiniBall2",0,0,0,0)
+	SBFG OP 1 Bright
+	TNT1 A 0 A_Light0
+	SBFG QRST 2 Bright
+	TNT1 A 0 Radius_Quake(3,10,0,1,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam")
+	SBFE AAAAAAAAAAAA 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
+	SBFE A 20
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",150,1)
+	Goto Ready2Upgraded
+	SBFE A 60 A_PlayWeaponSound("weapons/dtech10kcharge")
+	SBFE A 10 A_PlayWeaponSound("weapons/plasmacellin")
+	Goto ReadyUpgraded
+}
+}
+
+ACTOR UpdatedDTBFG10KBall : DTBFG10KBall
+{
+Damage 256
+Speed 65
++MTHRUSPECIES
++SKYEXPLODE
+Decal BFG9500Lightning
+Scale 0.75
+States
+{
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_PlaySoundEx("weapons/dtech10kball","Voice",1)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CGS1 A 1 Bright A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CGS1 B 1 Bright A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CGS1 C 1 Bright A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CGS1 D 1 Bright A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    Loop
+  Death:
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(5,60,0,10,0)
+	TNT1 A 0 A_SpawnItemEx("BigGreenLightningSpawner",0,0,0,0,0,0,0,128)	
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	CGS1 A 6 Bright A_SpawnItemEx("GreenDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	CGS1 B 6 Bright A_SpawnItemEx("GreenDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	CGS1 C 6 Bright A_SpawnItemEx("GreenDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	CGS1 D 6 Bright A_SpawnItemEx("GreenDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_Explode(512,256)
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+ 	TNT1 A 0 A_SpawnItem("PlayerDTBFGEx",0,-10)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWaveLong",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-12,12),frandom(-12,12),frandom(-12,12)) 
+    Stop    
+}
+}
+
+ACTOR MiniDTBFGBall : UpdatedDTBFG10KBall
+{
+Speed 32
+Scale 0.4
+Damage 25
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySoundEx("LesserCardinal/BFGIdle","Voice",1)
+	TNT1 A 0 A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-32,32),frandom(-32,32),frandom(-32,32),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+    CGS1 ABCD 1 Bright A_CustomMissile("UpdatedPlayerDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    Loop
+  Death:
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(5,60,0,10,0)
+	TNT1 A 0 A_Explode(40,200)
+	CGS1 A 6 Bright A_SpawnItemEx("GreenRocketExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_Explode(40,200)
+	CGS1 B 6 Bright A_SpawnItemEx("GreenRocketExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_Explode(40,200)
+	CGS1 C 6 Bright A_SpawnItemEx("GreenRocketExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_Explode(40,200)
+	CGS1 D 6 Bright A_SpawnItemEx("GreenRocketExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_Explode(240,240)
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 Radius_Quake(20,12,0,12,0)
+	TNT1 A 0 A_PlaySound("weapons/bfg95explode")
+	TNT1 A 0 A_SpawnItemEx("GreenGrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenDiggerExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(16,-16),random(16,-16),random(16,-16),random(8,-8),random(8,-8),random(8,-8),0,128)
+	TNT1 AAA 0 A_CustomMissile("GreenExplosionKaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_SetScale(1.0)
+    BFE1 ABCDEF 4 Bright
+    Stop
+}
+}
+
+ACTOR UpgradedDTBFG10KBall : UpdatedDTBFG10KBall
+{
++FOILINVUL
+Decal BFG9500LightningRed
+Damage 384
+DamageType "MarineKaboom"
+States
+{
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_PlaySoundEx("weapons/dtech10kball","Voice",1)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 A 1 Bright A_SpawnItemEx("UpgradedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 B 1 Bright A_SpawnItemEx("UpgradedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 C 1 Bright A_SpawnItemEx("UpgradedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128,128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    CRS1 D 1 Bright A_SpawnItemEx("UpgradedPlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+    Loop
+  Death:
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(5,60,0,10,0)
+	TNT1 A 0 A_SpawnItemEx("BigRedLightningSpawner",0,0,0,0,0,0,0,128)	
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 A 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 B 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 C 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 D 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 A 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 B 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 C 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_GiveInventory("UpgradedDTBFG10KBallTracerSpawner",1)
+	CRS1 D 6 Bright A_SpawnItemEx("RedDiggerExplosionShockWave",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_Explode(664,384)
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+    TNT1 A 0 A_SpawnItem("RedDTBFGEx",0,-10)
+	TNT1 A 0 A_SpawnItemEx("RedHugeExplosionShockWaveLong",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("RedHugeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAA 0 A_CustomMissile("UpgradedDTBFG10KBallMiniBall",24,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("RedHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("RedDiggerExplosionKaboom",0,0,0,frandom(-12,12),frandom(-12,12),frandom(-12,12)) 
+    Stop 
+}
+}
+
+Actor "UAC Tech Devastator" : "Demon Tech Devastator" replaces "Demon Tech Devastator" 
+{	
+Weapon.AmmoUse 600
+Weapon.AmmoGive 600
++INVENTORY.UNDROPPABLE
+Inventory.PickupMessage "\c[A6]UAC Tech Devastator"
+States
+{
+  Spawn:
+	CVUP ABCDCDB 3 Bright
+	Loop
+  Ready:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("devastator/idle",6,1.0,1)
+	CDEV B 2 A_WeaponReady
+	Loop
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 AAA 0 A_StopSound(6)
+	TNT1 A 0 A_PlaySound("weapons/weapondown",CHAN_WEAPON)
+  DeselectLoop:
+	CDEV B 1 A_Lower
+	Loop
+  Select:
+	CDEV B 1 A_Raise
+	Loop
+  Fire:
+	TNT1 A 0
+	TNT1 AAA 0 A_StopSound(6)
+	CDEV A 10 A_PlaySound("devastator/charge",CHAN_WEAPON)
+	CDEV CDEF 10 Bright
+	CDEV G 3 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV H 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV I 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV G 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV H 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV I 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV G 3 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV H 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV I 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV G 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV H 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	CDEV I 4 Bright A_FireBullets(4,4,2,6,"UACDevPuff",0,64)
+	TNT1 A 0 A_Refire
+	CDEV J 4 Bright A_GunFlash
+	TNT1 A 0 A_Recoil(20)
+	CDEV J 1 Bright A_Playsound("devastator/fire")
+	CDEV K 10 Bright A_FireCustomMissile("UpdatedDevastatorBall",0,1,0,0)
+	CDEV L 7 Bright
+	Goto Ready
+  Hold:
+	TNT1 A 0 A_StopSound(6)
+	CDEV G 1 A_PlayWeaponSound("weapons/devfch")
+	CDEV G 3 Bright A_FireBullets(4,4,2,16,"UACDevPuff",0,64)
+	CDEV H 4 Bright A_FireBullets(4,4,2,16,"UACDevPuff",0,64)
+	CDEV I 4 Bright A_FireBullets(4,4,2,16,"UACDevPuff",0,64)
+	CDEV G 4 Bright A_FireBullets(4,4,2,16,"UACDevPuff",0,64)
+	CDEV H 4 Bright A_FireBullets(4,4,2,16,"UACDevPuff",0,64)
+	CDEV I 4 Bright A_FireBullets(4,4,2,16,"UACDevPuff",0,64)
+	TNT1 A 0 A_Refire
+	CDEV J 4 Bright A_GunFlash
+	CDEV J 1 Bright A_Playsound("devastator/fire")
+	CDEV K 10 Bright A_FireCustomMissile("UpdatedDevastatorBall",0,1,0,0)
+	CDEV L 7 Bright
+	Goto Ready
+}
+}
+
+ACTOR UpdatedDevastatorBall : DevastatorBall
+{
+Speed 35
+Damage 1024
+Alpha 0.95
+Scale 1.0
++NODAMAGETHRUST
++MTHRUSPECIES
++SKYEXPLODE
+Decal BigGreenScorch
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
+	TNT1 A 0 A_CustomMissile("UpdatedDevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,12,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GreenLightningEffect",0,0,0,0,0,0,0,0,128,128)
+    TNT1 AA 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 AA 0 A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-48,48),frandom(-48,48),frandom(-48,48),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	TNT1 A 0 A_Jump(192,2)
+	TNT1 A 0 A_CustomMissile("UpdatedDevastatorMiniBall",0,0,0,CMF_TRACKOWNER|CMF_AIMDIRECTION)
+	CGS2 A 1 Bright A_Explode(48,512,0)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,12,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GreenLightningEffect",0,0,0,0,0,0,0,0,128,128)
+    TNT1 AA 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 AA 0 A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-48,48),frandom(-48,48),frandom(-48,48),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	CGS2 B 1 Bright A_Explode(48,512,0)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,12,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GreenLightningEffect",0,0,0,0,0,0,0,0,128,128)
+    TNT1 AA 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 AA 0 A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-48,48),frandom(-48,48),frandom(-48,48),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	CGS2 C 1 Bright A_Explode(48,512,0)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",-12,0,12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,-12,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_SpawnItemEx("UpdatedPlayerDTBFGProjectileAttack",12,0,12,0,0,0,0,SXF_SETMASTER)
+    TNT1 A 0 A_SpawnItemEx("GreenLightningEffect",0,0,0,0,0,0,0,0,128,128)
+    TNT1 AA 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 AA 0 A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-48,48),frandom(-48,48),frandom(-48,48),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	CGS2 D 1 Bright A_Explode(48,512,0)
+    Loop
+  Death:
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35*5,0,10,0)	
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 A 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 B 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 C 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 D 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 A 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 B 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 C 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 D 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 A 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	TNT1 A 0 A_Explode(128,384)
+	TNT1 A 0 A_RadiusGive("MBFGBallEffect",512,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_GiveInventory("UpdatedDTBFG10KBallTracerSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)	
+	CGS2 B 8 Bright A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	CGS2 ABCDAB 1 Bright A_SetScale(ScaleX-0.2,ScaleY-0.2)
+	TNT1 A 0 A_Explode(192,1024,0)
+	TNT1 A 0 A_Explode(512,648,0)
+	TNT1 A 0 A_Explode(1024,256)
+	TNT1 A 0 Radius_Quake(20,12,0,12,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+    TNT1 A 0 A_SpawnItemEx("GreenMegaRocketEx",0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GreenMegaExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenMegaExplosionShockWave",0,0,0,0,0,0,0,128)
+    TNT1 AAAAAA 0 A_SpawnItemEx("DarkEradicationBFGProjectilSmoke",0,0,0,frandom(-6,6),frandom(-6,6),frandom(-6,6))
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+	TNT1 AAAAAAAAAA 0 A_CustomMissile("UpdatedDevastatorMiniBall",24,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-12,12),frandom(-12,12),frandom(-12,12)) 
+    Stop    
+}
+}
+
+ACTOR UpdatedDevastatorMiniBall : MiniDTBFGBall
+{
+Speed 30
++NOGRAVITY
++HEXENBOUNCE
++CANBOUNCEWATER
+BounceCount 2
+ReactionTime 54
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Countdown
+    TNT1 A 0 A_PlaySoundEx("LesserCardinal/BFGIdle","Voice",1)
+	TNT1 A 0 A_SpawnItemEx("UpdatedBFG9500BallParticle",frandom(-32,32),frandom(-32,32),frandom(-32,32),velx*0.9,vely*0.9,velz*0.9,0,SXF_ABSOLUTEVELOCITY)
+	TNT1 A 0 A_ChangeVelocity(frandom(-4,4),frandom(-4,4),frandom(-2,2),0)
+    CGS1 A 1 Bright A_CustomMissile("UpdatedPlayerDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_ChangeVelocity(frandom(-4,4),frandom(-4,4),frandom(-2,2),0)
+    CGS1 B 1 Bright A_CustomMissile("UpdatedPlayerDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_ChangeVelocity(frandom(-4,4),frandom(-4,4),frandom(-2,2),0)
+    CGS1 C 1 Bright A_CustomMissile("UpdatedPlayerDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_ChangeVelocity(frandom(-4,4),frandom(-4,4),frandom(-2,2),0)
+    CGS1 D 1 Bright A_CustomMissile("UpdatedPlayerDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    Loop
+}
+}
+
+Actor UpdatedDevastatorTrail : DevastatorTrail
+{
+Scale 2.0
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+    TNT1 A 0 A_SetScale(ScaleX-0.08,ScaleY-0.08)
+    GGCR A 4 Bright A_FadeOut(0.1)
+    Loop
+}
+}
+
+Actor UACDevPuff : DevPuff
+{
++MTHRUSPECIES
+DamageType "Marine"
+States
+{
+  Spawn:
+	CL2G ABCDEABCDE 1 Bright
+	Stop
+}
+}
+
+Actor "Behemoth Cannon" : BehemothCannon replaces BehemothCannon
+{
+Inventory.PickupMessage "\c[G5]Behemoth Cannon"
+States
+{
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBehemothCannon",1,2)
+	FHMR A 1 A_WeaponReady
+	Loop
+	BRBC A 1 A_WeaponReady
+	Loop
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBehemothCannon",1,2)
+	FHMR A 1 A_Raise
+	Loop
+	BRBC A 1 A_Raise
+	Loop
+  Deselect:
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBehemothCannon",1,2)	
+	FHMR A 1 A_Lower
+	Loop
+	BRBC A 1 A_Lower
+	Loop
+  Fire:	
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBehemothCannon",1,"FireUpdated")	
+	FHMR D 3 Bright
+	FHMR E 3 Bright A_PlayWeaponSound("cannon/fire")
+	FHMR F 3 Bright A_FireCustomMissile("BehemothCometPlayer")
+	TNT1 A 0 A_FireCustomMissile("BehemothCometPlayer",-2)
+	TNT1 A 0 A_FireCustomMissile("BehemothCometPlayer",2)
+	FHMR G 3 Bright
+	FHMR CBA 5
+	Goto Ready
+  FireUpdated:	
+	BRBC D 3 Bright
+	BRBC E 3 Bright A_PlayWeaponSound("cannon/fire")
+	BRBC F 3 Bright A_FireCustomMissile("BarbatosCometPlayer")
+	TNT1 A 0 A_FireCustomMissile("BarbatosCometPlayer",-2)
+	TNT1 A 0 A_FireCustomMissile("BarbatosCometPlayer",2)
+	BRBC G 1 Bright
+	TNT1 A 0 A_FireCustomMissile("BarbatosCometPlayer",-4)
+	TNT1 A 0 A_FireCustomMissile("BarbatosCometPlayer",4)
+	BRBC G 2 Bright
+	BRBC CBA 5
+	Goto Ready
+  AltFire:	
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderBehemothCannon",1,"AltFireUpdated")
+	FHMR D 3 Bright
+	FHMR E 3 Bright A_PlayWeaponSound("cannon/fire")
+	TNT1 A 0 A_FireCustomMissile("BehemothSeekingCometPlayer",-2)
+	TNT1 A 0 A_FireCustomMissile("BehemothSeekingCometPlayer",2)
+	FHMR FG 3 Bright
+	FHMR CBA 5
+	Goto Ready	
+  AltFireUpdated:	
+	BRBC D 3 Bright
+	BRBC E 3 Bright A_PlayWeaponSound("cannon/fire")
+	BRBC F 3 Bright A_FireCustomMissile("BarbatosSeekingCometPlayer")
+	TNT1 A 0 A_FireCustomMissile("BarbatosSeekingCometPlayer",-2)
+	TNT1 A 0 A_FireCustomMissile("BarbatosSeekingCometPlayer",2)
+	BRBC G 3 Bright
+	BRBC CBA 5
+	Goto Ready	
+}
+}
+
+ACTOR BarbatosCometPlayer : Comet
+{
+Damage 40
+Speed 55
++MTHRUSPECIES
++FORCERADIUSDMG
+MissileType ""
+DamageType "MarinePierce"
+DeathSound "barbcomet/explosion"
+States
+{
+  Spawn:
+	BRTB AAABBB 1 Bright A_SpawnItemEx("BarbCometTail",0,0,0,0,0,0,0,128)
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("Kaboom13",0,0,random(0,360),random(2,3),random(0,360))
+	BRTB C 3 Bright A_Explode
+	BRTB D 3 Bright A_SetTranslucent(0.75,1)
+	TNT1 AAAAA 0 A_SpawnItemEx("BarbatosPoisonPlayer",0,0,10,random(4,-4),random(4,-4),random(4,-2))
+	BRTB EFG 3 Bright
+	Stop
+}
+}
+
+ACTOR BarbatosSeekingCometPlayer : BarbatosCometPlayer
+{
++SEEKERMISSILE
+States
+{
+  Spawn:
+	TNT1 A 0 A_SeekerMissile(15,15,SMF_LOOK)
+	BRTB AAA 1 Bright A_SpawnItemEx("BarbCometTail",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SeekerMissile(15,15,SMF_LOOK)
+	BRTB BBB 1 Bright A_SpawnItemEx("BarbCometTail",0,0,0,0,0,0,0,128)
+	Loop
+}
+}
+
+ACTOR BarbatosPoisonPlayer : PoisonEleBreath
+{ 
+Scale 0.7
+Speed 10
+DamageType "Marine"
+States 
+{ 
+  Spawn: 
+	TRPS ABCDEFGDFEGDFGDFEGDFGDFEGDF 3 A_Explode(3,68)
+  Death: 
+	TRPS CCBBAA 1 A_FadeOut(0.15)
+	Stop 
+}
+}
+
+ACTOR "Demon Tech Rifle  " : "Demon Tech Rifle " replaces "Demon Tech Rifle "
+{
+Inventory.PickupMessage "\c[l2]Demon Tech Rifle"
+States
+{
+   Ready:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"ReadyUpdated")
+     TNT1 A 0 A_PlayWeaponSound("weapons/demontechload")
+	 DTRS ABCDE 1
+   ReadyLoop:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"ReadyLoopUpdated")
+     TNT1 A 0 A_JumpIfInventory("DemonMagazine",1,2)
+	 TNT1 A 0
+	 Goto NoBuzzing
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"ReadyLoopUpdated")
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady	 
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_PlaySound("weapons/demontechidle")
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK BB 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK BB 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK CC 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK CC 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK DD 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK DD 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK EE 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 DTEK EE 1 A_WeaponReady
+     Goto ReadyLoop
+   ReadyUpdated:
+     TNT1 A 0 A_PlayWeaponSound("UpgradedDemonTechRifle/Up")
+	 STRS ABCDE 1
+   ReadyLoopUpdated:
+     TNT1 A 0 A_JumpIfInventory("DemonMagazine",1,2)
+	 TNT1 A 0
+	 Goto NoBuzzingUpdated
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady	 
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK AAA 1 A_WeaponReady
+	 TNT1 A 0 A_PlaySound("UpgradedDemonTechRifle/Idle")
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK BB 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK BB 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK CC 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK CC 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK DD 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK DD 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK EE 1 A_WeaponReady
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	 STEK EE 1 A_WeaponReady
+     Goto ReadyLoopUpdated
+   NoBuzzing:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"NoBuzzingUpdated")
+     TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+     DTEK A 1 A_WeaponReady
+	 Loop
+   NoBuzzingUpdated:
+     TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	 TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+     STEK A 1 A_WeaponReady
+	 Loop
+   Deselect:
+	 TNT1 A 0
+     TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"DeselectingUpdated")
+   Deselecting:
+     DTEK A 1 A_Lower
+     Loop
+   DeselectingUpdated:
+     STEK A 1 A_Lower
+     Loop
+   Select:
+	 TNT1 A 0
+ 	 TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+   Selecting:
+	 TNT1 A 0 A_Raise
+	 Wait
+   Fire:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"FireUpdated")
+     TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	 TNT1 A 0 A_AlertMonsters
+     TNT1 A 0 A_GunFlash
+	 TNT1 A 0 Radius_Quake(4,2,0,1,0)
+     TNT1 A 0 A_Light1
+	 TNT1 A 0 A_PlaySound("weapons/demontechfire")
+     DTKF A 2 Bright A_FireCustomMissile("DemonTechProjectile",Random(100,-100)/100.00,1,0,0,0,Random(100,-100)/100.00)
+	 DTKF B 1 Bright A_Light2
+     DTKF C 2 A_Light0
+     TNT1 A 0 A_ReFire
+     Goto ReadyLoop
+   FireUpdated:
+     TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("DemonMagazine",3,1)
+     Goto EmptyUpdated
+	 TNT1 A 0 A_AlertMonsters
+     TNT1 A 0 A_GunFlash
+	 TNT1 A 0 Radius_Quake(4,2,0,1,0)
+     TNT1 A 0 A_Light1
+	 TNT1 A 0 A_PlaySound("UpgradedDemonTechRifle/Fire")
+     TNT1 A 0 A_TakeInventory("DemonMagazine",3,TIF_NOTAKEINFINITE)
+     STKF A 5 Bright A_FireCustomMissile("UpgradedDemonTechProjectile",Random(100,-100)/100.00,0,0,0,0,Random(100,-100)/100.00)
+	 STKF B 4 Bright A_Light2
+     STKF C 3 A_Light0
+     TNT1 A 0 A_ReFire
+     Goto ReadyLoopUpdated
+   Empty:
+     DTEK A 10 A_PlayWeaponSound("weapons/click2")	 
+   AltFire:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"AltFireUpdated")
+  	 TNT1 A 0 A_JumpIfInventory("DemonMagazine",60,2)
+     TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,2)
+	 TNT1 A 0
+	 Goto ReadyLoop
+     DTKR AB 2
+	 DTKR C 3
+	 DTKR D 4 A_PlayWeaponSound("weapons/demontecheject")
+	 TNT1 A 0 A_PlayWeaponSound("weapons/demontechsteam")
+	 DTKR EFG 1 Radius_Quake(2,2,0,1,0)
+	 DTKR H 2 Radius_Quake(2,2,0,1,0)
+	 DTKR I 3 Radius_Quake(2,2,0,1,0)
+	 DTKR J 4 A_FireCustomMissile("DemonTechEmptyMagSpawner", 0, 0, 0, 1)
+	 DTKR K 15 
+	 DTKR LM 2
+	 DTKR N 2 A_PlayWeaponSound("weapons/demontechload")
+	 TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,"Reload")	 
+	 DTKR O 8
+	 DTKR O 2 A_PlayWeaponSound("weapons/demontechclick")
+     DTKR CB 3
+	 DTKR A 2
+	 Goto ReadyLoop
+   Reload:
+	 TNT1 A 0 A_TakeInventory("DemonAmmo",1)
+	 TNT1 A 0 A_GiveInventory("DemonMagazine",1)
+	 TNT1 A 0 A_JumpIfInventory("DemonMagazine",60,"Full")
+	 TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,"Reload")
+	 Goto AltFire+21
+   Full:
+     TNT1 A 0
+	 Goto AltFire+21
+   EmptyUpdated:
+     STEK A 10 A_PlayWeaponSound("weapons/click2")	 
+   AltFireUpdated:
+  	 TNT1 A 0 A_JumpIfInventory("DemonMagazine",60,2)
+     TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,2)
+	 TNT1 A 0
+	 Goto ReadyLoopUpdated
+     STKR AB 2
+	 STKR C 3
+	 STKR D 4 A_PlayWeaponSound("weapons/demontecheject")
+	 TNT1 A 0 A_PlayWeaponSound("UpgradedDemonTechRifle/Steam")
+	 STKR EFG 1 Radius_Quake(2,2,0,1,0)
+	 STKR H 2 Radius_Quake(2,2,0,1,0)
+	 STKR I 3 Radius_Quake(2,2,0,1,0)
+	 STKR J 4 A_FireCustomMissile("DemonTechEmptyMagSpawner", 0, 0, 0, 1)
+	 STKR K 15 
+	 STKR LM 2
+	 STKR N 2 A_PlayWeaponSound("weapons/demontechload")
+	 TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,"ReloadUpdated")	 
+	 STKR O 8
+	 STKR O 2 A_PlayWeaponSound("weapons/demontechclick")
+     STKR CB 3
+	 STKR A 2
+	 Goto ReadyLoopUpdated
+   ReloadUpdated:
+	 TNT1 A 0 A_TakeInventory("DemonAmmo",1)
+	 TNT1 A 0 A_GiveInventory("DemonMagazine",1)
+	 TNT1 A 0 A_JumpIfInventory("DemonMagazine",60,"FullUpdated")
+	 TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,"ReloadUpdated")
+	 Goto AltFireUpdated+19
+   FullUpdated:
+     TNT1 A 0
+	 Goto AltFireUpdated+19
+   GrenadeCheck:
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	 TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	 Goto Ready+6
+   GrenadeToss:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"GrenadeTossUpdated")
+  	 TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	 DTRS EDCBA 1
+	 TNT1 A 4
+	 HGRN ABC 1
+	 HGRN D 2
+	 HGRN EFG 1
+	 HGRN HI 2
+	 TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	 TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	 TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	 HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	 HGRN J 1
+	 HGRN KLM 2
+	 HGRN NO 1
+	 TNT1 A 6
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+     TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	 TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	 TNT1 A 0
+	 Goto Ready+1
+   GrenadeTossUpdated:
+  	 TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	 STRS EDCBA 1
+	 TNT1 A 4
+	 HGRN ABC 1
+	 HGRN D 2
+	 HGRN EFG 1
+	 HGRN HI 2
+	 TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	 TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	 TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	 HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	 HGRN J 1
+	 HGRN KLM 2
+	 HGRN NO 1
+	 TNT1 A 6
+	 TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+     TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	 TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	 TNT1 A 0
+	 Goto ReadyUpdated+1
+   MineCheck:
+	 TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	 TNT1 A 0 A_TakeInventory("MineAction",1)
+	 Goto Ready+6
+   MineToss:
+	 TNT1 A 0
+  	 TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDemonTechRifle",1,"MineTossUpdated")
+  	 TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	 DTRS EDCBA 1
+	 TNT1 A 8
+	 TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	 MINE ABCDEF 1		
+	 TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	 MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	 MINE HI 1
+	 MINE JK 2
+	 TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+     TNT1 A 0 A_TakeInventory("Land Mine",1)
+	 TNT1 A 0 A_TakeInventory("MineAction",1)
+	 TNT1 A 0
+	 TNT1 A 5
+	 Goto Ready+1	
+   MineTossUpdated:
+  	 TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	 STRS EDCBA 1
+	 TNT1 A 8
+	 TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	 MINE ABCDEF 1		
+	 TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	 MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	 MINE HI 1
+	 MINE JK 2
+	 TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+     TNT1 A 0 A_TakeInventory("Land Mine",1)
+	 TNT1 A 0 A_TakeInventory("MineAction",1)
+	 TNT1 A 0
+	 TNT1 A 5
+	 Goto ReadyUpdated+1		 
+}
+}
+
+
+ACTOR "Double Barrel Shotgun " : "Double Barrel Shotgun" replaces "Double Barrel Shotgun"
+{
+Decal BulletChip
+Inventory.PickupMessage "\c[Q4]Double Barrel Shotgun"
+States
+{
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+	TNT1 A 0 A_Raise
+    Wait
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("SSGShell",2,"FireBoth")
+	TNT1 A 0 A_JumpIfInventory("NewShell",1,"Reload")
+	Goto Empty
+  FireBoth:
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_TakeInventory("SSGShell",2)
+	TNT1 A 0 Radius_Quake(6,3,0,1,0)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDoubleBarrelShotgun",1,"FireBothUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/sshotf")
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("SGTracer",Random(8,-8),0,0,Random(8,-8))
+    SH2F A 2 Bright A_FireBullets(11.2,7.1,20,5,"ModdedBulletPuff")
+	Goto FireBothEnd
+  FireBothUpgraded:
+	TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("DoubleShotgunShrapnel",frandom(-12,12),0,0,0,0,10+frandom(-6,6))
+    SH2F A 2 Bright A_PlaySound("ShotgunShrapnel/Fire")
+	Goto FireBothEnd
+  FireBothEnd:
+    SH2F B 2 Bright A_Light2
+	SH2E A 1 A_Light0
+	SHT2 BCDEF 1
+    SHT2 EDCB 2
+  SSGReloadCheck:
+  	TNT1 A 0 A_JumpIfInventory("NewShell",2,2)
+	SH2E A 2
+	Goto Ready+9
+	TNT1 A 0
+	Goto ReloadBoth+4
+  AltFire:
+    TNT1 A 0 A_JumpIfInventory("SSGShell",2,"FireRight")
+	TNT1 A 0 A_JumpIfInventory("SSGShell",1,1)
+	Goto Reload
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("SSGShell",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDoubleBarrelShotgun",1,"FireLeftUpgraded")
+    TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
+	TNT1 AAAA 0 A_FireCustomMissile("SGTracer",Random(6,-6),0,0,Random(6,-6))
+    S2SF C 2 Bright A_FireBullets(4.6,2.8,7,Random(5,7),"ModdedBulletPuff")
+	Goto FireLeftEnd
+  FireLeftUpgraded:
+	TNT1 AAAAAAAAAA 0 A_FireCustomMissile("DoubleShotgunShrapnel",frandom(-12,12),0,0,0,0,10+frandom(-6,6))
+    SH2F C 2 Bright A_PlaySound("ShotgunShrapnel/Fire")
+	Goto FireLeftEnd
+  FireLeftEnd:
+	S2SF D 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	SH2R EFGH 1
+	SHTE A 2
+    Goto Ready+9
+  FireRight:
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+    TNT1 A 0 Radius_Quake(3,3,0,1,0)
+	TNT1 A 0 A_TakeInventory("SSGShell",1)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderDoubleBarrelShotgun",1,"FireLeftUpgraded")
+    TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
+	TNT1 AAAA 0 A_FireCustomMissile("SGTracer",Random(6,-6),0,0,Random(6,-6))
+    S2SF A 2 Bright A_FireBullets(4.6,2.8,7,Random(5,7),"ModdedBulletPuff")
+	Goto FireRightEnd
+  FireLeftUpgraded:
+	TNT1 AAAAAAAAAA 0 A_FireCustomMissile("DoubleShotgunShrapnel",frandom(-12,12),0,0,0,0,10+frandom(-6,6))
+    S2SF A 2 Bright A_PlaySound("ShotgunShrapnel/Fire")
+	Goto FireRightEnd
+  FireRightEnd:
+	S2SF B 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	SH2R ABCD 1
+	SST2 A 2
+    Goto Ready+9
+}
+}
+
+Actor DoubleShotgunShrapnel
+{
+Projectile
+Radius 3
+Height 6
+Speed 30
+Scale 0.1
+Damage 6
+-NOGRAVITY
++DOOMBOUNCE
++CANBOUNCEWATER
++NODAMAGETHRUST
++MOVEWITHSECTOR
++BLOODSPLATTER
+SeeSound "ShotgunShrapnel/Bounce"
+BounceSound "ShotgunShrapnel/Bounce"
+BounceFactor 0.5
+WallBounceFactor 0.5
+DamageType "Marine"
+States
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_ScaleVelocity(frandom(0.9,1.1))
+	TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8)
+	SCRH ABCDEFGH 0 A_Jump(256,"Fly")
+  Fly:
+	"----" A 1 Bright
+	Loop
+  Death:
+	SCRH A 40
+	SCRH A 1 A_FadeOut(0.05)
+	Wait
+}
+}
+
+Actor "Assault Rifle " : "Assault Rifle" replaces "Assault Rifle"
+{
+Decal Bulletchip
+Inventory.PickupMessage "\c[S7]Assault Rifle"
+States
+{
+  Select:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"SelectingUpgraded")
+  Selecting:
+	TNT1 A 0 A_Raise
+	Wait
+  SelectingUpgraded:
+    NLGG A 1 A_Raise
+    Loop
+  Deselect:
+	TNT1 A 0
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"DeselectingUpgraded")
+  Deselecting:
+	CHGG A 1 A_Lower
+	Loop
+  DeselectingUpgraded:
+    NLGG A 1 A_Lower
+    Loop
+  Ready:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"ReadyUpgraded")
+	TNT1 A 0 A_PlayWeaponSound("items/assaultrifle")
+	CGNR ABCDEF 1
+  IsReady:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"ReadyUpgraded")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+	CHGG A 1 A_WeaponReady
+	Loop
+  ReadyUpgraded:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+    NLGG A 1 A_WeaponReady
+	Loop
+  Fire:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"FireUpgraded")
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")	
+	TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+	TNT1 A 0 A_AlertMonsters	
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",30,3,25,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_Light1
+	CHGF A 2 Bright A_FireBullets(4.0,2.4,1,Random(5,7),"ModdedBulletPuff")
+	TNT1 A 0 A_Light0
+	CHGF BC 1
+	TNT1 A 0 A_JumpIfInventory("ARMagazine",1,1)
+	Goto IsReady
+	TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+	TNT1 A 0 A_AlertMonsters	
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",30,3,25,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_Light2
+	CHGF A 2 Bright A_FireBullets(4.0,2.4,1,Random(5,7),"ModdedBulletPuff")
+	TNT1 A 0 A_Light0
+	CHGF BC 1
+	TNT1 A 0 A_ReFire
+	Goto IsReady
+  FireUpgraded:
+    TNT1 A 0 
+    TNT1 A 0 A_JumpIfInventory("BulletMag",2,2)
+	TNT1 A 0 A_Print("Requires 2 Bullets!")
+    Goto EmptyUpgraded
+    TNT1 A 0 A_Jump(256,"FireUpgraded1","FireUpgraded2")
+  FireUpgraded1:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",2,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound("weapons/nailfire")
+    NLGF A 2 Bright A_FireCustomMissile("NailgunProjectile",0,0,-4)
+    NLGF BCD 1 Bright 
+    NLGG A 1
+    Goto ReadyUpgraded
+  FireUpgraded2:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",2,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound("weapons/nailfire")
+    NLGF E 2 Bright A_FireCustomMissile("NailgunProjectile",0,0,4)
+    NLGF FGH 1 Bright 
+    NLGG A 1
+    Goto ReadyUpgraded
+  AltFireUpgraded:
+    TNT1 A 0 
+    TNT1 A 0 A_JumpIfInventory("NailgunType",1,"AltFireOtherUpgraded")
+    TNT1 A 0 A_JumpIfInventory("BulletMag",5,2)
+	TNT1 A 0 A_Print("Requires 5 Bullets!")
+    Goto ReadyUpgraded
+    TNT1 A 0 A_Jump(256,"AltFireUpgraded1","AltFireUpgraded2")
+  AltFireUpgraded1:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",5,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound("Nailgun/SawLaunch")
+    NLGF A 6 Bright A_FireCustomMissile("NailgunProjectileSaw",0,0,-4)
+    NLGF BCD 3 Bright 
+    NLGG A 3
+    Goto ReadyUpgraded
+  AltFireUpgraded2:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",5,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound("Nailgun/SawLaunch")
+    NLGF E 6 Bright A_FireCustomMissile("NailgunProjectileSaw",0,0,4)
+    NLGF FGH 3 Bright 
+    NLGG A 3
+    Goto ReadyUpgraded
+  AltFireOtherUpgraded:
+    TNT1 A 0 
+    TNT1 A 0 A_JumpIfInventory("BulletMag",20,2)
+	TNT1 A 0 A_Print("Requires 20 Bullets!")
+    Goto EmptyUpgraded
+    TNT1 A 0 A_Jump(256,"AltFireOtherUpgraded1","AltFireOtherUpgraded2")
+  AltFireOtherUpgraded1:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",20,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound("weapons/nailfire")
+    NLGF A 10 Bright A_FireCustomMissile("NailBomb",0,0,-4)
+    NLGF BCD 6 Bright 
+    NLGG A 5
+    Goto ReadyUpgraded
+  AltFireOtherUpgraded2:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(1,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("BulletMag",20,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound("weapons/nailfire")
+    NLGF E 10 Bright A_FireCustomMissile("NailBomb",0,0,4)
+    NLGF FGH 6 Bright 
+    NLGG A 5
+    Goto ReadyUpgraded
+  EmptyUpgraded:
+	NLGG A 10 A_PlayWeaponSound("weapons/click")
+    Goto ReadyUpgraded
+  Empty:
+	CHGG A 10 A_PlayWeaponSound("weapons/click")
+  AltFire:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"AltFireUpgraded")
+	TNT1 A 0 A_JumpIfInventory("ARMagazine",41,2)
+	TNT1 A 0 A_JumpIfInventory("BulletMag",1,2)
+	TNT1 A 0
+	Goto IsReady
+	TNT1 A 0 A_JumpIfInventory("ARMagazine",1,"MaxReload")
+	CHGR A 1 A_PlayWeaponSound("weapons/arreload")
+	CHGR BCD 1
+	CHGR E 1 A_FireCustomMissile("AREmptyMagSpawner", 0, 0, 0, 1)
+	CHGR F 1
+	CHGR G 8
+	CHGR HIJK 1
+	CHGR L 8	
+	CHGR MN 2
+	CHGR OP 1
+	CGCK A 1
+	CGCK B 3
+	CGCK C 4 A_PlayWeaponSound("weapons/arclick")
+	CGCK D 3
+	CGCK EF 2
+	TNT1 A 0 A_JumpIfInventory("BulletMag",1,"Reload")
+  Reload:
+	TNT1 A 0 A_TakeInventory("BulletMag",1)
+	TNT1 A 0 A_GiveInventory("ARMagazine",1)
+	TNT1 A 0 A_JumpIfInventory("ARMagazine",40,2)
+	TNT1 A 0 A_JumpIfInventory("BulletMag",1,"Reload")
+	TNT1 A 0
+	Goto IsReady
+  MaxReload:
+	CHGR A 1 A_PlayWeaponSound("weapons/arreload")
+	CHGR BCD 1
+	CHGR E 1 A_FireCustomMissile("AREmptyMagSpawner", 0, 0, 0, 1)
+	CHGR F 1
+	CHGR G 8
+	CHGR HIJK 1
+	TNT1 A 0 A_JumpIfInventory("BulletMag",1,"Reload2")
+  Reload2:
+	TNT1 A 0 A_TakeInventory("BulletMag",1)
+	TNT1 A 0 A_GiveInventory("ARMagazine",1)
+	TNT1 A 0 A_JumpIfInventory("ARMagazine",41,"Full")
+	TNT1 A 0 A_JumpIfInventory("BulletMag",1,"Reload2")
+  Full:
+	CHGR L 8	
+	CHGR MN 2
+	CHGR OPQRS 1
+	CHGG A 2
+	Goto IsReady
+  Zoom:
+	TNT1 A 0
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_JumpIfInventory("NailgunType",1,4)
+	TNT1 A 0 A_Print("Nail Bomb Mod")
+	TNT1 A 0 A_PlayWeaponSound("Weapon/Mod2")
+	NLGG A 15 A_GiveInventory("NailgunType",1)
+	Goto Ready
+	TNT1 A 0 A_Print("Razor Mod")
+	TNT1 A 0 A_PlayWeaponSound("Weapon/Mod6")
+	NLGG A 15 A_TakeInventory("NailgunType",1)
+	Goto Ready
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto IsReady
+  GrenadeToss:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"GrenadeTossUpgraded")
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	CGNR FEDCBA 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	Goto Ready+1
+  GrenadeTossUpgraded:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	NLGG A 1 Offset(0,30)
+	NLGG A 1 Offset(0,40)
+	NLGG A 1 Offset(0,50)
+	NLGG A 1 Offset(0,60)
+	NLGG A 1 Offset(0,70)
+	TNT1 A 4 Offset(0,10)
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	NLGG A 1 Offset(0,70)
+	NLGG A 1 Offset(0,60)
+	NLGG A 1 Offset(0,50)
+	NLGG A 1 Offset(0,40)
+	NLGG A 1 Offset(0,30)
+	Goto ReadyUpgraded
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto IsReady
+  MineToss:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderAssaultRifle",1,"MineTossUpgraded")
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	CGNR FEDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	Goto Ready+1
+  MineTossUpgraded:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	NLGG A 1 Offset(0,30)
+	NLGG A 1 Offset(0,40)
+	NLGG A 1 Offset(0,50)
+	NLGG A 1 Offset(0,60)
+	NLGG A 1 Offset(0,70)
+	TNT1 A 8 Offset(0,10)
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	NLGG A 1 Offset(0,70)
+	NLGG A 1 Offset(0,60)
+	NLGG A 1 Offset(0,50)
+	NLGG A 1 Offset(0,40)
+	NLGG A 1 Offset(0,30)
+	Goto ReadyUpgraded
+}
+}
+
+Actor NailgunType : Inventory{Inventory.MaxAmount 1}
+
+Actor NailgunProjectile
+{
+Projectile
+Radius 4
+Height 8
+Speed 56
+Scale 0.8
+Damage 8
++NODAMAGETHRUST
++MOVEWITHSECTOR
++BLOODSPLATTER
++MTHRUSPECIES
+//SeeSound "weapons/nailfire"
+DeathSound "weapons/nailhit"
+DamageType "Marine"
+Decal "BulletChip"
+States
+{
+  Spawn:
+	NAIL A 1
+	Loop
+  Death:
+	NAIL A 40 A_PlaySound("Nailgun/WallHit",5)
+	NAIL A 1 A_FadeOut(0.05)
+	Wait
+  Crash:
+	PUFF ABCD 3
+	Stop
+  Crush:
+	TNT1 A 1
+	Stop
+  XDeath:
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor NailgunProjectileBouncing : NailgunProjectile
+{
+Speed 72
+Damage 14
++DOOMBOUNCE
+BounceCount 3
+BounceFactor 1.1
+WallBounceFactor 1.1
+States
+{
+  Spawn:
+	N4IL A 1
+	Loop
+  Death:
+	N4IL A 40 A_PlaySound("Nailgun/WallHit",5)
+	N4IL A 1 A_FadeOut(0.05)
+	Wait
+}
+}
+
+Actor NailBomb
+{
+Projectile
+Speed 20
+Radius 24
+Height 24
+Reactiontime 35
++DOOMBOUNCE
++CANBOUNCEWATER
++BOUNCEONACTORS
++SKYEXPLODE
+-NOGRAVITY
+SeeSound "NailBomb/Bounce"
+DeathSound "NailBomb/Explode"
+States
+{
+  Spawn:
+	NBMB A 2 A_Countdown
+	NBMB AB 6
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 AAAAA 0 A_CustomMissile("NailgunProjectileSaw",4,2,random(1,359))
+	TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("NailgunProjectileBouncing",4,2,random(1,359))
+	W2MK ABCDE 5
+	Stop
+}
+}
+
+ACTOR NailgunProjectileSaw
+{
+Projectile
+Radius 4
+Height 2 
+Speed 20
+Scale 0.3
+Damage 4
++NOGRAVITY
++SEEKERMISSILE
++RIPPER
++DOOMBOUNCE
++EXTREMEDEATH
++NOEXPLODEFLOOR
++MTHRUSPECIES
+BounceCount 3
+SeeSound "weapons/nailfire"
+DamageType SawShot
+DamageType "Marine"
+States
+{
+  Spawn:
+	S4WS AABBCCDDEEFFGGHHAABBCCDDEEFFGGHHAABBCCDDEEFFGGHHAABBCCDDEEFFGGHH 2 A_SeekerMissile(90,90)
+	S4WS A 0 A_Gravity
+	S4WS AABBCCDDEEFFGGHH 2 A_SeekerMissile(90,90)
+	Goto Spawn+66
+  Crash:
+	SAWE A 1 A_ChangeFlag("RIPPER",FALSE)
+  Death:
+	SAWE A 1 A_Gravity
+	SAWE A 128
+	SAWE B 96
+	SAWE C 64
+	SAWE DEF 48
+	SAWE F 32
+	SAWE G 16
+	Stop
+}
+}
+
+ACTOR "Minigun  " : "Minigun " replaces "Minigun "
+{
+Decal Bulletchip
+Inventory.PickupMessage "\c[S7]Minigun"
+States
+{
+  Spawn:
+	MNGN A -1
+	Stop
+  Ready:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderMinigun",1,"IsReadyUpgraded")
+	MGRS ABCDE 1
+  IsReady:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderMinigun",1,"IsReadyUpgraded")
+	CHAG A 1 A_WeaponReady
+	Loop
+  IsReadyUpgraded:
+	DHAG A 1 A_WeaponReady
+	Loop
+  Deselect:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderMinigun",1,"DeselectingUpgraded")
+  Deselecting:
+	CHAG A 1 A_Lower
+	Loop
+  DeselectingUpgraded:
+	DHAG A 1 A_Lower
+	Loop
+  Select:
+	TNT1 A 0
+	TNT1 A 0 A_PlayWeaponSound("weapons/minigunpickup")
+	TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderMinigun",1,"SelectUpgraded")
+  Selecting:
+	TNT1 A 0 A_Raise
+	Wait
+  SelectUpgraded:
+	TNT1 A 0 A_Raise
+    DHAG A 1 A_Raise
+    Loop
+  Fire:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderMinigun",1,"FireUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/mgunspin")
+	TNT1 A 0 A_PlaySound("weapons/minigunfire",CHAN_WEAPON)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(4,-4),0,0,Random(4,-4))
+	CHAF A 1 Bright A_FireBullets(4.3,2.6,-1,Random(7,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")
+	CHAF BC 1 A_Light0
+	TNT1 A 0 A_PlaySound("weapons/minigunfire",CHAN_WEAPON)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light2
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(4,-4),0,0,Random(4,-4))
+	CHAF D 1 Bright A_FireBullets(4.3,2.6,-1,Random(7,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")	
+	CHAF EF 1 A_Light0
+	TNT1 A 0 A_PlaySound("weapons/minigunfire",CHAN_WEAPON)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(4,-4),0,0,Random(4,-4))
+	CHAF G 1 Bright A_FireBullets(4.8,2.4,-1,Random(7,10),"ModdedBulletPuff")
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDown")	
+	CHAF H 1 A_Light0
+	TNT1 A 0 A_ReFire
+	TNT1 A 0 A_PlaySound("weapons/mgunspinstop")
+	CHAG ABCDABCDABCDABCD 1
+	CHAG ABCD 2
+	Goto IsReady
+  EmptySpinDown:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WeaponUpgraderMinigun",1,"EmptySpinDownUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/mgunspinstop")
+	CHAG ABCDABCDABCDABCD 1
+	CHAG ABCD 2
+	Goto IsReady
+  FireUpgraded:
+	TNT1 A 0 A_PlaySound("weapons/mgunspin")
+	TNT1 A 0 A_PlaySound("weapons/minigunfire",CHAN_WEAPON)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 AA 0 A_FireCustomMissile("Tracer",Random(4,-4),0,0,Random(4,-4))
+	TNT1 AA 0 A_FireBullets(4.3,2.6,-1,Random(7,10),"ModdedBulletPuff")
+	DHAF A 1 Bright Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDownUpgraded")
+	DHAF BC 1 A_Light0
+	TNT1 A 0 A_PlaySound("weapons/minigunfire",CHAN_WEAPON)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light2
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 AA 0 A_FireCustomMissile("Tracer",Random(4,-4),0,0,Random(4,-4))
+	TNT1 AA 0 A_FireBullets(4.3,2.6,-1,Random(7,10),"ModdedBulletPuff")
+	DHAF D 1 Bright Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDownUpgraded")	
+	DHAF EF 1 A_Light0
+	TNT1 A 0 A_PlaySound("weapons/minigunfire",CHAN_WEAPON)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing",25,-8,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 AA 0 A_FireCustomMissile("Tracer",Random(4,-4),0,0,Random(4,-4))
+	TNT1 AA 0 A_FireBullets(4.3,2.6,-1,Random(7,10),"ModdedBulletPuff")
+	DHAF G 1 Bright Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_JumpIfNoAmmo("EmptySpinDownUpgraded")	
+	DHAF H 1 A_Light0
+	TNT1 A 0 A_ReFire("FireUpgraded")
+	TNT1 A 0 A_PlaySound("weapons/mgunspinstop")
+	DHAG ABCDABCDABCDABCD 1
+	DHAG ABCD 2
+	Goto IsReady
+  EmptySpinDownUpgraded:
+	TNT1 A 0 A_PlaySound("weapons/mgunspinstop")
+	DHAG ABCDABCDABCDABCD 1
+	DHAG ABCD 2
+	Goto IsReady
+}
+}

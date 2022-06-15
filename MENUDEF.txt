@@ -1,0 +1,351 @@
+//===========
+// Mod Menus
+//===========
+
+LISTMENU "MainMenu"
+{
+	IFGAME (DOOM)
+	{
+		STATICPATCH 85,0,"M_DOOM"
+		POSITION 92,72
+		STATICTEXT 125,188,"Version 0.99.9"
+	}
+	TEXTITEM "New Game","N","PlayerClassMenu"
+	TEXTITEM "CDI Settings","C","CDISettings"
+	TEXTITEM "Options","O","OptionsMenu"
+	TEXTITEM "Load Game","L","LoadGameMenu"
+	TEXTITEM "Save Game","S","SaveGameMenu"
+	TEXTITEM "Quit Game","Q","QuitMenu"
+}
+
+OptionMenu "CDISettings"
+{
+    Title "Complex Doom Invasion Settings"
+    StaticText " "
+    Submenu "User - Settings","CDIUserSettings"
+    StaticText " "
+    Submenu "Global - Settings","CDIGlobalSettings"
+    StaticText " "
+    Submenu "Hotkeys - Settings","CDIHotkeys"
+    StaticText " "
+    Submenu "Runes Info","RuneInformations"
+    StaticText " "
+    Submenu "Powerups Info","PowerupsInformations"
+}
+
+OptionMenu "CDIUserSettings"
+{
+    Title "CDI User Settings"
+	StaticText " "
+	SafeCommand	"Reset User Settings","CDM_Reset_User_Settings"
+    StaticText " "
+    Option "Fog Mod","gl_fogmode","OnOff"
+    Option "Vanilla Mod","cd_cl_vanillamode","OnOff"
+    Option "Protips","cdm_protip","OnOff"
+    Option "Weapon Announcer","cdm_weapon_announcer","OnOff"
+    Option "Armor Pickup Type","cdm_armor_alwayspick","ArmorPickupType"
+	Option "Auto Health","cdm_auto_health","OnOff"
+	Option "Auto Armor","cdm_auto_armor","AutoArmor"
+	Slider "Auto Armor Check", "cdm_auto_armor_check", 50, 350, 1, 0
+	Option "Auto Ammo Pack","cdm_auto_ammo_pack","OnOff"
+    Option "Auto Bonus Crate","cdm_auto_bonus_crate","OnOff"
+    Option "Auto Epic Crate","cdm_auto_epic_crate","OnOff"
+    Option "Auto-Regroup Allies","cdm_ally_tele","OnOff"
+    Option "Keep Selected Weapon","cdm_keep_weapon","OnOff"
+    Option "Discord Server Info","cdm_discord_info","OnOff"
+    Option "Ranking Up Sound","cdm_ranking_sound","OnOff"
+    Option "Ranking Class","cdm_rank_class","RankClass"
+    Option "Favorite Rune","cdm_favorite_rune","FavoriteRune"
+    StaticText " "
+    Submenu "Utility Gun - Settings","UtilitySettings"
+}
+
+OptionMenu "UtilitySettings"
+{
+    Title "Utility Gun Settings"
+	StaticText " "
+	SafeCommand	"Reset Utility Gun Settings","CDM_Reset_Utility_Settings"
+    StaticText " "
+	Slider "Utility Mouse Sensitivity", "cdm_utility_sensitivity", 0, 2, 0.1, 2
+    Option "Utility Unit Messages","cdm_utility_message","OnOff"
+    Option "Utility Cooldown Messages","cdm_utility_cooldown_message","OnOff"
+	Slider "Support AI - Free Slots", "cdm_supportai_slot", 0, 50, 1, 0
+	Slider "ADV Support AI - Free Slots", "cdm_advsupportai_slot", 0, 100, 1, 0
+    StaticText " "
+    Option "Auto-Build Bonus Crate","cdm_util_auto_bonus_crate","OnOff"
+    Option "Auto-Build Reinforcement Card","cdm_util_auto_reinforcement","OnOff"
+    Option "Auto-Build Demonic Chalice","cdm_util_auto_chalice","OnOff"
+    Option "Auto-Build Skull Of Power","cdm_util_auto_skull","OnOff"
+    Option "Auto-Build Mistery Box","cdm_util_auto_mistery","OnOff"
+}
+
+OptionMenu "CDIGlobalSettings"
+{
+    Title "CDI Global Settings"
+	StaticText " "
+	SafeCommand	"Reset Global Settings","CDM_Reset_Global_Settings"
+    StaticText " "
+    Option "Testing Mod","cdm_cheats","TrueOrFalse"
+    StaticText " "
+    Option "Hard Mod","cdm_hard","TrueOrFalse2"
+    StaticText " "
+    Option "Enable Bonus Crate","cdm_bonuscrate","TrueOrFalse"
+    Option "Enable Bonus Crate Drop","cdm_bonuscrate_drop","TrueOrFalse"
+	Slider "Bonus Crate Chances", "cdm_bonuscrate_chance",0,100,1,0
+    StaticText " "
+    Submenu "Global Player Settings","GlobalPlayerSettings"
+    StaticText " "
+    Submenu "Global Monster Settings","GlobalMonsterSettings"
+}
+
+OptionMenu "GlobalPlayerSettings"
+{
+    Title "Global Player Settings"
+	StaticText " "
+	Slider "Starting Lives","cdm_startlives",1,10,1,0
+    StaticText " "
+	Slider "Minimal Players for Boost","cdm_playerboost",1,16,1,0
+    StaticText " "
+    Option "Enable Experience System","cdm_experience_system","TrueOrFalse"
+	Slider "Experience Multipler", "cdm_experience_multiplier",1,10,1,0
+	Slider "Rankup Multipler", "cdm_rankup_multiplier",1,10,1,0
+}
+
+OptionMenu "GlobalMonsterSettings"
+{
+    Title "Global Monster Settings"
+	StaticText " "
+    Option "Enable Demon Enchant","cdm_demon_enchant","TrueOrFalse"
+    StaticText " "
+	Slider "Minimal Players for Hell Reinforcement","cdm_manyplayers",1,16,1,0
+    StaticText " "
+    Option "Enable Invasion Gate","cdm_invasiongate","TrueOrFalse"
+    Option "Force Invasion Gate","cdm_invasiongateforced","TrueOrFalse"
+    StaticText " "
+	Slider "Security Cooldown(mins)", "cdm_security_delay", 0, 60, 1, 0
+    StaticText " "
+	Slider "Threat Level Limit", "cdm_incursion_tier_limit", 1, 9, 1, 0
+	Slider "Threat Progress Multiplier", "cdm_incursion_progress_speed", 1, 16, 1, 0
+    StaticText " "
+    Option "Enable Hell Incursion","cdm_incursion","TrueOrFalse"
+	Slider "Max Hell Incursion/Wave", "cdm_max_incursion", 0, 20, 1, 0
+	Slider "Hell Incursion Chance", "cdm_incursion_chance", 0, 100, 1, 0
+	Slider "Hell Incursion Size", "cdm_incursion_size", 0, 5, 0.1, 2
+	Slider "Incursion Trigger Min Monsters", "cdm_incursion_min_monster", 1, 200, 1, 0
+	Slider "Incursion Trigger Max Monsters", "cdm_incursion_max_monster", 100, 1000, 1, 0
+    StaticText " "
+    Option "Enable Monster Event","cdm_monster_event","TrueOrFalse"
+	Slider "Monster Event Chance", "cdm_monster_event_chance", 0, 100, 1, 0
+	Slider "Monster Event Delay(mins)", "cdm_monster_event_delay", 1, 60, 1, 0
+    StaticText " "
+    Option "Enable Demonic Assault","cdm_demonic_assault","TrueOrFalse"
+	Slider "Min Demonic Assault/Level", "cdm_demonic_assault_count_min", 0, 3, 1, 0
+	Slider "Max Demonic Assault/Level", "cdm_demonic_assault_count_max", 4, 6, 1, 0
+	Slider "Demonic Assault Min Delay(s)", "cdm_demonic_assault_time_min", 1, 300, 1, 0
+	Slider "Demonic Assault Max Delay(s)", "cdm_demonic_assault_time_max", 1, 600, 1, 0
+    StaticText " "
+    Option "Enable Demon Reinforcement","cdm_demon_reinforcement","TrueOrFalse"
+	Slider "Min Demon Reinforcement/Level", "cdm_demon_reinforcement_count_min", 0, 12, 1, 0
+	Slider "Max Demon Reinforcement/Level", "cdm_demon_reinforcement_count_max", 1, 24, 1, 0
+	Slider "Demon Reinforcement Min Delay(s)", "cdm_demon_reinforcement_time_min", 0, 60, 1, 0
+	Slider "Demon Reinforcement Max Delay(s)", "cdm_demon_reinforcement_time_max", 1, 180, 1, 0
+}
+
+OptionValue "TrueOrFalse"
+{
+	0, "FALSE"
+	1, "TRUE"
+}
+
+OptionValue "TrueOrFalse2"
+{
+	1, "FALSE"
+	2, "TRUE"
+}
+
+OptionValue "AutoArmor"
+{
+	0, "Off"
+	1, "Always"
+	2, "Green Armor Or Stronger"
+	3, "Blue Armor Or Stronger"
+}
+
+OptionValue "RankClass"
+{
+	0, "None"
+	1, "Weaponizer"
+	2, "Demolitionist"
+	3, "Hunter"
+	4, "Tactician"
+	5, "Utility"
+}
+
+OptionValue "FavoriteRune"
+{
+	0, "Random"
+	1, "Regeneration"
+	2, "Resistance"
+	3, "Prosperity"
+	4, "Absorption"
+	5, "Strength"
+	6, "Rage"
+	7, "Revenge"
+	8, "Summoner"
+	9, "Looting"
+	10, "Confusion"
+	11, "Time"
+}
+
+OptionMenu "CDIHotkeys"
+{
+	Title "Hotkeys - Settings"
+	StaticText " "
+    Control "Throw Grenade","ThrowGrenade"
+    Control "Drop Mine","DropMine"
+    Control "Weapon Zoom","RailgunZoom"
+    Control "Toggle Vanilla Mode","ToggleEffects"
+    Control "Exit Morphed Class","Puke 2995"
+    Control "Destroy Armor","Puke -15860"
+    Control "Drop Actual Rune","Puke 15857"
+	Control "Regroup Nearby Allies","Puke 8882"
+	Control "Monster Tracker","Puke 15899"
+}
+
+OptionMenu "RuneInformations"
+{
+  Title "Runes Info"
+  StaticText " "
+  Option "Haste", "zcdm_runes_1", "zcdm_runes_1"
+  Option "High Jump", "zcdm_runes_2", "zcdm_runes_2"
+  Option "Resistance", "zcdm_runes_3", "zcdm_runes_3"
+  Option "Strenght", "zcdm_runes_4", "zcdm_runes_4"
+  Option "Regeneration", "zcdm_runes_5", "zcdm_runes_5"
+  Option "Rage", "zcdm_runes_6", "zcdm_runes_6"
+  Option "Terror", "zcdm_runes_7", "zcdm_runes_7"
+  Option "Revenge", "zcdm_runes_8", "zcdm_runes_8"
+  Option "Luck", "zcdm_runes_9", "zcdm_runes_9"
+  Option "Drain", "zcdm_runes_10", "zcdm_runes_10"
+  Option "Spread", "zcdm_runes_11", "zcdm_runes_11"
+  Option "Powerup", "zcdm_runes_12", "zcdm_runes_12"
+  Option "Time", "zcdm_runes_13", "zcdm_runes_13"
+  Option "Prosperity", "zcdm_runes_14", "zcdm_runes_14"
+  Option "Absorption", "zcdm_runes_15", "zcdm_runes_15"
+  Option "Confusion", "zcdm_runes_16", "zcdm_runes_16"
+  Option "Looting", "zcdm_runes_17", "zcdm_runes_17"
+  Option "Veterancy", "zcdm_runes_18", "zcdm_runes_18"
+  Option "Agility", "zcdm_runes_19", "zcdm_runes_19"
+}
+
+OptionMenu "PowerupsInformations"
+{
+  Title "Powerups Info"
+  StaticText " "
+  Option "Soul Sphere", "zcdm_powerups_1", "zcdm_powerups_1"
+  Option "Life Sphere", "zcdm_powerups_2", "zcdm_powerups_2"
+  Option "Mega Sphere", "zcdm_powerups_3", "zcdm_powerups_3"
+  Option "Ultra Sphere", "zcdm_powerups_4", "zcdm_powerups_4"
+  Option "Invisibility Sphere", "zcdm_powerups_5", "zcdm_powerups_5"
+  Option "Haste Sphere", "zcdm_powerups_6", "zcdm_powerups_6"
+  Option "Invulnerability Sphere", "zcdm_powerups_7", "zcdm_powerups_7"
+  Option "Unbelieveability Sphere", "zcdm_powerups_8", "zcdm_powerups_8"
+  Option "Terror Sphere", "zcdm_powerups_9", "zcdm_powerups_9"
+  Option "Doom Sphere", "zcdm_powerups_10", "zcdm_powerups_10"
+  Option "Holy Sphere", "zcdm_powerups_11", "zcdm_powerups_11"
+  Option "Thunder Sphere", "zcdm_powerups_12", "zcdm_powerups_12"
+  Option "Protection Sphere", "zcdm_powerups_13", "zcdm_powerups_13"
+  Option "Fate Sphere", "zcdm_powerups_14", "zcdm_powerups_14"
+  Option "Revenge Sphere", "zcdm_powerups_15", "zcdm_powerups_15"
+  Option "Annihilation Sphere", "zcdm_powerups_16", "zcdm_powerups_16"
+  Option "Epic Sphere", "zcdm_powerups_17", "zcdm_powerups_17"
+  Option "Wicked Sphere", "zcdm_powerups_18", "zcdm_powerups_18"
+  Option "Luck Sphere", "zcdm_powerups_19", "zcdm_powerups_19"
+  Option "Ignorance Sphere", "zcdm_powerups_20", "zcdm_powerups_20"
+  Option "Terminator Sphere", "zcdm_powerups_21", "zcdm_powerups_21"
+  Option "Spread Sphere", "zcdm_powerups_22", "zcdm_powerups_22"
+  Option "Chaos Sphere", "zcdm_powerups_23", "zcdm_powerups_23"
+  Option "Insanity Sphere", "zcdm_powerups_24", "zcdm_powerups_24"
+  Option "Flight Sphere", "zcdm_powerups_25", "zcdm_powerups_25"
+  Option "Rage Sphere", "zcdm_powerups_26", "zcdm_powerups_26"
+  Option "BFG Sphere", "zcdm_powerups_27", "zcdm_powerups_27"
+  Option "Armor Sphere", "zcdm_powerups_28", "zcdm_powerups_28"
+  Option "Explosion Sphere", "zcdm_powerups_29", "zcdm_powerups_29"
+  Option "Survival Sphere", "zcdm_powerups_30", "zcdm_powerups_30"
+  Option "Chemical Sphere", "zcdm_powerups_31", "zcdm_powerups_31"
+  Option "Summon Sphere", "zcdm_powerups_32", "zcdm_powerups_32"
+  Option "Leg Sphere", "zcdm_powerups_33", "zcdm_powerups_33"
+  Option "Leg Ultra Sphere", "zcdm_powerups_34", "zcdm_powerups_34"
+  Option "Leg Ammo Sphere", "zcdm_powerups_35", "zcdm_powerups_35"
+  Option "Leg Time Freeze", "zcdm_powerups_36", "zcdm_powerups_36"
+  Option "Leg Power Shard", "zcdm_powerups_37", "zcdm_powerups_37"
+  Option "Leg Power Sphere", "zcdm_powerups_38", "zcdm_powerups_38"
+  Option "Leg Judgment Sphere", "zcdm_powerups_39", "zcdm_powerups_39"
+  Option "Leg Salvation Sphere", "zcdm_powerups_40", "zcdm_powerups_40"
+}
+
+OptionValue "ArmorPickupType"
+{
+	0, "Best Only"
+	1, "Scavenge"
+	2, "Always"
+}
+
+OptionValue "zcdm_powerups_1"{0, "100 HP"}
+OptionValue "zcdm_powerups_2"{0, "250 HP"}
+OptionValue "zcdm_powerups_3"{0, "200 HP/200 Armor"}
+OptionValue "zcdm_powerups_4"{0, "250 HP/250 Armor"}
+OptionValue "zcdm_powerups_5"{0, "Less Monster Accuracy"}
+OptionValue "zcdm_powerups_6"{0, "Increase Speed"}
+OptionValue "zcdm_powerups_7"{0, "Invul"}
+OptionValue "zcdm_powerups_8"{0, "Invul/Reflect/x2 DMG"}
+OptionValue "zcdm_powerups_9"{0, "Frighten"}
+OptionValue "zcdm_powerups_10"{0, "4x DMG"}
+OptionValue "zcdm_powerups_11"{0, "Invul/Reflect/x4 DMG"}
+OptionValue "zcdm_powerups_12"{0, "Attack Ennemies"}
+OptionValue "zcdm_powerups_13"{0, "x3 Resistance"}
+OptionValue "zcdm_powerups_14"{0, "Invul/x25 DMG Reflection"}
+OptionValue "zcdm_powerups_15"{0, "Attack Ennemies"}
+OptionValue "zcdm_powerups_16"{0, "Remove Weak Ennemies"}
+OptionValue "zcdm_powerups_17"{0, "Gives Epic Sword"}
+OptionValue "zcdm_powerups_18"{0, "Stealth HP"}
+OptionValue "zcdm_powerups_19"{0, "x16 Bonus Crates Chances"}
+OptionValue "zcdm_powerups_20"{0, "Invisibility/Monsters Ignores"}
+OptionValue "zcdm_powerups_21"{0, "Attack Ennemies"}
+OptionValue "zcdm_powerups_22"{0, "Triple Fire"}
+OptionValue "zcdm_powerups_23"{0, "Become a Living Bomb"}
+OptionValue "zcdm_powerups_24"{0, "Chainsaw Berserker"}
+OptionValue "zcdm_powerups_25"{0, "Fly"}
+OptionValue "zcdm_powerups_26"{0, "Firing Speed"}
+OptionValue "zcdm_powerups_27"{0, "BFG Spray"}
+OptionValue "zcdm_powerups_28"{0, "Armor Regen"}
+OptionValue "zcdm_powerups_29"{0, "Explosion Spam"}
+OptionValue "zcdm_powerups_30"{0, "Double DMG/1 HP Survival"}
+OptionValue "zcdm_powerups_31"{0, "Poison Ennemies"}
+OptionValue "zcdm_powerups_32"{0, "Summon Minions"}
+OptionValue "zcdm_powerups_33"{0, "500 HP/Regen"}
+OptionValue "zcdm_powerups_34"{0, "500 HP/500 Armor/Regen/Ammo"}
+OptionValue "zcdm_powerups_35"{0, "Infinite Ammo"}
+OptionValue "zcdm_powerups_36"{0, "Stop Time"}
+OptionValue "zcdm_powerups_37"{0, "Strong Resistance/Regen"}
+OptionValue "zcdm_powerups_38"{0, "Speed/Rage/Frighten"}
+OptionValue "zcdm_powerups_39"{0, "Set Ennemies HP to 1"}
+OptionValue "zcdm_powerups_40"{0, "Shared HP/Armor Regen"}
+OptionValue "zcdm_runes_1"{0, "Increase Speed"}
+OptionValue "zcdm_runes_2"{0, "Increase Jump Height"}
+OptionValue "zcdm_runes_3"{0, "Increase Resistance"}
+OptionValue "zcdm_runes_4"{0, "Increase Damages"}
+OptionValue "zcdm_runes_5"{0, "HP Regeneration"}
+OptionValue "zcdm_runes_6"{0, "x2 Fire Rate/Faster Cooldowns"}
+OptionValue "zcdm_runes_7"{0, "Frighten"}
+OptionValue "zcdm_runes_8"{0, "Attack Ennemies"}
+OptionValue "zcdm_runes_9"{0, "x4 Bonus Crates Chances"}
+OptionValue "zcdm_runes_10"{0, "Stealth HP"}
+OptionValue "zcdm_runes_11"{0, "Triple Fire"}
+OptionValue "zcdm_runes_12"{0, "Gives Powerups"}
+OptionValue "zcdm_runes_13"{0, "Stop Time On Activation"}
+OptionValue "zcdm_runes_14"{0, "Regen Armor & Ammo"}
+OptionValue "zcdm_runes_15"{0, "Drain & Reflection"}
+OptionValue "zcdm_runes_16"{0, "Terror & Ignorance"}
+OptionValue "zcdm_runes_17"{0, "Monsters Drop Items"}
+OptionValue "zcdm_runes_18"{0, "Double/Constant XP"}
+OptionValue "zcdm_runes_19"{0, "Speed/Double Jump/Dash"}

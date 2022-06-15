@@ -1,0 +1,240 @@
+switch C2SWC01A on sound Switch1 pic C2SWC01B tics 0
+switch C2SWC01B off sound Switch2 pic C2SWC01A tics 0
+switch C2SWC02A on sound Switch1 pic C2SWC02B tics 0
+switch C2SWC02B off sound Switch2 pic C2SWC02A tics 0
+switch C2SWC03A on sound Switch1 pic C2SWC03B tics 0
+switch C2SWC03B off sound Switch2 pic C2SWC03A tics 0
+switch C2SWC04A on sound Switch1 pic C2SWC04B tics 0
+switch C2SWC04B off sound Switch2 pic C2SWC04A tics 0
+switch C2SWC05A on sound Switch1 pic C2SWC05B tics 0
+switch C2SWC05B off sound Switch2 pic C2SWC05A tics 0
+switch SW1EEYE off sound Switch1 pic SW2EEYE tics 0
+switch SW2EEYE off sound Switch2 pic SW1EEYE tics 0
+switch SW1EEYE on sound Switch1 pic SW2EEYE tics 0
+switch SW2EEYE off sound Switch2 pic SW1EEYE tics 0
+switch SWC00A on sound switch/1 pic SWC00B tics 0
+switch SWC00B off sound switch/2 pic SWC00A tics 0
+switch SWC01A on sound switch/3 pic SWC01B tics 0
+switch SWC01B off sound switch/3 pic SWC01A tics 0
+switch SWC02A on sound switch/4 pic SWC02B tics 0
+switch SWC02B off sound switch/4 pic SWC02A tics 0
+switch SWC03A on sound switch/4 pic SWC03B tics 0
+switch SWC03B off sound switch/4 pic SWC03A tics 0
+switch SWC04A on sound switch/4 pic SWC04B tics 0
+switch SWC04B off sound switch/4 pic SWC04A tics 0
+switch SWC05A on sound switch/4 pic SWC05B tics 0
+switch SWC05B off sound switch/4 pic SWC05A tics 0
+switch SWC06A on sound switch/3 pic SWC06B tics 0
+switch SWC06B off sound switch/3 pic SWC06A tics 0
+switch SWC07A on sound switch/1 pic SWC07B tics 0
+switch SWC07B off sound switch/2 pic SWC07A tics 0
+switch SWC08A on sound switch/1 pic SWC08B tics 0
+switch SWC08B off sound switch/2 pic SWC08A tics 0
+switch SWC09A on sound switch/1 pic SWC09B tics 0
+switch SWC09B off sound switch/2 pic SWC09A tics 0
+switch SWC10A on sound switch/1 pic SWC10B tics 0
+switch SWC10B off sound switch/2 pic SWC10A tics 0
+switch SWC11A on sound switch/1 pic SWC11B tics 0
+switch SWC11B off sound switch/2 pic SWC11A tics 0
+switch SWC12A on sound switch/3 pic SWC12B tics 0
+switch SWC12B off sound switch/3 pic SWC12A tics 0
+switch SWC13A on sound switch/3 pic SWC13B tics 0
+switch SWC13B off sound switch/3 pic SWC13A tics 0
+switch SWC14A on sound switch/3 pic SWC14B tics 0
+switch SWC14B off sound switch/3 pic SWC14A tics 0
+switch SWC15A on sound switch/3 pic SWC15B tics 0
+switch SWC15B off sound switch/3 pic SWC15A tics 0
+switch SWC16A on sound switch/3 pic SWC16B tics 0
+switch SWC16B off sound switch/3 pic SWC16A tics 0
+switch SWC17A on sound switch/3 pic SWC17B tics 0
+switch SWC17B off sound switch/3 pic SWC17A tics 0
+switch SWC18A on sound switch/3 pic SWC18B tics 0
+switch SWC18B off sound switch/3 pic SWC18A tics 0
+switch SWC19A on sound switch/3 pic SWC19B tics 0
+switch SWC19B off sound switch/3 pic SWC19A tics 0
+switch SWC20A on sound switch/3 pic SWC20B tics 0
+switch SWC20B off sound switch/3 pic SWC20A tics 0
+switch SWC21A on sound switch/3 pic SWC21B tics 0
+switch SWC21B off sound switch/3 pic SWC21A tics 0
+switch SWC22A on sound switch/3 pic SWC22B tics 0
+switch SWC22B off sound switch/3 pic SWC22A tics 0
+switch SWC23A on sound switch/3 pic SWC23B tics 0
+switch SWC23B off sound switch/3 pic SWC23A tics 0
+switch FLSHSWH1 on sound Switch1 pic FLSHSWH2 tics 0
+switch FLSHSWH2 on sound Switch1 pic FLSHSWH1 tics 0
+switch FLSHSWH3 on sound Switch1 pic FLSHSWH4 tics 0
+switch FLSHSWH4 on sound Switch1 pic FLSHSWH3 tics 0
+switch PNKDULL1 on sound Switch1 pic PNKDULL2 tics 0
+switch PNKDULL2 on sound Switch1 pic PNKDULL1 tics 0
+switch MRBRSW01 on sound Switch1 pic MRBRSW02 tics 0
+
+
+cameratexture TCAMTEX1 112 112 fit 112 112
+cameratexture TCAMTEX2 112 112 fit 112 112
+cameratexture TCAMTEX3 112 112 fit 112 112
+cameratexture TCAMTEX4 112 112 fit 112 112
+cameratexture TCAMTEX5 112 112 fit 112 112
+
+Texture JPPD01
+pic JPPD01 tics 2
+pic JPPD02 tics 2
+pic JPPD03 tics 2
+pic JPPD04 tics 2
+pic JPPD05 tics 2
+pic JPPD06 tics 2
+pic JPPD07 tics 2
+pic JPPD06 tics 2
+pic JPPD05 tics 2
+pic JPPD04 tics 2
+pic JPPD03 tics 2
+pic JPPD02 tics 2
+
+texture COMCYL01
+allowdecals
+pic COMCYL01 tics 4
+pic COMCYL02 tics 4
+pic COMCYL03 tics 3
+pic COMCYL04 tics 3
+pic COMCYL05 tics 2
+pic COMCYL06 tics 2
+pic COMCYL07 tics 1
+pic COMCYL08 tics 2
+pic COMCYL09 tics 2
+pic COMCYL10 tics 3
+pic COMCYL11 tics 3
+pic COMCYL12 tics 4
+pic COMCYL13 tics 4
+pic COMCYL12 tics 4
+pic COMCYL11 tics 3
+pic COMCYL10 tics 3
+pic COMCYL09 tics 2
+pic COMCYL08 tics 2
+pic COMCYL07 tics 1
+pic COMCYL06 tics 2
+pic COMCYL05 tics 2
+pic COMCYL04 tics 3
+pic COMCYL03 tics 3
+pic COMCYL02 tics 4
+
+texture COMPV1
+allowdecals
+pic COMPV1 tics 1.5
+pic COMPV2 tics 1.5
+pic COMPV3 tics 1.5
+pic COMPV4 tics 1.5
+pic COMPV5 tics 1.5
+pic COMPV6 tics 1.5
+pic COMPV7 tics 1.5
+pic COMPV8 tics 1.5 
+
+texture COMPS1
+allowdecals
+pic COMPS1 tics 4
+pic COMPS2 tics 4
+pic COMPS3 tics 4
+pic COMPS4 tics 4
+pic COMPS3 tics 4
+pic COMPS2 tics 4
+
+texture DOBIGTVA
+allowdecals
+pic DOBIGTVA tics 4
+pic DOBIGTVB tics 4
+pic DOBIGTVC tics 4
+pic DOBIGTVD tics 4
+
+Texture PD1A
+pic PD1A tics 20
+pic PD1B tics 2
+pic PD1C tics 2
+pic PD1D tics 2
+pic PD1E tics 2
+pic PD1F tics 2
+pic PD1G tics 2
+pic PD1H tics 2
+pic PD1I tics 2
+pic PD1J tics 2
+pic PD1K tics 2
+pic PD1L tics 2
+pic PD1M tics 2
+pic PD1N tics 2
+
+Texture PD2A
+pic PD2A tics 20
+pic PD2B tics 2
+pic PD2C tics 2
+pic PD2D tics 2
+pic PD2E tics 2
+pic PD2F tics 2
+pic PD2G tics 2
+pic PD2H tics 2
+pic PD2I tics 2
+pic PD2J tics 2
+pic PD2K tics 2
+pic PD2L tics 2
+pic PD2M tics 2
+pic PD2N tics 2
+
+Texture PD3A
+pic PD3A tics 20
+pic PD3B tics 2
+pic PD3C tics 2
+pic PD3D tics 2
+pic PD3E tics 2
+pic PD3F tics 2
+pic PD3G tics 2
+pic PD3H tics 2
+pic PD3I tics 2
+pic PD3J tics 2
+pic PD3K tics 2
+pic PD3L tics 2
+pic PD3M tics 2
+pic PD3N tics 2
+
+Texture PD4A
+pic PD4A tics 20
+pic PD4B tics 2
+pic PD4C tics 2
+pic PD4D tics 2
+pic PD4E tics 2
+pic PD4F tics 2
+pic PD4G tics 2
+pic PD4H tics 2
+pic PD4I tics 2
+pic PD4J tics 2
+pic PD4K tics 2
+pic PD4L tics 2
+pic PD4M tics 2
+pic PD4N tics 2
+
+Texture FANV2A1
+pic FANV2A1 tics 2
+pic FANV2A2 tics 2
+pic FANV2A3 tics 2
+pic FANV2A4 tics 2
+
+Texture SCRNV0B
+pic SCRNV0B tics 2
+pic SCRNV0C tics 2
+pic SCRNV0D tics 2
+pic SCRNV0E tics 2
+
+Texture SCRNV1B
+pic SCRNV1B tics 2
+pic SCRNV1C tics 2
+pic SCRNV1D tics 2
+pic SCRNV1E tics 2
+
+Texture SCRNV2B
+pic SCRNV2B tics 2
+pic SCRNV2C tics 2
+pic SCRNV2D tics 2
+pic SCRNV2E tics 2
+
+Texture MRBRSW02
+pic MRBRSW01 tics 8
+pic MRBRSW02 tics 8
+pic MRBRSW03 tics 8
+pic MRBRSW04 tics 8
+pic MRBRSW03 tics 8
+pic MRBRSW02 tics 8

@@ -1,0 +1,2889 @@
+Actor NoCooldown : Inventory{Inventory.MaxAmount 1}
+Actor CrateDelay : Inventory{Inventory.MaxAmount 150}
+Actor ReinforcementCardDelay : Inventory{Inventory.MaxAmount 240}
+Actor DeployableShieldDelay : Inventory{Inventory.MaxAmount 120}
+Actor ChaliceDelay : Inventory{Inventory.MaxAmount 90}
+Actor SkullDelay : Inventory{Inventory.MaxAmount 90}
+Actor MisteryBoxDelay : Inventory{Inventory.MaxAmount 90}
+Actor DemonTechBarrelDelay : Inventory{Inventory.MaxAmount 15}
+Actor DevastatorBarrelDelay : Inventory{Inventory.MaxAmount 35}
+Actor NuclearBarrelDelay : Inventory{Inventory.MaxAmount 45}
+Actor ChaosBarrelDelay : Inventory{Inventory.MaxAmount 120}
+Actor LightNodeDelay : Inventory{Inventory.MaxAmount 120}
+Actor MarineOutpostDelay : Inventory{Inventory.MaxAmount 180}
+Actor UtilityMaxSoldier : Inventory{Inventory.MaxAmount 1}
+Actor UtilityJetTrooper : Inventory{Inventory.MaxAmount 1}
+Actor UtilityEnforcer : Inventory{Inventory.MaxAmount 1}
+Actor UtilityNecroSuit : Inventory{Inventory.MaxAmount 1}
+Actor UtilityPurifierBot : Inventory{Inventory.MaxAmount 1}
+Actor UtilityBFG9500 : Inventory{Inventory.MaxAmount 1}
+Actor UtilityBFG10000 : Inventory{Inventory.MaxAmount 1}
+Actor UtilityEFG9000 : Inventory{Inventory.MaxAmount 1}
+Actor UtilityAIDelay : Inventory{Inventory.MaxAmount 300}
+Actor UtilityResources : Inventory{Inventory.MaxAmount 999999}
+Actor UtilityMaterials : Ammo {Inventory.Amount 1 Inventory.MaxAmount 150 Ammo.BackpackAmount 0 Ammo.BackpackMaxAmount 150}
+Actor CollectorBotDelay : Inventory{Inventory.MaxAmount 60}
+Actor BigSentryDelay : Inventory{Inventory.MaxAmount 45}
+Actor BigSupportUnitDelay : Inventory{Inventory.MaxAmount 300}
+Actor SuperSpiderBotDelay : Inventory{Inventory.MaxAmount 180}
+Actor MilitaryEnforcerBotDelay : Inventory{Inventory.MaxAmount 120}
+Actor AssaultConquerorBotDelay : Inventory{Inventory.MaxAmount 90}
+
+ACTOR UtilityGun : Weapon
+{
+   Tag "Utility Gun"
+   Weapon.SelectionOrder 2500
+   Weapon.AmmoType "UtilityAmmo"
+   Weapon.AmmoGive 100
+   Weapon.AmmoUse 1
+   Weapon.PreferredSkin "Util-Marine"
+   Weapon.UpSound "utilgun/up"
+   +INVENTORY.UNDROPPABLE
+   +WEAPON.NOALERT
+   States
+   {
+   Spawn:
+      TNT1 A 1
+      Stop
+   Ready:
+  	  TNT1 A 0
+  	  TNT1 A 0 A_JumpIfInventory("MineAction",1,"Repair")
+  	  TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"Remover")
+      UTIL A 1 A_WeaponReady
+      Loop
+   Deselect:
+      TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	  TNT1 A 0 A_TakeInventory("MineAction",1)
+	  TNT1 A 0 A_TakeInventory("RailgunAction",1)
+      UTIL A 0 A_Lower
+      UTIL A 1 A_Lower
+      Loop
+  Select:
+      TNT1 A 0
+      TNT1 A 0 ACS_NamedExecuteAlways("Special Weapon Announcer",0,0,0,0)
+  Selecting:
+      UTIL A 0 A_Raise
+      UTIL A 1 A_Raise
+      Loop
+   Fire:
+      UTIL A 0 A_GunFlash
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 0,"AmmoPack")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 1,"BackPack")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 2,"PortableMedkit")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 3,"ArmorPlate")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 4,"ExtraArmor")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 5,"DemonAmmoBox")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 6,"BonusCrate")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 7,"ReinforcementCard")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 8,"HealthDispenser")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 9,"ArmorShardsDispenser")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 10,"AmmoDispenser")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 11,"DeployableShield")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 12,"DemonicChalice")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 13,"FullRefilePack")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 14,"SkullOfPower")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 15,"MisteryBox")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 100,"AssaultShotgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 101,"QuadShotgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 102,"Minigun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 103,"PlasmaRifle")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 104,"PulseShotgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 105,"RocketLauncher")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 106,"GrenadeLauncher")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 107,"Railgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 108,"PlasmaRepeater")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 109,"PlasmaCaster")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 110,"SniperRifle")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 111,"HexaShotgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 112,"RapidShotgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 113,"ExplosiveMinigun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 114,"HomingRocketLauncher")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 115,"DoubleGrenadeLauncher")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 116,"ExplosiveRailgun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 117,"Perforator")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 118,"TripleRotaryMinigun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 119,"BFG9500")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 120,"BFG10K")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 121,"EFG9000")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 200,"MaxSoldier")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 201,"JetTrooper")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 202,"Enforcer")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 203,"NecroSuit")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 204,"PurifierBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 300,"ExplosiveBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 301,"RadioactiveBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 302,"OilBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 303,"PoisonBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 304,"TechBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 305,"DemonTechBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 306,"DevastatorBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 307,"NuclearBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 308,"ChaosBarrel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 500,"SentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 501,"RangeSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 502,"SniperSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 503,"ShotgunSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 504,"FlameSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 505,"PlasmaSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 506,"MiniRocketSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 507,"HeavySentryGun")
+      UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 508,"RapidShotgunSentryGun")
+      UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 509,"RocketSentryGun")
+      UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 510,"TeslaCoil")
+      UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 511,"NapalmSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 512,"RailgunSentryGun")
+      UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 513,"DemonTechRailgunSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 514,"MissileSentryGun")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 515,"SonicEmitter")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 516,"ObeliskOfLight")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 600,"UtilityHarvester")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 601,"UtilityGenerator")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 602,"UtilityLightNode")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 603,"UtilityADVHarvester")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 604,"UtilityPowerPlant")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 605,"UtilityHeavyNode")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 606,"MarineOutpost")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 607,"SupportAI")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 608,"UtilitySuperHarvester")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 609,"CommandPost")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 610,"ADVSupportAI")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 700,"ScoutDrone")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 701,"ScoutBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 702,"ProspectorBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 703,"RepairBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 704,"RepairDrone")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 705,"AdvancedRepairDrone")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 706,"FabricatorDrone")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 707,"CollectorBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 708,"MegaSupportTank")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 800,"StalkerBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 801,"BattleBotB1")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 802,"BattleDroneD1")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 803,"ExplosiveBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 804,"BattleBotB2")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 805,"BattleDroneD2")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 806,"SecurityBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 807,"SpiderSniperBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 808,"Sentinel")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 809,"BattleBotB3")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 810,"BattleDroneD3")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 811,"AssaultRobot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 812,"BattleBotB4")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 813,"SuperSpiderBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 814,"MilitaryEnforcerBot")
+	  UTIL A 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Selection Confirm",0,0,0) == 815,"AssaultConquerorBot")
+	  UTIL A 1
+	  Goto Nope
+   Nope:
+      UTIL C 15 Bright A_PlaySound("sentry/warn")
+      Goto Ready
+   AmmoPack:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",10)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("AmmoPack  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("AmmoPack  ",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("AmmoPack  ",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("AmmoPack  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   Backpack:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BackPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BackPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BackPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BackPackMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",25)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BackPack",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BackPack",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BackPack",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BackPack",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PortableMedkit:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PortableMedkitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PortableMedkitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PortableMedkitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PortableMedkitMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",15)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("PortableMedkit",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("PortableMedkit2",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("PortableMedkit2",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("PortableMedkit2",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ArmorPlate:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorPlateMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorPlateMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorPlateMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorPlateMarker",78,0,16)
+	  UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",15)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ArmorPlate2",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ArmorPlate2",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ArmorPlate2",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ArmorPlate2",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ExtraArmor:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExtraArmorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExtraArmorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExtraArmorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExtraArmorMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",50)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("NewExtraArmor",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("NewExtraArmor",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("NewExtraArmor",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("NewExtraArmor",78,0,16,0,0,0,0,32)
+      Goto Ready
+   DemonAmmoBox:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonAmmoBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonAmmoBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonAmmoBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonAmmoBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",60)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("DemonAmmoBox",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("DemonAmmoBox",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("DemonAmmoBox",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("DemonAmmoBox",78,0,16,0,0,0,0,32)
+      Goto Ready
+   HealthDispenser:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HealthDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HealthDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HealthDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HealthDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("HealthDispenser",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("HealthDispenser",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("HealthDispenser",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("HealthDispenser",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ArmorShardsDispenser:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorShardsDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorShardsDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorShardsDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ArmorShardsDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ArmorShardsDispenser",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ArmorShardsDispenser",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ArmorShardsDispenser",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ArmorShardsDispenser",78,0,16,0,0,0,0,32)
+      Goto Ready
+   AmmoDispenser:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AmmoDispenserMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("AmmoDispenser",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("AmmoDispenser",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("AmmoDispenser",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("AmmoDispenser",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BonusCrate:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BonusCrateMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BonusCrateMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BonusCrateMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BonusCrateMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) >= 4,"BonusCrateTier4")
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) == 3,"BonusCrateTier3")
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) == 2,"BonusCrateTier2")
+	  UTIL B 0
+   BonusCrateTier1: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("CrateDelay",150) 
+	  Goto BonusCrateEnd
+   BonusCrateTier2:
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("CrateDelay",120)
+      Goto BonusCrateEnd
+   BonusCrateTier3:
+      UTIL B 0
+      UTIL B 0 A_GiveInventory("CrateDelay",90)
+      Goto BonusCrateEnd
+   BonusCrateTier4:
+      UTIL B 0
+      UTIL B 0 A_GiveInventory("CrateDelay",60)
+      Goto BonusCrateEnd
+   BonusCrateEnd:
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BonusCrate",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BonusCrate",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BonusCrate",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BonusCrate",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ReinforcementCard:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ReinforcementCardMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ReinforcementCardMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ReinforcementCardMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ReinforcementCardMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) >= 4,"ReinforcementCardTier4")
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) == 3,"ReinforcementCardTier3")
+	  UTIL B 0
+   ReinforcementCardTier2:
+      UTIL B 0
+      UTIL B 0 A_GiveInventory("ReinforcementCardDelay",240)
+      Goto ReinforcementCardEnd
+   ReinforcementCardTier3:
+      UTIL B 0
+      UTIL B 0 A_GiveInventory("ReinforcementCardDelay",180)
+      Goto ReinforcementCardEnd
+   ReinforcementCardTier4:
+      UTIL B 0
+      UTIL B 0 A_GiveInventory("ReinforcementCardDelay",150)
+      Goto ReinforcementCardEnd
+   ReinforcementCardEnd:
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ReinforcementCard",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ReinforcementCard",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ReinforcementCard",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ReinforcementCard",78,0,16,0,0,0,0,32)
+      Goto Ready
+   DeployableShield:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DeployableShieldMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DeployableShieldMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DeployableShieldMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DeployableShieldMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",125)
+	  UTIL B 0 A_GiveInventory("DeployableShieldDelay",120)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("DeployableShield",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("DeployableShield",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("DeployableShield",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("DeployableShield",78,0,16,0,0,0,0,32)
+      Goto Ready
+   DemonicChalice:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonicChaliceMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonicChaliceMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonicChaliceMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonicChaliceMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("ChaliceDelay",90)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("DemonicChalice",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("DemonicChalice",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("DemonicChalice",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("DemonicChalice",78,0,16,0,0,0,0,32)
+      Goto Ready
+   FullRefilePack:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FullRefilePackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FullRefilePackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FullRefilePackMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FullRefilePackMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",280)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("FullRefilePack",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("FullRefilePack",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("FullRefilePack",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("FullRefilePack",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SkullOfPower:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SkullOfPowerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SkullOfPowerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SkullOfPowerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SkullOfPowerMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("SkullDelay",90)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",420)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("SkullOfPower",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("SkullOfPower",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("SkullOfPower",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("SkullOfPower",78,0,16,0,0,0,0,32)
+      Goto Ready
+   MisteryBox:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MisteryBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MisteryBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MisteryBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MisteryBoxMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("MisteryBoxDelay",90)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",500)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,4)
+      UTIL B 0 A_JumpIfInventory("LuckRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("MisteryBox",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 3 Bright A_SpawnItemEx("LuckyMisteryBox",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_JumpIfInventory("LuckRune",1,4)
+      UTIL B 0 A_SpawnItemEx("MisteryBox",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("MisteryBox",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("MisteryBox",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("LuckyMisteryBox",78,-25,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("LuckyMisteryBox",78,25,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("LuckyMisteryBox",78,0,16,0,0,0,0,32)
+      Goto Ready
+   AssaultShotgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultShotgunMarker",78,0,16) 
+	  UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",35)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Assault Shotgun  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Assault Shotgun  ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Assault Shotgun  ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Assault Shotgun  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   QuadShotgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("QuadBarrelShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("QuadBarrelShotgunMarker",78,0,16)
+	  UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("QuadBarrelShotgunMarker",78,0,16) 
+	  UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("QuadBarrelShotgunMarker",78,0,16)
+	  UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",35)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Quad Barrel Shotgun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Quad Barrel Shotgun ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Quad Barrel Shotgun ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Quad Barrel Shotgun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   Minigun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MinigunMarker",78,0,16) 
+	  UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",35)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Minigun  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Minigun  ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Minigun  ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Minigun  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PlasmaRifle:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRifleMarker",78,0,16) 
+	  UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",50)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Plasma Rifle ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Plasma Rifle ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Plasma Rifle ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Plasma Rifle ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PulseShotgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PulseShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PulseShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PulseShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PulseShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",65)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("PulseShotgun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("PulseShotgun",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("PulseShotgun",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("PulseShotgun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   GrenadeLauncher:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("GrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("GrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("GrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("GrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",65)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Grenade Launcher",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Grenade Launcher",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Grenade Launcher",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Grenade Launcher",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RocketLauncher:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",65)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Rocket Launcher",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Rocket Launcher",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Rocket Launcher",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Rocket Launcher",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PlasmaRepeater:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRepeaterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRepeaterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRepeaterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaRepeaterMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("PlasmaRepeater",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("PlasmaRepeater",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("PlasmaRepeater",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("PlasmaRepeater",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PlasmaCaster:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaCasterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaCasterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaCasterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaCasterMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("PlasmaCaster",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("PlasmaCaster",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("PlasmaCaster",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("PlasmaCaster",78,0,16,0,0,0,0,32)
+      Goto Ready
+   Railgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Railgun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Railgun ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Railgun ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Railgun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SniperRifle:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperRifleMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",125)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("SniperRifle",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("SniperRifle",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("SniperRifle",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("SniperRifle",78,0,16,0,0,0,0,32)
+      Goto Ready
+   HexaShotgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("Hexa-ShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("Hexa-ShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("Hexa-ShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("Hexa-ShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Hexa-Shotgun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Hexa-Shotgun ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Hexa-Shotgun ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Hexa-Shotgun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RapidShotgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",175)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("RapidShotgun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("RapidShotgun",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("RapidShotgun",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("RapidShotgun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ExplosiveMinigun :
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Explosive Minigun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Explosive Minigun ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Explosive Minigun ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Explosive Minigun ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   DoubleGrenadeLauncher:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DoubleGrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DoubleGrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DoubleGrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DoubleGrenadeLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",200)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("DoubleGrenadeLauncher",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("DoubleGrenadeLauncher",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("DoubleGrenadeLauncher",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("DoubleGrenadeLauncher",78,0,16,0,0,0,0,32)
+      Goto Ready
+   HomingRocketLauncher:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HomingRocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HomingRocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HomingRocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HomingRocketLauncherMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",200)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("HomingRocketLauncher",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("HomingRocketLauncher",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("HomingRocketLauncher",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("HomingRocketLauncher",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ExplosiveRailgun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveRailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveRailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveRailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveRailgunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",250)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-200,0)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ExplosiveRailgun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ExplosiveRailgun",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ExplosiveRailgun",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ExplosiveRailgun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   Perforator:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PerforatorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PerforatorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PerforatorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PerforatorMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",200)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Perforator",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Perforator",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Perforator",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Perforator",78,0,16,0,0,0,0,32)
+      Goto Ready
+   TripleRotaryMinigun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TripleRotaryMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TripleRotaryMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TripleRotaryMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TripleRotaryMinigunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-400,0)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Triple Rotary Minigun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Triple Rotary Minigun",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Triple Rotary Minigun",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Triple Rotary Minigun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BFG9500:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG9500Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG9500Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG9500Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG9500Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityBFG9500",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",400)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BFG9500 ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BFG9500 ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BFG9500 ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BFG9500 ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BFG10K:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG10KMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG10KMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG10KMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BFG10KMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityBFG10000",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",400)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BFG10K  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BFG10K  ",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BFG10K  ",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BFG10K  ",78,0,16,0,0,0,0,32)
+      Goto Ready
+   EFG9000:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EFG9000Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EFG9000Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EFG9000Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EFG9000Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityEFG9000",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1500,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",500)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+	  UTIL B 3 Bright A_SpawnItemEx("EFG9000",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("EFG9000",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("EFG9000",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("EFG9000",78,0,16,0,0,0,0,32)
+      Goto Ready
+   MaxSoldier:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MaxSoldierMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityMaxSoldier",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-200,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("MaxSoldier",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("MaxSoldier",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("MaxSoldier",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("MaxSoldier",78,0,16,0,0,0,0,32)
+      Goto Ready
+   JetTrooper:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("JetTrooperMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityJetTrooper",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-200,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("JetTrooper",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("JetTrooper",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("JetTrooper",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("JetTrooper",78,0,16,0,0,0,0,32)
+      Goto Ready
+   Enforcer:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("EnforcerMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityEnforcer",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-300,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("Enforcer",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("Enforcer",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("Enforcer",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("Enforcer",78,0,16,0,0,0,0,32)
+      Goto Ready
+   NecroSuit:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NecroSuitMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityNecroSuit",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-600,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+      UTIL B 3 Bright A_SpawnItemEx("NecroSuit",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PurifierBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PurifierBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityPurifierBot",1)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1500,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",500)
+      UTIL B 3 Bright A_SpawnItemEx("PurifierBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ExplosiveBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",15)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityExplosiveBarrelProjectile",0,0,0,0)
+      Goto Ready
+   RadioactiveBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RadioactiveBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RadioactiveBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",25)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityRadioactiveBarrelProjectile",0,0,0,0)
+      Goto Ready
+   OilBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("OilBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("OilBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",33)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityOilBarrelProjectile",0,0,0,0)
+      Goto Ready
+   PoisonBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PoisonBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PoisonBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",45)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityPoisonBarrelProjectile",0,0,0,0)
+      Goto Ready
+   TechBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TechBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TechBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",75)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityTechBarrelProjectile",0,0,0,0)
+      Goto Ready
+   DemonTechBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("DemonTechBarrelDelay",8)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",125)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityDemonTechBarrelProjectile",0,0,0,0)
+      Goto Ready
+   DevastatorBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DevastatorBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DevastatorBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("DevastatorBarrelDelay",15)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",200)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityDevastatorBarrelProjectile",0,0,0,0)
+      Goto Ready
+   NuclearBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NuclearBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NuclearBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-400,0)
+	  UTIL B 0 A_GiveInventory("NuclearBarrelDelay",45)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",500)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityNuclearBarrelProjectile",0,0,0,0)
+      Goto Ready
+   ChaosBarrel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ChaosBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ChaosBarrelMarker",25,0,25)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1000,0)
+	  UTIL B 0 A_GiveInventory("ChaosBarrelDelay",120)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",600)
+	  UTIL B 3 Bright A_FireCustomMissile("UtilityChaosBarrelProjectile",0,0,0,0)
+      Goto Ready
+   SentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash 
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",50)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("SentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("SentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("SentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("SentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RangeSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RangeSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",35)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("RangeSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("RangeSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("RangeSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("RangeSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SniperSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SniperSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",60)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("SniperSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("SniperSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("SniperSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("SniperSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ShotgunSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",50)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ShotgunSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ShotgunSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ShotgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   FlameSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FlameSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",65)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("FlameSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("FlameSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("FlameSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("FlameSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   PlasmaSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",60)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("PlasmaSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("PlasmaSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("PlasmaSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   MiniRocketSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",70)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("MiniRocketSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("MiniRocketSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("MiniRocketSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   HeavySentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("HeavySentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("HeavySentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("HeavySentryGun",78,-48,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("HeavySentryGun",78,48,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("HeavySentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RapidShotgunSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",165)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("RapidShotgunSentryGun",78,-48,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("RapidShotgunSentryGun",78,48,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("RapidShotgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RocketSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RocketSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",165)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("RocketSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("RocketSentryGun",78,-48,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("RocketSentryGun",78,48,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("RocketSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   TeslaCoil:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("TeslaCoilMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("TeslaCoil",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("TeslaCoil",78,-48,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("TeslaCoil",78,48,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("TeslaCoil",78,0,16,0,0,0,0,32)
+      Goto Ready
+   NapalmSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",165)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("NapalmSentryGun",78,-48,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("NapalmSentryGun",78,48,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("NapalmSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RailgunSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 3 Bright A_SpawnItemEx("RailgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   DemonTechRailgunSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",80)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-10,0)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("DemonTechRailgunSentryGun",78,-35,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("DemonTechRailgunSentryGun",78,35,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("DemonTechRailgunSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   MissileSentryGun:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MissileSentryGunMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-200,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",450)
+      UTIL B 3 Bright A_SpawnItemEx("MissileSentryGun",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SonicEmitter:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SonicEmitterMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_ExecuteAlways(3700,0,0,77,0)
+	  UTIL B 0 A_GiveInventory("BigSentryDelay",30)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-2000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",600)
+      UTIL B 3 Bright A_SpawnItemEx("SonicEmitter",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ObeliskOfLight:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLightMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_ExecuteAlways(3700,0,0,76,0)
+	  UTIL B 0 A_GiveInventory("BigSentryDelay",45)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-3500,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",700)
+      UTIL B 3 Bright A_SpawnItemEx("ObeliskOfLight",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilityHarvester:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",75)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityHarvester",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilityHarvester",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilityHarvester",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityHarvester",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilityGenerator:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityGeneratorMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-20,0)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityGenerator",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilityGenerator",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilityGenerator",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityGenerator",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilityLightNode:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityLightNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) >= 4,"UtilityLightNodeTier4")
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) == 3,"UtilityLightNodeTier3")
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) == 2,"UtilityLightNodeTier2")
+	  UTIL B 0
+   UtilityLightNodeTier1: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("LightNodeDelay",60) 
+	  Goto UtilityLightNodeEnd
+   UtilityLightNodeTier2: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("LightNodeDelay",45) 
+	  Goto UtilityLightNodeEnd
+   UtilityLightNodeTier3: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("LightNodeDelay",30) 
+	  Goto UtilityLightNodeEnd
+   UtilityLightNodeTier4: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("LightNodeDelay",15) 
+	  Goto UtilityLightNodeEnd
+   UtilityLightNodeEnd:
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",110)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-40,0)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityLightNode",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilityLightNode",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilityLightNode",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityLightNode",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilityADVHarvester:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-400,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",200)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvester",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilityADVHarvester",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilityADVHarvester",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityADVHarvester",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilityPowerPlant:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlantMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-550,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlant",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilityPowerPlant",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilityPowerPlant",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityPowerPlant",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilityHeavyNode:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNodeMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) >= 4,"UtilityHeavyNodeTier4")
+	  UTIL B 0 A_JumpIf(ACS_NamedExecuteWithResult("Utility Tier Confirm",0,0,0) == 3,"UtilityHeavyNodeTier3")
+   UtilityHeavyNodeTier2: 
+      UTIL B 0 
+	  UTIL B 0 A_GiveInventory("LightNodeDelay",120)
+	  Goto UtilityHeavyNodeEnd
+   UtilityHeavyNodeTier3: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("LightNodeDelay",90) 
+	  Goto UtilityHeavyNodeEnd
+   UtilityHeavyNodeTier4: 
+      UTIL B 0 
+      UTIL B 0 A_GiveInventory("LightNodeDelay",60) 
+	  Goto UtilityHeavyNodeEnd
+   UtilityHeavyNodeEnd:
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-400,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",250)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNode",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilityHeavyNode",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilityHeavyNode",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilityHeavyNode",78,0,16,0,0,0,0,32)
+      Goto Ready
+   MarineOutpost:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MarineOutpostMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("MarineOutpostDelay",180)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",200)
+      UTIL B 3 Bright A_SpawnItemEx("MarineOutpost",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SupportAI:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityAIDelay",300)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-3000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+	  UTIL B 0 ACS_NamedExecuteAlways("Some Recieved Something",0,0,16,0)
+      UTIL B 3 Bright A_SpawnItemEx("SupportAI",78,0,16,0,0,0,0,32)
+      Goto Ready
+   UtilitySuperHarvester:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvesterMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1500,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",350)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvester",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UtilitySuperHarvester",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UtilitySuperHarvester",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UtilitySuperHarvester",78,0,16,0,0,0,0,32)
+      Goto Ready
+   CommandPost:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("UACCommandPostMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("BigSupportUnitDelay",300)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-8000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",400)
+      UTIL B 3 Bright A_SpawnItemEx("UACCommandPost",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ADVSupportAI:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ADVSupportAIMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("UtilityAIDelay",300)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-12000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",750)
+	  UTIL B 0 ACS_NamedExecuteAlways("Some Recieved Something",0,0,17,0)
+      UTIL B 3 Bright A_SpawnItemEx("ADVSupportAI",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ScoutDrone:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",35)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ScoutDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ScoutDrone",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ScoutDrone",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ScoutDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ScoutBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ScoutBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",30)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ScoutBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ScoutBot",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ScoutBot",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ScoutBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ProspectorBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ProspectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",60)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ProspectorBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ProspectorBot",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ProspectorBot",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ProspectorBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RepairBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",125)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("RepairBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("RepairBot",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("RepairBot",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("RepairBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   RepairDrone:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("RepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",140)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("RepairDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("RepairDrone",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("RepairDrone",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("RepairDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+   AdvancedRepairDrone:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",250)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("AdvancedRepairDrone",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("AdvancedRepairDrone",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("AdvancedRepairDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+   FabricatorDrone:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("FabricatorDroneMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-300,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",280)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("FabricatorDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("FabricatorDrone",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("FabricatorDrone",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("FabricatorDrone",78,0,16,0,0,0,0,32)
+      Goto Ready
+   CollectorBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("CollectorBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("CollectorBotDelay",60)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-600,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+      //UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("CollectorBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("CollectorBot",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("CollectorBot",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("CollectorBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   MegaSupportTank:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MegaSupportTankMarker",108,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 ACS_ExecuteAlways(3700,0,0,79,0)
+	  UTIL B 0 A_GiveInventory("BigSupportUnitDelay",300)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-9000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",700)
+	  UTIL B 0 A_PlaySound("supporttank/see",CHAN_AUTO,1.0,FALSE)
+      UTIL B 3 Bright A_SpawnItemEx("MegaSupportTank",108,0,16,0,0,0,0,32)
+      Goto Ready
+   StalkerBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("StalkerBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",40)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("StalkerBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("StalkerBot",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("StalkerBot",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("StalkerBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleBotB1:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB1Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",75)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB1",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleBotB1",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleBotB1",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB1",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleDroneD1:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",60)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleDroneD1",78,-40,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleDroneD1",78,40,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD1",78,0,16,0,0,0,0,32)
+      Goto Ready
+   ExplosiveBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatchMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",125)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatch",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("ExplosiveBotPatch",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("ExplosiveBotPatch",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("ExplosiveBotPatch",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleBotB2:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB2Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",150)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB2",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleBotB2",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleBotB2",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB2",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleDroneD2:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",125)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleDroneD2",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleDroneD2",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD2",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SecurityBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SecurityBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",135)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("SecurityBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("SecurityBot",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("SecurityBot",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("SecurityBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SpiderSniperBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",160)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("SpiderSniperBot",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("SpiderSniperBot",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("SpiderSniperBot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   Sentinel:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SentinelMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",100)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("UACSentinel",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("UACSentinel",78,-50,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("UACSentinel",78,50,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("UACSentinel",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleBotB3:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB3Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",280)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB3",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleBotB3",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleBotB3",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB3",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleDroneD3:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleDroneD3",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleDroneD3",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleDroneD3:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",300)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleDroneD3",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleDroneD3",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleDroneD3",78,0,16,0,0,0,0,32)
+      Goto Ready
+   AssaultRobot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultRobotMarker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",250)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("AssaultRobot",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("AssaultRobot",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("AssaultRobot",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("AssaultRobot",78,0,16,0,0,0,0,32)
+      Goto Ready
+   BattleBotB4:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("BattleBotB4Marker",78,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",450)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-1500,0)
+      UTIL B 0 A_JumpIfInventory("HasSpreadRune",1,2)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB4",78,0,16,0,0,0,0,32)
+      Goto Ready
+      UTIL B 0 A_SpawnItemEx("BattleBotB4",78,-60,16,0,0,0,0,32)
+      UTIL B 0 A_SpawnItemEx("BattleBotB4",78,60,16,0,0,0,0,32)
+      UTIL B 3 Bright A_SpawnItemEx("BattleBotB4",78,0,16,0,0,0,0,32)
+      Goto Ready
+   SuperSpiderBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("SuperSpiderBotDelay",180)
+	  UTIL B 0 ACS_NamedExecuteAlways("Some Recieved Something",0,0,9,0)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-12000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",700)
+	  UTIL B 0 A_PlaySound("UACSentinel/See",CHAN_AUTO,1.0,FALSE)
+      UTIL B 3 Bright A_SpawnItemEx("SuperSpiderBot",108,0,16,0,0,0,0,32)
+      Goto Ready
+   MilitaryEnforcerBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("MilitaryEnforcerBotDelay",180)
+	  UTIL B 0 ACS_NamedExecuteAlways("Some Recieved Something",0,0,10,0)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-9000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",650)
+	  UTIL B 0 A_PlaySound("UACMilitaryBot/See",CHAN_AUTO,1.0,FALSE)
+      UTIL B 3 Bright A_SpawnItemEx("MilitaryEnforcerBot",108,0,16,0,0,0,0,32)
+      Goto Ready
+   AssaultConquerorBot:
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBotMarker",108,0,16)
+      UTIL A 3 A_GunFlash
+	  UTIL B 0 A_GiveInventory("AssaultConquerorBotDelay",180)
+	  UTIL B 0 ACS_NamedExecuteAlways("Some Recieved Something",0,0,11,0)
+	  UTIL B 0 ACS_NamedExecuteAlways("Collect Utility Resources",0,0,-8000,0)
+	  UTIL B 0 A_TakeInventory("UtilityAmmo",600)
+	  UTIL B 0 A_PlaySound("AssaultConquerorBot/See",CHAN_AUTO,1.0,FALSE)
+      UTIL B 3 Bright A_SpawnItemEx("AssaultConquerorBot",108,0,16,0,0,0,0,32)
+      Goto Ready
+   AltFire:
+      UTIL A 0 A_GunFlash
+   	  UTIL A 1 ACS_NamedExecuteAlways("Utility Menu",0,0,0,0)
+	  Goto Ready
+   Remover:
+      TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	  TNT1 A 0 A_PlayWeaponSound("utility/remove")
+      UTIL A 35 A_GunFlash 
+	  TNT1 A 0 A_GunFlash
+	  TNT1 A 0 A_PlayWeaponSound("utility/build")
+	  UTIL D 7 Bright ACS_NamedExecuteAlways("Utility Special Bullet",0,0,0,0)
+      Goto Ready
+   Repair:
+      TNT1 A 0 A_TakeInventory("MineAction",1)
+	  TNT1 A 0 A_GunFlash
+	  TNT1 A 0 A_PlayWeaponSound("utility/build")
+	  UTIL E 17 Bright ACS_NamedExecuteAlways("Utility Special Bullet",0,1,0,0)
+      Goto Ready
+   Flash:
+      TNT1 A 5 A_Light1
+      TNT1 A 6 A_Light2
+      TNT1 A 5 A_Light1
+      TNT1 A 0 A_Light0
+      Stop
+}
+}
+
+Actor UtilityRemoveBullet
+{
+RenderStyle Add
+Alpha 1.0
+Scale 0.44
+Decal None
++NODECAL
++NOGRAVITY
++NOBLOCKMAP 
++PAINLESS
++BLOODLESSIMPACT
++NODAMAGETHRUST
++NOTRIGGER
++DONTREFLECT
++DONTSPLASH
++SPECTRAL
++HITTRACER
++PUFFONACTORS
++PUFFGETSOWNER
++NOTIMEFREEZE
++SERVERSIDEONLY
+States
+{
+  Spawn:
+	S2K2 A 2 Nodelay ACS_NamedExecuteAlways("Utility Remove Target",0)
+	S2K2 A 35 
+	S2K2 AAAAA 5 A_SpawnItemEx("PurpleParticleSpawner",0,0,0,0,0,0,0,128) 
+	S2K2 AAAAAAAAAA 2 Bright A_FadeOut(0.1)
+	Stop
+  Crash:
+	S2K2 A 2
+	S2K2 AAAAAAAAAA 2 Bright A_FadeOut(0.1)
+	Stop
+}
+}
+
+Actor UtilityRepairBullet : UtilityRemoveBullet
+{
+States
+{
+  Spawn:
+	S2K2 B 20
+	TNT1 A 0 A_RadiusGive("UtilGunRadiusGiverEffect",128,RGF_MONSTERS,1)
+	S2K2 B 5 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 A 0 A_RadiusGive("UtilGunRadiusGiverEffect",128,RGF_MONSTERS,1)
+	S2K2 B 5 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 A 0 A_RadiusGive("UtilGunRadiusGiverEffect",128,RGF_MONSTERS,1)
+	S2K2 B 5 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 A 0 A_RadiusGive("UtilGunRadiusGiverEffect",128,RGF_MONSTERS,1)
+	S2K2 B 5 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 A 0 A_RadiusGive("UtilGunRadiusGiverEffect",128,RGF_MONSTERS,1)
+	S2K2 B 5 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 A 0 A_RadiusGive("UtilGunRadiusGiverEffect",128,RGF_MONSTERS,1)
+	S2K2 B 5 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128) 
+	S2K2 BBBBBBBBBB 2 Bright A_FadeOut(0.1)
+	Stop
+  Crash:
+	S2K2 B 2
+	S2K2 BBBBBBBBBB 2 Bright A_FadeOut(0.1)
+	Stop
+}
+}
+
+
+ACTOR UtilityAmmo : Ammo
+{
+Inventory.Icon "SPEAMA0"
+Inventory.Amount 1
+Inventory.MaxAmount 100
+Ammo.BackpackAmount 0
+}
+
+Actor UtilityActorSlot
+{
+Health 9999999999
+Monster
+Radius 1
+Height 1
++NOBLOOD
++FRIENDLY
++NOTARGET
++NOCLIP
+-COUNTKILL
+States
+{
+  Spawn:
+	TNT1 A 3
+	TNT1 A 3 ACS_ExecuteAlways(3601,0,1,0,0)
+  Fly:
+	TNT1 A 1
+	Loop
+  Death:
+	TNT1 A 1
+	Stop
+	}
+}
+
+ACTOR UtilityExplosiveBarrelProjectile
+{
+Radius 10
+Height 42
+Speed 30
+Damage (0)
+Projectile
++DONTSPLASH
++HEXENBOUNCE
++SKYEXPLODE
++EXPLODEONWATER
++CANBOUNCEWATER
++MTHRUSPECIES
++FORCERADIUSDMG
+-NOGRAVITY
+Gravity 0.4
+WallBounceFactor 0.25
+BounceFactor 0.36
+BounceCount 1
+States
+{
+  Spawn:
+    BAR1 AB 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityExplosiveBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+    BEXP A 5 Bright
+    BEXP B 5 Bright A_PlaySound("world/barrelx")
+    BEXP C 4 Bright
+    BEXP D 3 Bright A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(156,138)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 0 A_SpawnItem("RocketEx")
+    BEXP E 3 Bright A_Fall
+	BEXP FG 3 Bright
+	TNT1 A 0 A_SetTranslucent(1.0,0)
+	BEXP H 350
+	BEXP HHHHHHHHHH 5 A_FadeOut(0.10)
+	Stop
+}
+}
+
+ACTOR UtilityExplosiveBarrel
+{
+Health 20
+Radius 10
+Height 35
++SOLID
++CANPASS
++SHOOTABLE
++NOBLOOD
++DONTGIB
++NOICEDEATH
++OLDRADIUSDMG
++PUSHABLE
++SLIDESONWALLS
++FORCERADIUSDMG
+ReactionTime 1050
+DeathSound "world/barrelx"
+Obituary "%o went boom."
+Tag "Explosive Barrel"
+States
+{
+  Spawn:
+    BAR1 ABAB 4
+    TNT1 A 0 A_ChangeFlag("TOUCHY",TRUE)
+  Waiting:
+    BAR1 AAAAAABBBBBB 1 A_Countdown
+    Loop
+  Death:
+    BEXP A 5 Bright
+    BEXP B 5 Bright A_PlaySound("world/barrelx")
+    BEXP C 4 Bright
+    BEXP D 3 Bright A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(156,138)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 0 A_SpawnItem("RocketEx")
+    BEXP E 3 Bright A_Fall
+	BEXP FG 3 Bright
+	TNT1 A 0 A_SetTranslucent(1.0,0)
+	BEXP H 350
+	BEXP HHHHHHHHHH 5 A_FadeOut(0.10)
+	Stop
+}
+}
+
+ACTOR UtilityExplosiveBarrel2 : UtilityExplosiveBarrel
+{
+DamageType "Marine"
+States
+{
+  Spawn:
+    BAR1 ABAB 4
+    Goto Waiting
+}
+}
+
+ACTOR UtilityExplosiveBarrel3 : UtilityExplosiveBarrel
+{
+States
+{
+  Spawn:
+    BAR1 AB 6
+    Loop
+}
+}
+
+ACTOR UtilityRadioactiveBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+Scale 1.2
+States
+{
+  Spawn:
+    BARR ABCD 4
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityRadioactiveBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0
+    TNT1 A 0 A_Scream
+    TNT1 A 0 A_Explode(156,156)
+    TNT1 AAA 0 A_CustomMissile("GreenExplosionKaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GreenGrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GreenGrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("GreenRocketEx")
+    Stop
+}
+}
+
+ACTOR UtilityRadioactiveBarrel : UtilityExplosiveBarrel
+{
+Health 30
+Scale 1.2
+DeathSound "weapons/clrocketexplode"
+Tag "\c[l2]Radioactive Barrel\c-"
+States
+{
+  Spawn:
+    BARR ABCD 4
+    TNT1 A 0 A_ChangeFlag("TOUCHY",TRUE)
+  Waiting:
+    BARR AAAABBBBCCCCDDD 1 A_Countdown
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Scream
+    TNT1 A 0 A_Explode(156,156)
+    TNT1 AAA 0 A_CustomMissile("GreenExplosionKaboom",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GreenGrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GreenGrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("GreenRocketEx")
+    Stop
+}
+}
+
+ACTOR UtilityRadioactiveBarrel2 : UtilityRadioactiveBarrel
+{
+DamageType "Marine"
+States
+{
+  Spawn:
+    BARR ABCD 4
+    Goto Waiting
+}
+}
+
+ACTOR UtilityRadioactiveBarrel3 : UtilityRadioactiveBarrel
+{
+States
+{
+  Spawn:
+    BARR ABCD 4
+    Loop
+}
+}
+
+ACTOR UtilityOilBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+States
+{
+  Spawn:
+    OILD A 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityOilBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+    OILD A 5 Bright
+    OILD B 5 Bright A_PlaySound("world/barrelx")
+    OILD C 4 Bright
+    OILD D 3 Bright A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(198,166)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 AAAAAAA 0 A_SpawnItemEx("NapalmFireFlare",0,0,0,random(0,4),0,random(0,2),random(0,360))
+    OILD E 3 Bright A_Fall
+	OILD FG 3 Bright
+	TNT1 A 0 A_SetTranslucent(1.0,0)
+	OILD H 350
+	OILD HHHHHHHHHH 5 A_FadeOut(0.10)
+	Stop
+}
+}
+
+ACTOR UtilityOilBarrel : UtilityExplosiveBarrel
+{
+Health 50
+Obituary "%o was set ablaze by a combustible barrel of oil."
+Tag "\c[z4]Napalm Barrel\c-"
+States
+{
+  Spawn:
+    OILD A 16
+    TNT1 A 0 A_ChangeFlag("TOUCHY",TRUE)
+  Waiting:
+    OILD A 1 A_Countdown
+    Loop
+  Death:
+    OILD A 5 Bright
+    OILD B 5 Bright A_PlaySound("world/barrelx")
+    OILD C 4 Bright
+    OILD D 3 Bright A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(198,166)
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("GrenadeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 AAAAAAA 0 A_SpawnItemEx("NapalmFireFlare",0,0,0,random(0,4),0,random(0,2),random(0,360))
+    OILD E 3 Bright A_Fall
+	OILD FG 3 Bright
+	TNT1 A 0 A_SetTranslucent(1.0,0)
+	OILD H 350
+	OILD HHHHHHHHHH 5 A_FadeOut(0.10)
+	Stop
+}
+}
+
+ACTOR UtilityOilBarrel2 : UtilityOilBarrel
+{
+DamageType "Marine"
+States
+{
+  Spawn:
+    OILD A 16
+    Goto Waiting
+}
+}
+
+ACTOR UtilityOilBarrel3 : UtilityOilBarrel
+{
+States
+{
+  Spawn:
+    OILD A -1
+    Stop
+}
+}
+
+ACTOR UtilityPoisonBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+States
+{
+  Spawn:
+    NB4R ABC 4
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityPoisonBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0 
+    TNT1 A 0 A_PlayWeaponSound("Daedabus/Chem")
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PoisonBarrelSmoke",0,0,0,0.000005*random(0,900000),0.000005*random(0,900000),0,random(0,359),32)
+	TNT1 A 0 A_PlaySound("world/barrelx")
+    TNT1 A 10 A_PlaySoundEx("Daedabus/Chem","body",0,1)
+    NB4R C 5 Bright A_Explode(198,166)
+    NB4R D 5 Bright A_ScreamAndUnblock
+    NB4R EFG 5 Bright
+	Stop
+}
+}
+
+ACTOR UtilityPoisonBarrel : UtilityExplosiveBarrel
+{
+Health 60
+Tag "\c[l2]Poison Barrel\c-"
+States
+{
+  Spawn:
+    NB4R ABC 5
+    TNT1 A 0 A_ChangeFlag("TOUCHY",TRUE)
+  Waiting:
+    NB4R AAABBBCCCC 1 A_Countdown
+    Loop
+  Death:
+	TNT1 A 0 
+    TNT1 A 0 A_PlayWeaponSound("Daedabus/Chem")
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PoisonBarrelSmoke",0,0,0,0.000005*random(0,900000),0.000005*random(0,900000),0,random(0,359),32)
+	TNT1 A 0 A_PlaySound("world/barrelx")
+    NB4R C 5 Bright A_Explode(198,166)
+    NB4R D 5 Bright A_ScreamAndUnblock
+    NB4R EFG 5 Bright
+	Stop
+}
+}
+
+ACTOR UtilityPoisonBarrel2 : UtilityPoisonBarrel
+{
+DamageType "Marine"
+States
+{
+  Spawn:
+    NB4R ABC 5
+    Goto Waiting
+}
+}
+
+ACTOR UtilityPoisonBarrel3 : UtilityPoisonBarrel
+{
+States
+{
+  Spawn:
+    NB4R ABC 4
+    Loop
+}
+}
+
+Actor PoisonBarrelSmoke
+{
+Projectile
+Radius 1
+Height 1
++NOCLIP
++NOBLOCKMAP
++NOGRAVITY
++FORCERADIUSDMG
++FORCEXYBILLBOARD
++NODAMAGETHRUST
++NOEXTREMEDEATH
++FORCEPAIN
+DamageType "Marine"
+Scale 2
+Alpha 0.5
+States
+{
+  Spawn:
+	TRPS A 0
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS A 3 Bright A_FadeOut(0.05)
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS B 3 Bright A_FadeOut(0.05)
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS C 3 Bright A_FadeOut(0.05)
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS D 3 Bright A_FadeOut(0.05)
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS E 3 Bright A_FadeOut(0.05)
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS F 3 Bright A_FadeOut(0.05)
+	TRPS A 0 A_Explode(random(4,10),random(32,78))
+	TRPS G 3 Bright A_FadeOut(0.05)
+	Loop
+}
+}
+
+ACTOR UtilityTechBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+Radius 11
+Height 45
+Scale 1.125
+States
+{
+  Spawn:
+    BART A 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityTechBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0
+    TNT1 A 0 A_PlaySound("BFG9K/Explode")
+    TNT1 A 0 A_Explode(256,178)
+    TNT1 A 0 A_Explode(128,286)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenLightningSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenDiggerExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4))  
+    TNT1 A 1
+    Stop
+}
+}
+
+ACTOR UtilityTechBarrel : UtilityExplosiveBarrel
+{
+Health 100
+Radius 11
+Height 45
+DeathSound "BFG9K/Explode"
+Obituary "%o was vaporized by a tech barrel."
+Scale 1.125
+Tag "\c[l2]Tech Barrel\c-"
+States
+{
+  Spawn:
+	BART A 1 A_Countdown
+	Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Scream
+    TNT1 A 0 A_Explode(256,178)
+    TNT1 A 0 A_Explode(128,286)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenLightningSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenDiggerExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+    TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4)) 
+    TNT1 A 1 
+    Stop
+}
+}
+
+ACTOR UtilityTechBarrel2 : UtilityTechBarrel {DamageType "Marine"}
+
+ACTOR UtilityTechBarrel3 : UtilityTechBarrel
+{
+States
+{
+  Spawn:
+	BART A -1
+	Stop
+}
+}
+
+ACTOR UtilityDemonTechBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+Radius 12
+Height 48
+Scale 1.25
+States
+{
+  Spawn:
+    BART B 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityDemonTechBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(328,256)
+    TNT1 A 0 A_Explode(156,389)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWaveLong",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-12,12),frandom(-12,12),frandom(-12,12)) 
+    Stop
+}
+}
+
+ACTOR UtilityDemonTechBarrel : UtilityExplosiveBarrel
+{
+Health 150
+Radius 12
+Height 48
+DeathSound "weapons/dtech10kexplode"
+Obituary "%o was exploded by a demon tech barrel."
+Tag "\c[l2]Demon Tech Barrel\c-"
+Scale 1.25
+States
+{
+  Spawn:
+	BART B 1 A_Countdown
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Scream
+    TNT1 A 0 A_Explode(328,256)
+    TNT1 A 0 A_Explode(156,389)
+	TNT1 A 0 Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionShockWaveLong",0,0,15,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("GreenHugeExplosionFlare",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("GreenHugeExplosionParticle",random(32,-32),random(32,-32),random(32,-32),random(8,-8),random(8,-8),random(8,-8),0,128)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("GreenDiggerExplosionKaboom",0,0,0,frandom(-12,12),frandom(-12,12),frandom(-12,12)) 
+    Stop
+}
+}
+
+ACTOR UtilityDemonTechBarrel2 : UtilityDemonTechBarrel{DamageType "Marine"}
+
+ACTOR UtilityDemonTechBarrel3 : UtilityDemonTechBarrel
+{
+States
+{
+  Spawn:
+	BART B -1
+	Stop
+}
+}
+
+ACTOR UtilityDevastatorBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+Radius 12
+Height 53
+Scale 1.33
+States
+{
+  Spawn:
+    BART C 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityDevastatorBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(156,1024)
+    TNT1 A 0 A_Explode(640,640)
+    TNT1 A 0 A_Explode(896,256)
+    TNT1 A 0 A_PlaySound("weapons/Hbfg10kexplode")
+    TNT1 A 0 A_SpawnItemEx("HSBFG10kBigShotExplosion",0,0,0)
+    TNT1 AAAAAA 3 A_Explode(276,434)
+    Stop
+    }
+}
+
+ACTOR UtilityDevastatorBarrel : UtilityExplosiveBarrel
+{
+Radius 12
+Height 53
+Health 300
+DeathSound ""
+Obituary "%o was liquidated by a devastator barrel."
+Scale 1.33
+Tag "\c[t1]Devastator Barrel\c-"
+States
+{
+  Spawn:
+    BART C 1 A_Countdown
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Scream
+    TNT1 A 0 A_Explode(156,1024)
+    TNT1 A 0 A_Explode(640,640)
+    TNT1 A 0 A_Explode(896,256)
+    TNT1 A 0 A_PlaySound("weapons/Hbfg10kexplode")
+    TNT1 A 0 A_SpawnItemEx("HSBFG10kBigShotExplosion",0,0,0)
+    TNT1 AAAAAA 3 A_Explode(276,434)
+    Stop
+  }
+}
+
+ACTOR UtilityDevastatorBarrel2 : UtilityDevastatorBarrel{DamageType "Marine"}
+
+ACTOR UtilityDevastatorBarrel3 : UtilityDevastatorBarrel
+{
+States
+{
+  Spawn:
+	BART C -1
+	Stop
+}
+}
+
+ACTOR UtilityNuclearBarrelProjectile : UtilityExplosiveBarrelProjectile
+{
+Radius 15
+Height 58
+Scale 1.5
+DamageType "Kaboom"
+States
+{
+  Spawn:
+    NBAR B 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityNuclearBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(1024,256)
+	TNT1 A 0 A_Explode(64,1024)
+	TNT1 A 0 A_Explode(256,1024,0)
+	TNT1 A 0 A_Explode(128,2048,0)
+	TNT1 A 1 A_SpawnItemEx("FusionNukeExplosion")
+    Stop
+    }
+}
+
+ACTOR UtilityNuclearBarrel : UtilityExplosiveBarrel
+{
+Radius 15
+Height 58
+Health 300
+DeathSound ""
+DamageType "Kaboom"
+Obituary "%o was turned into ashes by a nuclear barrel."
+Scale 1.5
+Tag "\c[z4]Nuclear Barrel\c-"
+States
+{
+  Spawn:
+    NBAR B 1 A_Countdown
+    Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(1024,256)
+	TNT1 A 0 A_Explode(64,1024)
+	TNT1 A 0 A_Explode(256,1024,0)
+	TNT1 A 0 A_Explode(128,2048,0)
+	TNT1 A 1 A_SpawnItemEx("FusionNukeExplosion")
+    Stop
+  }
+}
+
+ACTOR UtilityNuclearBarrel2 : UtilityNuclearBarrel{DamageType "MarineKaboom"}
+
+ACTOR UtilityNuclearBarrel3 : UtilityNuclearBarrel
+{
+States
+{
+  Spawn:
+	NBAR B -1
+	Stop
+}
+}
+
+ACTOR UtilityChaosBarrelProjectile : UtilityNuclearBarrelProjectile
+{
+States
+{
+  Spawn:
+    NBAR A 6
+    Loop
+  Crash:
+  Death:
+  	TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("UtilityChaosBarrel",0,0,0,0,0,0,0,32)
+    Stop
+  XDeath:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(256,2048)
+	TNT1 A 0 A_Explode(786,1024)
+	TNT1 A 0 A_Explode(1684,512,0)
+	TNT1 A 1 A_SpawnItemEx("ChaosSphereExploderEffect",0,0,32)
+    Stop
+    }
+}
+
+ACTOR UtilityChaosBarrel : UtilityNuclearBarrel
+{
+Health 450
+Obituary "%o was turned into ashes by a chaos barrel."
+Tag "\c[a6]Chaos Barrel\c-"
+States
+{
+  Spawn:
+    NBAR A 1 A_Countdown
+    Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(256,2048)
+	TNT1 A 0 A_Explode(786,1024)
+	TNT1 A 0 A_Explode(1684,512,0)
+	TNT1 A 1 A_SpawnItemEx("ChaosSphereExploderEffect",0,0,32)
+    Stop
+  }
+}
+
+ACTOR UtilityChaosBarrel2 : UtilityChaosBarrel{DamageType "MarineKaboom"}
+
+ACTOR UtilityChaosBarrel3 : UtilityChaosBarrel
+{
+States
+{
+  Spawn:
+	NBAR A -1
+	Stop
+}
+}
+
+ACTOR UtilityEradicatorBarrel : UtilityChaosBarrel
+{
+Health 550
+Obituary "%o was turned into nothing by an eradicator barrel."
+Tag "\c[m6]Eradicator Barrel\c-"
+XScale 1.4
+YScale 1.2
+var int user_loop;
+States
+{
+  Spawn:
+    NBAR C 1 A_Countdown
+    Loop
+  Death:
+	NBAR CCCCCCCC 6 Bright A_SpawnItemEx("RedHugeExplosionShockWave")
+	TNT1 A 0 A_PlaySound("Eradication/UltimateExplosion",1,1.0,0,0.2)
+	TNT1 A 0 A_SpawnItemEx("EradicationBFGUltimateBallExplosion",-40)
+	TNT1 A 0 A_SpawnItemEx("EradicationBFGUltimateBallExplosionEffect")
+	TNT1 A 0 A_Quake(9,100,0,2000,0)
+  DeathLoop:
+	TNT1 A 0 A_JumpIf(user_loop >= 50,"DeathDone")	 
+	TNT1 A 0 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_Explode(184,4096,0)
+	TNT1 A 0 A_Explode(256,2048)
+	TNT1 A 0 A_Explode(512,1024)
+	TNT1 A 2
+	Loop
+  DeathDone:
+	TNT1 A 1 
+	Stop
+}
+}
+
+ACTOR UtilityEradicatorBarrel2 : UtilityEradicatorBarrel{DamageType "MarineKaboom"}
+
+ACTOR UtilityEradicatorBarrel3 : UtilityEradicatorBarrel
+{
+States
+{
+  Spawn:
+	NBAR C -1
+	Stop
+}
+}

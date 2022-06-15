@@ -1,0 +1,462 @@
+//=========================================================\\
+// ---------------------- Necro Suit --------------------- \\
+//=========================================================\\
+
+Actor NecroSuit : MechPickup
+{
+  Scale 0.85
+  States
+  {
+  Spawn:
+    ARMO A 1 A_SpawnItemEx("SuitIndicator",0,0,80)
+    Loop
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("NecroSuitGiver")
+	Stop
+  Nope:
+	ARMO A 1
+	Stop
+  }
+}
+
+Actor NecroSuit_Used1 : NecroSuit
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("NecroSuitGiver_Used1")
+	Stop
+  }
+}
+
+Actor NecroSuit_Used2 : NecroSuit
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("NecroSuitGiver_Used2")
+	Stop
+  }
+}
+
+Actor NecroSuit_Used3 : NecroSuit
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("NecroSuitGiver_Used3")
+	Stop
+  }
+}
+
+Actor NecroSuitGiver : MechGiver{Powerup.Type "NecroSuit"}
+ACTOR NecroSuitGiver_Used1 : NecroSuitGiver{Powerup.Type "NecroSuit_Used1"}
+ACTOR NecroSuitGiver_Used2 : NecroSuitGiver{Powerup.Type "NecroSuit_Used2"}
+ACTOR NecroSuitGiver_Used3 : NecroSuitGiver{Powerup.Type "NecroSuit_Used3"}
+
+Actor PowerNecroSuit : PowerMorph
+{
+  PowerMorph.PlayerClass "Mech_NecroSuit"
+  PowerMorph.MorphFlash "Nothing"
+  PowerMorph.UnMorphFlash "Nothing"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR PowerNecroSuit_Used1 : PowerNecroSuit{PowerMorph.PlayerClass "Mech_NecroSuit_Used1"}
+ACTOR PowerNecroSuit_Used2 : PowerNecroSuit{PowerMorph.PlayerClass "Mech_NecroSuit_Used2"}
+ACTOR PowerNecroSuit_Used3 : PowerNecroSuit{PowerMorph.PlayerClass "Mech_NecroSuit_Used3"}
+
+Actor Mech_NecroSuit : BaseMech
+{
+	Health 500
+	Radius 20
+    Height 56
+	Scale 0.85
+	Speed 0.8
+	Mass 500
+	Player.MaxHealth 500
+	Player.ForwardMove 0.7
+	Player.SideMove 0.45
+	Player.JumpZ 12
+	Player.SoundClass "Marine"
+	Player.DisplayName "Necro Suit"
+	Player.AttackZOffset 30
+	Player.DamageScreenColor Blue, 0.1
+	Player.ViewHeight 64
+	Player.MorphWeapon "NecroSuit-Weapons"
+	PainChance 0
+	DamageFactor 0.4
+	RadiusDamageFActor 0.7
+	States
+	{
+	Spawn:
+	  ARMO A 1
+	  Loop
+	See:
+      ARMO AABB 3
+      TNT1 A 0 A_Playsound("monster/bruwlk")
+      ARMO CCDD 3
+      TNT1 A 0 A_Playsound("monster/bruwlk")
+      Goto Spawn
+    Melee:
+    Missile:
+      ARMO E 1
+	  ARMO F 0 A_JumpIfInventory("MissileType2",1,"Missile2")
+	  ARMO F 1 Bright
+	  ARMO E 1
+	  ARMO F 1 Bright
+	  ARMO E 1
+	  ARMO F 1 Bright
+	  ARMO E 1
+	  ARMO F 1 Bright
+	  ARMO E 1
+	  ARMO F 1 Bright
+	  ARMO E 1
+	  ARMO F 1 Bright
+      Goto Spawn
+    Missile2:
+      ARMO G 1
+	  ARMO G 0 A_TakeInventory("MissileType2",1)
+      ARMO G 26
+	  ARMO H 6 Bright
+	  ARMO G 6
+	  ARMO H 6 Bright
+	  ARMO G 6
+	  ARMO H 6 Bright
+	  ARMO G 6
+	  ARMO H 6 Bright
+	  ARMO G 6
+	  ARMO H 6 Bright
+	  ARMO G 27
+	  Goto Spawn	  
+    Death:
+	  TNT1 A 0 A_StopSound(1)
+	  TNT1 A 0 A_StopSound(7)
+	  ARMO IJ 6 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	  TNT1 A 0 A_PlayerScream
+	  ARMO K 6 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+	  TNT1 A 0  A_NoBlocking
+	  ARMO L 6 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+      ARMO MNOP 6
+      ARMO Q -1
+      Stop
+}
+}
+
+ACTOR Mech_NecroSuit_Used1 : Mech_NecroSuit{Health 375}
+ACTOR Mech_NecroSuit_Used2 : Mech_NecroSuit{Health 250}
+ACTOR Mech_NecroSuit_Used3 : Mech_NecroSuit{Health 125}
+
+Actor NecroSuit-Weapons : MechWeapon
+{
+  States
+  {
+  Ready:
+	NMGA A 0
+	NMGA A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	NMGA A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	NMGA A 1 A_WeaponReady(WRF_NOSWITCH)
+	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0 A_StopSound(7)
+	Loop
+  Select:
+	NMGA A 1 A_Raise
+	Loop
+  Deselect:
+	NMGA A 1 A_Lower
+	Loop
+  Fire:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1 
+	NMGE A 1 Bright
+	TNT1 A 0 A_PlaySound("mechs/NecroSuit/miniguns/fire",1,1.0,1)
+	TNT1 A 0 A_PlaySound("mechs/NecroSuit/miniguns/spin",7,1.0,1)
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGE B 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGE C 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+  Hold:
+	NMGF A 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF B 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF C 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF D 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF E 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF F 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF E 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF D 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF C 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF B 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	NMGF A 1 Bright
+	TNT1 A 0 Radius_Quake(2,2,0,1,0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,-16,50,Random(2,4),Random(-3,-6),Random(3,6),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing",20,16,50,Random(2,4),Random(3,6),Random(3,6),0)
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireCustomMissile("Tracer",Random(15,-15),0,0,Random(6,-6))
+	TNT1 A 0 A_FireBullets(15,6,2,4,"ModdedBulletPuff")
+	TNT1 A 0 A_ReFire
+	Goto Ready //The SpinningDown state mays cause problem when you take weapon in the suit
+  SpinningDown:
+	TNT1 A 0 A_Light0
+	TNT1 A 0 A_PlaySound("mechs/NecroSuit/miniguns/down",1)
+	TNT1 A 0 A_StopSound(7)
+	NMGD ABCDEF 1
+	Goto Ready
+  AltFire:
+	MHUD A 0 A_JumpIfInventory("NecroSuitRocketsReload",1,"Fire")
+    MHUD A 0 A_GiveInventory("NecroSuitRocketsReload",1)
+    MHUD B 0 ACS_ExecuteAlways(3104,0,10)
+	MHUD B 0 A_GiveInventory("MissileType2")
+	TNT1 A 0 A_playSound("mechs/NecroSuit/switch",1)
+	NMGC ABCDEFGHIJ 1
+    TNT1 A 1
+	NRKC JIHGFEDCB 1
+    NRKA A 1
+  RocketFiring:
+	TNT1 A 0 A_GiveInventory("NecroSuitRocketsToken",1)
+	TNT1 A 0 A_playSound("mechs/NecroSuit/missiles/fire",1)
+	//NRKF ABCDEF 1
+	NRKF ACE 1
+	NRKF G 1 Bright
+	TNT1 A 0 Radius_Quake(3,4,0,1,0)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,-28,-26)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,-18,-16)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,-38,-36)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,-18,-36)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,-38,-16)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,28,-26)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,18,-16)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,38,-36)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,18,-36)
+	TNT1 A 0 A_FireCustomMissile("NecroSuitMiniRocket",0,0,38,-16)
+	NRKF H 1 Bright
+	NRKF I 1 Bright
+	//NRKU JABCDEFGHI 1
+	NRKU ABDFH 1
+	NRKA A 1
+	TNT1 A 0 A_JumpIfInventory("NecroSuitRocketsToken",5,1)
+	Goto RocketFiring
+	TNT1 A 0 A_TakeInventory("NecroSuitRocketsToken",5)
+	TNT1 A 0 A_PlaySound("mechs/NecroSuit/switch",7)
+	NRKC ABCDEFGHIJ 1
+	TNT1 A 1
+	NMGC JIHGFEDCBA 1
+	TNT1 A 0 A_StopSound(7)
+	Goto Ready
+  GrenadeCheck:
+	TNT1 A 0
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("MechSeekerRocketReload",1,"Fire")
+    TNT1 A 0 A_GiveInventory("MechSeekerRocketReload",1)
+    TNT1 A 0 ACS_ExecuteAlways(3104,0,1011)
+	TNT1 A 0 A_GiveInventory("MissileType2")
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_playSound("mechs/NecroSuit/switch",1)
+	NMGC ABCDEFGHIJ 1
+    TNT1 A 1
+	NRKC JIHGFEDCB 1
+    NRKA A 1
+  GrenadeFiring:
+	TNT1 A 0 A_GiveInventory("NecroSuitRocketsToken",1)
+	TNT1 A 0 A_playSound("mechs/NecroSuit/missiles/fire",1)
+	NRKF ACE 1
+	NRKF G 1 Bright
+	TNT1 A 0 Radius_Quake(3,4,0,1,0)
+	TNT1 A 0 A_FireCustomMissile("UpdatedRocket",0,0,-28,-26)
+	TNT1 A 0 A_FireCustomMissile("UpdatedRocket",0,0,28,-26)
+	NRKF HI 1 Bright
+	NRKU ABDFH 1
+	NRKA A 1
+	TNT1 A 0 A_JumpIfInventory("NecroSuitRocketsToken",5,1)
+	Goto GrenadeFiring
+	TNT1 A 0 A_TakeInventory("NecroSuitRocketsToken",5)
+	TNT1 A 0 A_PlaySound("mechs/NecroSuit/switch",7)
+	NRKC ABCDEFGHIJ 1
+	TNT1 A 1
+	NMGC JIHGFEDCBA 1
+	TNT1 A 0 A_StopSound(7)
+	Goto Ready
+  MineCheck:
+	TNT1 A 0
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+    TNT1 A 0 A_JumpIfInventory("MechRocketReload",1,"Fire")
+    TNT1 A 0 A_GiveInventory("MechRocketReload",1)
+    TNT1 A 0 ACS_ExecuteAlways(3104,0,1012)
+	TNT1 A 0 A_GiveInventory("MissileType2")
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_playSound("mechs/NecroSuit/switch",1)
+	NMGC ABCDEFGHIJ 1
+    TNT1 A 1
+	NRKC JIHGFEDCB 1
+    NRKA A 1
+  MineFiring:
+	TNT1 A 0 A_GiveInventory("NecroSuitRocketsToken",1)
+	TNT1 A 0 A_PlaySound("weapons/minebounce")
+	TNT1 A 0 A_PlayWeaponSound("MineLauncher/Fire")
+	NRKF ACE 1
+	NRKF G 1 Bright
+	TNT1 A 0 Radius_Quake(3,4,0,1,0)
+	TNT1 A 0 A_FireCustomMissile("MineLauncherProj",0,0,-28,-26)
+	TNT1 A 0 A_FireCustomMissile("MineLauncherProj",0,0,28,-26)
+	NRKF HI 1 Bright
+	NRKU ABDFH 1
+	NRKA A 1
+	TNT1 A 0 A_JumpIfInventory("NecroSuitRocketsToken",5,1)
+	Goto MineFiring
+	TNT1 A 0 A_TakeInventory("NecroSuitRocketsToken",5)
+	TNT1 A 0 A_PlaySound("mechs/NecroSuit/switch",7)
+	NRKC ABCDEFGHIJ 1
+	TNT1 A 1
+	NMGC JIHGFEDCBA 1
+	TNT1 A 0 A_StopSound(7)
+	Goto Ready
+  Flash:
+	TNT1 A 1 Bright
+	Stop
+}
+}
+
+Actor NecroSuitMiniRocket : MiniRocket
+{
+Damage 8
+Damagetype "Marine"
+SeeSound "none"
+Decal DoomImpScorch
+States
+{
+  Spawn:
+	MICR A 1 Bright A_SpawnItemEx("MissileTrail",0,0,0)
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 1, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_CustomMissile("Kaboom9", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_Explode(16,34)
+	TNT1 A 0 A_SetTranslucent(0.85,1)
+	H2BL JKLMN 4 Bright
+	Stop
+}
+}
+
+Actor NecroSuitRocketsReload : Inventory {Inventory.MaxAmount 1}
+Actor NecroSuitRocketsToken : Inventory {Inventory.MaxAmount 5}
+
+ACTOR NecroSuit_UsedWait1
+{
+  Radius 12
+  Height 32
+  Scale 0.85
+  States
+  {
+  Spawn:
+    ARMO AA 35
+    ARMO A 1 A_SpawnItemEx("NecroSuit_Used1")
+    Stop
+  }
+}
+
+ACTOR NecroSuit_UsedWait2 : NecroSuit_UsedWait1
+{
+  States
+  {
+  Spawn:
+    ARMO AA 35
+    ARMO A 1 A_SpawnItemEx("NecroSuit_Used2")
+    Stop
+  }
+}
+
+ACTOR NecroSuit_UsedWait3 : NecroSuit_UsedWait1
+{
+  States
+  {
+  Spawn:
+    ARMO AA 35
+    ARMO A 1 A_SpawnItemEx("NecroSuit_Used3")
+    Stop
+  }
+}
+
+ACTOR NecroSuit_Destroyed
+{
+  Scale 0.85
+  States
+  {
+  Spawn:
+    ARMO A 70	
+	ARMO IJKL 6 Bright A_SpawnItemEx("Kaboom",Random(-24,24),Random(-24,24),Random(4,48))
+    ARMO MNOP 6
+    ARMO Q -1
+    Stop
+  }
+}

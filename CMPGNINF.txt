@@ -1,0 +1,242 @@
+{
+  mapname = cdm01
+  gamemode = invasion
+  wavelimit = 7
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm02
+  gamemode = invasion
+  wavelimit = 9
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm03
+  gamemode = invasion
+  wavelimit = 8
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm04
+  gamemode = invasion
+  wavelimit = 12
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm05
+  gamemode = invasion
+  wavelimit = 12
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm06
+  gamemode = invasion
+  wavelimit = 10
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm07
+  gamemode = invasion
+  wavelimit = 9
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm08
+  gamemode = invasion
+  wavelimit = 11
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm09
+  gamemode = invasion
+  wavelimit = 7
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm10
+  gamemode = invasion
+  wavelimit = 9
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm11
+  gamemode = invasion
+  wavelimit = 13
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm12
+  gamemode = invasion
+  wavelimit = 17
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm13
+  gamemode = invasion
+  wavelimit = 13
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm14
+  gamemode = invasion
+  wavelimit = 8
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm15
+  gamemode = invasion
+  wavelimit = 15
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm16
+  gamemode = invasion
+  wavelimit = 13
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm17
+  gamemode = invasion
+  wavelimit = 10
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm18
+  gamemode = invasion
+  wavelimit = 13
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm19
+  gamemode = invasion
+  wavelimit = 18
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm20
+  gamemode = invasion
+  wavelimit = 15
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm21
+  gamemode = invasion
+  wavelimit = 12
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm22
+  gamemode = invasion
+  wavelimit = 15
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm23
+  gamemode = invasion
+  wavelimit = 13
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm24
+  gamemode = invasion
+  wavelimit = 16
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm25
+  gamemode = invasion
+  wavelimit = 11
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdm26
+  gamemode = invasion
+  wavelimit = 15
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}
+
+{
+  mapname = cdmboss
+  gamemode = invasion
+  wavelimit = 4
+  dmflags = 8519940
+  dmflags2 = 2098432
+  compatflags = 67108864
+}

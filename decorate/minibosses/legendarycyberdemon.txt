@@ -1,0 +1,706 @@
+ACTOR LegendaryCyberdemon1 : LegendaryCyberdemon replaces LegendaryCyberdemon
+{ 
+Health 18000
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "PDTBFG", 0.1
+DamageFactor "PDTBFGTracer", 0.1
+DamageFactor "BFGSplash", 0.25
+DamageFactor "BFGSpray", 0.25
+DamageFactor "MechStep", 0.0
+DamageFactor "Pierce", 0.35
+DamageFactor "MarinePierce", 0.35
+DamageFactor "Kaboom", 0.3
+DamageFactor "MarineKaboom", 0.3
+DamageFactor 0.35
+DropItem ""
++DONTHARMSPECIES
++NOTIMEFREEZE
++NODROPOFF
++NOFEAR
++BRIGHT
+-CANTSEEK
+MaxStepHeight 32
+MaxDropOffHeight 32
+RadiusDamageFactor 0.5
+Height 100
+Tag "\c[z3]Legendary Cyberdemon\c-"
+var int user_wait;
+var int user_script;
+States
+{
+  Spawn:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,97,1,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 10 A_Look
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 10 A_Look
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR Z 10 A_Look
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR Z 10 A_Look
+	Loop
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,97,1,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    TNT1 A 0 A_JumpIfCloser(2000,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_Jump(100,"Rush")
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 3 A_Hoof
+    CYBR AB 3 A_Chase
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+    CYBR BCC 3 A_Chase
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+    CYBR D 3 A_Metal
+    CYBR D 3 A_Chase
+    TNT1 A 0 A_Jump(35,"Teleport")
+	Loop
+  Rush:
+    TNT1 A 0 A_Hoof	
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	CYBR A 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	CYBR A 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR B 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	CYBR C 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	CYBR C 2 A_Chase
+	TNT1 A 0 A_Metal
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	CYBR D 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	CYBR D 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryCyberGhostA",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Jump(25,"Teleport")
+	TNT1 A 0 A_Jump(75,"See")		
+	Loop	
+  Strafing:
+	TNT1 A 0 A_PlaySound("cyber/hoof")
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR AA 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	CYBR BB 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+    CYBR CC 2 A_GiveInventory("LegCyberStrafe",1)	
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_PlaySound("spider/walk")
+	CYBR DD 2 A_GiveInventory("LegCyberStrafe",1)
+	Goto See	
+  Teleport:
+    CYBR G 1 A_UnSetShootable
+	CYBR GGGGGGGGGGGGG 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	CYBR GGGGGGGGGG 1 A_FadeOut(0.1,0)
+	CYBR G 2
+	CYBR GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 0 A_Wander
+	CYBR GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 0 A_Wander
+    CYBR G 1 A_PlayWeaponSound("boss/teleport")
+	CYBR GGGGGGGGGGGGG 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	CYBR GGGGGGGGGGG 1 A_FadeIn(0.1)
+    CYBR G 1 A_SetShootable
+    Goto See	
+  LegendaryASG:
+	CYBR E 4 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SpawnItemEx("BlueShellCasing",26,26,58, Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 AAAA 0 A_CustomMissile("LegendaryBlueTracer",58,-26,Random(6,-6),0)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomBulletAttack(16.5,7.5,7,Random(5,15)*6,"HellBulletPuff")
+	TNT1 A 0 A_PlaySoundEx("Weapons/LegAutoShotgun","Weapon")
+	CYBR E 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CPosRefire
+	TNT1 A 0 A_JumpIfCloser(300,2)
+	TNT1 A 0 A_Jump(256,"Missile")
+	TNT1 A 0
+	Goto LegendaryASG	
+  Missile:
+    TNT1 A 0 
+    TNT1 A 0 A_SetShootable
+    TNT1 A 0 A_UnsetInvulnerable
+    TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+    TNT1 A 0 A_JumpIfCloser(250,"LegendaryASG")
+	TNT1 A 0 A_Jump(32,"LegendaryBFG")
+	TNT1 A 0 A_Jump(88,"LegendaryStomp","AssaultProjectile","CyberLaser","EradicationBFG","LegRevBestATK","LegZombieBestATK","PlasmaticBomb","LegendaryHolyProjectile")
+    TNT1 A 0 A_Jump(196,"LegendaryOrb","LegendaryOrb","Cannon","BFG10K","BFG9K","DTBFG10K","BFG12K","FloorFire","Railgun")
+  Normal:
+    TNT1 A 0
+	CYBR EE 2 A_GiveInventory("LegCyberStrafe",1)
+  	TNT1 A 0 A_Jump(86,"NormalSeeker")
+    TNT1 A 0 A_CustomMissile("UpdatedLegendaryRocket",58,-26,random(-6,6))
+	CYBR FF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CposRefire
+    TNT1 A 0 A_Jump(16,"See","Missile","LegendaryOrb")
+	Goto Normal
+  NormalSeeker:
+    TNT1 A 0 A_CustomMissile("UpdatedLegendaryHomingRocket",58,-26,random(-6,6))
+	CYBR FF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CposRefire
+	TNT1 A 0 A_Jump(16,"See","Missile","LegendaryOrb")
+	Goto Normal
+  LegendaryOrb:
+    TNT1 A 0
+	CYBR EE 2 A_GiveInventory("LegCyberStrafe",1)
+    TNT1 A 0 A_CustomMissile("LegendaryOrbProj",58,-26,random(-3,3))
+	CYBR FF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CposRefire
+    TNT1 A 0 A_Jump(16,"See","Missile","Missile")
+	Loop
+  Cannon:
+	TNT1 A 0
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+  CannonGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 14,"CannonEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	CYBR EE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySoundEx("LegCannon/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("DLegendaryCannonBigBall",58,-26,random(-3,3))
+	CYBR FF 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CposRefire
+    Loop
+  CannonEnd:
+    CYBR EEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","BFG10K","BFG10K")
+	Goto See
+  BFG10K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	CYBR EEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+  BFG10KGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 36,"BFG10KEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("Legendary10KProjectile",58,-26,random(-400,400)/100.00)
+	CYBR E 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(12,1)
+	Loop
+  BFG10KEnd:
+	TNT1 A 0 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	CYBR EEEEEE 3 A_GiveInventory("LegCyberStrafe",1)	
+	TNT1 A 0 A_Jump(192,"See","BFG9K","BFG9K")
+	Goto See
+  BFG9K:
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	CYBR EEEEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,-9)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,9)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,0)
+	CYBR EEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	CYBR EEEEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,-9)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,9)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,0)
+	CYBR EEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	CYBR EEEEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,-9)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,9)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryBFG9500Ball",58,-26,0)
+	CYBR EEEEEEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","DTBFG10K","DTBFG10K")
+	Goto See
+  DTBFG10K:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	CYBR EEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",58,-26,0)
+	CYBR EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	CYBR EEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",58,-26,0)
+	CYBR EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	CYBR EEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",58,-26,0)
+	CYBR EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	CYBR EEEEEEEEEEFFFF 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("UpdatedLegendaryDTBFG10KBall",58,-26,0)
+	CYBR EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","BFG12K","BFG12K")
+	Goto See
+  BFG12K:
+	CYBR EEEEE 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	CYBR EEEEEEE 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryDemonBFG12000Ball",58,-26,0,0)
+	CYBR FFF 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	CYBR EEEEEEE 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryDemonBFG12000Ball",58,-26,random(-3,3),0)
+	CYBR FFF 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	CYBR EEEEEEE 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryDemonBFG12000Ball",58,-26,random(-3,3),0)
+	CYBR FFF 5 A_GiveInventory("LegCyberStrafe",1)
+	CYBR EEE 6 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","FloorFire","FloorFire")
+	Goto See
+  FloorFire:
+    CYBR GGGGG 3 A_GiveInventory("LegCyberStrafe",1)
+	LBE3 AAA 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryNobleFloorFireSpawner",32,0,-7)
+	TNT1 A 0 A_CustomMissile("LegendaryNobleFloorFireSpawner",32,0,7)
+	TNT1 A 0 A_CustomMissile("LegendaryNobleFloorFireSpawner",32,0,0)
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	LBE3 B 0 A_PlaySound("monsters/darkcyberstomp")
+	LBE3 BBBAAA 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("LegendaryNobleFloorFireSpawner",32,0,-7)
+	TNT1 A 0 A_CustomMissile("LegendaryNobleFloorFireSpawner",32,0,7)
+	TNT1 A 0 A_CustomMissile("LegendaryNobleFloorFireSpawner",32,0,0)
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	LBE3 B 0 A_PlaySound("monsters/darkcyberstomp")
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","Railgun","Railgun")
+    Goto See
+  Railgun:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+	TNT1 A 0 A_SetUserVar("user_wait",0)
+	CYBR EEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+  RailgunGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 24,"RailgunEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	CYBR F 2 A_CustomMissile("LegendaryCyberRail",58,-26,random(-300,300)/100.00)
+	CYBR FEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(12,1)
+	Loop
+  RailgunEnd:
+	CYBR EEEEEEEE 3 A_SetAngle(angle + 45)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,6)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,-6)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,-3)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,3)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,0)
+	CYBR FFFEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_UnsetShootable
+	CYBR EEEEEEEEEEEEE 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	CYBR EEEEEEEEEE 1 A_FadeOut(0.1,0)
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+    CYBR E 9 A_PlayWeaponSound("boss/teleport")
+	TNT1 A 0 A_FaceTarget
+	CYBR EEEEEEEEEEEEE 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	CYBR EEEEEEEEEE 1 A_FadeIn(0.1)	
+	TNT1 A 0 A_SetShootable
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,6)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,-6)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,-3)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,3)
+    CYBR F 0 A_CustomMissile("LegendaryCyberRail",58,-26,0)
+	CYBR FFFEEE 2 A_GiveInventory("LegCyberStrafe",1)	
+	TNT1 A 0 A_Jump(192,"See","AssaultProjectile","AssaultProjectile")
+	Goto See
+  AssaultProjectile:
+    CYBR EEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR E 3 A_PlaySoundEx("Legcyber/laugh2","LAUGH2")
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryAssaultProjectile/Shot")
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryAssaultProjectile",58,-26,random(-4,4))
+	CYBR FEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR EEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","CyberLaser","CyberLaser")
+	Goto See
+  CyberLaser:
+    CYBR GGGGG 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+	LBE3 G 3 A_PlaySoundEx("Legcyber/laugh4","LAUGH3")
+	LBE3 GGGGGGGGGGGGGGGGGGGGGGGGGGGGG 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	LBBE AAAAA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlaySound("RAGE",CHAN_VOICE|CHAN_NOPAUSE)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,0)
+	LBBE BB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,random(-5,5))
+	LBBE BA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,random(-5,5))
+	LBBE BA 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR GG 3 A_GiveInventory("LegCyberStrafe3",1)
+	LBBE AAA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlaySound("RAGE",CHAN_VOICE|CHAN_NOPAUSE)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,0)
+	LBBE BB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,random(-5,5))
+	LBBE BA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,random(-5,5))
+	LBBE BA 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR GG 3 A_GiveInventory("LegCyberStrafe3",1)
+	LBBE AAA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlaySound("RAGE",CHAN_VOICE|CHAN_NOPAUSE)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,0)
+	LBBE BB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,random(-5,5))
+	LBBE BA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_CustomMissile("LegCyberLaserBeam",80,0,random(-5,5))
+	LBBE BA 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR GG 3 A_GiveInventory("LegCyberStrafe3",1)
+	LBBE AAA 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR GGGGGGGG 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","EradicationBFG","EradicationBFG")
+	Goto See
+  EradicationBFG:
+    CYBR EEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_PlayWeaponSound("EradicationBFG/Charge")
+	CYBR E 3 A_PlaySoundEx("Legcyber/laugh4","LAUGH3")
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryEradicationBFGProjectile",58,-26,random(-3,3))
+	CYBR FEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryEradicationBFGProjectile",58,-26,random(-3,3))
+	CYBR FEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryEradicationBFGProjectile",58,-26,random(-3,3))
+	CYBR FEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR F 3 A_CustomMissile("LegendaryEradicationBFGProjectile",58,-26,random(-3,3))
+	CYBR FEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_Jump(192,"See","LegendaryStomp","LegendaryStomp")
+	Goto See
+  LegendaryStomp:
+    CYBR GGGGG 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+	LBE3 G 3 A_PlaySoundEx("Legcyber/laugh4","LAUGH3")
+	LBE3 GGGGGGGGGGGGGGGGGGGGGGGGGGGGG 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR GGGG 2 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	LBE3 AA 2 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	TNT1 A 0 A_PlaySound("monsters/darkcyberstomp")
+	LBE3 BB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BAA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	TNT1 A 0 A_PlaySound("monsters/darkcyberstomp")
+	LBE3 BB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BAA 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	TNT1 A 0 A_PlaySound("monsters/darkcyberstomp")
+	LBE3 BB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryFloorLightning",random(1024,-1024),random(1024,-1024),0,0,0,0,SXF_NOCHECKPOSITION)
+	LBE3 BBB 3 A_GiveInventory("LegCyberStrafe3",1)
+	LBE3 BBBBBBBBB 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","LegRevBestATK","LegRevBestATK")
+    Goto See
+  LegRevBestATK:
+    CYBR EEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+    CYBR G 3 A_PlaySoundEx("Legcyber/laugh5","TBCSPT2")
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	CYBR F 0 A_PlayWeaponSound("lrball3/shot")
+    CYBR F 0 A_CustomMissile("LegRevBall3", 58, -26)
+	CYBR FFEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlayWeaponSound("lrball3/shot")
+    CYBR F 0 A_CustomMissile("LegRevBall3", 58, -26)
+	CYBR FFEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlayWeaponSound("lrball3/shot")
+    CYBR F 0 A_CustomMissile("LegRevBall3", 58, -26)
+	CYBR FFEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR EEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","LegZombieBestATK","LegZombieBestATK")
+	Goto See
+  LegZombieBestATK:
+    CYBR EEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+    CYBR G 3 A_PlaySoundEx("Legcyber/laugh5","TBCSPT2")
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR F 0 A_PlaySoundEx("SuperPlama/Fire","Weapon")
+    CYBR F 0 A_CustomMissile("SuperLegPlasma",58,-26,random(-2,2))
+	CYBR FFEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR EEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","PlasmaticBomb","PlasmaticBomb")
+	Goto See
+  PlasmaticBomb:
+    TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+    TNT1 A 0 A_PlaySoundEx("Legcyber/laugh5","TBCSPT2")
+	TNT1 A 0 A_PlaySoundEx("monster/laugh","TBBCSPT1")
+    TNT1 A 0 A_PlaySound("Arcradimus/BFGCharge")
+    CYBR E 0 A_SpawnItemEx("NewLegendaryBombCharging1",96,0,58)
+	CYBR EEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR E 0 A_SpawnItemEx("NewLegendaryBombCharging2",96,0,58)
+	CYBR EEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR E 0 A_SpawnItemEx("NewLegendaryBombCharging3",96,0,58)
+	TNTT A 0 A_PlaySoundEx("Legcyber/laugh2","LAUGH2")
+	CYBR EEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR E 0 A_SpawnItemEx("NewLegendaryBombCharging4",96,0,58)
+	CYBR EEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+	CYBR E 0 A_SpawnItemEx("NewLegendaryBombCharging5",96,0,58)
+	CYBR EEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe2",1)
+    CYBR EF 3 A_GiveInventory("LegCyberStrafe2",1) 
+	TNT1 A 0 A_CustomMissile("NewLegendaryBomb",58,-26,0,0)
+	TNT1 A 0 A_UnsetInvulnerable
+	CYBR EEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1) 
+	TNT1 A 0 A_Jump(192,"See","LegendaryBFG","LegendaryBFG")
+	Goto See
+  LegendaryBFG:
+    CYBR EEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+	CYBR E 3 A_PlaySoundEx("monster/laugh","TBBCSPT1")	
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe3",1)
+    CYBR E 3 A_PlaySoundEx("Legcyber/BFG","GURUCHRG")	
+	TNT1 A 0 A_FaceTarget
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_JumpIfTargetInLos("LegendaryBFGGo")
+	TNT1 A 0 A_UnSetShootable
+	CYBR EEEEEEEEEEEEE 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+    CYBR EEEEEEEEEE 1 A_FadeOut(0.1,0)
+	CYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+    CYBR E 11 A_PlayWeaponSound("boss/teleport")
+	TNT1 A 0 A_FaceTarget
+	CYBR EEEEEEEEEEEEE 0 A_SpawnItemEx("LegendaryCyberFlameSpawner2")
+	CYBR EEEEEEEEEE 1 A_FadeIn(0.1)	
+  LegendaryBFGGo:
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_PlayWeaponSound("Weapons/GuruFire")
+  	TNT1 A 0 A_PlayWeaponSound("Weapons/GuruAddFire")
+	TNT1 A 0 A_CustomMissile("DemonLegendaryBFGProjectile",58,-26,0,0)
+	CYBR FF 3 A_GiveInventory("LegCyberStrafe3",1)
+	TNT1 A 0 A_UnsetInvulnerable
+    CYBR EEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(192,"See","LegendaryHolyProjectile","LegendaryHolyProjectile")
+	Goto See
+  LegendaryHolyProjectile:
+    CYBR EEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+    TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+    TNT1 A 0 A_PlaySoundEx("Legcyber/laugh5","TBCSPT2")
+	TNT1 A 0 A_PlaySoundEx("monster/laugh","TBBCSPT1")
+    TNT1 A 0 A_PlaySound("LegendaryHolyProjectile/Charge")
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging1",128,0,64)
+	CYBR EEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging2",128,0,64)
+	CYBR EEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging3",128,0,64)
+	CYBR EEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging4",128,0,64)
+	CYBR EEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe3",1)
+    TNT1 A 0 A_SpawnItemEx("LegendaryHolyProjectileCharging",128,0,64)
+	CYBR EEEEEEEEEF 3 A_GiveInventory("LegCyberStrafe3",1)
+    TNT1 A 0 A_PlaySound("LegendaryHolyProjectile/Fire")
+	TNT1 A 0 A_CustomMissile("LegendaryHolyProjectile",58,-26,0,0)
+	TNT1 A 0 A_UnsetInvulnerable
+    CYBR EEEEEEEEEEEEE 3 A_GiveInventory("LegCyberStrafe",1)
+	Goto See
+  Pain:
+	TNT1 A 0 A_Jump(75,"Healing")
+	TNT1 A 0 A_Jump(25,"Teleport")
+    CYBR G 3 A_GiveInventory("LegCyberStrafe",1)
+	CYBR G 3 A_Pain
+	TNT1 A 0 A_Jump(130,"Missile")
+    Goto See
+  Healing:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIfInventory("LegSentientToken",3,"See")	
+  	TNT1 A 0 A_PlaySoundEx("Legcyber/heal","HEAL")
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("LegSentientToken",1)
+	CYBR G 2 HealThing(350)
+    CYBR GGGGGGGGGGGGGGGGGGGGGGGG 2 A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	CYBR G 2
+    Goto See	
+  Death:
+    TNT1 A 0 A_StopSound(6)
+	CYBR H 10
+    CYBR H 10 A_Scream
+	TNT1 A 0 A_GiveToTarget("EpicCrateStrongGiver",1)
+	TNT1 AAAAA 0 A_GiveToTarget("BossCrateGiver",1)
+	TNT1 A 0 A_SpawnItem("DemonLegendaryBFGMiniProjectileDeath")
+	CYBR HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 A_SpawnItemEx("BlueKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 A 0 A_SpawnItem("DemonLegendaryBFGMiniProjectileDeath")
+	CYBR IIIIIIIIIIIIIIIIIIIIIIIIIIIIJJJJJJJJJJJJJJJJJJJJJ 2 A_SpawnItemEx("BlueKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_SpawnItemEx("BlueGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	CYBR KL 10
+	TNT1 A 0 A_SpawnItem("DemonLegendaryBFGProjectileDeath")
+	CYBR M 10 A_NoBlocking
+    CYBR NO 10
+	CYBR P 30
+	CYBR P -1 A_BossDeath
+	Stop
+  }
+}
+
+ACTOR LegendaryCyberdemonWeak : LegendaryCyberdemon1
+{ 
+Health 16000
+DropItem "BonusCrateDrop" 1
+DamageFactor "BFGSplash", 0.5
+DamageFactor "PDTBFG", 0.4
+DamageFactor "PDTBFGTracer", 0.4
+DamageFactor "MechStep", 0.0
+DamageFactor "Pierce", 0.5
+DamageFactor "MarinePierce", 0.5
+DamageFactor "Kaboom", 0.4
+DamageFactor "MarineKaboom", 0.4 
+States
+{
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script == 1,6)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 10 A_Look
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 10 A_Look
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR Z 10 A_Look
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR Z 10 A_Look
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_script == 1,6)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    TNT1 A 0 A_JumpIfCloser(2000,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_Jump(100,"Rush")
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+	CYBR A 3 A_Hoof
+    CYBR AB 3 A_Chase
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+    CYBR BCC 3 A_Chase
+	TNT1 A 0 A_SpawnItem("LegendaryCyberFlameSpawner",0,0,0,0)
+    CYBR D 3 A_Metal
+    CYBR D 3 A_Chase
+    TNT1 A 0 A_Jump(35,"Teleport")
+	Loop
+}
+}
+
+ACTOR LegendaryCyberdemonVeryWeak : LegendaryCyberdemonWeak
+{
+Health 8000
+MaxStepHeight 32
+MaxDropOffHeight 32
+}

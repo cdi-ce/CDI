@@ -1,0 +1,2049 @@
+-------------------- Major Update for v0.99.9 --------------------
+
+****************************** BETA 7 ******************************
+
+- Added a new rune the "Agility Rune" which combine "High Jump Rune" & "Haste Rune" and also add double jump and dash.
+- Added a new system "Demon Enchant" which can enhances mini bosses such as Cyberdemon or Mastermind with powerful perks.
+  * can be turned off in "CDI Global Settings".
+- Added a new option in "CDI Global Settings" allowing to put a limit at the maximal "Threat Level" (from 1 to 9).
+- Added a new option in "CDI Global Settings" allowing to edit the progression speed of the "Threat Level" (from 1 to 16, default is 4).
+- Removed the spawns for the "High Jump Rune" & "Haste Rune".
+- Updated the awakened version of the "Legendary Imp", "Legendary Redeemer" & "Legendary Revenant".
+- Updated "Sonic EFG 9000" with new sprites.
+- Updated "CDI Global Settings" by adding more options to manipulate "Demonic Assault" & "Demon Reinforcement", also optimized it.
+- Edited "Open Deck" which is no longer available in "Spread Rune".
+- Edited the Charging attack display from morphed which is now a script instead of being in SBARINFO.txt
+- Increased the cost of some weapon upgrade.
+- Buffed legendary monsters with a new features called "Legendary Shield" helping them to survive longer against invul piercing weapons.
+- Buffed some strong mini bosses with a new features called "Hell Shield" helping them to survive longer against invul piercing weapons.
+- Buffed the damage output from the Super Lazer of monsters and Upgraded "BFG 12000".
+- Buffed the resistance of strong monsters against "Fusion Railgun".
+- Buffed the explosion damage of the suicide of the "Legendary Redemeer".
+- Nerfed "Spread Rune" which is much rarer to get.
+- Nerfed "Single Marine Beacon" which is no longer affected by "Spread Rune".
+- Nerfed the ammount of "Rune Summoning Totem" coming from the "Experience System".
+- Nerfed Green Marines which will now be removed after 5 minutes of activity.
+- Fixed "Powerup Rune" hud being broken by the "Show Score" feature.
+- Fixed "Show Score" now properly showing the player ranks depending on their player number.
+- Fixed "Loot Box - Powerup" using the sprites of the "Legendary Behemoth" projectiles.
+- Fixed the firing sprites of the "M79 Grenade Launcher".
+
+****************************** BETA 6a ******************************
+
+- Added an ambient sound to let players know when a legendary monster spawns as awakened.
+- Updated the "Show Score" which can now display other player ranks.
+- Updated the sprites of the "M79 Grenade Launcher".
+- Updated Upgraded "Plasma Caster" which now fires bouncing projectiles from secondary fire.
+- Updated "Awakened Legendary Zombie" & "Awakened Legendary Assault Captain" which now have new attacks.
+  * (other leg monsters will follow in next update).
+- Increased the cooldown for "Demonic Assault" & "Demon Reinforcement".
+- Lowered the chances from "Epic Crate" to be dropped from monsters or "Loot Box".
+- Buffed the resistance of Awakened Legendary Monsters & "Marauder".
+- Nerfed the Health regeneration rate of the friendly marines.
+- Nerfed "Loot Box - Powerup Chalices" which now drops 3 iteams instead of 5.
+- Fixed "Augmented Arachnotron" & "Double Shotgun"'s Shrapnel having the same sprites name.
+- Fixed "Cacolord" using the sprites of "Cacomental".
+- Fixed "Phase Cadaver" using wrong XDeath sprites.
+- Fixed "Phase Cybruiser" having wrong railgun firing offset.
+- Fixed "Legendary Cardinal" & "True Legendary Cardinal" using wrong sprites.
+- Fixed "Carcass" death sprites.
+- Fixed "Double Grenade Launcher" upgrade not working ? (it works perfect for me).
+- Fixed Upgraded "M79 Grenade Launcher" sometimes not firing but still using ammunition.
+- Fixed "Auto-Build" from "Utility Gun" giving 3 "Mistery Boxes" when having "Spread Rune" instead of only 1.
+  * (using it from inventory does it already).
+- Fixed "Combat Shotgun" & "Double Barrel Shotgun " not having bullet decals.
+- Fixed "Legendary Obelisk" item, the challenge message was talking about the "Gore Nest" insteadt.
+- Fixed "Legendary Obelisk" sometimes broking the map with monster count.
+- Fixed Upgraded "Minigun" weapon announcer not working.
+- Fixed "Veterancy Rune" not having a description in the "Runes Info" menu.
+- Fixed "Heavy Sentry Gun" from "Sentry Box" taking 1 Utility Slot.
+- Fixed the skins of the mod hidding the player face in the hud, also removed most weapon skins from list.
+- Fixed CDM07 fixed missed textures on the floor.
+- Fixed CDM18 suits at the start were too close to the wall.
+- Fixed CDM05: Wave 09 was broken.
+- Fixed CDM03: Wave 07 was broken.
+
+****************************** BETA 6 ******************************
+
+- Added a new sound skin "Tiger Mafia".
+- Added new monsters: "Phase Monolith Of Sin", "Phase Shotgun Commando", "Phase Baby Demolisher", "Phase Cybruiser", "Phase Tech Fiend" & "Phase Harvester".
+- Added new monsters: "Cyber Mancubus", "Augmented Arachnotron", "Carcass", "Elemental Carrier", "CacoLord", "Hellforge Cyber Fiend", "Synth Elemental", "Synth Soul","Djinn" & "Imp Of Purgatory".
+- Added an Upgrade for "Minigun", "Quad Rocket Launcher", "EFG 9000", "Plasma Rifle", "Plasma Caster", "Demon Tech Ballista", "Homing Rocket Launcher", "M79 Grenade Launcher", "Explosive Railgun" & "Double Grenade Launcher". 
+- Added a new "Experience System" allowing the players "Rank Up" in the military of the UAC
+  * gather experience by killing monsters, completing a wave or other means.
+  * increase your ranks in the UAC and collect better reward.
+  * more to come in the future and that feature can be disabled in the "CDI Global Settings".
+- Added a new features called "Demonic Assault" which can bring small but strong demonic assaults
+  * as the players progress in the "Threat System".
+  * that feature can be disabled in the "CDI Global Settings".
+- Added a new features called "Demon Reinforcement" which can bring additionnal monsters
+  * as the players progress in the "Threat System", making each wave almost original.
+  * that feature can be disabled in the "CDI Global Settings".
+- Added a new item the "Angel Ring" which can be obtained by doing a certain challenge.
+  * that ring has the power to summons being from the heavens.
+- Added a new item the "Legendary Obelisk" which can summon an "Awakened Legendary Monster" or "Something Else..." in order to obtain the "Angel Ring".
+- Added a new rune the "Veterancy Rune" which double the recieved experience and add a passive gain.
+- Added a new option called "Ranking Class" which lets you select a specified class which determined the rewards for ranking up.
+- Added a new option called "Favorite Rune" which lets the player choose the rune dropped by the "Rune Summoning Totem".
+- Added a new option called "Ranking Up Sound" to turn off the sound when ranking up.
+- Added a new item the "Rune Summoning Totem" which can be obtained from ranking up.
+- Added a new item the "Single Marine Beacon" which can be obtained by ranking up as "Tactical".
+- Added new variants of the "Loot Box" which can be dropped by the "Loot Box" itself or the "Looting Rune".
+- Updated the "Boss Health Bar" script which now allows multiple boss to be fighted at once.
+- Updated the "Monster Tracker Spawner" which can now track ressurected monsters.
+- Updated "HPBar" which allows you to see the ranks of other players.
+- Updated Upgraded "Grenade Launcher" by adding a secondary fire.
+- Updated "Legendary Pulverizer" with a new primary fire mod.
+- Updated the secondary fire of the "Legendary BFG".
+- Updated the pickup message of most weapons.
+- Updated some Legendary Monsters with new attacks.
+- Updated the sprites of the "Eradicator BFG".
+- Buffed "Legendary Monster" which can reach the "Awakened" States as the "Threat Level" increases.
+- Buffed "Missile Pod" which fires more missiles and at a faster rate.
+- Buffed the resistance of legendary monsters againt invul piercing weapons.
+- Buffed "D-BFG" secondary projectile now doing proper damages, and removed the "RIPPER" flag from it.
+- Edited all the maps by adding a custom color name to it.
+- Edited "Hell Incursion" & "Monster Event" which now spawn a gate to know where the monsters are coming from.
+- Edited "Invasion Gate", "Hell Gate", "Incursion Gate" & "Monster Event Gayt" by adding a marker on the map to know their locations.
+- Edited "Demon Tech BFG10K" which now requires 10 "Weapon Upgraders" instead of 8.
+- Edited "Weapon Upgrader" maximal ammount capacity from 10 to 20.
+- Edited "Loot Box" by increasing maximal carrying amount from 15 to 21.
+- Edited "Mine Field Drone"  by increasing maximal carrying amount from 2 to 4.
+- Edited "Barrel Beacon" by increasing maximal carrying amount from 2 to 4.
+- Edited "Timed Nuclear Bomb" by increasing maximal carrying amount from 3 to 4.
+- Edited "Light Drone Companion" by increasing maximal carrying amount from 5 to 6.
+- Edited "Armor Charge", "Armor Booster" & ,"Armor Plate" now granting maximal carrying armor from 300 to 350.
+- Edited "Utility Gun" by increasing the amount of "Utility Materials" between each tier upgrade.
+- Edited Upgraded "Rocket Launcher" & "Grenade Launcher" by increasing the ammunition required for primary fire.
+- Edited "Rapid Rocket Launcher" which now has a pickup and an up sound.
+- Edited CDM10, CDM11, CDM18, CDM19, CDM21 & CDM24 by adding the "Body Remover" script at lagging areas.
+- Edited "Hell Incursion" by lowering the "Threat Cost" of weak monsters, making them more likely to spawn in larger numbers.
+- Updated "HPBar" by increasing the max amount of tracked monsters from 10 to 16.
+- Fixed "BFG 9500" & "BFG 10000" not consuming the correct amount of "Weapon Upgraders" for their upgrades.
+- Fixed "Special Weapon Announcer" which is now clientsided to work properly online.
+- Fixed Upgraded "Demon Tech Rifle" still being able to fire when the magazine is empty.
+- Fixed Upgraded "Double Barrel Shotgun" damaging allies.
+- Fixed "Demon Tech Railgun" being bugged when throwing grenades/mines.
+- Fixed "Bonus Crate" not giving up to 5 "Light Drone Companion".
+- Fixed "Maephisto" having an unused "BFGCombo" states.
+- Fixed Naze mini bosses not having a resistance against upgraded weapons.
+- Fixed "Cyborg Hiter" & "Fake Hitler" making sounds in the entire map.
+- Fixed CDM04: "Incursion" & "Monster Event" can't no longer be activated before Wave 03.
+- Fixed CDM26: "Monster Event" at Wave 04 no longer spawn monsters behind the barrier.
+- Fixed CDM22: "Incursion" & "Monster Event" no longer spawn at previous areas at Wave 10 (I Hope).
+- Fixed CDM09: The map was using the Skulltag version of the "BFG 10K".
+
+****************************** BETA 5 ******************************
+
+- Added a new option called "Auto Ammo Pack" allowing the player to automaticly uses "Ammo Pack" when picked up.
+- Added an Upgrade for the "Assault Rifle".
+- Added an Upgrade for the "Double Barrel Shotgun".
+- Added an Upgrade for the "Quad Barrel Shotgun".
+- Added an Upgrade for the "Hexa Barrel Shotgun".
+- Added an Upgrade for the "Lightning Rifle".
+- Added an Upgrade for the "Plasma Repeater".
+- Added an Upgrade for the "Mine Launcher".
+- Added an Upgrade for the "Demon Tech BFG10K".
+- Added an Upgrade for the "Demon Tech Rifle".
+- Added an Upgrade for the "Demon Tech Railgun".
+- Added an Upgrade for the "BFG 12000".
+- Added the "Ultimate Weapon Upgrader" which grants all weapon upgrades, available in "Epic Crate" only.
+- Updated "Demon Tech Repeater" sprites and sounds (by Smoke_th).
+- Buffed the "Armageddon" fire mod of the "HellStorm BFG10K" which now has the "FOILINVUL" flag.
+- Buffed the "Chaos Sphere" which now has the "FOILINVUL" flag.
+- Buffed "Looting Rune" which can also makes monsters drop "Weapon Upgrader".
+- Buffed "Regeneration Rune" which now has a radius effect for other players, up to 500 health.
+- Edited "Utility Gun" which now requires "Utility Materials" to get to the next tier,
+  * those can be obtained by killing monsters,
+  * also increased the amount of "Utility Resources" collected by killing monster.
+- Edited the Upgraded "Assault Shotgun" which now recieve an increased magazine.
+- Edited the Upgraded "Rocket Launcher" by increasing the speed of its projectiles.
+- Edited "Homing Rocket Launcher" & "Missile Pod" by removing the vainlla trails on their mini projectiles.
+- Edited most of the explosive weapon projectiles which now have the "SKYEXPLODE" flag.
+- Edited "Mine Launcher" by reducing the amount of trail generated by the "Floating Mine" projectile to improve performance.
+- Edited most of the powerful weapons with custom damage factors to make it more balanced against strong ennemies.
+- Edited "WeaponUpgrader" which is now available in "Weapon Crate", "Slot Machine" & "Open Deck".
+- Edited the "Bonus Crate" which can randomly gives additional "Weapon Upgraders".
+- Edited "Loot Box" by making the more common drops more likely to dissapear with time for performance.
+- Edited CDM07, CDM05 & CDM04 by changing their safe zones into proper ones.
+- Nerfed "Legendary Marine" regeneration rate.
+- Fixed "Task Force Marine" with "BFG 12000" doing friendly fire.
+- Fixed "Looting Rune" & "Luck Rune" not working together.
+- Fixed "Assault Shotgun" not properly reloading the magazine to 16.
+- Fixed "Mine Field Drone" not being given anymore by the "Bonus Crate".
+- Fixed "Phase Nightmare" having a wrong gore death.
+
+****************************** BETA 4 ******************************
+
+- Buffed the "True Legendary Cardinal" by adding back the "CANTSEEK" flag.
+- Edited the "Weapon Upgrader" which is more common, but requires more for certain upgrades.
+- Edited Upgraded "BFG 10000" & "BFG 9500" by increasing their secondary fire cooldown.
+- Edited most of the grenades launchers which now have the "SKYEXPLODE" flag.
+- Fixed Upgraded "Railgun" pushing away other players.
+- Fixed Upgraded "Railgun" animation sync online.
+
+****************************** BETA 3 ******************************
+
+- Added a new item the "Weapon Upgrader" which can make some weapon even more powerful.
+- Buffed "Rage Rune" effect on "Utility Gun" which now triple cooldown reduction to catch up with "Spread Rune".
+- Buffed the "Hellion Regeneration Heart" which is now more viable.
+- Edited "Barrel Beacon" which no longer do friendly fire, it can still kill the one shooting the barrel however.
+- Edited the "Luck"/"High Jump"/"Haste"/"Revenge" into "Luck"/"Looting"/"Revenge" rune combo in the "Epic Crate".
+- Fixed "Legendary Cardinal" & "True Legendary Cardinal" always using the same attack.
+- Fixed "Nazi Enforcer" using "Dark Demolisher" sprites when firing BFG12K.
+- Fixed "Open Deck" not giving "Marine Beacon".
+- Fixed "Teleported Strike Beacon" not working when used inside an actor.
+- Fixed "Maephisto" going to an unexistent "Floor Stomp" state.
+- Fixed "Red Shockwave" and "Legendary Cardinal" slash using the same sprite names.
+- Fixed "Living Devastator" not using the updated projectile.
+- Fixed "Task Force Beacon" not properly spawning marine with BFG12K.
+- Fixed "Demented Terminator" using non existent "PainMissile" state.
+- Fixed "Augmented Annihilator" using non existent "Devastator" state.
+- Fixed the blood color of the "Legendary Emperor".
+- Fixed "Proto-D-BFG" secondary fire projectile not having the "MTHRUSPECIES" flag.
+- Fixed "Legendary BFG" primary fire projectile not having the "MTHRUSPECIES" flag.
+- Fixed the Obituary for the "BFG12K Captain".
+
+****************************** BETA 2 ******************************
+
+- Edited "Invasion Gate", "Hell Incursion" & "Monster Event" to prevent them from happening at the same time.
+  this is possible thanks to a new cvar called "Security Cooldown".
+- Edited CDM26: Added another exit from the second safe zone.
+- Edited CDM26: Removed the powerups of the begining after wave 08 to improve performance.
+- Buffed "Asag The Drought" with more attacks/health/resistance.
+- Fixed the "Erasus" not having a gunflash sprites when firing.
+- Fixed "Explosion Sphere" not working 100% of the times.
+- Fixed CDM25: Adjusted the weapons of the spawn room with the current map.
+- Fixed CDM25: Invasion Gate was broken at Wave 02.
+
+****************************** BETA 1 ******************************
+
+- Added CDM26 "Demon Tech Refinery" and his content.
+- Added CDM25 "Obsidian Furnace" and his content.
+- Added a song for the loading screen.
+- Added new monsters: "BFG12K Captain" & "Phase Exile".
+- Added new weapons the "Rapid Rocket Launcher" & "Erazor Shotgun".
+- Added new powerups: "Flight Sphere", "Rage Sphere", "BFG Sphere", "Armor Sphere", "Explosion Sphere", "Survival Sphere", "Chemical Sphere " & "Summon Sphere".
+- Added new monster events: "Persistent Infestation" & "Technical Assurance".
+- Added a script which remembers player health and give it back when he enters and leaves a morphed class.
+- Added a script which allows the player with a "Utility Gun" to automaticly build some utility items if criteria are met.
+- Removed the script showing the count of Archviles.
+- Updated the "Monster Map Tracker" which now works properly thanks to Zandronum 3.1.
+- Updated the sprites of the "Rapid Shotgun".
+- Updated "Advanced Support AI" & "Support AI" which are now compatible with the "Spread Rune".
+- Updated the "EFG 9000" with new sprites and removed the primary fire, and moved the secondary fire to the new primary fire.
+- Updated the "Eradicator BFG" with a new "Ultimate Fire" mod.
+- Updated "Epic Crate" by tweaking the selection of content and adding new sounds.
+- Buffed some mini and final bosses with new attacks.
+- Buffed the Health and Defense of "UAC Marines", "Task Force Marines" & "Legendary Marines".
+- Buffed the fire power of the "Prototype".
+- Buffed the reparation rate of legendary armors and "Prosperity Rune".
+- Buffed "Emergency Teleporter" by adding a temporal invulnerabilty of 7 seconds when used.
+- Buffed "Light Relay Node" now giving from 2 to 3 Utility Slots.
+- Buffed "Heavy Relay Node" now giving from 6 to 7 Utility Slots.
+- Buffed "Extra Armor" now giving 250 armor bonus points and can goes up to 1000.
+- Buffed "Legendary Armor" & "Awakened Legendary Rune" by increasing the maximal repairation amount from 250 to 500.
+- Buffed "True Legendary Armor" & "True Legendary Rune" by increasing the maximal repairation amount from 1000 to 2000.
+- Renamed "Chaos Elemental" into "Dark Beholder", "Chaos Soul" into "Dark Umbra" and "Pestilence" into "Dark Revenant".
+- Edited the "Barrel Beacon" by increasing the variety of barrels spawning from it also added a new barrel.
+- Edited the "EFG 9000" Fusion Nuke missile by adding the "SKYEXPLODE" flag.
+- Edited the "Epic Sphere" pickup criteria so it can be used in the "Waiting Room".
+- Edited "Velocirator" by changing the way how he summons minions.
+- Edited the "D-BFG" by adding a cooldown to the "Annihilation Fire" mod which is affected by the "Rage Rune".
+- Edited the "HellStorm BFG10K" by adding a cooldown to the "Armageddon Fire" mod which is affected by the "Rage Rune".
+- Edited the "Proto-D-BFG" by adding a cooldown to the "Secondary Fire" mod which is affected by the "Rage Rune".
+- Edited the "Wicked Sphere" which had the same pickup sound than the "Archduke of Hell".
+- Edited the "CDI User Settings" by adding a whole new "Utility Gun Settings" submenu.
+- Edited the effects of the "Hellish Avatar" ice beam.
+- Edited the "Mistery Box" by increasing max carrying capacity from 1 to 3.
+- Edited the "Light Drone Companion" by increasing max carrying capacity from 2 to 5.
+- Edited "Terror Soul","Forgotten One","Poison Soul" & "Rictus" which will now die with time if spawned by their elementals.
+- Edited CDMBOSS by adding a safe zone for the second players spawners.
+- Fixed "Legendary Emperor" not having a noblocking function when dying.
+- Fixed "Bonus Crate" not properly giving 2 "Extra Lives".
+- Fixed CDM22, the secret of the BFG 3500 wasn't working.
+
+-------------------- Major Update for v0.99.8f --------------------
+****************************** RELEASE ******************************
+
+- Added new mini boss: "Legendary Emperor".
+- Added a new monster event "An Honorable Guest".
+- Added a secondary primary fire to the "Lightning Rifle".
+- Added "Legendary Armor" and "Legendary Sphere" in the "Bonus Crate" content.
+- Buffed some of the mini bosses and final bosses by making them able to use "BFG 12000".
+- Buffed the "Extra Life" by now getting 2 per "Bonus Crate" and 8 per "Epic Crate".
+- Buffed "Baron Von Schmitt" & "Todes Ritter" by also making them able to use beacons.
+- Edited KEYCONFIG by moving the "EFG 9000" from the weapon slot 7 to the slot 5.
+- Edited KEYCONFIG by moving the "Demon Tech Ballista" from the weapon slot 3 to the slot 2.
+- Edited "Demon Tech Ballista" by reverting secondary and primary fire.
+- Edited "Loot Box" by increasing maximal carrying amount from 10 to 15.
+- Edited "BFG 12000" which now damages the player, longer firing rate and also added "SKYEXPLODE" flag.
+- Edited some maps by adding "Eradicator BFG" on them.
+- Nerfed "The Swarm" monster event by removing souls and elementals from chaos and purgatory elements.
+- Fixed the text showing up when recieving "Heavy Sentry Gun" from "Bonus Crate".
+- Fixed (second attempt) the lags occuring when using "Monster Map Tracker" with many monsters active.
+- Fixed "Cardihilator" sometimes using the sprites of the "Cardinal".
+- Fixed explosion sfx of the "Archon Lord" super projectile.
+- Fixed CDM07 & CDM23 spawning the "BFG 12000" at the wrong spot.
+
+****************************** BETA 7 ******************************
+
+- Added a new weapon the "BFG 12000".
+- Added a new monster event "The Swarm".
+- Added back the "Monster Map Tracker" feature hoping it will work properly.
+- Updated and buffed the "Timed Bomb" into the "Timed Nuclear Bomb".
+- Updated the "Sentry Box" into the "Heavy Sentry Box" which now deploys a "Heavy Sentry Gun".
+- Updated the "Soul Sphere Dispenser" into the "Life Sphere Dispenser".
+- Buffed "Weapon Crate" by increasing the chances for it to drop good weapons.
+- Buffed the "Deployable Shield" by now getting 3 per "Bonus Crate" with a max carrying amount of 6.
+- Buffed the "Missile Pod" by now getting 3 per "Bonus Crate" with a max carrying amount of 6.
+- Buffed the "Holographic Decoy" by now getting 2 per "Bonus Crate" with a max carrying amount of 4.
+- Buffed the "Flame Trap" by now getting 2 per "Bonus Crate" with a max carrying amount of 4.
+- Buffed the "Barrel Beacon" by increasing the amount of barrels it can spawn and also the spawn range.
+- Edited the default value of cdm_max_incursion from 3 to 1.
+- Edited some content in the "Epic Crate".
+- Edited most maps by making BFGs avaible more early on them.
+- Edited "Legendary BFG" which is now a permanent weapon but use more ammo per shoot.
+- Edited "Threat Level System" by adding more sound effects and messages.
+- Removed "Full Refill Pack" loot from "Bonus Crate".
+- Removed "Mega Sphere" loot from "Bonus Crate".
+- Lowered the chances to get "Legendary Rune" & "Legendary Crystal" in the "Bonus Crate".
+- Fixed "Utility Gun" menu text showing wrong amount of slots for utility gun.
+- Fixed the cooldown between "Hell Incursion" to be specific with each "Threat Level".
+- Fixed "Bonus Crate" sometimes giving no loot.
+
+****************************** BETA 6 ******************************
+
+- Buffed "Prosperity Rune" now having a cumulative armor repair with legendary armors.
+- Buffed the resistance of the minions from the "Summoner Rune".
+- Nerfed "Luck Rune" by lowering chances multiplier to get "bonus Crate" from monster kill from 4 to 3.
+- Nerfed "Luck Sphere" by lowering chances multiplier to get "bonus Crate" from monster kill from 16 to 10.
+- Reduced the chances to get an "Epic Crate" or a "Bonus Crate" by 50% from killed monsters.
+- Edited most bfgs by adding the "SKYEXPLODE" on their projectiles.
+- Edited the buildings from "Utility Gun" by reducing the amount of effects they produce to improve performance.
+- Edited CDM02 by adding a better safe place for players.
+- Fixed "Looting Rune" also making allies drop items.
+- Fixed "Random Rune" spawner on every map by setting a limit of one rune per game.
+- Fixed CDM11 having wrong slopes and textures alignment.
+- Fixed CDM08 having the cyberdemon trap room being open too early.
+- Fixed CDM17 with the Wave 05 not working properly.
+- Fixed "Utility Light Node" not making the player loose slots when destroyed.
+- Fixed "Gore Nest" allowing a wave to be completed while it's challenge is not completed yet.
+- Fixed "Epic Crate" giving back the "Legendary Rune" when you already had upgraded it to the next tier.
+- Fixed "Daemonium  Overlord" always making a sound when summoning minions.
+- Fixed "Cyber Soul" sometimes spawning the wrong fire effect.
+- Fixed "Prosperity Rune" not giving shell ammuniton of the "Explosive Double Barrel Shotgun".
+- Fixed "Teleported Strike Beacon" not working properly on water.
+
+****************************** BETA 5 ******************************
+
+- Added a new monster event "Servants Of Purgatory".
+- Added new Monsters: "Cryo Soul", "HellFrost Revenant" & "Knight Of Purgatory".
+- Removed "Pure Rage" from the game which may be the source of the red screen bug.
+- Increased by twice the time it takes for a dropped rune to be removed.
+- Reduced by half the chances to get an "Epic Crate" from killed monsters.
+- Reduced by a lot the chances for "Epic Crate" to be dropped by a monster when killed.
+- Reduced the chances for "Bonus Crate" to be dropped by a monster when killed, "Luck Rune" & "Luck Sphere" are also affected.
+- Reduced by half the chances to get "Task Force Beacon" from "Bonus Crate".
+- Edited "Apprentice" now showing effects to let the player knows when he uses "Eradicator BFG".
+- Edited "Hell Incursion" & "Monster Event" chances which are now affected by the amount of active players.
+- Edited most maps by removing "Explosive Railgun" which became a too powerful weapon.
+- Edited most maps by adding Rune Spawners in them making "Bonus Crate" not the only way to get them.
+- Edited the "Ice Horde" monster event by adding the "Corrupted Hades Elemental" inside it.
+- Edited the way a "Monster Event" is selected to make it more balanced depending on the "Threat Level".
+- Edited "Utility Gun" with the "Collector Bot" no longer being compatible with "Spread Rune" and also added a cooldown of 60 secs after building it.
+- Buffed the resistance of all the mechs.
+- Buffed the amount of monsters coming from "Monter Event" in general.
+- Buffed the Health of "Legendary Sentient", "Legendary Cyberdemon", "Legendary Annihilator" & "Legendary Cardinal".
+- Buffed "Cardihilation" with more health and making him use his rage attack each time he loses 25% health.
+- Buffed "Augmented Annihilator" with more health and making him use his rage attack each time he loses 25% health.
+- Buffed "Cardihilator Demolisher" whjich can now use fusion nukes, eradicator bfg secondary fire and a rage attack, also got more health.
+- Buffed "Cerebral Cardinal" which can now use eradicator bfg secondary fire.
+- Buffed "Phase Archduke" by adding a new rage attack.
+- Buffed "Mine Field Drone" by making it able to drop more mines.
+- Nerfed "Legendary Rune Evolution" by increasing the required amount of points per crystal from 400 to 750.
+- Nerfed "Awakened Legendary Rune Evolution" by increasing the required amount of points per crystal from 500 to 1000.
+- Nerfed "Utility Tier 2 Access" by increasing the required resources from 2500 to 3500.
+- Nerfed "Utility Tier 3 Access" by increasing the required resources from 13000 to 20000.
+- Nerfed "Utility Tier 4 Access" by increasing the required resources from 66000 to 100000.
+- Nerfed "Collector Bot" by making its crates dissapear twice faster.
+- Nerfed "Marine Beacon" by reducing the amount of marines it can spawn, lowered max amount from 2 to 1 and making it rarer.
+- Nerfed "Mine Field Drone" not being compatible anymore with "Spread Rune".
+- Nerfed "Teleported Strike Beacon" not being compatible anymore with "Spread Rune".
+- Nerfed "Teleported Strike Beacon" by reducing the amount of bombs and making it rarer.
+- Nerfed "UAC Command Post" by making it no longer spawn "Bonus Crate" and Marines on the field, also reduced the chances for it to give "Bonus Crate" or "Reinforcement Card" to the owner.
+- Nerfed "Mega Support Tank" by making it no longer spawn "Bonus Crate" and Weapons on the field, also reduced the chances for it to give "Bonus Crate" or "Reinforcement Card" to the owner.
+- Fixed "Dark Cyberdemon" & "Dark Demolisher" projectiles having yellow light instead of green light.
+- Fixed "Hell Incursion" sometimes spawning monsters on water or other liquid area.
+- Fixed CDM22 Spawning "Hell Incursion" wrongly at wave 08.
+- Fixed CDM02 Spawning "Hell Incursion" wrongly at wave 05.
+- Fixed "Cerebral Cardinal" sprites being wrong when firing rockets.
+- Fixed the death explosion effects for "Judge Of Purgatory" & "Overlord Of Purgatory".
+- Fixed "Awakened Legendary Rune" & "True Legendary Rune" summoning spawning the content under a 3d Floor.
+- Fixed Spectators recieving "Bonus Crate" from left overs before leaving.
+- Fixed the pickup message of the "Eradication Cell".
+
+****************************** BETA 4 ******************************
+
+- Updated the explosion effects of the "Trapped Crate".
+- Updated "Obelisk Of Light" now using "Eradicator BFG" instead of regular laser.
+- Buffed "Apprentice" now being able to use "Eradicator BFG".
+- Buffed some bosses being able to use "Eradicator BFG" even more.
+- Buffed "Eradicator BFG" projectiles for both players and monsters.
+- Fixed "Assault Robot" using 2 Utility Slots instead of 6.
+- Fixed "Missile Sentry Gun" using 8 Utility Slots instead of 6.
+- Fixed "Demon Tech Repeater" puffs not having the "MTHRUSPECIES" flag.
+- Fixed "Hell Incursion" sometimes spawning monsters at position X = 0 & Y = 0.
+- Fixed most monsters floor hugger projectile by addding the "DONTSPLASH" flag to improve performance.
+- Fixed CDM03 Spawning "Hell Incursion" inside a wall.
+- Fixed CDM13 Spawning "Hell Incursion" wrongly at wave 02.
+- Fixed CDM19 Spawning "Hell Incursion" anywhere on the map without regards of map progression.
+
+****************************** BETA 3 ******************************
+
+- Updated "Utility Menu" by making the Pickup Menu HUD compatible with item cooldowns.
+- Buffed Kamikaze explosion damages and updated the effects.
+- Nerfed "Eraser Zombie" & "Specops DTBFG10K Commando" by increasing the delay before firing their projectile.
+- Edited "Demon Tech Repeater" by making the impact effect smaller.
+- Fixed "Cardihilator Demolisher" still using old DTBFG projectile.
+- Fixed "Dark Cyberdemon", "Dark Demolisher" & "Cerebral Sentient" not showing properly their charging effects online when using "Eradicator BFG".
+- Fixed 3d model not working properly for red BFG10K projectiles.
+- Fixed "Utility Gun" having wrong descriptions in the Weapon Menu.
+- Fixed "Hell Incursion" sometimes spawning more monsters than it could.
+- Fixed "Hell Incursion" sometimes spawning monsters at the wrong position.
+- Fixed "Armor Scavenger" sometimes giving too much armor.
+- Fixed "Monster Event" screen by making it last less longer.
+- Fixed "Monster Event" screen by making it appears behind "Utility Menu".
+- Fixed "Gore Nest" summoning sometimes failing.
+
+****************************** BETA 2 ******************************
+
+- Added a new weapon the "Lightning Rifle".
+- Added a new weapon the "Eradicator BFG" which uses "Eradication Cell"
+- Added a new type of ammunition called "Eradication Cell" used by "Eradication Vulcan", "Erasus" and "Eradicator BFG".
+- Added a new feature called "Threat System" which raises by killing monsters and allows Hell to send reinforcement and stronger troops on a map.
+- Added a new feature called "Hell Incursion" which can bring more monsters inside a current wave depending on the new "Threat System".
+- Added a new feature called "Monster Event" which brings an entire wave of demons depending on the "Threat System".
+  the configurations for all these features can be changed in the "CDI Settings".
+- Added new Monsters: "Rocket Nazi Dog" & "Cyber Nazi Dog".
+- Added new Monsters: "Phase Archduke", "Phase Cadaver", "Phase Cacodemon", "Phase Archon", "Phase Carrier", "Phase Soul" & "Phase Nightmare".
+- Added new Monsters: "Cyber Infernal Noble", "Zombie Commander", "Dark BFG Commando", "Beacon Carrier Zombie", "Nailgunner", "GrenadierZombie" & "EradicatorZombie".
+- Added a new item the "Barrel Beacon" available in the "Bonus Crate".
+- Added a new item the "Gore Nest Challenger" which allows you to fight more monsters in exchange for more loot, available in the "Bonus Crate".
+- Removed "Double Damage Sphere", "Armor Sphere", "High Jump Sphere", "Protection Sphere", "Rage Sphere", "Ammo Sphere", "Drain Sphere" & "Haste Sphere" from "Slot Machine".
+- Renamed "Tech Erasus" into "Erasus", and "Tech Vulcan" into "Eradication Vulcan".
+- Renamed "Demon Tech Devastator" into "UAC Tech Devastator".
+- Renamed "Phase Cacodemon" into "Phase Poe".
+- Renamed "Demon Rune" into "Demonic Relic" to avoid confusion with the regular runes.
+- Renamed "Legendary Demon Rune" into "Legendary Demonic Relic" to avoid confusion with the regular runes.
+- Reduced the chances for the player to obtain an "Epic Crate".
+- Updated "Destroy Armor" feature by adding more effects and confirmation option, also undamaged armors will be dropped and not destroyed.
+- Renamed "Rune Of The Abomination" into "Relic Of The Abomination" to avoid confusion with the regular runes.
+- Updated "Erasus" & "Eradication Vulcan" with the "FOILINVUL" flag meaning they can now damage monsters in their invincible states.
+- Updated "BFG 9500" with more direct and spray damage as well as a new radius dmg at the cost of more ammo, effects have been improved and monsters/allies bfgs are also impacted.
+- Updated "UAC Tech Devastator" by adding more direct, radius and spray damage as well as mini projectiles, effects have been improved and monsters/allies devastators are also impacted.
+- Updated "Demon Tech BFG10K" with more direct and radius damage, effects have been improved and monsters/allies dtbfgs are also impacted.
+- Updated "Demon Tech BFG10K" by adding a secondary fire.
+- Updated "BFG 10000" by adding more damages and new effects to the primary fire and also removing the secondary fire which is no longer needed.
+- Updated the effects of the "HellStorm BFG10K" secondary fire.
+- Updated most of the Legendary Weapons by increasing damages and improving effects, more features in game.
+- Updated "Utility Gun" Upgrade button which now allows to get random bonuses after tier 4.
+- Updated "Demon Tech Rocket Launcher" with a grenade fire mod.
+- Updated the effect of explosions coming from explosives projectiles, boss and vehicle death.
+- Updated "Hiter Nazi Summon Cubes" with new sprites.
+- Updated the sprites of the "Missile Tank" rockets.
+- Updated "Prosperity Rune" now providing charged ammunition for combat shotgun, double shotgun, quad shotgun and hexa shotugn.
+- Updated "Auto Armor" feature with new options to activated it only if the player is wearing a certain armor type or something stronger to avoid weak armor accumulation.
+- Buffed "Health Flask", "Stimkit" & ,"Portable Medkit" now giving 10, 25 & 50 health per use.
+- Buffed "Armor Charge", "Armor Booster" & ,"Armor Plate" now giving 10, 25 & 50 armor bonus per use with a maximal amount of 300 armor.
+- Buffed "Rocket Launcher" with a larger magazine, faster projectiles and higher direct damage.
+- Buffed "Ammo Pack" by increasing the maximal carrying capacity from 5 to 10.
+- Buffed "Legendary Sphere" which now gives a small health regeneration back up to 500(can also be obtained from true legendary ultra sphere and legendaru ultra sphere).
+- Buffed "Grenade Launcher" with a larger magazine, higher radius range and damage.
+- Buffed "Quad Rocket Launcher" with both the upgrades of "Rocket Launcher" & "Grenade Launcher".
+- Buffed most "Cyberdemon" & "Spider Masterminds" with new attacks coming from the "Eradication BFG" however their attacks won't pierce player invulnerability.
+- Buffed "Nazi Corporal", "Nazi Commander" & "Nazi General Akhanov" which can now drop nazi beacons for ennemy reinforcement.
+- Buffed "Explosive Railgun" by increasing magazine size from 60 to 90 and adding an explosion on impact.
+- Buffed "Railgun" by increasing magazine size from 50 to 70.
+- Buffed "Quad Barrel Shotgun" & "Hexa Barrel Shotgun" by increasing the reload speed.
+- Buffed the health of all the regular bosses.
+- Buffed "Epic Blade" with the "FOILINVUL" allowing it to damage invincible monsters.
+- Nerfed the aggresivity of the "Cyber Soul".
+- Edited "KEYCONFIG" to make the most used weapons available at first.
+- Edited "Bonus Crate" by increasing the maximal capacity from 50 to 100.
+- Edite "Loot Box" which now drops permanent runes.
+- Edited "Epic Crate" loot by adding "True Legendary Ultra Sphere" into some of them.
+- Edited "Plasma Rifle" by removing the "Lightning Mod" since that feature is now on the new added "Lightning Rifle".
+- Edited "Scavenging System" allowing you to scavenge green, blue or red armor if you have the same armor type but with armor points above its limit.
+- Edited "Sentinel" now costing 1 utility slot.
+- Fixed "Dark Rocket Imp" & "Dark Cyber Slayer" blood color not being green."
+- Fixed player gathering "Utility Resources" from killed monsters without having a "Utility Gun" in it's inventory.
+- Fixed "Prosperity Rune" not repairing the legendary armor bonus from "Legendary Salvation Sphere".
+- Fixed "Utility Gun" weapon menu not building the proper weapon with some slots.
+- Fixed "Utility Gun" not showing proper delay for "Mega Support Tank" & "UAC Command Post".
+- Fixed "Demolisher Mk II" not being getting health buff when many players are active.
+- Fixed cooldown for "Support AI" not starting.
+- Fixed "Demon Tech Rocket Launcher" weapon announcer not working.
+- Fixed "Utility Mouse Sensitivity" being reversed and also changed the limits from 0.0 to 2.0.
+- Fixed Utility Units dropping "Bonus Crate" when killed while the player holds the "Luck Rune".
+- Fixed "Collector Bot" clearing only 1 slot instead of 5 when dying.
+- Fixed "Demon Tech Rocket Launcher" pickup message.
+
+****************************** BETA 1 ******************************
+
+- Massive Update of the "Utility Gun", completly reworked the utility menu now working with a mouse instead of only hotkeys.
+- Added tons of now units in the "Utility Gun" for offense and support.
+- Reworked the "Utility" Tier system progression from RNG to resources collection.
+- And MOREEEEE....
+- Added a script which keeps player armor when he enters into a morphed class.
+- Updated the "Summoner Rune" with a new tier system adding stronger minions and shorter cooldowns.
+- Updated the CDI Settings which now includes the global cvars of the game.
+- Improved the sprites of the "Utility Gun".
+- Improved the targeting of homing rockets from "Demon Tech Rocket Launcher", "EFG 9000" & "Missile Tank".
+- Buffed "Plasma Rifle" by increasing magazien from 50 to 100 and also increased projectiles speed and damages.
+- Renamed "Light Armor" into "Security Armor".
+- Edited CDMBOSS by properly removing the "BFG 4700" that time.
+- Edited Invasion Gates by adding custom effects when spawning and also increasing the amount of monsters they can spawn per player.
+- Edited Heavy Rockets by putting a new firing sound.
+- Fixed "Slot Machine" not teleporting the player outside of the waiting room when receiving an extra life.
+- Fixed "True Legendary Armor" replacing "Legendary Armor" on regular maps.
+- Fixed rune sometimes not being dropped or particles not spawning when the player is too close to a wall.
+- Fixed "Azazel" remaining invincible after using minions, also fixed him using "Sabaoth" sprites.
+- Fixed "Mine Launcher" projectile with the DONTSPLASH flag making it less laggy when used on water.
+- Fixed minion "Death Knight" which was making a gore death like regular marines.
+- Fixed CDI Settings by making the fog optionnow functional.
+
+-------------------- Major Update for v0.99.8e --------------------
+
+****************************** RELEASE ******************************
+
+- Improved "Legendary Salvation Sphere" which can now affect players through walls if they are in effect area.
+- Improved "Legendary Judgment Sphere" which can now affect monsters through walls if they are in effect area.
+- Improved the Homing Rockets from "Homing Rocket Launcher" & "Quad Rocket Launcher".
+- Improved the sounds of the Zombie SpecOps.
+- Edited most of the Final Bosses which are more likely to summon more minions.
+- Edited "Legendary Commando" which now uses the same sounds than the "Legendary Zombie".
+- Edited the sprites of the "Dark Cacodemon" projectile.
+- Fixed the color of the messages about the "Legendary Marine" joining the fight.
+- Fixed player leaving the game with "Prosperity", "Absorption", "Confusion", "Looting", "Awakened Legendary" & "True Legendary" runes not having them being dropped on ground.
+
+****************************** BETA 2 ******************************
+
+- Edited armor scavenging feature by lowering the sound of an armor being scavenged.
+- Nerfed "Bonus Crate Selection" by making "Utility Gun" and "Open Deck" no more easy to get if you have almost all the items.
+- Nerfed "Legendary Rune" evolution by raising the amount of required points from 200 to 400.
+- Nerfed "Awakened Legendary Rune" evolution by raising the amount of required points from 250 to 500.
+- Nerfed "Absorption Rune" & "Wicked Sphere" maximal health from 1500 to 1000.
+- Nerfed the chances of "Loot Box" to drop "Epic Crate" or "True Legendary Content".
+- Nerfed "Open Deck" by removing "UAC Respawn Supply" in the menu, also selecting an item/rune when you are full will not select a rare item from the bonus crate selection.
+- Nerfed "Legendary Plasmatic Rifle " by lowering the damages done by the big projectile.
+- Nerfed "Loot Box" by removing the chances of getting legendary weapons from it.
+- Nerfed the loot from Legendary/Awakened Rune incantion which will no longer spawn legendary/bfg weapons.
+- Fixed "Inferno Demon" comet rain leaving less debris in order to improve performance.
+- Fixed "UAC Mega Support Tank" now removing the 15 slots when being destroyed.
+- Fixed "Corruption" sometimes staying invulnerable for a long period.
+- Fixed "Legendary Quad Shotgun", "Legendary Machine Gun" & "Legendary Assault Shotgun" from damaging players.
+- Fixed "Open Deck" bonus selection not working at all.
+
+****************************** BETA 1 ******************************
+
+- Added new Monsters: "Dark Cacodemon"
+- Added a new Rune: "Awakened Legendary Rune" which is the evolution of the "Legendary Rune" after collecting 5 "Legendary Crystals".
+- Added a new Rune: "True Legendary Rune" which is the evolution of the "Awakened Legendary Rune" after collecting 5 "True Legendary Crystals".
+- Added a new Rune: "Absorption Rune" which gives reflection and can drain up to 1500 Health.
+- Added a new Rune: "Confusion Rune" which makes monsters either attack you, rune away from you or just ignore you.
+- Added a new Rune: "Looting Rune" which allows killed monsters to drop loot depending on their health, category and more.
+- Added a new Powerup the "Chaos Sphere" which turns the player into a living nuke.
+- Added a new Powerup the "Insanity Sphere" which acs like a Berserk but for Chainsaw & "Legendary Chainsaw"
+- Added a new Powerup the "Legendary Salvation Sphere" which share a health and more regeneration for the user and players around him.
+- Added a new Powerup the "Legendary Judgment Sphere" which sets the health of nearby monsters to 1.
+- Added a new Armor the "True Legendary Armor" which gives 2000 armor points and more resistance, can also repair itself up to 1000.
+- Added a new Powerup the "True Legendary Ultra Sphere" which gives 2000 health and a "True Legendary Armor".
+- Added new items: "True Legendary Ultra Sphere" & "True Legendary Armor".
+- Added Friendly Marines AI with the "BFG 4700" & "BFG 3500".
+- Added a new option to turn on/off the display message of the Discord Server for the mod.
+- Added a new option called "Auto Health" allowing the player to automaticly uses healing items such as "Health Flask", "Stimkit" & "Portable Medkit" when needed.
+- Added a new option called "Auto Armor" allowing the player to automaticly uses healing items such as "Armor Charge", "Armor Booster" & "Armor Plate" when under a specified amount of armor points.
+- Added back the "Hellstorm BFG" and reworked most of the effects and features, hoping that will fix the crashes.
+- Added a new vehicle the "Main Battle Tank" a twin cannons heavy tank with heavy rocket launchers and two machine guns.
+- Updated the "Bonus Crate" loot selection system being more adapted to the player situation, will also never give a weapon that the player alteady have.
+- Updated "SBARINFO" allowing the player to see the timer at which the next "Respawn Supply" will come.
+- Updated the "Armor Pickup System" with a new option called "Always Pickup Armors" if this is turned off the player won't be able to pick an armor if he already has a stronger one with more than 25% armor points than the one he is about to pick.
+  (for example you can't pickup a green armor if you have a red or blue armor with more than 25 armor points).
+  (added a scavenging system where lower armor are turned into armor items in inventory if you have a stronger armor).	
+  (also you won't be able to pickup a low tier armor if you an armor able to regenerate it self like "Prosperity" or "Legendary Armor").
+  (and for example you can't pickup a "Legendary Armor" if you already have one above 100 Armor Points since it can repair itself).
+  (that pickup system also applies to armors from "Mega Sphere", "Ultra Sphere", "UAC Respawn Supply", "Legendary Power Shard" and others).
+- Updated the sprites of the "Light Drone Companion" by giving it a rotation.
+- Updated the "Teleported Strike Beacon" making it more precise against monsters and also able to destroy flying monsters.
+- Updated "Cyber Soul" with new sprites, he now looks like a real cyber soul.
+- Updated "Plasma Rifle" by adding an alternate primary fire to make it acts like a Lightning Gun.
+- Updated most of the final bosses allowing them to summon more minions in order to gives bonus crates to the player during the fight.
+- Updated the Protips to explain how works the new options and how to get the new runes.
+- Renamed "Legendary Light Machine Gun" into "Legendary Machine Gun".
+- Buffed the "Orbital Strike" making it able to destroy flying monsters as well.
+- Buffed the "Legendary Armor" which is now able to repair itself up to 250 Armor Points.
+- Buffed radius damage for the "Explosive Railgun".
+- Buffed "Wicked Sphere" which can now drain up to 1500 Health like the "Absorption Rune".
+- Buffed "Mine Launcher" primary fire by making it shoot 3 mines instead of 1, be careful it's very dangerous!
+- Buffed "Slot Machine" which can now give more loot and also the loot you get after defeating the "Invasion Gate".
+- Buffed "Mega Support Tank" by making it able to build "Fabricator Drone".
+- Buffed the attacks of the "Cardinal", "Cerebral Sentient", "Cardihilator" & "Cerebral Cardinal".
+- Buffed "Legendary Imp" & "Legendary Fiend" with new attacks and agility.
+- Buffed "Legendary Plasmatic Rifle", "Legendary Assault Shotgun", "Legendary Machine Gun" & "Legendary Quad Shotgun" with new effects and more damages.
+- Buffed "Cerebral Commander", "Terminator", "Demented Terminator" & "Augmented Annihilator" with new attacks and/or more agility.
+- Buffed "Hellish Avartar" class by increasing the damages of the "Frozen Storm" attack.
+- Buffed "Apprentice" with new attack and fixed the spot where projectiles are coming from.
+- Buffed "Luck Rune" which can now increases the amount and the quality of weapons dropped by the "Weapon Crate".
+- Buffed "Luck Rune" by making it increases "Bonus Crate" drop by monsters, also monsters with more health can drop multiple "Bonus Crate".
+- Buffed the "MiniDTBFg" used by monsters by increasing the speed of it's projectiles.
+- Nerfed "Luck Rune" which no longer affects what "Bonus Crate" gives.
+- Renamed "Auto-Regroup Marines" option into "Auto-Regroup Allies".
+- Edited the explosion effects of destroyed vehicles.
+- Edited the Decal of the "BFG 4700" primary fire making it less bigger.
+- Edited the sound of the "HellStorm BFG" charging secondary fire.
+- Edited "Explosive SSG" making secondary fire more accurate.
+- Edited all the Beacons making them spawn marines with more efficiency.
+- Edited CDMBOSS by removing the "BFG 4700" present on the map making it more challenging.
+- Edited "Health Flask" & "Armor Charge" increasing the max carrying capacity from 10 to 50.
+- Edited "Stimkit" & "Armor Booster" increasing the max carrying capacity from 5 to 30.
+- Edited "Portable Medkit" & "Armor Plate" increasing the max carrying capacity from 2 to 10.
+- Edited "Life Sphere" now properly giving 250 Health instead of only 200.
+- Edited "Spectre", "Lurker" & "Spook" losing their invisibility when dying and gaining it back when ressurected.
+- Edited CDMBOSS adding battle phases to both bosses like other final bosses in other maps to make the fight longer.
+- Fixed "Kamikaze" explosion not making monsters not giving bonus crates to the player that exploded.
+- Fixed "Light Drone Companion" & "Heavy Drone Companion" not following the player if "Auto-Regroup Allies" option was off.
+- Fixed "Inferno Demon Rain Comet" by reducing the spawn frequence to make it less laggy.
+- Fixed "Time Rune" being able to be used endlessly by just dropping it after being used.
+- Fixed "Baron Von Schmitt" & "Hitler's Clone" active sounds being displayed in the entire map.
+- Fixed "Legendary Gauss Cannon" projectile spawning D-BFG particle effects when bouncing.
+- Fixed "Legendary Rune" pickup dissapearing only a after a very long delay.
+- Fixed "Dark Annihilator" & "Cyber Demiluisher" Demon Tech BFG projectile going throught other monsters.
+- Fixed "Nazi Improved Tech Unit" & "Nazi Tech Unit" making human instead of machine sound and also removed the blood when they are destroyed.
+- Fixed "Explosive Railgun" by making radius damage affected by damage boost powerups and also fixed the pointers.
+- Fixed "Dark Demolisher" dropping invisible item making players set a random angle with green smokes effect.
+- Fixed "Frozen Storm" attack name when the "Hellish Avartar" class is charging it.
+- Fixed "Timed Bomb", "Teleported Strike Beacon", "Flame Trap" & "Poison Trap" now acting properly as ally so the player using them can recieved bonus crates;
+- Fixed Player Runes particles not spawning when too close to a wall.
+- Fixed "Dark Monolith Of Sin" death which now uses green kaboom instead of normal ones.
+- Fixed "Weapon Announcer" for weapons with zoom options not talking about the opportunity to turn off that option.
+- Fixed units built by "Mega Support Tank" & "Fabricator Drone" sometimes taking slot in the "Utility Gun".
+- Fixed "Focused Plasma" projectile nto having a dynamic light.
+- Fixed "Toxic Master" not being able to summon "Poison Elemental".
+- Fixed Abandonned Vehicles/Suit dying when a new player would join (removed clientsideonly flag).
+- Fixed "Luck Rune" now also buffing the loot of the "Mistery Box" built by the "Utility Gun".
+- Fixed "Epic Sphere" basic regeneration only lasting 30 seconds while the powerup would last 50 seconds.
+- Fixed "Legendary Supply Box" which is not affected anymore by Time Freeze powerups.
+- Fixed CDM08 by making Yellow Skull only available after defeating Wave 07.
+
+-------------------- Minor Update for v0.99.8d --------------------
+
+- Added a message telling the players how to join the discord server of the mod.
+- Added "Railgun", "Explosive Railgun", "Sniper Rifle" & "Legendary Gauss Cannon" into the "Weapon Display" script for the Zoom button.
+- Removed the secondary fire of the "Hellstorm BFG".
+- Edited "Railgun", "Explosive Railgun", "Sniper Rifle" & "Legendary Gauss Cannon" allowing the player to keep the zoom after reloading or using mine/grenade.
+- Edited "Legendary Pulverizer" alternate primary fire projectile now doing more damage but stayling alive for a shorter period.
+- Edited "Proto-D-BFG" now requiring 300 instead of 200 ammunitions for altfire.
+- Edited the effects of the primary fire of the "Hellstorm BFG" to improve performance.
+- Edited "Legendary Archvile" & "Legendary Redeemer" monster/class with a new attack.
+- Edited CDMBOSS increasing the amount of reinforcements available in the map.
+- Edited "Homing Rocket Launcher" which now uses 3 ammunitions instead of 1 for secondary fire.
+- Edited "Legendary Pulverizer" not having it's primary projectile explode in the sky.
+- Edited "Minigunner", "Chaingunner", "Assaul tRifle Zombie" & "ExplosiveMinigunner" giving them the possibility to interupt their firing sequence.
+- Buffed "Proto-D-BFG" secondary projectile by adding a radius damage to ennemy getting near it.
+- Renamed "Pulverizer" into "Perforator".
+- Buffed the damages of the "Perforator".
+- Buffed "Legendary Assault Captain" which can now use legendary quad shotgun and floating mine and will drop grenades when killed.
+- Buffed "Legendary Stealth Trooper" which can now use legendary gauss cannon and will drop mines when killed.
+- Buffed "Cardinal", "Cerebral Sentient", "Cardihilator" & "Cerebral Cardinal" with new attacks.
+- Buffed "Inferno Demon", "Cardihilation" & "Infernalist" able to spawn a super comet rain.
+- Buffed "Legendary Cardinal" & "True Legendary Cardinal" now using the new legendary attacks.
+- Buffed "Belphegor" & "Archduke Of Hell" which can now launch Super Comets.
+- Nerfed the damages done by the monsters using the legendary cannon big projectile.
+- Nerfed "Legendary Redeemer" adding a limit to the amount of bomb he can spawns when seeking the players.
+- Nerfed "Legendary Reedemer Sentient Bomb" which has now less lifetime, less health and can engage multiple chain reaction explosion.
+- Fixed Legendary Cardinal Blue Legendary BFG projectile not having proper sprites.
+- Fixed an important bug where monster affected by the defensive script could become unkillable ghost.
+- Fixed "Revenge Rune" particle effects not having a dynamic light.
+- Fixed the aggresivity of some boiss monsters when hurt and also prevented them from using outdated attacks.
+- Fixed "Max Soldier" & "Battle Suit" mini rockets not going throught allies.
+- Fixed "Maephisto" not using the new Legendary BFG projectile.
+- Fixed "Overlord Of Purgatory" not being protected by the defensive script.
+- Fixed "Maledict" sometimes using the sprites of the "Judge Of Purgatory" during its rage state.
+- Fixed "Legendary Archvile" sometimes using the sprites of the "Legendary Hell Knight".
+- Fixed "Judge Of Purgatory" not being able to use his defense if the player was too far away.
+- Fixed "Cerebral Cardinal", "Cardihilator" & "Cardinal" not being able to use their comet rain as defense if the player was too far away.
+- Fixed Rage Rune secret in CDM08 giving a Skulltag Rage Rune instead of a CDI Rage Rune.
+- Fixed "Proto-D-BFG" secondary projectile by adding a limit at how many times it can bounce.
+- Fixed "Legendary Cardinal" & "True Legendary Cardinal" clones by adding CANTSEEK flag in order to allow the player to focus on the original one.
+- Fixed "Legendary Annihilator" & "Legendary Cardinal" having the CANTSEEK flag making weapons with homing projectiles worthless against them.
+
+-------------------- Major Update for v0.99.8c --------------------
+
+- Added a new weapon the "Legendary Pulverizer".
+- Added back the altfire of the "Hellstorm BFG".
+- Added new Monsters: "Legendary Archvile", "Cyber Monolith Of Sin", "Nazi Scientist Mutant", "Nazi Heavy Sentry Gun", "Nazi Tech Unit" & "Nazi Improved Tech Unit".
+- Added a new option called "Weapon Announcer" which allows the player to see more information about some weapons and their special fire mods.
+- Updated the primary fire of the "Proto-D-BFG".
+- Updated the effects of the "Railgun" for weapons, allies and ennemies.
+- Updated the sprites of the "Legendary Chainsaw" secondary fire attack.
+- Updated the sounds of the "Corpulant".
+- Updated "Infernal Emperor" with new attacks.
+- Updated "MENUDEF" separating hotkeys settings in a submenu from other configurations.
+- Updated "BFG 10K" with a secondary fire shooting bfg15k projectiles which are slower but more deadly.
+- Updated "Quad Rocket Launcher" to let players know how much ammo the hellstorm fire consumes.
+- Updated the Protips to explain some of the weapons which can use special fire mods with "Hand Grenade" and "Land Mine" hotkeys.
+- Updated "Legendary Plasmatic Cannon" adding new options for alternate fire mods.
+- Updated the effects of the "Legendary BFG".
+- Updated most of the Legendary Classes to follow up the buff of the Legendary Monsters.
+- Buffed most of the Legendary Monsters with new attacks, more health and new abilities.
+- Buffed the "Hellstorm BFG" with a new Armageddon attack.
+- Buffed the "D-BFG" with a new Annihilation attack.
+- Buffed most of the mini bosses and legendary monster by forcing them to use their defensive power at 75%, 50% and 25% health.
+- Buffed "Combat Backpack" which can now increases the maximal capacity of DCells.
+- Buffed the "Railgun" by increasing the damage per shot from 250 to 300.
+- Buffed "Fabricator Drone" by giving it a way to attack ennemies.
+- Buffed "Rage Rune" increasing the ammo regeneration for "Utility Gun".
+- Buffed "Utility Gun" extra 6 slots which also increase ammo regeneration for "Utility Gun".
+- Buffed "Prosperity Rune" which can now also increases ammo regeneration for "Legendary Chainsaw".
+- Buffed "Conqueror Lich" rage attack allow its projectiles to bounce multiple times.
+- Nerfed "Plasma Caster" altfire by removing the bouncing effect and lowering the range.
+- Edited the "Proto-D-BFG" secondary fire which requires now 200 D-cell, also improved the effects and fixed the projectile from being stuck in a wall.
+- Edited "Utility Gun" with a new option called the "Advanced Barrel Selection" which allows it to directly select the best possible barrel depending on ammunition and cooldowns(that option is only available for barrels with cooldown).
+- Edited "Utility Gun" adding a new hud message direclty showing the cooldown of the barrels.
+- Edited "Light Drone Companion" which can now shoot throught each other.
+- Edited "HellStorm BFG" which now uses demon cell instead of normal cells.
+- Edited "Legendary Chainsaw" which no longer requires to be selected for ammo regeneration.
+- Edited Weapons Slot 3 in "KEYCONF" making Hexa-Shotgun available before "Demon Tech Ballista" & "PulseShotgun".
+- Edited Weapons Slot 7 in "KEYCONF" making "Hellstorm BFG" available before "Demon Tech Devastator".
+- Edited the effects of the "Fusion Nuke" changing the big explosion to be the one like the fusion from "EFG 9000".
+- Fixed the bolt projectiles of Devastator never being removed with time.
+- Fixed "Dark Cyberdemon" & "Dark Demolisher" not having their effects spawned online.
+- Fixed "Summoner Rune" which could sometimes fails the summoning.
+- Fixed "Dark Noble" sometimes remaning invulnerable forever.
+- Fixed "Archduke Of Hell" rage attack not going properly in the right angle.
+- Fixed "Fusionite" which wasn't using it's plasmatic attack anymore.
+- Fixed "Legendary Plasmatic Rifle" not having projectile speed increased.
+- Fixed "SBARINFO" making it displays ammunition more properly.
+- Fixed the light of the D-BFG projectiles.
+- Fixed "Infernal Knight" having misplaced "Shield" states.
+- Fixed "Plasma Caster" altfire not having decals.
+
+-------------------- Minor Update for v0.99.8b --------------------
+
+- Added new contents in the "Utility Gun".
+- Added new Monsters: "Cyber Soul", "Argentine Elemental" & "Dark Monolith Of Sin",
+- Added a new hotkey "Destroy Armor" which allows the player to clear the current armor that he is wearing.
+- Added a new script allowing flying classes to go down using the crouch button.
+- Removed the altfire of the "Hellstorm BFG" until I understand why the hell it's causing crashes online.
+- Updated the "SBARINFO" by adding the possibility to directly see the ammunition for DCell, "Utility Gun" & "UAC Field Command Uplink" Ammunition.
+- Updated the "SBARINFO" setting the max number has been raised from 999 to 9999.
+- Buffed "Luck Rune" by making it increases the chances for "Loot Box" to gives good items.
+- Buffed "Conqueror Lich","Archduke of Hell" & "Maledict" with a new raging attack when they are hurt.
+- Buffed "Cyberdemon" & "Annihilator" which can now use digger grenades and heavy rockets.
+- Buffed "Dark Cyberdemon" which can now has a higher fire rate and which can use new attacks.
+- Buffed "Dark Demolisher" which can now has more aggresivity and can use new attacks.
+- Buffed "Summoner" which now can summon minions without having to be in front of it's target.
+- Buffed "Legendary Plasmatic Rifle" projectile speed.
+- Buffed "Demon Tech Rocket Launcher" with the "FORCERADIUSDMG" flag and an option for seeker missiles.
+- Buffed "Combat Backpack" now giving a bigger ammo capacity (bullets 1200, shells 300, rockets 300, cells 1800, dtcells 1800, grenades & mines 24, leg cell 1200, leg bullets 800, leg shells 200). 
+- Buffed "Legendary Chainsaw" giving it the ability to shoot more projectiles and also changed the sounds of these projectiles.
+- Nerfed all the runes by adding a timer of 60 seconds after which they will dissapear if dropped on the floor.
+- Renamed the old "Rocket Sentry Gun" into "Mini Rocket Sentry Gun".
+- Edited the way how "Flesh Wizard", "Summoner" & "Infernalist" spawn their minions, they will now use hell cubes.
+- Edited the way how runes are dropped with a randomizer of 20 degrees to avoid multiple runes being dropt at the same spot.
+- Edited "Judge Of Purgatory" by making his rage state sound more audible.
+- Edited "Bomb Elemental" by making his suicide attack more powerful and removing rictus spawn from it to avoid having them inside walls.
+- Edited the effects generated by the "Terminator Sphere" projectiles to mprove performance.
+- Edited "Triple Rotary Minigun" by removing the amount of tracers to improve performance.
+- Edited "HellStorm BFG" by removing the particle effects coming from it's primary fire to improve performance.
+- Edited CDM23: added two other destination spots for monsters falling into lava in the second area.
+- Fixed "Legendary Redeemer" class showing the wrong sprite when trying to attack.
+- Fixed the decal of the "BFG 4700" primary fire.
+- Fixed "Cacobot" Obituary.
+- Fixed "Monolith Of Sin" not giving Bonus Crate when killed.
+- Fixed "Double Grenade Launcher" alt fire to make fire the two grenades at once.
+- Fixed "Battle Bot B2"'s rocket not having a decal.
+- Fixed Marine rockets not having a decal and a light.
+- Fixed "Utility Actor Slot" by reducint it's radius and height to 1 making it unable to be attacked.
+- Fixed "Emergency Teleporter" not working properly with the "Assault Mecha" and making it invincible.
+- Fixed revenge rune and sphere not working properly with the "Asssulat Mecha".
+- Fixed "Argent Sonic Bomb" explosion sometimes making an infinte loop.
+- Fixed CDM19: some respawn spots for players where badly placed especially for big mechs.
+- Fixed CDM18: added switch in the spawn place allowing mechs to get out because the room was too small.
+- Fixed CDM12: fixed the missing textures at the spawn area when the teleporter become available.
+
+-------------------- Minor Update for v0.99.8a --------------------
+
+- Edited CDM23: the secret for the helicopter is now available on by one single way.
+- Edited "Nazi Eradicator" by giving him new sounds.
+- Buffed the fire rate of the "Utility Gun" barrels.
+- Buffed the health and resistance of the "Conqueror Lich".
+- Buffed the aggressivity of the "HellFire Cardinal", "Monolith Of Sin", "Corpulant" ,"Nazi Purge Trooper" & "Nazi Eradicator".
+- Nerfed "Open Deck" now selecting a rune will directly cost 3 ammunition.
+- Nerfed "Summoner" by adding a limit on how many monsters he can spawn.
+- Buffed "Assault Warlord" which can now use Digger Grenades.
+- Nerfed "HellFire CyHunter" by reducing the chances for him to dodge.
+- Nerfed "HellFire Ifrit" by reducing it's health to 1500.
+- Nerfed "Soul Of Purgatory" by reducing it's health to 250.
+- Nerfed "Pestilence" by reducing the damages of his rockets.
+- Nerfed "Elemental Of Purgatory" by reducing the max amounts of souls it can spawn from 10 to 6.
+- Fixed "Weapon Crate" not dropping the "Rapid Shotgun".
+- Fixed "Epic Crate" not properly giving the rune combination of "Regeneration", "Resistance" & "Prosperity".
+- Fixed the bright color of the "Wicked Sphere" & "Terminator Sphere" by reducing the alpha from 0.5 to 0.2.
+- Fixed "Mine Launcher" by reducing the radius of the projectiles in order to avoid suicide.
+- Fixed "Cardihilation" which could end up always being invulnerable.
+- Fixed "Azazel" final strike spawning bugged thunder bolts.
+- Fixed the Orange blood color of the hellfire monsters.
+- Fixed the death sprites of the "Nazi Elite Veteran".
+- Fixed "Super Imp" having a missing sprites in it's spawn state.
+- Fixed the "Invasion Gate Gift" by updating the graphics for the "Legendary Armor" present.
+- Fixed "Specilos" damaging himself when making the spike jmup.
+- Fixed "Berseker Of Hell" not having his health raised with many players active.
+- Fixed "Random Sphere" which will not gives the "Spread Sphere" to a player already having the "Spread Rune".
+- Fixed "Epic Blade" projectiles not having decals and lights.
+- Fixed "Legendary Plasmatic Cannon" being invisible when on the ground.
+- Fixed "Monolith Of Sin" spawning cubes which could broke a on going wave.
+- Fixed the Y offset of the "Tech Vulcan".
+- Fixed "Zombie Assault Tank", "Nazi Cyborg Hitler" & "Nazi Purge Trooper" not giving "Bonus Crate" when killed.
+- Fixed "Utility Gun" barrels by adding a timer to make them explode with time.
+- Fixed the Obituary of the "Judge Of Purgatory".
+- Fixed "Triple Rotary Minigun" missing states.
+- Fixed the fire sound of the "Rapid Shotgun".
+- Fixed "Mini DTBFG" projectile by reducing the effects generated by it.
+- Fixed CDM23: The "Hellfire Cardinal" and his guards would not be removed before starting their fight.
+- Fixed CDM23: One of the secrets couldn't be accessed online.
+- Fixed CDM03: added switch in the spawn place allowing mechs to get out because the room was too small.
+- Fixed CDM24: changed the position of the spawn spot of the second checkpoint to avoid mechs being stuck in walls.
+- Fixed CDM12: made the spawn room bigger in order to allow mechs to get out of it.
+- Fixed CDM23: made the first checkpoint room doors larger for mechs to pass throught it.
+
+-------------------- Major Update for v0.99.8 --------------------
+
+- Added CDM23 "Dungeons of Purgatory" and his content.
+- Added a new Rune: "Prosperity Rune" which regenerates armor and ammunition.
+- Added a new Powerup the "Terminator Sphere" which destroy hordes of ennemies very quickly.
+- Added a new Powerup the "Spread Sphere" which acts as a temporal "Spread Rune".
+- Added a weapon the "Rapid Shotgun" & "Triple Rotary Minigun".
+- Added new items: "Armageddon Chalice", "Super Health Bonus" & "Super Armor Bonus".
+- Added a new Mini Boss the "Cardihilation".
+- Added new Monsters: "Monolith Of Sin", "Infernal Knight", "Archbaron Of Hell", "Cyber Archbaron", "Imp Warrior", "Dark Cyber Slayer" & "Dark Annihilator Imp".
+- Added a player skin for the "Legendary Chainsaw" & "Legendary Quad Shotgun".
+- Removed a monster, the "Pain Lord".
+- Updated the required lca file which is now renamed as "lca-v1.5.8_for_cdi_v2.0.pk3".
+- Updated the sprites of the following weapons "Freezer Rifle", "Legendary Plasmatic Cannon", "Legendary Plasmatic Rifle" & "Legendary Assault Shotgun"
+- Updated the sprites of some legendary monsters such as "Legendary Revenant", "Legendary Hell Knight" & "Legendary Imp".
+- Updated the sprites of some legendary bosses such as "Legendary Cyberdemon", "Legendary Annihilator", "Legendary Sentient", "Legendary Cardinal" & "True Legendary Cardinal".
+- Updated the sprites of some legendary items such as "Legendary Sphere", "Legendary Armor", "Legendary Power Sphere", "Legendary Time Freeze", "Legendary Power Shard", "Legendary Ammo Sphere", "Legendary Time Freeze" & "Legendary Ultra Sphere".
+- Updated the sprites of the "Skull of Power" & "Demonic Chalice".
+- Updated the sprites of the "Hexa-Shotgun".
+- Updated the Protips and fixed the way how their script is displayed.
+- Updated the graphic of some final bosses health bar.
+- Updated the "Assault Shotgun" to be like the one of the old complex doom versions.
+- Updated the GLDEFS and DECALDEF for every actors of the project.
+- Improved "Hellish Avatar" with a new attack.
+- Improved the "HellstormBFG" which now shoot three projectiles at once but with less damage per projectile.
+- Improved all the runes which can now be properly dropped between players, the rune is also dropped when a player leaves the game and map spawners are now available.
+- Buffed the "Revenge Rune" & "Revenge Sphere" which a new attack.
+- Buffed the "Legendary Marine" with the "Legendary Quad Shotgun" & "Legendary Gauss Cannon" attacks.
+- Buffed "Dark Cybruiser", "Dark Cydestroyer" & "Dark Paladin" with a real "Demon Tech Railgun".
+- Nerfed the Pyro Shot of the "Hellfire Cyberdemon".
+- Renamed the "Poe" as the "Phase Cacodemon".
+- Edited the "Remove Rune" hotkey which acts now as the "Drop Rune" hotkey.
+- Edited the "Skull of Power" & "Demonic Chalice" by raising their max amount to 2.
+- Edited the "Loot Box" by raising their max amount to 10.
+- Edited the "Mistery Box" which now drops "Loot Box" on activation.
+- Edited the runes by adding particle effects when holding them.
+- Edited the "Demon Tech Repeater" by adjusting the y offset of the weapon.
+- Edited the spawn room in CDM12 allowing vehicle to go inside.
+- Fixed the attacks of the "Hellfire Cyberdemon" by removing the annoying smoke effects.
+- Fixed the sprites of the effects from Hellfire monsters.
+- Fixed CDM14: Removed a texture bug around every door of the marble castle.
+- Fixed "War" & "Widow Maker" by removing the "NODROPOFF" flag.
+- Fixed "Infestor" & "Belphegor" not giving "Bonus Crate" when killed.
+- Fixed the player skin for the "Demon Tech Rifle".
+- Fixed the "BFG 4700" by removing the big red screen when firing.
+- Fixed "Utility Gun" now spawning support units properly when having the "Spread Rune".
+- Fixed the "HellStormBFG" by adding the "NOEXTREMEDEATH" flag to avoid massive lags when killing tons of monsters at the same time.
+
+-------------------- Major Update for v0.99.7k --------------------
+
+- Added a weapon the "Pulverizer".
+- Added new Monsters: "Conqueror Lich", "Dark Paladin", "Assault Warlord", "Nazi Assault Mutant" & "Nazi Grenadier".
+- Improved "Azazel" & "Hellish Avatar" with new attacks.
+- Edited Maledict by reducing it's painchance.
+- Edited "HellFire CyHunter", "NaziBaronVonSchmitt" & "Nazi General Akhanov" with new custom sounds.
+- Edited CDM03: the spawn room is now higher allowing mech to reach the exit teleporter with more ease.
+- Edited the "Time Rune" which will now activate itself if ready and the player has less than 33% Health.
+- Fixed CDM08: Wave 05 phase monsters took too much time to spawn.
+- Fixed "Double Grenade Launcher" not exploding with time.
+- Fixed "Demon Tech Repeater" altfire killing friendly marines.
+- Fixed "HellStorm BFG10K" secondary causing crashes(huh I hope at least it doesn't crash for me!).
+- Fixed "Overlord Of Purgatory" and "Infernalist" not spawning their minions properly.
+- Fixed "UAC Command Post" not spawning the sentry gun with new weapons.
+
+-------------------- Minor Update for v0.99.7j --------------------
+
+- Added Friendly Marines AI with the Demon Tech Railgun & D-BFG.
+- Added the "Demon Tech Railgun Sentry" available only from Utility Gun Tier-3.
+- Added new Monsters: "HellFire Afrit", "HellFire Ifrit" & "Summoner".
+- Improved the "Tag" Name of some monsters.
+- Improved the aggresivity of the friendly marines.
+- Improved "Flesh Wizard" and the way he spawns minions.
+- Improved the MENUDEF giving more informations about the options available in the mod.
+- Buffed the Maledict and gave him the ability to summon Summoners."
+- Fixed "Invasion Gate" not spawning properly.
+- Fixed "Archduke of Hell" Tag name.
+- Fixed "UAC Command Post" not spawning the marines with new weapons.
+- Fixed CDM01: a line was blocking the final boss into the lava.
+- Fixed "Nazi Eradicator" Death state not showing properly.
+- Fixed "Weapon Crate" not working properly with "Spread Rune".
+
+-------------------- Minor Update for v0.99.7i1 --------------------
+
+- Improved the "Tag" Name of some monsters.
+- Buffed "Maledict" now being able to spawn an invasion gate, ans his cube will now spawn stronger demons but with a lower quantity.
+- Edited the "Ignorance Sphere" by changing the pickup sound effect.
+- Fixed "Maledict" spawning tons of cubes when killed.
+- Fixed "Specilos" comets not dissapearing with time.
+- Fixed "Maledict" cube sometimes being stuck and unable to spawn a monster.
+- Fixed "HellStorm BFG10K" secondary causing crashes(I really hope this time).
+
+-------------------- Major Update for v0.99.7i --------------------
+
+- Added a weapon the "Demon Tech Repeater".
+- Added a new Powerup the "Ignorance Sphere" which turns the player invisible and make monsters ignores him.
+- Added a new option in "CDI Settings" allowing the player to automaticly use "Bonus Crate" & "Epic Crate" in his inventory.
+- Added new Monsters: "Soul Of Purgatory", "Elemental Of Purgatory", "Overlord Of Purgatory" ,"Pistol Zombie" ,"Homing Rocket Zombie","Pyro Zombie" & "MRL Zombie".
+- Improved the "Utility Gun" which is now able to build Explosive Barrels and launch them into the face of your ennemies.
+- Improved the "Utility Gun" which can now properly be affected by the "Spread Rune" effect.
+- Improved most of the items which are now compatible with the "Spread Rune" effect.
+- Improved the "Tag" Name of many monsters and allies.
+- Improved the "Pulse Shotgun" with a secondary fire making multiple shoots in exchange of longer reload.
+- Improved the "Pulse Repeater" with a secondary fire making barrage shot killing multiple targets and for close range combat.
+- Improved the "Demon Tech Ballista" with a secondary fire allowing it to fire a rapid projectile for long range combat.
+- Improved the "Legendary Chainsaw" with a secondary fire allowing it to shoot projectiles.
+- Buffed Utility Gun's dispensers by increasing both capacities and delays before automatic destruction.
+- Buffed both "Chaos Elemental" & "Chaos Soul" with the "QUICKTORETALIATE" flag.
+- Buffed the secondary fire of the "Double Grenade Launcher" which now fires two digger grenade instead of one.
+- Edited the SBARINFO for the "UAC Respawn Supply", using a number to show tier instead of having 3 icons taking too much place in the HUD.
+- Edited the explosion effect of the "HellStorm BFG10K" secondary fire, hoping it will fix the crash problem.
+- Edited the priority of the "Explosive Super Shotgun" making it be selected in the Slot 3 just after legendary shotguns.
+- Edited "BFG 4700", "BFG 3500" & "M79 Heavy Grenade Launcher"  with a Tag Name.
+- Fixed "Legendary Tormentor" Demon Class being able to damage allies.
+- Fixed "Legendary Tormentor' Demon Class's projectiles not having the "NOTIMEFREEZE" flag.
+- Fixed "HellStorm BFG10K" projectiles not being bright.
+- Fixed Specilos projectiles sometimes spawning spike endlessly.
+- Fixed MAPINFO.txt being wrong for CDM24.
+- Fixed "HellStorm BFG10K" secondary fire by adding a dynamic light to it.
+- Fixed "Slot Machine" not showing the right image for each bonus.
+- Fixed "Berserker of Hell" Digger Grenade not having a proper trail, making them hard to see.
+
+-------------------- Major Update for v0.99.7h --------------------
+
+- Added new weapons: "Explosive Super Shotgun", "Explosive Railgun" and "HellStorm BFG10K".
+- Added new Monsters: "Phase Fiend", "Observer", "Cyber Trooper" ,"Cyber Slayer" ,"Cyber Brute", "Nazi Explosive Soldier" ,"Nazi Eradicator" ,"Nazi Cyborg Hitler" & "Nazi General Akhanov".
+- Added a new demon class the "Specilos" available in the "Demon Rune".
+- Added a new demon class the "Legendary Tormentor" available in the "Legendary Demon Rune".
+- Added "Protips" giving informations to new players, one is activated when the player is killed and they can be turned off for each player in the "CDI Settings".
+- Improved the "Annihilation Sphere" now having the possibility to give "Bonus Crate" like a normal kill.
+- Improved the "Epic Blade" by giving it a better secondary fire.
+- Improved the sprites of the "Plasma Caster" (thanks to DaisyTapor).
+- Buffed the "Hand Grenade" making far more damages with a higher radius as well.
+- Buffed the "Sniper Rifle" by increasing the magazine size from 10 to 15.
+- Buffed the "Regeneration Rune" which now gives 20 Health per second, up to 700 maximum Health(including other classes).
+- Buffed the "Nazi Utility Guy" which can now build one "Nazi Eradicator".
+- Edited the "Mine Launcher" by adding a dynamic light to the floating mine projectiles.
+- Edited the "Epic Crate" by adding some effects making it more easy to spot from far away.
+- Edited the "UAC Field Command Uplink" by adding new offense powers: "Argentine Toxic Bomb" & "Argentine Annihilation Bomb".
+- Edited the "Open Deck" by making the "Emergency Teleporter" available inside.
+- Edited the "Assault Mecha" by increasing the jumping height, making it more agile.
+- Edited the "Invasion Gate" bonus which can now gives more content.
+- Edited the "Rocket Imp" by changing it's name into the "Annihilator Imp".
+- Edited the "Mistery Box" which is now available as an item, only from the "Invasion Gate" bonus.
+- Edited CDM24: replace the "D-Proto-BFG" with the "HellStorm BFG10K", making the secret less op.
+- Edited the "Sniper Rifle", "Demon Tech Pistol", "Demon Tech Ballista", "Legendary Quad Shotgun", "Utility Gun" & "Open Deck" by allowing them to use grenades and land mine.
+- Nerfed "Judge Of Purgatory" and "Hellish Avatar" by reducing their maximum number of rage attacks.
+- Nerfed the limit of possible reinforcements, depending on the amount of players.
+- Fixed Allies now being able to take no damage from the player's "Legendary BFG".
+- Fixed "UAC Field Command Uplink" spelling the right text when calling the "Assault Mecha".
+- Fixed "Annihilation Sphere" making removed monster with custom effects remain idling around until the map is completed.
+- Fixed "Digger Grenade" smoke not spawning properly online.
+- Fixed "Samael" not any giving "Bonus Crate" when killed.
+- Fixed "Diabolist" demon class not working properly with "Emergency Teleporter" & "Revenge Rune" health checker.
+- Fixed "Belphegor" sometimes remaining invincible for a long period.
+
+-------------------- Minor Update for v0.99.7g1 --------------------
+
+- Improved the "Emergency Teleporter" which should properly keep the player from being killed before being teleported.
+- Nerfed the "Plasma Caster" alt fire.
+- Fixed the "UAC Field Command Uplink" not always spawning the "Assault Mecha" when asked.
+- Fixed the player not properly droping "Bonus Crate" when dying outside the "Waiting Room", the script shall now aslo works for other classes.
+- Fixed the "Plasma Marine Squad" not having AI Marines with "Plasma Caster".
+
+-------------------- Minor Update for v0.99.7g --------------------
+
+- Added Friendly Marine AI with the Plasma Caster.
+- Added back the Script which increase the chances of monsters to drop "Bonus Crate" with higher amount of players.
+- Updated the "Emergency Teleporter" which will now save the Player/Mech/Suit/Demon if Health is lower 20% and max slot has been raised to 3.
+- Updated the "Revenge Rune" which should now properly check the health percentage of other classes than player in order to deal high damages.
+- Improved the "Epic Crate" content by removing useless things and buffing other loots.- Buffed the "Double Grenade Launcher" by giving it a poweful AltFire.
+- Increased the limit of possible reinforcements, depending on the amount of players.
+- Buffed the "Mine Launcher" by giving it a second firing mod usable with the "Hand Grenade" hotkey.
+- Buffed the "BFG 3500" by giving it an AltFire able to create a shield.
+- Buffed the "Attack Helicopter" by giving it a "Homing Rocket Launcher" usable with the "Hand Grenade" hotkey.
+- Buffed the "Assault Helicopter" by giving it a "Homing Rocket Launcher" usable with the "Hand Grenade" hotkey.
+- Buffed the "Attack Helicopter" by giving it a "RPG Rocket Launcher" usable with the "Land Mine" hotkey.
+- Buffed the "Assault Helicopter" by giving it a "RPG Rocket Launcher" usable with the "Land Mine" hotkey.
+- Moved the "Devastator" which is now available in the "Bonus Crate."
+- Buffed the delay of the "Luck Sphere" from 15 to 30 secondes.
+- Nerfed "Archduke Of Hell "'s Flame Breath almost killing everything in one shot.
+- Edited the Player which can now drop stuff when killed in order to help it's allies.
+- Edited the "Summoner Rune" by adding a message telling the player when the next summon comes, also reduced the delays between each summon.
+- Edited CDM02 by remove the big amount of "Super Imp" at Wave 01.
+- Edited the "Time Rune" by making the cooldown delay more random instead of fixed 45 seconds.
+- Fixed "Hellish Avatar" demon class health regeneration not working.
+- Fixed "Purifier Bot" by making it able to use most items like other Suits.
+- Fixed "Mine Launcher" by making projectiles able to bounce on water with the CANBOUNCEWATER flag.
+- Fixed "Super Imp"'s Obituary.
+
+-------------------- Minor Update for v0.99.7f --------------------
+
+- Updated the "Exit Vehicle/Suit" hotkey which can now allow the players to turn back from their demon rune classes.
+- Buffed the "Assault Mecha" by giving it a "Jetpack" usable with the "Land Mine" hotkey.
+- Buffed the "Missile Tank" by giving it a "Digger Grenade Launcher" usable with the "Hand Grenade" hotkey.
+- Buffed the "Battle Suit" by giving it a "Plasma Caster" alt fire usable with the "Land Mine" hotkey.
+- Buffed the "Battle Suit" by giving it a "Plasma Caster" primary fire usable with the "Hand Grenade" hotkey.
+- Buffed the "Necro Suit" by giving it a "Dual Mine Launcher" usable with the "Land Mine" hotkey.
+- Buffed the "Necro Suit" by giving it a "Dual Rocket Launcher" usable with the "Hand Grenade" hotkey.
+- Buffed the "Max Soldier" by giving it a "Digger Grenade Launcher" usable with the "Hand Grenade" hotkey.
+- Buffed the "Jet Trooper" by giving it a "Heavy Rocket Launcher" usable with the "Hand Grenade" hotkey.
+- Buffed the "UAC Respawn Supply" which will now be activated every 30 seconds, also giving the loot when unlocked.
+- Edited the "UAC Respawn Supply" properly making a sound when being activated on player respawn.
+- Fixed the "Demonicizer" not giving "Light Drone Companions" as it was supposed to.
+- Fixed the "Scout Bot" using the sprites of the "Purifier Drone".
+- Fixed CDM05: BFG4700 was put on a blocked position.
+- Fixed the player not being able to exit damaged "Assault Mecha".
+
+-------------------- Minor Update for v0.99.7e1 --------------------
+
+- Fixed Time Rune Effect not making sounds online.
+- Fixed "Plasma Caster" Altfire not using ammunition.
+- Fixed Cacobot using only Plasma Caster attack.
+- Fixed CDM12: Wave 15 was broken.
+
+-------------------- Minor Update for v0.99.7e --------------------
+
+- Added a new suit the "Purifier Bot" available only from Utility Gun Tier-4.
+- Added a new vehicle the "Assault Mecha" available only from the "UAC Field Command Uplink".
+- Added new Monsters: "HellFire CyHunter".
+- Added a new Rune: Time Rune.
+- Added a Script telling you which player number you are when joining the game.
+- Buffed the "Revenge Rune" which should be far more aggressive compared to a simple "Revenge Sphere".
+- Buffed the "UAC Field Command Uplink" by reducing most of the cooldown delays.
+- Buffed both "Inferno Demon" class and monster with a new attack.
+- Buffed "Berserker of Hell" with new attacks.
+- Buffed the "Plasma Caster" by giving it an AltFire.
+- Buffed the "UAC Respawn Supply" now being activated every 40 seconds also.
+- Buffed the "Mega Support Tank" with new attack coming from BFG4700 and DTBFG10K, it can also regen itself.
+- Buffed Task Force Troopers and Legendary Marine which can now regen themselves.
+- Buffed the "Demonicizer" which can now also drops "Light Drone Companion" items.
+- Buffed the "Battle Bot B4" with attacks close to the "Battle Suit", it can also regens itself.
+- Buffed "Annihilation Sphere" which will now damages strong monster having Health above 850 before sending them to oblivion.
+- Edited the "Utility Gun" which can now build pickups and the "Necro Suit" is now available at Tier-3.
+- Edited the "Mega Support Tank" which will construct it's limited army at the begining then only focus on giving items and fighting.
+- Edited the Afrit which is now able to fly like LesserCardinal and Cyhunter.
+- Edited CDM02 by adding the BattleSuit into the secret unlocking 4 Suits.
+- Edited CDM16 by adding a safe zone at the start of the map to avoid spawn kill.
+- Edited the Boss HPBAR by adding an icon to let the players know when the boss has the temporal protection.
+- Edited the "Open Deck" which will now give the "Weapon Crate" instead of a "Random Weapon", it can also gives "Missile Pod" and "UAC Respawn Supply".
+- Changed the skin for the "Plasma Caster" from minigun marine to ionspray marine
+- Fixed some texts and color adjustment in the "UAC Field Command Uplink" menu and also added an icon to let the player knows how many he has.
+- Fixed Lesser Cardinal's melee making no damages.
+
+-------------------- Minor Update for v0.99.7d1 --------------------
+
+- Fixed once for all the Testing Scripts by making them RCON only.
+
+-------------------- Minor Update for v0.99.7d --------------------
+
+- Added new contents in the Bonus Crate.
+- Edited CDM24 by giving it an Invasion Gate.
+- Fixed Samael's Obituary.
+- Fixed Fake Hitler's Death.
+
+-------------------- Minor Update for v0.99.7c --------------------
+
+- Added a new weapon the "Plasma Caster".
+- Added new Monsters: "Demobus", "Super Imp", "Cyber Fodder" & "Samael".
+- Added a new demon class the Hellish Avatar available in the Rune of Abomination.
+- Buffed seriously the damages of the "Legendary Gauss Cannon" making that weapon now worth it.
+
+-------------------- Minor Update for v0.99.7b --------------------
+
+- Buffed "Berseker Of Hell" & "Augmented Annihilator".
+- Fixed "Specilos" radius making unable to spawn on some maps.
+
+-------------------- Minor Update for v0.99.7a --------------------
+
+- Added a new vehicle the Assault Helicopter.
+- Added new Monsters: "Iron Fiend", "Specilos", "Cacobot" & "Berseker Of Hell".
+- Edited CDM24: Fixed the problems with some teleporters allowing monster to be placed outside of the maps, also fixed some of the secrets being completly unavailable.
+- Removed the NOBLOCKMONST flag for legendary monsters, making them unable to go thru lines supposed to block all the monsters.
+
+-------------------- Major Update for v0.99.7 --------------------
+
+- Added CDM24 "Celestial Station" and his content.
+- Buffed the "Double Grenade Launcher" by giving it a poweful AltFire.
+- Buffed UAC COmmand Post which can now also heal itself.
+- Fixed the Bonus Crate sometimes not giving anything.
+
+-------------------- Minor Update for v0.99.6c --------------------
+
+- Added new content in th Epic Crate.
+- Added a new weapon the "BFG 4700".
+- Buffed the "Homing Rocket Launcher" by giving it a poweful AltFire.
+- Moved Spread Rune from Epic Crate to Bonus Crate.
+- Fixed Bonus Crate's Weapon Bonus not giving the "Mine Launcher".
+- Fixed the Pulse Shotgun not being anymore able to perform rocket jump.
+- Fixed the Proto-D-BFG's alt fire projectile which can now also bounce on water floor.
+
+-------------------- Minor Update for v0.99.6b --------------------
+
+- Added a new cvar cdm_bonuscrate_drop that can turn on/off the chnaces for monsters to drop bonus crates on floor when killed(reseved for special maps only).
+- Added a new cvar cdm_bonuscrate_chance that can increase/decrease the chances for monsters to give bonus crates when killed(reseved for special maps only).
+- Added a new cvar cdm_invasiongateforced which will set the Invasion Gate spawn chances to 100% when activated, won't work if cdm_invasiongate is off.
+- Added new Monsters: "Demolisher MkII", "Battlelord Of Hell".
+- Added the "CDI Informations" Submenu explaining the effects of the new runes/powerups for new players.
+- Updated the Mech HUD with new sprites.
+- Buffed the damages of the Legendary Redeemer class.
+- Buffed the "Mine Launcher", increased firerate, increased delay of mines before selfexplosion and increased their speed.
+- Edited the "Quad Rocket Launcher", now using the grenade button will swich the primary fire from rocket to grenades.
+- Edited CDM20: reduced the amount of monsters coming from the invasion gate.
+- Edited the Extra Life bonus, now teleporting the player outside of the waiting room if he had 0 lives.
+- Fixed the Powerup Rune not giving the Luck Sphere as well.
+- Fixed Regeneration Rune not properly healing suits and demon classes from the Demon Rune.
+- Fixed a bug where players respawning in single player where not able to use the "Use" button anymore.
+- Fixed Flame tank's napalm flames going under floor online.
+
+-------------------- Minor Update for v0.99.6a --------------------
+
+- Added a new vehicle the Flame Tank.
+- Updated/Fixed/Balanced CDM21 & CDM22.
+- Updated "Tech Erasus" with an Alt-Fire shooting a constant beam.
+- Updated "Sniper Rifle", in order to zoom you must now use the Railgun Zoom button.
+- Buffed the "D-Proto-BFG"'s altfire which should remain longer and not be stuck anymore on walls.
+- Nerfed the Infernalist damages(for real this time).
+- Fixed Cyber Bruiser Demon & Cyber Hell Archon which theirs bright states.
+- Fixed the "UAC Field Command Uplink" not regenerating it's ammunition anymore.
+- Fixed "Hexa-Shotgun" & "Sniper Rifle" which will now be fully loaded when picked up.
+- Fixed "Sniper Rifle" reloading a non-full magazine would break the weapon.
+
+-------------------- Major Update for v0.99.6 --------------------
+
+- Added CDM22 "Warp Room" and his content.
+- Added CDM21 "Sunset Valley" and his content.
+- Added new Weapons: "Demon Tech Rocket Launcher", "Demon Tech Pistol", "Demon Tech Ballista" & "Mine Launcher".
+- Added new Powerup: Luck Sphere(increase chances of getting bonus crates from monster kill for a short period, can't be taken if the player already has the luck rune).
+- Added new contents in the Bonus Crate.
+- Added a script that will force player to respawn when killed in order prevent them from remaining dead and avoiding the game over.
+- Updated and Buffed the Sniper Rifle.
+- Updated Utility Guy skin with crouching sprites.
+- Buffed "Combat Backpack" which can now increase Legendary ammunitions.
+- Buffed the "Tech Erasus" the weapon will shoot multiple weak projectiles instead of a big one in order to kill multiple targets at different range.
+- Buffed "UAC Field Command Uplink" increasing the ammo regeneration speed.
+- Buffed the Tank with Double/Quad shotgun attacks
+- Buffed all Demon Runes by raising the timer by 30 more seconds.
+- Fixed "Legendary Quad Shotgun"s "Empty" showing normal Quad Shotgun sprites.
+- Desabled the "Monster Map Tracker" for now as it will cause huge desyncs when many friendly monsters are active.
+
+-------------------- Major Update for v0.99.5 --------------------
+
+- Added CDM20 "Prison Outbreak" and his content.
+- Added new Weapon: "Legendary Quad Shotgun".
+- Added new support powers in the "UAC Field Command Uplink".
+- Added 2 new test subjects in the test teleporter, be careful.
+- Updated the "Monster Map Tracker": players in room as well as spectators can't use it and fixed the number of the player using it.
+- Buffed the Rage Rune which will increase the ammo regeneration of the Utility Gun.
+- Buffed the Revenge Rune/Sphere which will now increase resistance when having low health.
+- Fixed CDM11&13: Some textures were broken.
+
+-------------------- Minor Update for v0.99.4d --------------------
+
+- Added a new Feature: the Monster Map Tracker, helping player to find the last remaing monster of wave more easily in order to progress more quickly(This is still a prototype).
+- Added new Weapons: "Legendary Chainsaw" & "Legendary Gauss Cannon".
+- Added new Monsters: "Archduke Of Hell", "Judge Of Purgatory", "Hellish Avatar", "Infernal Emperor" & "Nazi Purge Trooper".
+- Buffed the Zombie Assault Tank.
+- Edited CDM03: Added another exit way to avoid players from being spawn killed.
+- Fixed hitscans legendary weapons still hurting legendary monsters
+- Fixed "UAC Field Command Uplink" not respecting the delay for mechs/suits.
+- Fixed Lesser Cardinal's flames not appearing online.
+- Fixed CDM12: Added blocking lines for monsters in the Red Zone to avoid them from running away and blocking the map.
+- Fixed CDM14: Added blocking lines for monsters above the red walls to avoid them from running away and blocking the map.
+
+-------------------- Minor Update for v0.99.4c --------------------
+
+- Added new contents in the UtilityGun & Epic Crate.
+- Added a 2 new Runes: High Jump Rune and Powerup Rune.
+- Added a new item the Combat Backpack increasing Ammo Capicity(expecting Legendary Ammunitions), available only in Bonus Crate and replaces the old Backpack inside which is no longer available.
+- Added a new Mini Boss the "Cardihilator Demolisher".
+- Added new monsters into the Bestiary: Baby Mastermind, Dark Cyber Imp & Lesser Cardinal.
+- Edited the Epic Crate now raising utility gun tiers 3 times in one go and that even further than the tier 4.
+- Edited all the Skulltag's old rune by making them as true permanent powerups which can know be removed with the custom hotkey.
+- Edited the Open Deck adding most of the new runes inside.
+- Renamed the "Replace Rune" button as "Clear Rune", now that hotkey can properly remove the player's rune.
+- Renamed the "Nazi Reviver" as the "Nazi Medic".
+- Buffed the effects of the following runes: Haste, Strenght, Resistance, and Rage(which will reduce the cooldowns of utility weapons).
+- Buffed Epic Sphere which will remain active for a longer time.
+- Buffed the health of the Infernalist and Hellfire Baron.
+- Nerfed the "UAC Field Command Uplink" now the Suit/Mech drops share the same cooldown.
+- Edited CDM19: Replaced the Legendary Cyberdemon with the Cardihilator Demolisher.
+- Edited CDM03: Replaced the Legendary Sentient with the Cardihilator Demolisher.
+- Fixed Widow Maker & War being broken when ressurected ending in the wave being broken.
+- Fixed(probably I hope) the red screen happening when leaving a morphed class.
+- Fixed "UAC Field Command Uplink"'s reinforcement order sometiems triggering the Invasion Gate.
+- Fixed the most of the strong nazis not having their buff when facing many players.
+- Fixed the Bonus Crate, Epic Crate & Reinforcement Card with the NOFEAR making them to don't run away from player with Terror Rune or Sphere.
+
+-------------------- Minor Update for v0.99.4b --------------------
+
+- Added new support powers in the "UAC Field Command Uplink".
+- Added new Powerups: Epic Sphere(gives Epic Sword), Wicked Sphere(Take health from ennemies when being hurt).
+- Added new monsters into the Bestiary: Hellfire Baron, Infernalist, Widow Maker, War, Hellion, Dark Cybruiser & Cydestroyer, Cerebral Cacodemon, Corpulant, Chaos Elemental & Soul, Replaced Ice Fiend with Cold Nightmare.
+- Buffed all monsters with NORADIUSDMG flag by giving them a resistance against weapon forcing radius damages.
+- Edited every monsters by giving them a custom Tag Name compatible with hp-bar addon.
+- Edited the Revenge Rune/Sphere, attacking foes even if player has all his health.
+- Nerfed the Tech Erasus of monsters which was op and one shooting players most of the time.
+- Fixed the Summoner Rune's minions sometimes hurting their master.
+- Fixed the Marine Squad Reinforcement Helicopter going under floor(online desyncs).
+- Fixed the angle rotations of the air strike bombers(online desyncs).
+- Fixed the ammunition desync of the "UAC Field Command Uplink" (online desyncs).
+- Fixed "UAC Field Command Uplink"'s beacons which could be stopped by allies on his trajectory.
+- Fixed the Quad Rocket Launcher's primary fire not consuming ammunition.
+- Fixed the Random Sphere not giving 1 health instead of 100 for Soul Sphere or 250 for Life Sphere.
+
+-------------------- Minor Update for v0.99.4a --------------------
+
+- Added a new Weapon the "UAC Field Command Uplink" which allow the player to get access to a lot of support orders form the UAC(only available in Epic Crate for now).
+- Added a new special Script which will keep the Suit/Mech available if the player disconnect or spect without leaving it.
+- Added new Powerups: Doom Sphere(Damage Multiplier x4.0), Holy Sphere(Doom Sphere + Armageddon Sphere + Mega Sphere.), Thunder Sphere(Strike your foes with the power of Zeus!), Terror Sphere(Monsters will run away from you.), AnnihilationSphere(Send your foes into oblivion! if they have less than 850hp and aren't bosses or legendaries), RevengeSphere(The Less Health you have the more aggresive it will be!), FateSphere(Invulnerability as well as strong reflection damages!), Random Sphere(Can give any sort of powerup spheres, excluding legendary items).
+- Added 3 new Runes: Terror Rune, Revenge Rune and Summoner Rune.
+- Updated the the maps with the new powerups, adding sometimes new secrets in them.
+- Improved the forest decoration with new sprites and new varieties.
+- Improved the effects of the Quad Rocket Launcher's missiles.
+- Buffed the Heavy Drone Companion's Health.
+- Edited CDM19: Lowered Amount of Monsters from the Gate, Added a wayback for tanks in the final area, changed a player respawn position to avoid spawn camp from monsters.
+- Edited the miniguns of the Assautt Tank, Attack Helicopter and Heavy Sentry Gun making them less laggy.
+- Edited every Bosses and Legendary Monsters by giving them the +NOFEAR flag protecting them against the Terror Sphere or Rune.
+- Edited the Utility Gun by moving all the dispensers to Tier 2 giving a reason for using basic items for Tier 1.
+- Edited the ammunition Icon for the Utility Gun.
+- Fixed the Ammo Dispensers giving out dated Ammo Packs.
+- Fixed the "Replace Rune" button not removing the Spread Rune.
+- Fixed CDM19: Wave 08 was broken and bluue door secret locked, Helicopter Elevator.
+
+-------------------- Major Update for v0.99.4 --------------------
+
+- Added CDM19 "Temple of the Millenium" and his content.
+- Added a new vehicle the Attack Helicopter.
+- Added new contents in the Bonus & Epic Crate.
+- Added the Spread Rune(only available in Epic Crate).
+- Added AI Marines with Plasma Rifle and Plasma Repeater(I forgot these ones).
+- Updated the Waiting Room adding items Dispensers for health and ammunition instead of Invasion Spawners.
+- Edited the Proto-D-BFG with an experimental Alt Fire.
+- Edited the Slot Machine by replacing the Turbo Sphere with Haste Sphere and Resistance Sphere by Protection Sphere.
+- Edited CDM18 : now compatible with the Invasion Gate.
+- Edited CDM06 & CDM18 : added an Attack Helicopter Secret.
+- Buffed the Tank Deadabus final boss and the Grinder Battle Mech.
+- Moved the EFG9000 to the Slot 7(for BFGs).
+- Fixed the Weapon Crate not having his weapons being removed after pickup.
+
+-------------------- Minor Update for v0.99.3f --------------------
+
+- Added a custom loading screen.
+- Added new contents in the Epic Crate & UtilityGun.
+- Added 2 new test subjects in the test teleporter, be careful.
+- Added new monsters: Explosive Minigunner & BFG15 Major.
+- Updated the Legendary Supply Box by adding new legendary power sphere, and shard inside.
+- Increased the chances of getting Loot Boxes or Weapon Crates in Bonus Crates.
+- Edited the Epic Crate merging the 5 extra lives bonus with the demonrune/luckrune/kamikaze.
+- Lowered the chances from getting an Epic Crate inside a Bonus Crate from 0.25% to 0.10%.
+- Fixed the Quad Rocket Launcher online desync, and changed the grenade fire now used with the toss grenade button.
+- Fixed a crash where exiting the max soldier and firing at same time would make all server clients crash.
+- Fixed the Legendary Power Sphere message talking about the weapon crate.
+- Fixed the Demon Tech Railgun friendly fire on allies.
+- Fixed the Friendly Rictus heart still being present after death for a small delay.
+
+-------------------- Minor Update for v0.99.3e -------------------
+
+- Added new weapons: Quad Rocket Launcher, Demon Tech Minigun, Demon Tech Railgun & Proto-D-BFG.
+- Added new contents in the Bonus Crate.
+- Added new monsters: Nazi Super BattleBot, Toxic Fiend & Draugr.
+- Updated the Legendary BFG and the Explosive Minigun to the ones of lca-v1.5.9.
+- Nerfed the Demon_Diabolist Class's flames
+- Buffed the Legendary_Revenant Class's railguns.
+- Edited all the weapons by giving them a custom sound in the when being selected.
+- Edited CDM06 & CDM17 by adding some new nazi textures.
+- Edited CDM15: by adding some frozen tree decorations.
+- Fixed the compability with the hpbar addon and added some funny sounds when monsters doing killing sprees.
+- Fixed all CDI weapons which can't be dropped anymore especially secrets weapons.
+- Fixed the Jump Height of the Legendary_Behemoth Class.
+- Fixed the Legendary Classes with their respective scales.
+- Fixed the Heavy Sentry Gun firing pitch and the slots being still used after being destroyed.
+
+-------------------- Minor Update for v0.99.3d -------------------
+
+- Added a new demon class the Cerebral Commander available in the Rune of Abomination.
+- Added a new demon class the Diabolist available in the Demon Rune.
+- Added new contents in the Bonus Crate & Utility Gun.
+- Added 3 new test subjects in the test teleporter, be careful.
+- Updated the Legendary Demon Rune allowing now the player to become: Legendary Revenant/Behemoth/CyberNoble/Redeemer.
+- Updated the Open Deck by removing the Drain Rune inside and also adding most of the new items.
+- Updated the display messages by adding the information about the current invasion wave and the amount of waves of the map.
+- Updated the KEYCONF.txt dealing with the weapon selection order in order to make it more logic with complex doom invasion.
+- Updated the MENUDEF.txt by adding the possibility to turn on/off fog mode.
+- Buffed Demon Rune by adding 30 more seconds for the timer.
+- Buffed the Rage Rune allowing a faster reload of special weapons(tanks and demon classes).
+- Buffed the Regeneration Rune now able to heals up players over 500 hp for morphed classes(tanks and demon classes).
+- Buffed the Mining Drone who will now thrown more mines and at a faster rate.
+- Edited CDM16: increased the chances of the D-BFG secret to be available.
+- Fixed the Lives Display taking too much place in the scaled HUD.
+- Fixed the "Complex Doom Invasion" Key Section still being available in custom controls(moved to the cdi settings menu).
+- Fixed the Friendly Rictus heart icon no being removed after death.
+- Fixed CDM15: the D-BFG secret can no longer be taken throught the impassible line.
+- Fixed Camping Zombie tanks having their angles desyncs online.
+- Fixed the firing angle of the friendly Missile Sentry Gun.
+
+-------------------- Minor Update for v0.99.3c -------------------
+
+- Fixed "Exit Vehicle/Suit" with the NET setting on the script allowing people to use it on others servers.
+
+-------------------- Minor Update for v0.99.3b -------------------
+
+- Optimized the Scripts especially by removing and remaking the ones consuming a lots of net traffic with their huge loop consuming.
+- Added a MENUDEF.txt with a custom hotkey to exit vehicles and suits.
+- Added a GAMEINFO.txt for the game start up.
+- Added new contents in the Bonus Crate & Utility Gun.
+- Buffed the Utility Gun which can get his slots increased by the Bonus Crate after tier 4.
+- Edited the Demon Classes by giving them a custom Demon Rune Icon above them.
+- Edited the Reinforcement Card which will no longer teleport the player if he already has a live and is in the field.
+- Edited CDM17: by increasing the amount of Epic Crate and Rune of the Abomination in their secrets.
+- Edited CDMBOSS: by allowing mechs to get into the elevator when leaving and also adding more powerups in the final combat.
+- Fixed the Utility Gun which can't build in the waiting room anymore.
+- Fixed the Demon Rune which can't be used in the waiting room anymore.
+- Fixed some Scripts which could still give the Legendary AK-47 instead of the Legendary Light Machine Gun.
+- Fixed the BFG9500 sprays attacking allies and players by forcing sv_smartaim 2 since the server isn't able to do that.
+- Fixed CDM06: map was broken at Wave 07 because of the Augmented Annihilator now spawning.
+- Fixed(Maybe) CDM18 : Completly reworked the map into a new .wad hoping that it will help to fix the random crash happening online near Wave 08...
+
+-------------------- Minor Update for v0.99.3a -------------------
+
+- Fixed ther Tank Deadabus who could be stuck in gis fighting area.
+- Fixed the Epic Crate which was broken and could crash the client player.
+- Fixed the fact that some random medic marines could be displayed instead of healing items.
+- Fixed CDM18: removed the 3d floor above the suits to avoid players from being blocked when taking a suit.
+
+-------------------- Major Update for v0.99.3 --------------------
+
+- Added CDM18 "Onata Highway" and his content.
+- Added a new Mini Boss the Augmented Annihilator.
+- Added Friendly Marine AI with the Chaingun.
+- Added 3 new test subjects in the test teleporter, be careful.
+- Added a skin for the Utility Gun.
+- Updated the Legendary Plasmatic Cannon's altfire to the one of lca-v1.5.9.
+- Updated the Legendary AK-47 to the Legendary Light Machine Gun of lca-v1.5.9.
+- Edited the Legendary Marine, Commando and Stealth Trooper with the new legendary weapons changes.
+- Edited the Player by removing the NOSKIN flag, he is now allowed to use custom sound skins.
+- Edited all Vehicles(including NecroSuit) which will now self destruct when exiting under 25% health(they now have 3 states between 75%, 50% and 25% health).
+- Edited the Inferno Demon who will now give more Bonus Crates when killed.
+- Edited the M79 Grenade Launcher by adding a global announcer for players getting that weapon from crates.
+- Edited CDM17: by removing most of the dynamic lights to reduce the lags.
+- Edited CDM14 & CDM16: by removing the annoying red fog under 3d floor sectors.
+- Nerfed all the weapons which were using the NOTIMEFREEZE flag when it was reserved for final bosses and legendary stuff.
+- Buffed the Assault Tank vehicle by giving it a heavy minigun and two rocket launchers.
+- Buffed the Luck Rune by increasing the chances of getting the Supply Box, Epic Crate and Slot Machine inside a Bonus Crate.
+- Buffed the loot that the player will get from killing a mini boss.
+- Fixed the firing angle of the Inferno Demon class.
+- Fixed the Bomb Elemental being albe to spawn Rictus inside the walls.
+- Fixed most of Legendary Monsters not being able to kill player's allies.
+- Fixed the BFG3500 with the MTHRUSPECIES flag making it go throught allies.
+- Fixed the Tech Vulcan alt fire which was allowing players to rocket jump with it.
+- Fixed CDM17: fixed the texture alignement near the tanks secret.
+- Fixed the cooldown of the Bonus Crate about Mega Sphere Ultra Sphere, Legendary Ultra Sphere and Full Refile Pack(you won't get them multiple times in a row).
+
+-------------------- Minor Update for v0.99.2a -------------------
+
+- Added a new weapon the BFG 3500, a variant of the BFG9000K focusing on bfg spray being very useful against group of monsters but weak agains bosses.
+- Updated CDM04, CDM06, CDM12 and CDM15 by giving them the new nazis monsters from v0.99.2.
+- Buffed the direct damages of the M79 Grenade Launcher.
+- Buffed the damages of the Inferno Demon, demon classe.
+- Buffed the Nazi Reviver by giving him more health and more speed.
+- Edited the Rune of Abomination by adding an ambient sound when a player activate it to announce what demon classe he picked.
+- Edited CDM17: replaced all the ceiling lamp with ones without the effect to reduce the lags.
+- Edited CDM17: made the map compatible with the Invasion Gate.
+- Edited CDM17: by adding a new secret which require the blue card.
+- Fixed the yellow seeking projectiles from Legedendary Behemoth and Sentient which could turn invisible and kill the players without warnings.
+- Fixed the Tech Vulcan and the M79 Grenade Launcher which will not push away the player or allow rocket jump thanks to NODAMAGETHRUST flag.
+- Fixed the Bonus Crate by adding a 3 seconds cooldown after getting certain items to avoid having it directly again, it applies to the UltraSphere, Mega Sphere and Full Refile Pack.
+- Fixed(not sure) the Back Pack from Bonus Crates making the Ammo Pack able to be used without limit.
+- Fixed the Nazi War Machine obiturary after killing a player.
+- Fixed the Cardihilator demon classe which allowed the player to fly after the end of the timer.
+- Fixed CDM06: the bonus crate secret was not accessible for players.
+- Fixed CDM07: by making the Max Soldiers secret limited to 3 instead of infinite.
+- Fixed CDM17: the texture at the full refile pack secret has been fixed.
+- Fixed CDM17: the skulltag bfg10 has been removed and replaced by the one of complex doom.
+- Fixed CDM17: the mechs in the box were unable to get out.
+- Fixed CDM17: the rune of abomination was not spawning.
+
+-------------------- Major Update for v0.99.2 --------------------
+
+- Added CDM17 "Hitler's Secret Bunker" and his content.
+- Added a new weapon the M79 Grenade Launcher.
+- Added a new demon class the Dark Baby Demolisher available in the Demon Rune.
+- Added a new item the Rune of Abomination(An advanced demonic rune transforming the player into very power abominations).
+- Added a new demon class the Cardihilator available in the Rune of Abomination.
+- Added a new demon class the Inferno Demon available in the Rune of Abomination.
+- Added a new monster the Salamander.
+- Buffed Custom BFG9000 Projectiles from AIs with a custom script dealing spray damage for ennemies near the radius of the explosion.
+- Edited every Hitscans Weapons allowing now player to shoot throught each other thanks to Zandronum 3.0.4
+- Edited the Tech Erasus which can now be hold before firing.
+- Edited Cyber Noble/Baron/Imp by giving them a cybernic sound when walking.
+- Removed the Access to C**** in the Waiting Room.
+- Nerfed the Bonus Crate by seriously reducing the chance of getting Slot Machine, Supply Box or Epic Crate inside.
+- Nerfed the D-BFG by removing the possibility to re-altfire directly without charing completly the weapon.
+- Lowered the chances for monsters to drop an Epic Crate.
+- Fixed the UAC Command Post which won't be able to spawn anymore Legendary Marines.
+- Fixed the 3D model of the BFG10K projectile not appearing for players.
+- Fixed the Turbo/Drain/Rage spheres which can't be activated anymore if the players has a rune of the same effect.
+- Fixed the Plasma Repeater and D-BFG skins.
+- Fixed the layer in CDM12 & CDMBOSS.
+
+-------------------- Minor Update for v0.99.1c -------------------
+
+- Worked on the compability for Zandronum 3.0.
+- Added a new monsters the Infestor, Fodder and Wraith.
+- Fixed the Legendary BFG Item which wasn't working at all.
+- Fixed the monster script health buff making some monsters invinsible.
+- Fixed some textures alignement on CDM06.
+
+-------------------- Minor Update for v0.99.1b -------------------
+
+- Added a new item the Armor Dispenser.
+- Added a new mech the Assault Tank.
+- Added a new monster the Zombie Assault Tank.
+- Removed the Drain Rune from the Bonus Crate, it can now only be obtained from  the Open Deck.
+- Buffed the Dark Cyber Lord, Lord Archon, Nazi Baron, Nazi Shock Trooper, Railgun Arachnotron and the Invasion Gate.
+- Buffed all mini bosses and legendary monsters with more health and damage when there many players.
+- Buffed the Final Boss fight by giving them a 30 seconds protection when coming back after a demon wave.
+- Nerfed Marine Beacon and Task Force Beacon which aren't able to spawn Legendary Marines anymore.
+- Raised the max amount of Bonus Crates from 25 to 50.
+- Edited the Legendary BFG & Devastator from the Epic Crate which can now be activated when the player wants it.
+- Fixed the Random Weapon bonus which would sometimes give no weapons to the player.
+- Fixed some textures bug in CDM15.
+
+-------------------- Minor Update for v0.99.1a -------------------
+
+- Buffed the Hell Champion and the Inferno Demon.
+- Edited some scripts to make them use less CPU from the server.
+- Fixed the Maephisto final boss which was bugged.
+
+-------------------- Major Update for v0.99.1 --------------------
+
+- Converted the Project from .wad format to .pk3 format(hoping this will causes some major crash issues on servers online).
+- Added CDM16 "Ancient Purgatory" and his content.
+- Added a new monster the Inferno Demon.
+- Nerfed the amount of spheres given by the slot machine.
+- Nerfed the D-BFG which is not able anymore to be affected by the infinite ammo powerup.
+- Nerfed the max health amount of the regeneration rune from 750 to 500.
+- Edited the EFG9000 by adding an animation when using altfire and also making the nuke rocket a lot faster.
+- Edited CDM15 by making the D-BFG secret harder.
+- Edited the Mine Drone which won't be able to move anymore but will drop more mine in the area where the player deployed it.
+- Edited the sound of the Supply Boxes which will now be playing everywhere in the map so everyone know when one has been activated.
+- Buffed the some final bosses including: Maephisto, LordArchon, DarkCyberLord.
+- Lowered the chances from getting a BFG or a Legendary Weapon from the Bonus Crates.
+- Fixed the amount of necessary rockets for the primary fire of the EFG9000.
+- Fixed the death fire of the ghouls in the waiting room.
+- Fixed CDM13: some textures were badly placed & finaly fixed the red card exit secret online!!!
+- Fixed CDM15: by removing the secret effect of the computers in the final area.
+
+-------------------- Minor Update for v0.99.0c --------------------
+
+- Added a new weapon the Double Grenade Launcher.
+- Added a new item the Slot Machine.
+- Buffed the Grinder Battle Mech with a new attack.
+- Buffed the health regeneration of all mechs.
+- Buffed the Regeneration Rune which regen faster and can now heal the player up to 750(even with suits/mechs/demons rune).
+- Buffed the Erasus.
+- Edited the EFG9000's Primary Fire which is more like a rocket machinegun.
+- Edited the Utility Gun which will now need the tier 2 to build the Enforcer Suit.
+- Edited Bonus Crate which has now 0.33% of chances to give an Epic Crate.
+
+-------------------- Minor Update for v0.99.0b --------------------
+
+- Added a new suit the Enforcer.
+- Added a new mech the Grinder Battle Mech.
+- Added a new monster the Nazi Assault Soldier.
+- Improved the effects of the Tank.
+- Improved the reloading scripts of the mechs and suits.
+- Edited CDM15 by adding a way for the tanks to join the second part of the map.
+- Fixed some major bugs coming with the player dying with the ice effect so I gave him the NOICEDEATH flag.
+- Fixed the sprites of the Zombie Specops with Homing Rocket Launcher.
+- Fixed CDM04: Wave 04 was broken.
+
+-------------------- Minor Update for v0.99.0a --------------------
+
+- Added more units in the Zombie SpecOps.
+- Edited CDM15 by nerfing most of the waves happening with many players.
+- Edited CDM15 by removing the fog in the ice area.
+- Buffed the Missile and Plasma Tank which are now able to use all their attacks at the same time.
+- Buffed the Max Soldier which is now able to use all his attacks at the same time.
+- Buffed the radius range of the EFG9000.
+- Buffed the amount of Legendary Marines coming from the Legendary Beacon from 3 to 5.
+- Nerfed the health amoung of the Belphegor.
+- Fixed CDM11: Wave 03 was broken.
+- Fixed the position of the seconds spawners in CDM15.
+- Fixed a texture bug in CDM15.
+
+-------------------- Major Update for v0.99.0 --------------------
+
+- Added CDM15 "Nazi & Demons Part-2" and his content.
+- Added a new weapon the Tech Erasus.
+- Added a new weapon the EFG 9000.
+- Added a new item the Legendary Beacon.
+- Added a new item the Legendary Supply Box.
+- Added a new monster the Railgun Arachnotron.
+- Buffed the Daemonium Overlord.
+- Nerfed the Tier 4 Utilit Gun now unable to build Devastator but EFG9000 instead.
+- Nerfed the amount of Bonus Crate given from the Support Tank to his master.
+- Edited the HUD of all mechs.
+- Edited the clearing rune option by setting it back to the old way because prosperity rune is bugged.
+- Fixed the Utility Gun making Bonus Crate & Reinforcement Card without limit.
+- Fixed some the log message saying that you get legendary armory instead of bfg 9500.
+- Fixed some Legendary Monster spots in CDM02.
+- Fixed the red card secret in CDM13(I HOPE!).
+
+-------------------- Minor Update for v0.98h --------------------
+
+- Buffed the amount of monsters coming from Invasion get if there are many players.
+- Nerfed the damages of the Tech Vulcan's altfire.
+- Lowered the Utility Gun's MegaSupportTank delay from 5 mins to 2 mins.
+- Fixed the player spot in CDM12.
+
+-------------------- Minor Update for v0.98g --------------------
+
+- Added the Tier 4 Utility Gun.
+- Added a new weapon the D-BFG.
+- Added Friendly Marine AI with Sniper Rifle.
+- Added a new monster the Rocket Imp.
+- Added a new monster the Apprentice.
+- Added muhammad skin directly inside.
+- Buffed the Nazi Enforcer.
+- Buffed the Health & Resistance of most of the final bosses.
+- Fixed the alignement of both Utility Gun & Open Deck Menu.
+- Fixed the SBARINFO with the Sniper Rifle.
+- Fixed CDM14 which was broken with many players.
+- Fixed the clearing rune option it will now give you the Prosperity Rune instead(which has no interesting effects).
+- Fixed some of the Legendary Monsters which weren't up to date with the current LCA.
+
+-------------------- Minor Update for v0.98f --------------------
+
+- Added a constant script to change the coop_damage_factor when players join/leave the game.
+- Added Friendly Marine AI with Demon Tech Rifle/Exp Minigun/Homing Rocket Launcher/Hexa Shotgun.
+- Buffed the damages and radius of the kamikaze.
+- Buffed epic crate which will now give 5 extra lifes instead of 2.
+- Nerfed the amount of Sand Spirits in CDM07 because they have been seriously buffed in LCA.
+- Nerfed the amount of legendary monsters at the end of CDM11.
+- Edited CDM07 by lowering the amount of sand spirits inside.
+- Fixed the bug at the end of the Sabaoth boss fight.
+- Fixed some textures bug in CDM010 and CDM11.
+- Fixed the Legendary Cyberdemon spot in CDM08.
+- Fixed a ceiling in CDM11 where some monsters could be stuck and block the map.
+- Fixed the pain sprites of the Nazi Commando.
+
+-------------------- Minor Update for v0.98e --------------------
+
+- Buffed the bossfight each boss will now leave and spawn minions when losing 25% of health.
+- Edited Max Soldier Suit's walking sound.
+- Edited the hotkey that is supposed to remove the player's rune, it will now allow the rune to be replaced.
+- Edited players to make them unable to get into mechs/suits/demon runes if they got the Drain Rune.
+- Buffed Timed Bomb which will now explode after a small delay when monsters come close.
+- Buffed the damage factor of monsters depending on player amount.
+- Buffed most of the maps when many players are playing.
+- Nerfed monster pain chance if there are more than 7 players.
+- Nerfed Bomb Elemental Demon Class.
+- Nerfed the Sniper Rifle but each shot will use 3 ammunition instead of 5.
+- Fixed Demon Rune Item which can't be used anymore if the player is in a suit.
+- Fixed CDM02 by making chalices secret not takable trought the impassible line.
+- Fixed CDM10 which had some textures bugs.
+- Fixed CDM14 by replacing Skulltag's minigun by Complex Doom's minigun instead.
+- Fixed CDM13 by making the secret switches for red key activable with both shooting/pressing it.
+
+-------------------- Minor Update for v0.98d --------------------
+
+- Added a new hotkey that can clear the player's rune.
+- Buffed the Epic Crate which gives now 3 lives instead of 1.
+- Raised the chances of the Invasion Gate to be activated.
+- Lowered the chances of theCommand Post and Supply Box to give a bfg weapon.
+- Fixed the Invasion Gate bonus giver that could desync playercount in room.
+- Fixed Invasion Gate bonus giver's image position.
+- Fixed a blocking texture in CDM11.
+- Fixed the Command Post and Supply Box by adding the Sniper Rifle inside.
+- Fixed the test teleporter which can't be broken anymore when the activator spectate or disconnect.
+
+-------------------- Minor Update for v0.98c --------------------
+
+- Added a new cvar cdm_playerboost that will tell under how many players they will have a booster(35% damage and 40% resistance).
+- Added a new cvar cdm_invasiongate that will turns on or off the Invasion Gate.
+- Added new content in the Bonus Crate.
+- Buffed the Corruption final boss.
+- Nerfed the UAC Command Post will give less crates to his summoner.
+- Edited The Devastator and Legendary BFG which are now temporal weapons.
+- Edited Tier 3 Utility Gun which can now build only one BFG9500 and BFG10000.
+- Edited CDM10 to make it less laggy.
+- Edited some maps by giving them a protection for the boss fight area(so players don't fight like cowards).
+- Lowered the chances of getting a bfg weapon into the Bonus Crate.
+- Lowered the delay that the card dispenser take to load.
+- Fixed the Legendary Marine with the NOTIMEFREEZE flag.
+
+-------------------- Minor Update for v0.98b --------------------
+
+- Added new secrets in all maps.
+- Buffed all mini bosses with more health and less pain chance.
+- Buffed Cyberdemon/Minigun Cyberdemon/Spider Mastermind/Arachnophyte's damages.
+- Buffed Suicide Bomber's explosion damages and radius.
+- Buffed CDM14 by raising the amount of monsters inside.
+- Buffed all final bosses with more health.
+- Nerfed Health Regeneration for mechs and suits.
+- Nerfed the Plasma Repeater/Max Soldier/Jet Trooper's damages.
+- Changed cdm_manyplayers default value from 16 to 11.
+- Lowered the chances of getting an Epic Crate or a Bonus Crate.
+- Lowered the amoung of reinforcement that players get each wave.
+- Lowered the chances of getting a BFG in the Bonus Crate.
+- Fixed the SBARINFO for the Belphegor Demon Class.
+- Fixed the mines dropped by the drone that will now explode after 1 minute.
+- Fixed Daemonium Overlord by removing the +NODROPOFF flag.
+- Fixed CDM14 by removing some useless decoration.
+- Fixed CDM11 by removing the gravity effect in the Legendary Ultra Sphere secret room.
+
+-------------------- Minor Update for v0.98a --------------------
+
+- Added a new playable demon the Belphegor.
+- Edited the player who can't take mech/suit/demon rune anymore if invinsible(no more glitches).
+- Edited CDM02: changed the spot of the red card.
+- Edited CDMBOSS: raised the delay before crates can respawn and the elevator will take more time to leave.
+- Edited CDM14: raised the amount of demons
+- Edited CDM14 and CDMBOSS: removed the Devastator, that weapon shouldn't be available as a pickup.
+- Edited CDM10: made the Legendary Sphere secret more obivious.
+- Edited CDM05: changed the spots of the red card and made the mech Hangar bigger.
+- Edited CDM05: replaced the Legendary Sentient Boss by a normal Legendary Sentient.
+- Fixed CDM10: Prototype's was stuck in his secret room.
+- Fixed CDM05: Acces to Necrosuit was very difficult.
+- Fixed CDMBOSS: Skybox at the Waiting Room wasn't the right one.
+- Fixed CDM13: the card secrets are now available online.
+- Fixed the Necrosuit's miniguns which was the source of many lags.
+
+-------------------- Major Update for v0.98 --------------------
+
+- Added CDMBOSS "The Tower of Sin" and his content.
+- Buffed the loot of the Epic Crate.
+- Buffed the Daemonium Overlord.
+- Buffed the Aracnorb Queen.
+- Buffed CDM07 By adding more monsters in Wave 08.
+- Buffed CDM14 By adding more monsters in Wave 01, 02 & 03.
+- Nerfed the Supply Box by lowering the chances of spawning a BFG weapon.
+- Nerfed the Command Post by lowering the chances of spawning a BFG weapon.
+- Nerfed the Bonus Crate by lowering the chances of getting a BFG weapon.
+- Edited the Bonus Crate limit from 10 to 25 in inventory.
+- Edited the Epic Crate limit from 1 to 3 in inventory.
+- Edited the Toxic Master by lowering the chances of using Rain Poison Comets to avoid lags.
+- Edited the effects of the Kamikaze to avoid lags.
+- Edited the BFG Cacodemon so he can't kill allies anymore.
+- Edited the Epic Crate to let other players know when someone found one.
+- Edited the Pulse Shotgun by TheSkyBug.
+- Fixed CDM03: Necrosuit's secret room was blocked.
+- Fixed texture bug on CDM14.
+- Fixed the Friendly Marker with the NOTIMEFREEZE flag.
+- Fixed the Cydestroyer Demon Class so it can't kill allies with railgun anymore.
+- Fixed Epic Crate giver from boss monsters.
+- Fixed NecroSuit weapon's information message.
+- Fixed Precision Sentry Gun message in Utility Gun.
+- Fixed Jet Trooper, players can't no longer fly when exiting it.
+
+-------------------- Minor Update for v0.97b --------------------
+
+- Buffed CDM04: By adding more monsters in Wave 09.
+- Buffed Boss Hitler.
+- Buffed the loot of the Epic Crate.
+- Lowered the drop chance of the Epic Crate.
+- Edited support bots that will now be teleported near the player who summoned them when idling.
+- Removed the Devastator from Supply Box, Command Post and Bonus Crate(only in Epic Crate).
+- Removed the Legendary BFG from Bonus Crate(only in Epic Crate).
+- Fixed CDM03: Wave 04 was broken.
+- Fixed CDM05: there were no limit of NecroSuit.
+- Fixed the Mine Drone.
+
+-------------------- Minor Update for v0.97a --------------------
+
+- Buffed CDM14: By adding more monsters in Wave 07.
+- Buffed/Fixed the Hellfire Cyberdemon.
+- Edited the spots of the blue car on CDM03.
+- Fixed NecroSuit'weapon sounds.
+- Fixed the final boss spot on CDM01.
+- Fixed texture bug on CDM03.
+- Fixed texture bug on CDM14.
+- Fixed bugged door on CDM05.
+
+-------------------- Major Update for v0.97 --------------------
+
+- Added CDM13 "Toxic Entrepot" and his content.
+- Added CDM14 "Between The 4 Gates" and his content.
+- Added new contents in the Bonus Crate.
+- Added a new suit the Necro Suit.
+- Added the Epic Crate(improved Bonus Crate that gives only good stuff).
+- Buffed the Boss Health multiplier.
+- Buffed Mine Drone's amount of mines.
+- Buffed the Legendary Marine by giving him other legendary weapons.
+- Nerfed the Hard Mode that won't active additional monsters in maps.
+- Nerfed the Supply Box.
+- Lowered the chance of the Trapped Crate to spawn inside the room.
+- Edited friendly marines that will now be teleported near the player who summoned them when idling.
+- Edited Pulse Shotgun & Plasma Repeater by giving them mine & grenade toss.
+- Edited the reloading messages of the mechs and suits.
+- Edited the PoisonSoul by making it spawning less poison to avoid lags.
+- Edited the Secret of the Prototypy in CDM10.
+- Fixed the information messages alignment.
+- Fixed Poed's health.
+- Fixed some monsters that weren't giving crates after being killed.
+- Fixed the Mine Drone that can't kill itself anymore.
+- Fixed a glitch and some textures in CDM07.
+
+-------------------- Minor Update for v0.96b --------------------
+
+- Fixed CDM07: Wave 07 was broken.
+
+-------------------- Minor Update for v0.96a --------------------
+
+- Balanced the Supply Box.
+- Raised the amount of monsters coming on all maps with many players.
+- Edited more effects to be compatible with vanilla mode.
+- Edited the cvar cdm_manyplayers that can now be set at 0 for more challenge in single player.
+- Fixed Nazi Hunter's Obituary.
+- Fixed TechVulcan's altfire that can now pass thru allies mech.
+- Fixed the Legendary Plasmatic Cannon that was broken from Bonus Crate.
+- Fixed CDM04: Wave 07 was broken.
+- Fixed CDM07: Wave 04 was broken.
+
+-------------------- Major Update for v0.96 --------------------
+
+- Updated CDM04 with new contents.
+- Added new contents in the Bonus Crate.
+- Added new contents in the Utility Gun.
+- Added Runes icon in the HUD.
+- Added a description for the Luck Rune.
+- Added a new powerup the Protection Sphere(75% less damages and no radius damages for 30 secs).
+- Balanced Legendary Monsters health.
+- Buffed the JetTrooper who can fly for a longer delay.
+- Buffed the Luck Rune.
+- Edited the UAC Commnad Post's drops.
+- Edited more effects to be compatible with vanilla mode.
+- Fixed Legendary Annihilator's death.
+- Fixed some Zombie SpecOps sprites.
+- Fixed the sprites that the Legendary Marine is supposed to use.
+- Fixed the skin that the Custom Legendary Rifle was supposed to use.
+
+-------------------- Minor Update for v0.95g --------------------
+
+- Buffed the drop rate of the UAC Command Post.
+- Nerfed the monsters of the Waiting Room
+- Fixed CDM08: Wave 04 was broken.
+- Fixed CDM11: Wave 07 was broken.
+
+-------------------- Minor Update for v0.95f --------------------
+
+- Buffed the ScoutBot.
+- Fixed the cost message of the BattleDroneD1.
+- Fixed Support Units sounds when they find a target.
+- Fixed CDM02: Wave 05 was broken.
+
+-------------------- Minor Update for v0.95e --------------------
+
+- Edited the Support Units by giving the the Idle state.
+- Fixed the Utility Gun Tiers details that wasn't showed.
+- Fixed the Luck Rune that is now removed after death.
+- Fixed all the song scripts.
+- Fixed CDM10: By monster unable to in the Secrets.
+- Fixed more effects to be compatible with Time Freeze.
+
+-------------------- Minor Update for v0.95d --------------------
+
+- Added the Tier 3 Utility Gun.
+- Buffed the Luck Rune that will now raise the chance of getting a bonus crate.
+- Nerfed Waiting Room Monster health multiplier.
+- Lowered the chance of the Trapped Crate to be drop in the Waiting Room.
+- Edited Reinforcement Card that can now move by it's own if stuck.
+- Balanced the Legendary Time Freeze Sphere.
+- Fixed the Legendary Time Freeze message.
+- Fixed Legendary Monsters and Boss that weren't supposed to be affected by time freeze.
+- Fixed CDM11: By a texture in the 3rd Wave that was supposed to be solid.
+- Fixed CDM01: By keeping the door opens at the last wave.
+- Fixed Utility Gun that can't build sentry/mobs in the Waiting Room anymore.
+- Fixed Cyber Baron's sprites.
+
+-------------------- Major Update for v0.95c --------------------
+
+- Added a new cvar cdm_manyplayers that will tell after how many players more monster will spawn.
+- Added new contents in the Bonus Crate.
+- Added more units in the Zombie SpecOps.
+- Added an Armory in the Waiting Room.
+- Added a custom Health Bar for each boss.
+- Added the Nazi Commander.
+- Disabled Legendary Songs in all maps.
+- Raised the max ammo of the Open Deck to 9.
+- Replaced Prosperity Rune by Drain Rune(more effective and working with mechs).
+- Buffed the ISIS Terrorist with more health.
+- Buffed the Zombie SpecOps's health and speed.
+- Buffed Boss Hitler's Health.
+- Edited Bonus Crate chance that will raise if more players are in the game.
+- Edited all waiting room monsters so they can all drop the trapped crate.
+- Edited more effects to be compatible with vanilla mode.
+- Edited the Reinforcement Dispenser to make it drop card faster if there are more players.
+- Edited Waiting Room monsters who can now drop a Reinforcement Card.
+- Edited CDM05: by disabling legendary songs to avoid confusion in the final boss fight.
+- Edited CDM06: by removing the Legendary Sentient in Wave 08.
+- Edited CDM09: by replacing Hexa-Shotgun(this weapon is crate only) with the BFG10K.
+- Edited CDM11: by replacing BFG Zombie by Specops Commanders and making the map less laggy and adding a text about vanilla mode.
+- Fixed Daemonium Overlord's sprites offset.
+- Fixed Legendary Marin's brightness.
+- Fixed Jet Trooper's brightness.
+- Fixed Test Bagel's flags with -COUNTKILL(no need to kill him anymore to finish the wave.
+- Fixed TechVulcan's altfire projectile colors.
+- Fixed Reinforcement Limit Script that was badely limited with 20+ players.
+- Fixed Poison Trap and Hexa-Shotgun's logs.
+- Fixed some Zombie SpecOps sprites.
+- Fixed Trapped Crate's sounds.
+- Fixed Legendary Monster musics lag.
+- Fixed textures position in CDM11.
+- Fixed Legendary BFG's HUD.
+
+-------------------- Minor Update for v0.95b --------------------
+
+- Removed the Assault Shotgun from Legendary Cyberdemon.
+- Fixed the Sniper Zombie's invasion spot.
+
+-------------------- Minor Update for v0.95a --------------------
+
+- Fixed Legendary Cyberdemon's attacks.
+- Fixed the script that will now restart the map faster if players fail it.
+- Fixed the Dispenser Card script what was deactivated on a Mini Boss fight.
+- Fixed Cerebral Commander's bright.
+- Fixed CDM11: The amount of prototype at the end is now limited to 6.
+- Fixed CDM11: Tanks aren't stuck anymore in the place where they are placed.
+- Fixed CDM11: Changed the floor texture in the waiting room's horizon.
+- Fixed CDM11: Changed the floor texture in the waiting room horizon.
+- Fixed CDM11: Changed the amoung of monster coming at the end to avoid lags.
+
+-------------------- Major Update for v0.95 --------------------
+
+- Added CDM11 "Dark Side of the Moon" and his content.
+- Added a custom song for the Aracnorb Queen.
+- Added a new monster for the waiting room called the terrorist.
+- Removed the cameras in the waiting room to avoid more lags.
+- Changed the sprites of the Repeater Zombie.
+- Buffed the Corruption with the +DONTRIP flag.
+- Buffed the Daemonium Overlord with more health and resistance.
+- Nerfed CDM09: Wave 06 by remove the Legendary Sentient.
+- Nerfed seriously the Azazel(I mean that I worked seriously on him, he is no more stupidly op).
+- Renamed CDM07 as "Canyon Adventures" for now I'm planning on making another part.
+- Edited the Zombie Specops by adding new troppers and changing some skins and weapons.
+- Edited the Card Dispenser, the delay will be in hud and cards will come faster.
+- Edited CDM10 by replacing the BFG9K by a Legendary Ultra Sphere.
+- Edited CDM10 by replacing the vanilla recolored torches by the smoothed ones of complex doom.
+- Edited CDM12 by Arkore.
+- Fixed the Reinforcement script.
+- Fixed CDM10 by making Prototype reachable only with red card.
+- Fixed the Bagel that will now give a bonus crate when killed.
+- Fixed SpiderMastermind's walking speed.
+
+-------------------- Major Update for v0.9 --------------------
+
+- Added CDM09 "Country Gardens" and his content.
+- Added the Hard mode with the cvar "cdm_hard" to enable or disabe it.
+- Added a preview of CDMWTF in the waiting room.
+- Updated the corrupted monsters.
+- Buffed the Suicide Bomber by raising his damages.
+- Buffed the Max Soldier suit.
+- Edited CDM10 by removing all the remaining runes inside.
+- Edited CDM10 by making players unable to escape the boss fight area.
+- Edited CDM05: Wave 12 by replacing the Legendary Cyberdemon by some legendary monsters.
+- Edited the Legendary Cyberdemon to make him as a mini boss.
+- Edited the Legendary Sentient to make him as a mini boss.
+- Edited waiting room's monsters that will now give a bonus crate at 100% when killed.
+- Moved the Azazel to CDM09 and added a new boss for CDM07.
+- Fixed textures bug in CDM10.
+- Fixed Suits that could be damaged by allies.
+- Fixed the Azazel with the +DROPOFF flag.
+- Fixed the Zombies Specops by adding the +NODROPOFF flag.
+- Fixed the Legendary Rifle that can't kill allies anymore.
+- Fixed the HUD with the Legendary Ammo.
+
+-------------------- Minor Update for v0.8b --------------------
+
+- Added a cvar "cdm_bonuscrate" that will enable or not bonus crates.
+- Added Demon Tech Spider.
+- Edited the Cerbral Cardinal so he can no longer go thru blocking monsters line.
+- Edited Corruption's attack to make them less laggy.
+- Removed the custom sprites of the Legendary Hell Knight.
+- Removed the Strenght Rune on CDM10
+- Fixed the player class that wasn't able to use his fists anymore.
+- Fixed Freezer Rifle's HUD.
+- Fixed the Legendary Sentient that was always invincible.
+- Fixed Spider Masterind's attack.
+
+-------------------- Minor Update for v0.8a --------------------
+
+- Buffed the Cyber Demolisher.
+- Fixed CDM10 Wave08 where a Barbatos wasn't spawning online breaking the map.
+- Fixed the prototype secret that can now only be taken with red skull.
+
+-------------------- Major Update for v0.8 --------------------
+
+- Added CDM10 "Castle Of Corruption" and his content.
+- Added CDM07 "Canyon Adventures Part-1" and his content.
+- Added the Freezer Rifle in the bonus crate.
+- Changed "Hell"'s map number that is now CDM12.
+- Buffed CDM01: Wave 05 by adding a Spider Mastermind.
+- Buffed CDM03: Wave 05 by adding 2 Spiders Mastermind.
+- Buffed CDM08: Wave 06 by adding a Spider Mastermind.
+- Buffed CDM08: Wave 06 by adding 2 Spiders Mastermind.
+- Fixed the test teleporter that wasn't spawning the Legendary HellKnight anymore.
+- Fixed Flesh Wizard's minions spawner bug.
+- Fixed the bonus crate's Legendary BFG loot.
+
+-------------------- Minor Update for v0.7c --------------------
+
+- Buffed Pulse Shotgun.
+- Fixed CDM10 that was broken in wave 07.
+- Fixed CDM06 that wasn't teleporting the blue card.
+- Fixed Tech Vulcan's decal.
+- Fixed Flesh Wizard spawners.
+
+-------------------- Minor Update for v0.7b --------------------
+
+- Added a new item the Open Deck.
+- Added the Tier 2 Utility Gun.
+- Edited all the bosses by adding a resistance to the Devastator.
+- Edited CDM06 by making the Prototype harder to get.
+- Edited CDM10 by making the Prototype harder to get.
+- Edited CDM10 by spawning other tanks in later waves.
+- Edited CDM01 by adding a jumper for the monster in the arena
+- Edited CDM05 by adding a jumper for the monsters in the final area.
+- Edited Boss Arcradimus that will gives more lives to players.
+- Fixed Legendary Cyberdemon & Sentient.
+- Fixed CDM01 by making the big jumper at the end not working for monsters so they can't be stuck.
+
+-------------------- Major Update for v0.7a --------------------
+
+- Added Imp Flesh Wizard.
+- Added Fiend Flesh Wizard.
+- Added a new item the poison trap.
+- Updated CDM10 by arkore.
+- Edited all the BFG spots now a BFG weapon is more harder to get.
+- Buffed armored nazis with a radius damage resistance.
+- Buffed Aracnorb Queen.
+- Buffed Legendary Sentient to fits more as a mini boss.
+- Buffed Legendary Cyberdemon to fits more as a mini boss.
+- Buffed CDM03: Wave 07 by adding Devastator Zombies.
+- Buffed CDM04: Wave 05 & 06 by adding Devastator Zombies.
+- Buffed CDM08: Wave 08 by adding an army of nobles.
+- Nerfed CDM03: Wave 07 by removing the Legendary Cybermon.
+- Nerfed the Prototype by decrasing his regeneration.
+- Raised the health of Zombie Specops.
+- Lowered the chances of the bonus crate to gives a BFG weapon.
+- Fixed CDM01: items were too close to the flying boxes.
+- Fixed CDM05: texture bug.
+- Fixed CDM06: texture bug.
+- Fixed CDM08: monsters could be stuck in the hole and player could be stuck in a secret room.
+- Fixed Lord Acradimus's portal.
+- Fixed Flesh Wizard minion spawners.
+- Fixed Aracnorb Queen's Obiturary text.
+- Fixed Shotgun SentryGun's quadshot sprites.
+- Fixed Sand Spirit that was giving items instead of crate when dying.
+
+-------------------- Major Update for v0.7 --------------------
+
+- Added CDM10 "Hell" and his content.
+- Edited CDM08: fixed item balance in the whole map.
+- Edited CDM08: added bfg10k and a plasma repeater.
+- Edited CDM08: removed all the useless stuff in the scripts.
+- Edited CDM08: changed the spot of quad shotgun and plasmagun.
+- Edited CDM08: Wave 09 by making players able to get out.
+- Edited CDM08: replaced the hexa shotgun by the hrl because it's only suppose to be a secret weapon.
+- Edited the script that can now let players with lives exit the waiting room.
+- Buffed CDM06: Wave 07 by adding BFG zombies.
+- Buffed CDM08: Wave 06 by adding more zombies.
+- Buffed CDM08: Wave 05 by adding more zombies.
+- Nerfed CDM08: Wave 10 by removing the legendary sentient.
+- Fixed CDM08: life sphere secret.
+- Fixed CDM06: the 2 missile tanks that were supposed to spawn at wave 08 and 09.
+- Fixed Legendary Sentient's death.
+
+-------------------- Major Update for v0.65 --------------------
+
+- Added CDM08 "Underground Laboratory" and his content.
+- Added CDM07 final boss Azazel.
+- Buffed CDM03: Wave 03 by adding more SpecOps zombies.
+- Buffed CDM03: Wave 07 by adding more SpecOps zombies and more tanks.
+- Buffed CDM03: Wave 08 by adding more SpecOps zombies and more BFG zombies.
+- Buffed Legendary Cyberdemon's resistance.
+- Buffed Legendary Sentient's resistance.
+- Edited Inventory special items that can't be used in the waiting room.
+- Edited Paladin's Death state.
+- Fixed Sabaoth's obituary text.
+- Fixed Waiting Room: reduced monsters height so they can travel everywhere.
+- Fixed Waiting Room: spawned monster delay is now reset when player manage to kill him.
+- Fixed Tech Rifle's alt fire decal.
+- Fixed Prototype that can now resist to the DTBFG.
+- Fixed AI marine shooting BFG ball with his rocket launcher.
+- Fixed Jet Trooper Death animation.
+
+-------------------- Minor Update for v0.6a --------------------
+
+- Buffed CDM06: Wave 05 by adding one more Legendary Revenant.
+- Buffed CDM06: Wave 06 by adding more Nazis.
+- Buffed CDM06: Wave 07 by adding one more Spec Ops Zombies.
+- Edited Waiting Room: Removed BOSS flag of all monsters to avoid confusion.
+- Fixed CDM05: bugged Wave 05.
+- Fixed CDM06: texture bug.
+- Fixed CDM06: cameras(forgot to add them in v0.6).
+
+-------------------- Major Update for v0.6 --------------------
+
+- Added CDM06 "Dark City" and his content.
+- Added AI marine with rocket launcher.
+- Added AI marine with railgun.
+- Added a new monster the nazi rifle man.
+- Added a new monster the nazi flame soldier.
+- Added a new monster the nazi shock trooper.
+- Added a new monster for the waiting room called the sad face.
+- Added a new item the medical backpack.
+- Added new marine skins for the Plasma Repeater and Homing Rocket Launcher.
+- Edited all marines that can now start patroling in the map when they have no targets.
+- Edited the marine beacon that can now spawn any normal marines with the same chances.
+- Edited all mechs and stuis that are now able to pick items.
+- Edited Lord Archon's flames that can now move randomly to be harder to avoid.
+- Edited the price of some items buildable from the utility gun.
+- Edited a script that will now totally restart the map if players are defeated, to avoid bugs.
+- Edited that Legendary Cyberdemon that is now a regular monster instead of a final boss.
+- Edited Max Soldier's weapon sound(the old one was boring for people).
+- Edited the Bonus Crate limit from 6 to 10.
+- Edited CDM04: Secret mechs can no more be stolen when unlocked.
+- Edited CDM05: Secret mech can no more be stolen when unlocked.
+- Edited the Prototype mech that can now run over little monsters.
+- Replaced the Legendary Cyberdemon final boss by the Legendary Annihilator.
+- Buffed CDM03: Wave 07 by adding a Legendary Cyberdemon at the end.
+- Buffed CDM05: Wave 12 by adding a Legendary Cyberdemon.
+- Nerfed Terminator by removing PIERCEARMOR flag from his best attacks.
+- Fixed some textures in the waiting room.
+- Fixed the card dispenser text that was not leaving when boss fight started.
+- Fixed the text message of the teleporter that had some mistakes from me(sorry).
+- Fixed the battle lord that doesnt have the -COUNTKILL flag so he could block the map for a moment.
+- Fixed Max Soldier weapon projectiles that will no go thru players and allies.

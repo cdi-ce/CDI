@@ -1,0 +1,387 @@
+Actor BossArcradimus : Arcradimus
+{
+Health 16000
+Monster
+var int user_script;
+DamageFactor "Hell", 0.0
+DamageFactor "Legendary", 0.1
+DamageFactor "BFGSplash", 0.15
+DamageFactor "PDTBFG", 0.15
+DamageFactor "PDTBFGTracer", 0.15
+DamageFactor "PlayerDevBall", 0.2
+DamageFactor "PlayerDevTracer", 0.2
+DamageFactor "MechStep", 0.0
+DamageFactor "FinalBossSector", 0.0
+DamageFactor "Pierce", 0.25
+DamageFactor "MarinePierce", 0.25
+DamageFactor "Kaboom", 0.2
+DamageFactor "MarineKaboom", 0.2
+DamageFactor "Ice", 0.5
+DamageFactor 0.3
+RadiusDamageFactor 0.5
++NOTIMEFREEZE
++DONTRIP
++NOFEAR
+var int user_part1;
+var int user_part2;
+var int user_part3;
+Tag "\c[t1]Arcradimus\c-"
+States
+{
+   Spawn: 
+       TNT1 A 0
+       TNT1 A 0 A_JumpIf(tid == 99,2)
+       TNT1 A 0 Thing_ChangeTID(0,99)
+       TNT1 A 0 A_JumpIf(user_script == 1,3)
+       TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,98,0,0)
+       TNT1 A 0 A_SetUserVar("user_script",1)
+       TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+       ARCR A 14 A_Look 
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR Z 14 A_Look 
+       Loop 
+   See:
+       TNT1 A 0 A_JumpIf(user_script == 1,3)
+       TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,98,0,0)
+       TNT1 A 0 A_SetUserVar("user_script",1)
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+       ARCR A 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR A 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR B 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR B 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	   ARCR C 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR C 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR D 3 A_Chase
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   ARCR D 3 A_Chase 
+	   TNT1 A 0 A_SpawnItem("ArcradimusFlameSpawner",0,0,0,0)
+	   TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	   TNT1 A 0 A_Jump(100,"Rush")
+	   TNT1 A 0 A_Jump(35,"Teleport")
+       Loop
+   Missile: 
+       TNT1 A 0 A_SetShootable
+       TNT1 A 0 A_UnsetInvulnerable
+       TNT1 A 0 A_SetTranslucent(1)
+       TNT1 A 0 A_JumpIf(user_HellPortal == 1,2)
+       TNT1 A 0 A_JumpIfHealthLower(7500,"HellPortal")
+	   TNT1 A 0 A_JumpIf(user_HellPortal2 == 1,2)
+	   TNT1 A 0 A_JumpIfHealthLower(3750,"HellPortal2")
+	   TNT1 A 0 A_Jump(168,"ArcradComets")
+	   TNT1 A 0 A_Jump(50,"BFG")
+	   TNT1 A 0 A_Jump(162,"SuperFallingMeteors","FireBombs","CometCombo","FloorSweep","Help","Help")
+	   Goto Normal
+   Help:
+       ARCR EEEEEEEEEEEEEEEE 3 A_SpawnItemEx("ArcradimusFlameSpawner",0,0,0,0)
+       ARCR EF 8 A_FaceTarget 
+       TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+       TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+       TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("MonolithOfSinSummon",0,0,92,random(2,8),0,0,0,32)	
+       ARCR G 6 A_FaceTarget
+       ARCR ST 8 A_FaceTarget 
+       TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+       TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+       TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("MonolithOfSinSummon",0,0,92,random(2,8),0,0,0,32)
+       ARCR U 6 A_FaceTarget
+	   TNT1 A 0 A_Jump(110,"Help")
+       Goto See
+  BFG:
+       TNT1 A 0 A_FaceTarget
+	   TNT1 A 0 A_SetInvulnerable
+       TNT1 A 0 A_PlaySound("Arcradimus/BFGCharge") // Global
+	   ARCR H 50 A_FaceTarget
+       TNT1 AA 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(96,-96), Random(96,-96), Random(48,96), 0, 0, 0, Random(0,359))
+	   ARCR H 35 A_SpawnItemEx("ArcradimusBallCharging1", 32, 0, 92)
+       TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(64,-64), Random(64,-64), Random(48,96), 0, 0, 0, Random(0,359))
+	   ARCR H 35 A_SpawnItemEx("ArcradimusBallCharging2", 40, 0, 92)
+       TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+	   ARCR H 15 A_SpawnItemEx("ArcradimusBallCharging3", 48, 0, 92)
+       ARCR HH 10 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+	   ARCR H 35 A_SpawnItemEx("ArcradimusBallCharging4", 56, 0, 92)
+       TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(192,-192), Random(192,-192), Random(48,96), 0, 0, 0, Random(0,359))
+	   ARCR H 5 A_SpawnItemEx("ArcradimusBallCharging5", 64, 0, 92)
+       TNT1 AA 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(144,-144), Random(144,-144), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR HHH 10 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+	   ARCR H 10 A_SpawnItemEx("ArcradimusBallCharging5", 32, 0, 92)
+       ARCR H 8 A_SpawnItemEx("ArcradimusThunderspawner", Random(192,-192), Random(192,-192), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 8 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 8 A_SpawnItemEx("ArcradimusThunderspawner", Random(64,-64), Random(64,-64), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR HI 4 A_FaceTarget 
+	   TNT1 A 0 A_CustomMissile("ArcradimusBall",92,0,0,0)
+	   ARCR J 20 A_FaceTarget
+	   TNT1 A 0 A_UnsetInvulnerable
+	   Goto See
+	HellPortal:
+       TNT1 A 0 A_SetUserVar("user_HellPortal",1)
+	   TNT1 A 0 A_FaceTarget
+	   TNT1 A 0 A_SetInvulnerable
+       TNT1 A 0 A_PlaySound("Thunder/Hit", CHAN_VOICE, 1.0, False, ATTN_NONE) // Global
+       //TNT1 A 0 A_PlaySound("Thunder/Yell", CHAN_AUTO, 1.0, False, ATTN_NONE) // Global
+	   TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(64,-64), Random(64,-64), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 152 A_SpawnItemEx("PortalParticleSpawner", 64, 0, 120)
+	   ARCR HH 15 A_SpawnItemEx("ArcradimusThunderspawner", Random(96,-96), Random(96,-96), Random(48,96), 0, 0, 0, Random(0,359))
+       // "Thunder/Yell" Sound Intro Length is 385 tics.  We're at 182 tics so far.
+	   ARCR H 45 A_SpawnItemEx("GatewaytoHellSpawner", 128, 0, 120)
+	   TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 52 A_SpawnItemEx("PortalParticleSpawner", 64, 0, 120)
+	   ARCR HHHH 25 A_SpawnItemEx("ArcradimusThunderspawner", Random(144,-144), Random(144,-144), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 47 A_SpawnItemEx("PortalParticleSpawner2", 64, 0, 120)
+	   ARCR HHHHH 20 A_SpawnItemEx("ArcradimusThunderspawner", Random(192,-192), Random(192,-192), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 30 A_SpawnItemEx("PortalParticleSpawner3", 64, 0, 120)
+	   ARCR HHHH 15 A_SpawnItemEx("ArcradimusThunderspawner", Random(192,192), Random(192,-192), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 47 A_SpawnItemEx("PortalParticleSpawner2", 64, 0, 120)
+	   ARCR HHHH 25 A_SpawnItemEx("ArcradimusThunderspawner", Random(144,-144), Random(144,-144), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 52 A_SpawnItemEx("PortalParticleSpawner", 64, 0, 120)
+	   TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+	   TNT1 A 0 A_UnsetInvulnerable
+	   TNT1 A 0 A_Jump(5,"BFG")
+	   Goto See
+   HellPortal2:
+       TNT1 A 0 A_SetUserVar("user_HellPortal2",1)
+	   TNT1 A 0 A_FaceTarget
+	   TNT1 A 0 A_SetInvulnerable
+       TNT1 A 0 A_PlaySound("Thunder/Hit", CHAN_VOICE, 1.0, False, ATTN_NONE) // Global
+       //TNT1 A 0 A_PlaySound("Thunder/Yell", CHAN_AUTO, 1.0, False, ATTN_NONE) // Global
+	   TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(64,-64), Random(64,-64), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 152 A_SpawnItemEx("PortalParticleSpawner", 64, 0, 120)
+	   ARCR HH 15 A_SpawnItemEx("ArcradimusThunderspawner", Random(96,-96), Random(96,-96), Random(48,96), 0, 0, 0, Random(0,359))
+       // "Thunder/Yell" Sound Intro Length is 385 tics.  We're at 182 tics so far.
+	   ARCR H 45 A_SpawnItemEx("GatewaytoHellSpawner2", 128, 0, 120)
+	   TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 52 A_SpawnItemEx("PortalParticleSpawner", 64, 0, 120)
+	   ARCR HHHH 25 A_SpawnItemEx("ArcradimusThunderspawner", Random(144,-144), Random(144,-144), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 47 A_SpawnItemEx("PortalParticleSpawner2", 64, 0, 120)
+	   ARCR HHHHH 20 A_SpawnItemEx("ArcradimusThunderspawner", Random(192,-192), Random(192,-192), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 30 A_SpawnItemEx("PortalParticleSpawner3", 64, 0, 120)
+	   ARCR HHHH 15 A_SpawnItemEx("ArcradimusThunderspawner", Random(192,192), Random(192,-192), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 47 A_SpawnItemEx("PortalParticleSpawner2", 64, 0, 120)
+	   ARCR HHHH 25 A_SpawnItemEx("ArcradimusThunderspawner", Random(144,-144), Random(144,-144), Random(48,96), 0, 0, 0, Random(0,359))
+       ARCR H 52 A_SpawnItemEx("PortalParticleSpawner", 64, 0, 120)
+	   TNT1 A 0 A_SpawnItemEx("ArcradimusThunderspawner", Random(128,-128), Random(128,-128), Random(48,96), 0, 0, 0, Random(0,359))
+	   TNT1 A 0 A_UnsetInvulnerable
+	   TNT1 A 0 A_Jump(5,"BFG")
+	   Goto See
+}
+}
+
+/*Actor BossGatewaytoHellSpawner : GatewaytoHell Replaces GatewaytoHell
+{
+  States {
+  Spawn:
+  // Note, the yell sound is already playing for 182 tics so far.  203 remain.
+  TNT1 A 0
+  TNT1 A 0 A_PlaySound("Gateway/Hell", CHAN_AUTO, 1.0, True)
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell2", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell3", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell4", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell5", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell6", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell7", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell8", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLM 1 Bright
+  PRT1 NOP 2 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 ABCDEFGHIJKLMN 1 Bright
+  PRT1 OP 3 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 ABCD 1 Bright
+  PRT1 EF 3 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 GHIJKLMN 1 Bright
+  PRT1 KLMNOP 4 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 OP 1 Bright
+  PRT1 ABCDE 4 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 FGHIJKLMOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("ArcradimusSpawners", 0, 0, -182) // Set Z to negative same as parent actor spawn height.
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell5", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell6", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell7", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("GatewaytoHell8", Random(1,-1), Random(1,-1), Random(1,-1), 0, 0, 0, Random(0,359))
+  PRT1 ABCDEFGHIJKLM 1 Bright
+  PRT1 NOP 2 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 ABCDEFGHIJKLMN 1 Bright
+  PRT1 OP 3 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 ABCD 1 Bright
+  PRT1 EF 3 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 GHIJKLMN 1 Bright
+  PRT1 KLMNOP 4 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 OP 1 Bright
+  PRT1 ABCDE 4 Bright A_SpawnItemEx("GatewaytoHellSpawnTear")
+  PRT1 FGHIJKLMOP 1 Bright
+  TNT1 A 0 A_SpawnItemEx("ArcradimusSpawners2", 0, 0, -120) // Set Z to negative same as parent actor spawn height.
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  PRT1 ABCDEFGHIJKLMNOP 1 Bright
+  Goto Death
+  }
+}*/
+
+ACTOR ArcHealer : BossBrain 19400
+{
+  //$Category Monsters
+  //$Sprite ARCXA0
+  //$Title "Arcradimus Healer"
+  Health 3999
+  PainChance 250
+  Radius 64
+  Height 208
+  //+DORMANT
+  +SOLID
+  +NOCLIP
+  +FLOAT
+  +FLOATBOB
+  States
+  {
+    Spawn:
+	    TNT1 A 0
+	    TNT1 A 1 A_SpawnItemEx("ShockWave",0,0,128,0,0,0,0,128) 
+		TNT1 A 0 A_PlaySound("brain/spit", CHAN_BODY, 1.0, False, ATTN_NONE)
+	    TNT1 A 1 A_SpawnItemEx("LandKaBoom",0,0,128)
+        ACHL FGABCDEFG 3 Bright
+		ACHL A 30 Bright
+        ACHP ABCDEFG 3 Bright
+        TNT1 A 0 A_SetReflectiveInvulnerable
+        ACHP G 30 Bright
+		//TNT1 A 0 A_SpawnItemEx("ArcHealerRay", Random(2,-2), Random(2,-2), Random(2,-2), Random(1,-1), Random(1,-1), Random(1,-1), Random(0,359))
+    "Spawned":
+        TNT1 A 0
+		TNT1 A 0 A_Jump(20,"Heal")
+        TNT1 A 0 A_SetReflectiveInvulnerable
+        ACHS ABCDEFG 3 Bright
+		Loop
+    "Heal":
+	    TNT1 A 0
+        ACHP GFEDCBA 3 Bright
+        TNT1 A 0 A_UnSetReflectiveInvulnerable
+    "Healing":
+        ACHL ABCDEFG 3 Bright
+		TNT1 A 0 ACS_Execute(3111,0,99,0,0)
+		//TNT1 A 0 A_SpawnItemEx("ArcHealerHealRay", Random(2,-2), Random(2,-2), Random(2,-2), Random(1,-1), Random(1,-1), Random(1,-1), Random(0,359))
+		TNT1 A 0 A_Jump(220,"Healing")
+    "ExitHeal":
+        ACHL A 30 Bright
+        ACHP ABCDEFG 3 Bright
+        TNT1 A 0 A_SetReflectiveInvulnerable
+        ACHP G 30 Bright
+		Goto "Spawned"
+    Pain:
+	    TNT1 A 0
+        TNT1 A 0 A_UnSetReflectiveInvulnerable
+		TNT1 A 0 A_BrainPain
+        ACHP BABCDEFG 3 Bright
+        TNT1 A 0 A_SetReflectiveInvulnerable
+        ACHP G 30 Bright
+		//TNT1 A 0 A_SpawnItemEx("ArcHealerPainRay", Random(2,-2), Random(2,-2), Random(2,-2), Random(1,-1), Random(1,-1), Random(1,-1), Random(0,359))
+		Goto "Spawned"
+    Death:
+	    TNT1 A 0
+        TNT1 A 0 A_UnSetReflectiveInvulnerable
+		TNT1 A 0 A_PlaySound("brain/death", CHAN_BODY, 1.0, False, ATTN_NONE)
+
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABAB 2 Bright A_FadeOut(0.03)
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABAB 2 Bright A_FadeOut(0.03)
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABAB 2 Bright A_FadeOut(0.03)
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABAB 3 Bright A_FadeOut(0.03)
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABAB 4 Bright A_FadeOut(0.03)
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABAB 5 Bright A_FadeOut(0.03)
+		TNT1 A 0 A_SpawnItemEx("RocketExplosionBundle", Random(32,-32), Random(32,-32), Random(128,160))
+        ACHP ABCDEFGGGG 4 Bright A_FadeOut(0.03)
+		Stop
+  }
+}
+
+ACTOR ArcHealerRay : LCABaseEffect
+{
+  RenderStyle Add
+  Alpha 0.95
+  States
+  {
+    Spawn:
+        ARCX AEAED 1 Bright A_FadeOut(0.025)
+		Loop
+  }
+}
+
+ACTOR ArcHealerPainRay : ArcHealerRay
+{
+  RenderStyle Add
+  Alpha 0.95
+  States
+  {
+    Spawn:
+        ARCX AE 1 Bright A_FadeOut(0.025)
+		Loop
+  }
+}
+
+ACTOR ArcHealerHealRay : ArcHealerRay
+{
+  RenderStyle Add
+  Alpha 0.95
+  States
+  {
+    Spawn:
+        ARCX BC 1 Bright A_FadeOut(0.025)
+		Loop
+  }
+}
+
+ACTOR ArcradimusDormant : Arcradimus 31342
+{
+//$Category Monsters
+//$Sprite ARCRA1C1
+//$Title "Arcradimus Dormant"
+  Radius 72 
+  Height 182 
+  Mass 0x7FFFFFFF
+  +DORMANT
+  States
+  {
+    Spawn:
+		ARCR A -1
+		Stop
+  }
+}
+
+ACTOR ArcradimusThunderspawner
+{
+	Radius 16
+	Height 16
+	States
+	{
+	Spawn:
+		TNT1 A 15 
+		TNT1 A 0 Bright A_SpawnItemEx("ThunderFX", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+		TNT1 A 0 A_Explode(102, 144)		
+		TNT1 A 30 A_Quake(9, 30, 0, 960)
+		Stop
+	}
+}

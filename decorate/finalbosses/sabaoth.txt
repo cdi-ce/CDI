@@ -1,0 +1,292 @@
+Actor Sabaoth
+{
+Monster
+Speed 8
+Mass 99999
+Radius 65
+Height 90
+Health 15000
+Scale 2.3
+Decal Bulletchip
+SeeSound "sabaoth/see"
+DeathSound "sabaoth/death"
+ActiveSound "sabaoth/idle"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Cyber10K", 0.0
+DamageFactor "CerEnergyBall", 0.0
+DamageFactor "Legendary", 0.75
+DamageFactor "BFGSplash", 0.5
+DamageFactor "PDTBFG", 0.25
+DamageFactor "PDTBFGTracer", 0.25
+DamageFactor "PlayerDevBall", 0.3
+DamageFactor "PlayerDevTracer", 0.3
+DamageFactor "MechStep", 0.0
+DamageFactor "FinalBossSector", 0.0
+DamageFactor "Pierce", 0.25
+DamageFactor "MarinePierce", 0.25
+DamageFactor "Kaboom", 0.2
+DamageFactor "MarineKaboom", 0.2
+DamageFactor 0.6
+RadiusDamageFactor 0.5
+MaxStepHeight 32
+MaxDropOffHeight 32
+MeleeRange 128
+MeleeThreshold 256
++DONTHARMSPECIES
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NOTIMEFREEZE
++NODROPOFF
++NOPAIN
++DONTRIP
++NORADIUSDMG
++BOSS
++NOFEAR
+Obituary "Sabaoth was too powerful for %o."
+var int user_script;
+var int user_part1;
+var int user_part2;
+var int user_part3;
+Tag "\c[t1]Sabaoth\c-"
+States
+{
+  Spawn:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,5,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    SBTH A 10 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,5,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_Jump(100,"Rush")
+    SBTH A 0 A_PlaySound("ZTank/Run")
+    SBTH AABBCC 1 A_Chase
+	TNT1 A 0 A_Jump(32,"Avoid")
+    Loop
+  Rush:
+	SBTH AAA 0 A_Chase
+	SBTH A 0 A_PlaySound("ZTank/Run")
+    SBTH A 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)
+	SBTH AAA 0 A_Chase
+    SBTH A 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)
+	SBTH AAA 0 A_Chase
+    SBTH B 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)
+	SBTH AAA 0 A_Chase
+    SBTH B 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)
+	SBTH AAA 0 A_Chase
+    SBTH C 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)
+	SBTH AAA 0 A_Chase
+    SBTH C 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Jump(110,"Avoid")
+	TNT1 A 0 A_Jump(75,"See")
+    Loop		
+  Avoid:
+    SBTH A 1 A_FaceTarget
+    SBTH A 0 A_SetAngle(angle+random(0,359))
+	SBTH A 0 A_Recoil(-50)
+	SBTH A 0 A_FaceTarget
+	SBTH AAAAAAAAAAAAA 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)	 
+	SBTH A 0 A_SetAngle(angle+random(0,359))
+	SBTH A 0 A_Recoil(-50)
+	SBTH A 0 A_FaceTarget
+	SBTH AAAAAAAAAAAAA 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)	
+	SBTH A 0 A_SetAngle(angle+random(0,359))
+	SBTH A 0 A_Recoil(-50)
+	SBTH A 0 A_FaceTarget
+	SBTH AAAAAAAAAAAAA 1 A_SpawnItemEx("SabaothGhost",0,0,0,0,0,0,0,128)		   
+    Goto See  	
+  Missile:
+    SBTH A 0 A_Jump(8,"NukeMissile")
+    SBTH A 0 A_Jump(32,"Devastator")
+    SBTH A 2 A_Jump(192,"SpreadBFG","SpreadDTBFG","ComboBFG","ComboDTBFG","Help")
+    Goto See 
+  Normal:
+	SBTH A 8 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget	
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("mrl/fire")
+    SBTH S 4 BRIGHT A_CustomMissile("ZMRLFastRocket",150,-25,random(-2,2)) 
+	SBTH A 4 A_FaceTarget	
+	SBTH A 0 A_Jump(32,"Avoid")
+    SBTH A 10 A_Jump(180,"SpreadBFG")
+    Goto See	
+  SpreadBFG:
+	SBTH D 0 A_PlayWeaponSound("weapons/bfgf")
+	SBTH DDD 10 A_FaceTarget
+	SBTH D 0 A_CustomMissile("ZBFG9500Ball",150,-25,-5) 
+	SBTH D 0 A_CustomMissile("ZBFG9500Ball",150,-25,5) 
+    SBTH D 6 BRIGHT A_CustomMissile("ZBFG9500Ball",150,-25,0) 
+    SBTH DA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(180,"SpreadDTBFG")
+    Goto See
+  SpreadDTBFG:
+	SBTH D 0 A_PlayWeaponSound("Cardinal/9k")
+	SBTH DDD 10 A_FaceTarget
+	SBTH D 0 A_CustomMissile("DarkAnniDTBFGBall",130,-25,random(-5,5)) 
+    SBTH D 6 BRIGHT A_CustomMissile("DarkAnniDTBFGBall",130,-25,0) 
+    SBTH DA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(180,"SpreadRailgun")
+    Goto See
+  SpreadRailgun:
+	SBTH D 0 A_PlayWeaponSound("weapons/rgcharge")
+	SBTH DDD 10 A_FaceTarget
+	SBTH DDDD 0 A_CustomMissile("DarkCyberRail",130,-25,random(-5,5)) 
+    SBTH D 6 BRIGHT A_CustomMissile("DarkCyberRail",130,-25,0) 
+    SBTH DA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(180,"ComboBFG")
+    Goto See	
+  ComboBFG:
+	SBTH S 0 A_PlayWeaponSound("weapons/bfgf")
+	SBTH SSS 10 A_FaceTarget
+    SBTH S 4 BRIGHT A_CustomMissile("UpdatedSentientBFG9500Ball",150,-25,-7) 
+	SBTH S 4 BRIGHT A_CustomMissile("UpdatedSentientBFG9500Ball",150,-25,-3) 
+	SBTH S 4 BRIGHT A_CustomMissile("UpdatedSentientBFG9500Ball",150,-25,2) 
+	SBTH S 4 BRIGHT A_CustomMissile("UpdatedSentientBFG9500Ball",150,-25,8) 
+    SBTH SA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(180,"ComboDTBFG")
+    Goto See
+  ComboDTBFG:
+	SBTH S 0 A_PlayWeaponSound("Cardinal/9k")
+	SBTH SSS 10 A_FaceTarget
+    SBTH S 8 BRIGHT A_CustomMissile("UpdatedDemonDTBFG10KBall",130,-25,random(-8,8)) 
+	SBTH S 8 BRIGHT A_CustomMissile("UpdatedDemonDTBFG10KBall",130,-25,random(-8,8))
+    SBTH SA 10 A_FaceTarget
+    SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(180,"ComboRailgun")
+    Goto See
+  ComboRailgun:
+	SBTH S 0 A_PlayWeaponSound("weapons/rgcharge")
+	SBTH SSS 10 A_FaceTarget
+    SBTH SSS 8 BRIGHT A_CustomMissile("CardinalRail",130,-25,random(-8,8)) 
+    SBTH SA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(128,"Devastator")
+    Goto See
+  Devastator:
+	SBTH S 0 A_PlayWeaponSound("devastator/charge")
+	SBTH SSSSSS 10 A_FaceTarget
+	SBTH S 0 A_PlayWeaponSound("devastator/fire")
+    SBTH S 35 BRIGHT A_CustomMissile("UpdatedDemonDevastatorBall",130,-25,random(-3,3)) 
+	SBTH S 0 A_PlayWeaponSound("devastator/fire")
+    SBTH S 35 BRIGHT A_CustomMissile("UpdatedDemonDevastatorBall",130,-25,random(-3,3)) 	
+    SBTH SA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(64,"Help")
+    Goto See
+  Help:
+	SBTH A 10 A_FaceTarget
+	TNT1 A 0 A_PlaySound("sabaoth/see")
+	SBTH AAAAAAAAAAAAAAAAAA 3 Bright A_SpawnItemEx("AvatarLightningChargeSpawner")
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("CyberMonolithOfSinSummon",0,0,96,random(2,8),0,0,0,32)			
+	SBTH A 25
+	TNT1 A 0 A_Jump(110,"Help")
+	SBTH A 0 A_Jump(32,"Avoid")
+	SBTH A 1 A_Jump(64,"NukeMissile")
+	Goto See
+  NukeMissile:
+	SBTH S 0 A_PlayWeaponSound("weapons/nuclearmissilecharge")
+	SBTH SSSS 10 A_FaceTarget
+    SBTH S 35 BRIGHT A_CustomMissile("MonsterFusionNuke",130,-25,random(-3,3)) 	
+    SBTH SA 10 A_FaceTarget
+	SBTH A 0 A_Jump(32,"Avoid")
+    Goto See	
+  Melee:
+    SBTH E 4 A_FaceTarget
+    SBTH F 4 
+    SBTH G 4 A_CustomMeleeAttack(random(6,9)*10,"Paladin/Melee",none)
+	Goto See
+  Death:
+    SBTH I 4
+    SBTH I 4 A_Scream	
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(0,24))
+	SBTH IIIIIIIIIIIIIIIII 2 Bright A_CustomMissile("Kaboom",random(20,80),random(20,-20),random(0,360),2,random(0,360))
+	SBTH I 8 Bright A_Fall
+	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(0,24))
+    TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH J 5 Bright	
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH J 5 Bright	
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(0,24))
+	TNT1 A 0 A_PlaySound("gibbage/xsplat")
+    SBTH LLLLLLL 2 Bright A_CustomMissile("Kaboom",random(20,80),random(20,-20),random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH L 5 Bright	
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(0,24))
+    SBTH MMMMMMM 2 Bright A_CustomMissile("Kaboom",random(20,80),random(20,-20),random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH M 5 Bright	
+	SBTH NNNNNNN 2 Bright A_CustomMissile("Kaboom",random(20,80),random(20,-20),random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH N 5 Bright	
+	TNT1 A 0 A_SpawnItemEx("SuperBossExplosionEffect",0,0,0)
+	SBTH OOOOOOO 2 Bright A_CustomMissile("Kaboom",random(20,80),random(20,-20),random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH O 5 Bright	
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH P 5 Bright
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SBTH Q 5	
+    SBTH R -1
+    Stop	
+}
+}
+
+ACTOR SabaothGhost
+{
+Scale 2.3
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    SBTH A 2 A_FadeOut(0.18)
+    Loop
+    }
+}

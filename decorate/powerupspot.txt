@@ -1,0 +1,368 @@
+//=================
+// Powerup Spawners
+//=================
+
+ACTOR NewPowerUpInvasionSpot : CustomPickupInvasionSpot
+{
+//$Category Invasion Powerup Spawners
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR HellionRegenSpot : NewPowerUpInvasionSpot 15200
+{
+	//$Title Hellion Regen
+	//$Sprite HRGNA0
+	DropItem "HellionRegen2"
+}
+
+ACTOR SkullOfPowerSpot : NewPowerUpInvasionSpot 15201
+{
+	//$Title Skull Of Power
+	//$Sprite SKUTA0
+	DropItem "NewSkullOfPower"
+}
+
+ACTOR DemonicChaliceSpot : NewPowerUpInvasionSpot 15202
+{
+	//$Title Demonic Chalice
+	//$Sprite IMOTA0
+	DropItem "NewDemonicChalice"
+}
+
+ACTOR PureRageSpot : NewPowerUpInvasionSpot 15203
+{
+	//$Title Pure Rage
+	//$Sprite FURYA0
+	DropItem "PureRage"
+}
+
+ACTOR HasteSphereSpot : NewPowerUpInvasionSpot 15204
+{
+	//$Title Haste Sphere
+	//$Sprite SINVA0
+	DropItem "HasteSphere"
+}
+
+ACTOR LifeSphereSpot : NewPowerUpInvasionSpot 15205
+{
+	//$Title Life Sphere
+	//$Sprite LISPA0
+	DropItem "LifeSphere2"
+}
+
+ACTOR UltraSphereSpot : NewPowerUpInvasionSpot 15206
+{
+	//$Title Ultra Sphere
+	//$Sprite ARSPA0
+	DropItem "UltraSphere2"
+}
+
+ACTOR UnbelieveabilitySphereSpot : NewPowerUpInvasionSpot 15207
+{
+	//$Title Unbelieveability Sphere
+	//$Sprite CARNA0
+	DropItem "UnbelieveabilitySphere"
+}
+
+ACTOR LegendarySphereSpot : NewPowerUpInvasionSpot 15208
+{
+	//$Title Legendary Sphere
+	//$Sprite LSPHA0
+	DropItem "LegendarySphere2"
+}
+
+ACTOR LegendaryUltraSphereSpot : NewPowerUpInvasionSpot 15209
+{
+	//$Title Legendary Ultra Sphere
+	//$Sprite LLDSA0
+	DropItem "LegendaryUltraSphere2"
+}
+
+ACTOR SoulGeneratorSpot : NewPowerUpInvasionSpot 15210
+{
+    //$Category "Invasion Powerup Spawners/Items"
+	//$Title Soul Generator
+	//$Sprite BSOUA0
+	DropItem "SoulGenerator"
+}
+
+ACTOR LegAmmoSphereSpot : NewPowerUpInvasionSpot 15211
+{
+	//$Title Legendary Ammo Sphere
+	//$Sprite AMSPA0
+	DropItem "LegAmmoSphere"
+}
+
+ACTOR LegTimeFreezeSphereSpot : NewPowerUpInvasionSpot 15212
+{
+	//$Title Legendary Time Freeze Sphere
+	//$Sprite TTIMA0
+	DropItem "LegTimeFreezeSphere"
+}
+
+ACTOR ProtectionSphereSpot : NewPowerUpInvasionSpot 15213
+{
+	//$Title Protection Sphere
+	//$Sprite LFS9A0
+	DropItem "ProtectionSphere"
+}
+
+ACTOR DemonRuneSpot : NewPowerUpInvasionSpot 15214
+{
+	//$Title Demonic Relic
+	//$Sprite DRUNA0
+	DropItem "DemonRune"
+}
+
+ACTOR LegDemonRuneSpot : NewPowerUpInvasionSpot 15215
+{
+	//$Title Legendary Demonic Relic
+	//$Sprite LDRNK0
+	DropItem "LegendaryDemonRune"
+}
+
+ACTOR RuneOfTheAbominationSpot : NewPowerUpInvasionSpot 15216
+{
+	//$Title Relic Of The Abomination
+	//$Sprite DRUNB0
+	DropItem "RuneOfTheAbomination"
+	Scale 0.25
+}
+
+ACTOR LegendaryPowerShardSpot : NewPowerUpInvasionSpot 15217
+{
+	//$Title Legendary Power Shard
+	//$Sprite PPOSA0
+	DropItem "LegendaryPowerShard"
+}
+
+ACTOR LegendaryPowerSphereSpot : NewPowerUpInvasionSpot 15218
+{
+	//$Title Legendary Power Sphere
+	//$Sprite GARDA0
+	DropItem "LegendaryPowerSphere"
+}
+
+ACTOR NewDoomSphereSpot : NewPowerUpInvasionSpot 15219
+{
+	//$Title Doom Sphere
+	//$Sprite D00MA0
+	DropItem "NewDoomSphere"
+}
+
+ACTOR ThunderSphereSpot : NewPowerUpInvasionSpot 15220
+{
+	//$Title Thunder Sphere
+	//$Sprite THDSA0
+	DropItem "ThunderSphere"
+}
+
+ACTOR HolySphereSpot : NewPowerUpInvasionSpot 15221
+{
+	//$Title Holy Sphere
+	//$Sprite HOLYA0
+	DropItem "HolySphere"
+}
+
+ACTOR TerrorSphereSpot : NewPowerUpInvasionSpot 15222
+{
+	//$Title Terror Sphere
+	//$Sprite TRSPA0
+	DropItem "TerrorSphere"
+	Scale 0.76
+}
+
+ACTOR NewRandomSphereSpot : NewPowerUpInvasionSpot 15223
+{
+	//$Title Random Sphere
+	//$Sprite RSPHA0
+	DropItem "RandomSphere"
+	Scale 0.85
+}
+
+ACTOR FateSphereSpot : NewPowerUpInvasionSpot 15224
+{
+	//$Title Fate Sphere
+	//$Sprite FASPA0
+	DropItem "FateSphere"
+}
+
+ACTOR RevengeSphereSpot : NewPowerUpInvasionSpot 15225
+{
+	//$Title Revenge Sphere
+	//$Sprite RVSPA0
+	DropItem "RevengeSphere"
+}
+
+ACTOR AnnihilationSphereSpot : NewPowerUpInvasionSpot 15226
+{
+	//$Title Annihilation Sphere
+	//$Sprite ANSPA0
+	DropItem "AnnihilationSphere"
+}
+
+ACTOR EpicSphereSpot : NewPowerUpInvasionSpot 15227
+{
+	//$Title Epic Sphere
+	//$Sprite EPSPA0
+	DropItem "EpicSphere"
+}
+
+ACTOR WickedSphereSpot : NewPowerUpInvasionSpot 15228
+{
+	//$Title Wicked Sphere
+	//$Sprite WKSPA0
+	DropItem "WickedSphere"
+}
+
+ACTOR AmpGogglesSpot : NewPowerUpInvasionSpot 15229
+{
+    //$Category "Invasion Powerup Spawners/Items"
+	//$Title Amp  Goggles
+	//$Sprite PVISA0
+	DropItem "AmpGoggles"
+}
+
+ACTOR LuckSphereSpot : NewPowerUpInvasionSpot 15230
+{
+	//$Title Luck Sphere
+	//$Sprite LUSPA0
+	DropItem "LuckSphere"
+}
+
+ACTOR IgnoranceSphereSpot : NewPowerUpInvasionSpot 15231
+{
+	//$Title Ignorance Sphere
+	//$Sprite INSPA0
+	DropItem "IgnoranceSphere"
+}
+
+ACTOR ArmageddonChaliceSpot : NewPowerUpInvasionSpot 15232
+{
+	//$Title Armageddon Chalice 
+	//$Sprite DETOA0
+	DropItem "ArmageddonChalice"
+}
+
+ACTOR TerminatorSphereSpot : NewPowerUpInvasionSpot 15233
+{
+	//$Title Terminator Sphere
+	//$Sprite TCSEA0
+	DropItem "TerminatorSphere"
+}
+
+ACTOR SpreadSphereSpot : NewPowerUpInvasionSpot 15234
+{
+	//$Title Spread Sphere
+	//$Sprite RGSPA0
+	DropItem "SpreadSphere"
+}
+
+ACTOR TrueLegendaryUltraSphereSpot : NewPowerUpInvasionSpot 15235
+{
+	//$Title True Legendary Ultra Sphere
+	//$Sprite TLUSA0
+	DropItem "TrueLegendaryUltraSphere"
+}
+
+ACTOR LegendaryJudgmentSphereSpot : NewPowerUpInvasionSpot 15236
+{
+	//$Title Legendary Judgment Sphere
+	//$Sprite LEPKA0
+	DropItem "LegendaryJudgmentSphere"
+}
+
+ACTOR ChaosSphereSpot : NewPowerUpInvasionSpot 15237
+{
+	//$Title Chaos Sphere
+	//$Sprite CHSPA0
+	DropItem "ChaosSphere"
+}
+
+ACTOR LegendaryCrystalSpot : NewPowerUpInvasionSpot 15238
+{
+	//$Title Legendary Crystal
+	//$Sprite CRYSA0
+	DropItem "LegendaryCrystal"
+}
+
+ACTOR TrueLegendaryCrystalSpot : NewPowerUpInvasionSpot 15239
+{
+	//$Title True Legendary Crystal
+	//$Sprite TRYSA0
+	DropItem "TrueLegendaryCrystal"
+}
+
+ACTOR InsanitySphereSpot : NewPowerUpInvasionSpot 15240
+{
+	//$Title Insanity Sphere
+	//$Sprite ISSPA0
+	DropItem "InsanitySphere"
+}
+
+ACTOR LegendarySalvationSphereSpot : NewPowerUpInvasionSpot 15241
+{
+	//$Title Legendary Salvation Sphere
+	//$Sprite LSALA0
+	DropItem "LegendarySalvationSphere"
+}
+
+ACTOR FlightSphereSpot : NewPowerUpInvasionSpot 15242
+{
+	//$Title Flight Sphere
+	//$Sprite F2SPA0
+	DropItem "FlightSphere"
+}
+
+ACTOR RageSphereSpot : NewPowerUpInvasionSpot 15243
+{
+	//$Title Rage Sphere
+	//$Sprite R2SPA0
+	DropItem "RageSphere"
+}
+
+ACTOR BFGSphereSpot : NewPowerUpInvasionSpot 15244
+{
+	//$Title BFG Sphere
+	//$Sprite RDSPA0
+	DropItem "BFGSphere"
+}
+
+ACTOR ArmorSphereSpot : NewPowerUpInvasionSpot 15245
+{
+	//$Title Armor Sphere
+	//$Sprite AM2PA0
+	DropItem "ArmorSphere"
+}
+
+ACTOR ExplosionSphereSpot : NewPowerUpInvasionSpot 15246
+{
+	//$Title Explosion Sphere
+	//$Sprite RLSPA0
+	DropItem "ExplosionSphere"
+}
+
+ACTOR SurvivalSphereSpot : NewPowerUpInvasionSpot 15247
+{
+	//$Title Survival Sphere
+	//$Sprite SVSPA0
+	DropItem "SurvivalSphere"
+}
+
+ACTOR ChemicalSphereSpot : NewPowerUpInvasionSpot 15248
+{
+	//$Title Chemical Sphere
+	//$Sprite CHMPA0
+	DropItem "ChemicalSphere"
+}
+
+ACTOR SummonSphereSpot : NewPowerUpInvasionSpot 15249
+{
+	//$Title Summon Sphere
+	//$Sprite PS0BK0
+	DropItem "SummonSphere"
+}

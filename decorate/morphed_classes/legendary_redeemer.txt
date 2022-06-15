@@ -1,0 +1,506 @@
+//==========================================================\\
+// ----------------- Legendary Redeemer ------------------- \\
+//==========================================================\\
+
+ACTOR LegendaryRedeemerGiver : MechGiver{Powerup.Type "LegendaryRedeemer"}
+
+ACTOR PowerLegendaryRedeemer : PowerMorph
+{
+  PowerMorph.PlayerClass "Legendary_Redeemer"
+  PowerMorph.MorphFlash "TeleportFog"
+  PowerMorph.UnMorphFlash "TeleportFog"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Legendary_Redeemer : Legendary_Revenant
+{
+  Health 700
+  Player.MaxHealth 700
+  Player.SoundClass "PLegendaryRedeemer"
+  Player.DisplayName "Legendary Redeemer"
+  Player.MorphWeapon "LegendaryRedeemer-Weapons"
+  Player.ForwardMove 0.95
+  Player.SideMove 0.95
+  Player.JumpZ 8
+  Scale 1.0
+  States
+  {
+   Spawn:
+  	TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerLegendaryDemonRuneMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	TNT1 A 0 SetPlayerProperty(0,1,3)
+	LRED A 10 Bright
+    Loop
+   See: 
+	TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerLegendaryDemonRuneMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	TNT1 A 0 SetPlayerProperty(0,1,3)
+	LRED A 10 Bright
+    Goto Spawn
+  Melee:
+  Missile:
+    LRED B 1 Bright
+	LRED B 0 A_JumpIfInventory("MissileType6",1,"Missile6")
+	LRED B 0 A_JumpIfInventory("MissileType5",1,"Missile5")
+	LRED B 0 A_JumpIfInventory("MissileType4",1,"Missile4")
+	LRED B 0 A_JumpIfInventory("MissileType3",1,"Missile3")
+	LRED B 0 A_JumpIfInventory("MissileType2",1,"Missile2")
+	LRED BC 5 Bright  
+	LRED D 40 Bright 
+	LRED CB 5 Bright
+    Goto Spawn
+  Missile2:	
+    LRED E 0 A_TakeInventory("MissileType2",1)
+	LRED EF 9 Bright 
+	LRED G 20 Bright
+    Goto See
+  Missile3:
+    LRED B 0 A_TakeInventory("MissileType3",1)
+	LRED BC 5 Bright 
+	LRED D 46 Bright	
+	LRED GDGDGDGDGD 12 Bright
+    Goto Spawn
+  Missile4:
+	LRED E 0 A_TakeInventory("MissileType4",1)
+	LRED EF 3 Bright  
+	LRED G 51 Bright
+    Goto Spawn
+  Missile5:
+    LRED E 0 A_TakeInventory("MissileType5",1)
+	LRED EF 6 Bright  
+	LRED G 52 Bright
+    Goto Spawn
+  Pain:
+	TNT1 A 0 A_Pain
+    LRED HH 3 Bright
+    Goto See
+  Death:
+    LRED I 5 Bright A_PlaySoundEx("redeemer/death","body",0,1)
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    LRED JJKKLL 2 Bright A_SpawnItemEx("BlueKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    LRED M 0 A_NoBlocking
+    LRED MMNNOOPP 2 Bright A_SpawnItemEx("BlueKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    LRED QQRRSSTTUU 2 A_SpawnItemEx("BlueKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS) 
+    LRED V -1
+    Stop
+  }
+}
+
+ACTOR "LegendaryRedeemer-Weapons" : Weapon
+{
+  +WEAPON.DONTBOB
+  +WEAPON.CHEATNOTWEAPON
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.ALT_AMMO_OPTIONAL
+  +INVENTORY.UNDROPPABLE
+  States
+  {
+  Ready:
+    TNT1 A 0 A_GiveInventory("CanHold",1)
+    TNT1 A 0 A_GiveInventory("CanHalfHold",1)
+    TNT1 A 0 A_TakeInventory("AttackCharge",10)
+    LRWP A 3 Bright A_WeaponReady
+    Loop
+  Deselect: 
+    LRWP A 1 A_Lower
+    Loop
+  Select:
+    LRWP A 1 A_Raise
+    Loop
+  Fire:
+    LRWP A 1 Bright A_JumpIfInventory("AttackCharge",10,"Fire3")
+    LRWP A 0 A_GiveInventory("AttackCharge",1)
+    LRWP A 1 Bright
+    LRWP A 1 Bright A_Refire
+  Fire1:
+    LRWP A 0 A_JumpIfInventory("AttackCharge",10,"Fire3")
+    LRWP A 0 A_JumpIfInventory("AttackCharge",5,"Fire2")
+	LRWP A 0 A_TakeInventory("AttackCharge",10)
+	LRWP A 0 A_GunFlash
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,-10,10)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,10,10)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,-10,0)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedBall",0,0,10,0)
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,-10,10)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,10,10)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,-10,0)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedBall",0,0,10,0)
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,-10,10)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,10,10)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedBall",0,0,-10,0)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedBall",0,0,10,0)
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedFastBall",0,0,0,5)
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedFastBall",0,0,0,5)
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedFastBall",0,0,0,5)
+	LRWP ABC 1 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 2 Bright A_FireCustomMissile("PlayerLegRedFastBall",0,0,0,5)
+	LRWP CBA 2 Bright
+	LRWP A 8 Bright
+    Goto Ready
+  Fire2:
+    LRWP A 0 A_GiveInventory("MissileType2")
+	LRWP A 0 A_GunFlash
+	LRWP ABC 2 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 0 A_PlayWeaponSound("legbanished/attack2")
+	LRWP C 0 A_FireCustomMissile("PlayerLegendaryArchvileThunderBall",9,0,0,5)
+	LRWP C 0 A_FireCustomMissile("PlayerLegendaryArchvileThunderBall",-9,0,0,5)
+	LRWP C 0 A_FireCustomMissile("PlayerLegendaryArchvileThunderBall",0,0,0,5)
+	//LRWP CCCCCCCCCCCCCCCCCCCCCCC 2 Bright A_FireCustomMissile("PlayerLegRedLaser",0,0,0,5)
+	LRWP CBA 2 Bright
+	LRWP A 8 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  Fire3:
+    LRWP A 0 A_JumpIfInventory("MechBFGReload",1,"Fire2")
+    LRWP A 0 A_GiveInventory("MechBFGReload",1)
+    LRWP A 0 ACS_ExecuteAlways(3104,0,37)	
+	LRWP A 0 A_GiveInventory("MissileType5")
+	LRWP A 0 A_GunFlash
+	LRWP A 0 A_PlayWeaponSound("redeemer/see")
+	LRWP A 50 Bright A_SetBlend("Blue",0.45,25)
+	LRWP ABC 2 Bright
+	LRWP C 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 8 Bright A_FireCustomMissile("PlayerLegRedThunderBall",random(-2,2),0,0,5)
+	LRWP CBA 2 Bright
+	LRWP A 8 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  AltFire:
+    LRWP A 1 Bright A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    LRWP A 0 A_GiveInventory("AttackCharge",1)
+    LRWP A 1 Bright
+    LRWP A 1 Bright A_Refire
+  AltFire1:
+    LRWP A 0 A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    LRWP A 0 A_JumpIfInventory("AttackCharge",5,"AltFire2")
+	LRWP A 0 A_TakeInventory("AttackCharge",10)
+	LRWP A 0 A_GunFlash
+	LRWP ABC 2 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedTrapProj",-4,0,0,5)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedTrapProj",4,0,0,5)
+	LRWP C 4 Bright A_FireCustomMissile("PlayerLegRedTrapProj",0,0,0,5)
+	LRWP CBA 2 Bright
+	LRWP ABC 2 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedTrapProj",-4,0,0,5)
+	LRWP C 0 A_FireCustomMissile("PlayerLegRedTrapProj",4,0,0,5)
+	LRWP C 4 Bright A_FireCustomMissile("PlayerLegRedTrapProj",0,0,0,5)
+	LRWP CBA 2 Bright
+	LRWP A 8 Bright
+    Goto Ready	
+  AltFire2:
+    LRWP A 0 A_GiveInventory("MissileType4")
+	LRWP A 0 A_GunFlash
+	LRWP ABC 2 Bright
+	LRWP A 0 A_SetBlend("Blue",0.45,25)
+	LRWP CCC 17 Bright A_FireCustomMissile("PlayerLegRedVoidTracker",0,0,0,5)
+	LRWP CBA 2 Bright
+	LRWP A 8 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  AltFire3:
+	LRWP A 0 A_JumpIfInventory("MechSeekerRocketReload",1,"AltFire2")
+    LRWP A 0 A_GiveInventory("MechSeekerRocketReload",1)
+    LRWP A 0 ACS_ExecuteAlways(3104,0,36)
+    LRWP A 0 A_GiveInventory("MissileType3")
+    LRWP A 0 A_PlayWeaponSound("redeemer/see")
+	LRWP A 50 Bright A_SetBlend("Gold",0.45,25)
+	LRWP ABC 2 Bright
+	LRWP C 0 A_SetBlend("Gold",0.45,25)
+	LRWP CCCCC 0 A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCC 0 A_FireCustomMissile("PlayerLegRedStormBoltSpawner",random(0,359),0,0,5)
+	LRWP C 24 Bright A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCCCC 0 A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCC 0 A_FireCustomMissile("PlayerLegRedStormBoltSpawner",random(0,359),0,0,5)
+	LRWP C 24 Bright A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCCCC 0 A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCC 0 A_FireCustomMissile("PlayerLegRedStormBoltSpawner",random(0,359),0,0,5)
+	LRWP C 24 Bright A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCCCC 0 A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CCC 0 A_FireCustomMissile("PlayerLegRedStormBoltSpawner",random(0,359),0,0,5)
+	LRWP C 24 Bright A_FireCustomMissile("PlayerLegRedStormBoltAttackTracker",random(-2,2),0,0,5)
+	LRWP CBA 2 Bright
+	LRWP A 8 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready	
+  Spawn:
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR PlayerLegRedBall : LegRedBall
+{
+Species "Player"
+DamageType "Marine"
++MTHRUSPECIES
+Damage 15
+}
+
+ACTOR PlayerLegRedFastBall : LegRedFastBall
+{
+Species "Player"
+DamageType "Marine"
++MTHRUSPECIES
+Damage 35
+}
+
+Actor PlayerLegRedLaser : LegRedLaser
+{
+Species "Player"
+DamageType "Marine"
++MTHRUSPECIES
+Damage 11
+}
+
+Actor PlayerLegRedStormBoltAttackTracker
+{
+Projectile
+Radius 1
+Height 1
+Speed 99
+Alpha 1
+Renderstyle Add
++NOBLOCKMAP
++SEEKERMISSILE
++MTHRUSPECIES
+-BLOODLESSIMPACT
+DamageType "Marine"
+BounceCount 10
++HEXENBOUNCE
+DamageType "Marine"
+BounceCount 10
+BounceFactor 1.25
+WallBounceFactor 1.25
+States
+{
+  Spawn:
+    TNT1 A 1 A_SeekerMissile(30,30,SMF_LOOK)
+    Loop
+  Death:
+    TNT1 A 0
+    TNT1 A 1 A_CustomMissile("PlayerLegRedStormBoltSpawner",-18,random(0,20),random(0,359),2)
+    Stop
+  }
+}
+
+ACTOR PlayerLegRedStormBoltSpawner
+{
+Height 2
+Radius 2
+Speed 14
+PROJECTILE
++SPAWNCEILING
++CEILINGHUGGER
++NOCLIP
++DONTSPLASH
++NOTIMEFREEZE
+States
+{
+Spawn:
+	TNT1 A 14
+    TNT1 A 0 A_CustomMissile("PlayerLegRedStormBolt",-18,random(0,20),random(0,360),2)
+	Stop
+	}
+}
+
+ACTOR PlayerLegRedStormBolt : LegRedStormBolt
+{
+Species "Player"
+DamageType "Marine"
++MTHRUSPECIES
+States
+{
+   Death:
+      TNT1 A 0 A_PlayWeaponSound("legstorm/explode")
+      TNT1 A 0 A_Explode(156,312,0)
+      TNT1 A 0 A_SpawnItemEx("PlayerLegRedGuruStormBoltStruckGlowY",0,0,0,0,0,0,0,128,0)
+      TNT1 A 0 A_SpawnItemEx("PlayerLegRedGuruStormBoltStruckGlowX",0,0,0,0,0,0,0,128,0)
+      TNT1 AAAAAAA 2 A_SpawnItemEx("GuruSpray",random(20,-20),random(20,-20),random(30,-5),0,0,0,0,128,0)
+	  TNT1 A 75
+      Stop
+   }
+}
+
+ACTOR PlayerLegRedGuruStormBoltStruckGlowY : LegRedGuruStormBoltStruckGlowY
+{
+DamageType "Marine"
+	States
+	{
+	Spawn:
+	TNT1 A 0
+	YBUM A 0 A_Explode(8,192)
+	YBUM A 1 Bright A_FadeOut(0.005)
+	Loop
+	}	
+}
+
+ACTOR PlayerLegRedGuruStormBoltStruckGlowX : GuruBoltStruckGlowY
+{
+DamageType "Marine"
+States
+{
+	Spawn:
+	TNT1 A 0
+	YBUM A 0 A_Explode(8,192)
+	YBUM A 1 Bright A_FadeOut(0.005)
+	Loop
+}		
+}
+
+Actor PlayerLegRedTrapProj
+{		
+Radius 8
+Height 8
+Speed 20
+Damage 15
+Scale 1.15
+SeeSound "reedemer/trap"
+DeathSound "BFlan/LightningExp"
+Damagetype "Marine"
+PROJECTILE
++RANDOMIZE
++DONTREFLECT
++MTHRUSPECIES
++SEEKERMISSILE
++SCREENSEEKER
++FORCERADIUSDMG
++EXPLODEONWATER
++SKYEXPLODE
+Decal LegRocketScorch
+States
+{
+  Spawn:
+    LRD4 ABCDABCDABCDABCDABCDABCDABCD 1 Bright
+  Fly:
+    LRD4 ABCD 1 Bright A_SeekerMissile(25,35,SMF_LOOK,45,2)
+    Loop
+  Death:
+	TNT1 A 0 A_SetScale(1.0)
+	TNT1 A 0 A_RadiusGive("LegRedTrapDetonate",128,RGF_MONSTERS)
+	TNT1 A 0 A_PlayWeaponSound("BFlan/LightningExp")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveBlue", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AA 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("LNCometDeath",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_Explode(128,156,0)
+	QRE3 ABCDEF 5 Bright
+	Stop
+  }
+}
+
+Actor PlayerLegRedVoidTracker
+{
+Projectile
+Radius 1
+Height 1
+Speed 99
+Alpha 1
+Renderstyle Add
++NOBLOCKMAP
++SEEKERMISSILE
+//+DOOMBOUNCE
++MTHRUSPECIES
++FORCERADIUSDMG
+-BLOODLESSIMPACT
+DamageType "Marine"
+//BounceCount 10
+States
+{
+  Spawn:
+    TNT1 A 1 A_SeekerMissile(30,30,SMF_LOOK)
+    Loop
+  Death:
+    TNT1 A 0
+    TNT1 A 0
+    LRD3 H 1 Bright A_PlaySoundEx("exile/voidsuck","Voice")
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+    LRD3 HGGHH 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 GGHHG 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 GFFEE 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 FFEEF 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 FEEDD 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 EEDDE 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 EDDCC 1 Bright A_Fire
+    TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 DDCCD 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 DCCBB 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 CCBBC 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 CBBBB 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+	TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 AAAA 1 Bright A_Fire
+	TNT1 A 0 A_Explode(6,128,0)
+    TNT1 AAAAA 0 A_SpawnItemEx("BHellionSmoke",random(32,-32),random(32,-32),random(12,64),0,0,random(1,3),0,128,0)
+	LRD3 B 1 Bright A_StopSoundEx("Voice")
+	LRD3 C 0 A_Explode(128,140,0)
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("BlueKaboom3",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	LRD3 C 1 Bright A_PlaySoundEx("exile/voidend","Voice")
+	LRD3 DEFGH 1 Bright
+	TNT1 A 20
+	TNT1 A 0 A_StopSoundEx("Voice")
+    Stop
+  }
+}
+
+Actor PlayerLegRedThunderBall : LegRedThunderBall
+{
+Species "Player"
+DamageType "Marine"
++MTHRUSPECIES
++SCREENSEEKER
+Damage 250
+States
+{
+  Spawn:
+	LRD5 ABCD 1 bright A_SpawnItemEx("BlueParticleSpawner",0,0,32,0,0,0,0,128)
+	LRD5 D 0 A_SeekerMissile(20,50,SMF_LOOK|SMF_PRECISE)
+	LRD5 D 0 A_SpawnItemEx("LegRedThunderLightningWaveSpawner",0,0,32,0,0,0,0,0,160)
+	Loop
+  Death:
+    TNT1 A 0
+    TNT1 A 0 A_Explode(192,812)
+	TNT1 A 0 A_Explode(256,450)
+	TNT1 A 0 A_Explode(512,384)
+	TNT1 A 0 A_SpawnItemEx("LegRedThunder",0,0,0)
+	Stop
+	}
+}

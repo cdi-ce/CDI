@@ -1,0 +1,2347 @@
+Actor FieldCommandSlot1 : Inventory{Inventory.MaxAmount 2}
+Actor FieldCommandSlot2 : Inventory{Inventory.MaxAmount 11}
+Actor FieldCommandMenu1 : Inventory{Inventory.MaxAmount 1}
+Actor FieldCommandMenu2 : Inventory{Inventory.MaxAmount 1}
+Actor FieldTacticalCrateDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldReinforcementDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldSpecialClassDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldMarineSquadCooldownDelay : Inventory{Inventory.MaxAmount 360}
+Actor FieldAirStrikeDelay : Inventory{Inventory.MaxAmount 180}
+Actor FieldHelicopterStrikeDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldArgentVaporBombDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldArgentToxicBombDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldArgentAnnihilationBombDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldArgentSonicBombDelay : Inventory{Inventory.MaxAmount 300}
+Actor FieldArgentSysmicDetonationDelay : Inventory{Inventory.MaxAmount 420}
+Actor FieldOrbitalStrikeDelay : Inventory{Inventory.MaxAmount 360}
+Actor FieldAssaultMecha : Inventory{Inventory.MaxAmount 1}
+
+ACTOR FieldCommandAmmo : Ammo
+{
+Inventory.Icon "SPEAMB0"
+Inventory.Amount 1
+Inventory.MaxAmount 500
+Ammo.BackpackAmount 0
+}
+
+ACTOR UACFieldCommandUplink : Weapon
+{
+   Tag "UAC Field Command Uplink"
+   Weapon.SelectionOrder 2500
+   Weapon.AmmoType "FieldCommandAmmo"
+   Weapon.AmmoGive 200
+   Weapon.AmmoUse 1
+   Weapon.PreferredSkin "BFG10K-Marine"
+   Weapon.UpSound "uplink/up"
+   +INVENTORY.UNDROPPABLE
+   States
+   {
+   Spawn:
+      UFCU Z -1
+      Stop
+   Ready:
+      UFCU A 1 A_WeaponReady
+      Loop
+   Deselect:
+      TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	  TNT1 A 0 A_TakeInventory("MineAction",1)
+	  TNT1 A 0 A_TakeInventory("RailgunAction",1)
+      UFCU A 0 A_Lower
+      UFCU A 1 A_Lower
+      Loop
+   Select:
+      UFCU A 0 A_Raise
+      UFCU A 1 A_Raise
+      Loop
+   Fire:
+      UFCU A 0 A_GunFlash 
+	  UFCU A 0 
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 2,"TacticalCrate")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 3,"WeaponCrate")  
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 4,"Reinforcement")   
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 5,"EmergencyDrop")  
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 6,"MaxSoldier")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 7,"JetTrooper")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 8,"Enforcer")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 9,"Tank")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 10,"PlasmaTank")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 11,"MissileTank")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 12,"FieldDispensers")	 
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 13,"AssaultMecha")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 51,"MarineAssaultSquad")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 52,"MarineShotgunSquad")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 53,"MarineRocketSquad")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 54,"MarinePlasmaSquad")  
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 101,"AirStrike")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 102,"HelicopterStrike")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 103,"ArgentSonicBomb")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 104,"ArgentVaporBomb")
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 105,"ArgentSysmicDetonation")  
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 106,"OrbitalStrike")  
+	  UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 107,"ArgentToxicBomb")
+      UFCU A 0 A_JumpIf(ACS_NamedExecuteWithResult("Field Command Type",0,0,0) == 108,"ArgentAnnihilationBomb")
+	  UFCU A 1 
+	  Goto Nope
+   Nope:
+      UFCU C 15 Bright A_PlaySound("sentry/warn")
+      Goto Ready
+   TacticalCrate:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",150)
+	  UFCU B 1 Bright A_GiveInventory("FieldTacticalCrateDelay",45)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1000,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUTacticalCrateBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   WeaponCrate:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",350)
+	  UFCU B 1 Bright A_GiveInventory("FieldTacticalCrateDelay",80)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1001,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUWeaponCrateBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   Reinforcement:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",400)
+	  UFCU B 1 Bright A_GiveInventory("FieldReinforcementDelay",240)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1002,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright ACS_NamedExecuteAlways("Uplink Reinforcement",0,0,0,0)
+	  UFCU A 15
+      Goto Ready
+   EmergencyDrop:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",499)
+	  UFCU B 1 Bright A_GiveInventory("FieldTacticalCrateDelay",180)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1003,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUEmergencyTacticalBeacon",0,1)
+	  UFCU A 15
+      Goto Ready	
+   MaxSoldier:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",300)
+	  UFCU B 1 Bright A_GiveInventory("FieldSpecialClassDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1004,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUMaxSoldierBeacon",0,1)
+	  UFCU A 15
+      Goto Ready	  
+   JetTrooper:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",450)
+	  UFCU B 1 Bright A_GiveInventory("FieldSpecialClassDelay",180)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1005,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUJetTrooperBeacon",0,1)
+	  UFCU A 15
+      Goto Ready	  
+   Enforcer:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",300)
+	  UFCU B 1 Bright A_GiveInventory("FieldSpecialClassDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1006,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUEnforcerBeacon",0,1)
+	  UFCU A 15
+      Goto Ready	
+   Tank:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",200)
+	  UFCU B 1 Bright A_GiveInventory("FieldSpecialClassDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1007,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUTankBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   PlasmaTank:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",350)
+	  UFCU B 1 Bright A_GiveInventory("FieldSpecialClassDelay",180)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1008,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUPlasmaTankBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   MissileTank:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",350)
+	  UFCU B 1 Bright A_GiveInventory("FieldSpecialClassDelay",180)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1009,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUMissileTankBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   FieldDispensers:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",400)
+	  UFCU B 1 Bright A_GiveInventory("FieldTacticalCrateDelay",60)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1030,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUFieldDispenserBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   AssaultMecha:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",350)
+	  UFCU B 1 Bright A_GiveInventory("FieldAssaultMecha",1)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1031,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUAssMechaBeacon",0,1)
+	  UFCU A 15
+      Goto Ready	  	  
+   MarineAssaultSquad:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",150)
+	  UFCU B 1 Bright A_GiveInventory("FieldMarineSquadCooldownDelay",60)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1011,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUMarineSquadBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   MarineShotgunSquad:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",200)
+	  UFCU B 1 Bright A_GiveInventory("FieldMarineSquadCooldownDelay",60)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1012,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUMarineShotgunSquadBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   MarineRocketSquad:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",300)
+	  UFCU B 1 Bright A_GiveInventory("FieldMarineSquadCooldownDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1013,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUMarineRocketSquadBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   MarinePlasmaSquad:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",300)
+	  UFCU B 1 Bright A_GiveInventory("FieldMarineSquadCooldownDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1014,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUMarinePlasmaSquadBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   AirStrike:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",220)
+	  UFCU B 1 Bright A_GiveInventory("FieldAirStrikeDelay",100)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1021,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUAirStrikeBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   HelicopterStrike:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",400)
+	  UFCU B 1 Bright A_GiveInventory("FieldHelicopterStrikeDelay",380)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1022,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUHelicopterStrikeBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   ArgentSonicBomb:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",350)
+	  UFCU B 1 Bright A_GiveInventory("FieldArgentSonicBombDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1023,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUArgentSonicBombBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   ArgentVaporBomb:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",420)
+	  UFCU B 1 Bright A_GiveInventory("FieldArgentVaporBombDelay",120)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1024,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUArgentVaporBombBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   ArgentToxicBomb:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",420)
+	  UFCU B 1 Bright A_GiveInventory("FieldArgentToxicBombDelay",100)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1027,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUArgentToxicBombBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   ArgentAnnihilationBomb:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",420)
+	  UFCU B 1 Bright A_GiveInventory("FieldArgentAnnihilationBombDelay",200)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1028,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUArgentAnnihilationBombBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   ArgentSysmicDetonation:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",470)
+	  UFCU B 1 Bright A_GiveInventory("FieldArgentSysmicDetonationDelay",360)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1025,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("UFCUArgentSysmicDetonationBeacon",0,1)
+	  UFCU A 15
+      Goto Ready
+   OrbitalStrike:
+      UFCU B 0 A_GunFlash
+	  UFCU B 1 Bright A_TakeInventory("FieldCommandAmmo",499)
+	  UFCU B 1 Bright A_GiveInventory("FieldOrbitalStrikeDelay",360)
+	  UFCU B 0 ACS_ExecuteAlways(3700,0,0,1026,0)
+	  UFCU B 0 A_PlayWeaponSound("uplink/fire")
+      UFCU B 15 Bright A_FireCustomMissile("OrbitalStrikeMarker",0,1)
+	  UFCU A 15
+      Goto Ready	   
+   AltFire:
+      UFCU A 0 A_GunFlash
+	  UFCU A 0 A_JumpIfInventory("FieldCommandMenu1",1,"Nope")
+	  UFCU A 0 A_GiveInventory("FieldCommandMenu1",1)
+   	  UFCU A 1 ACS_NamedExecuteAlways("Field Command Menu",0,0,0,0)
+	  Goto Ready
+   Flash:
+      TNT1 A 5 A_Light1
+      TNT1 A 6 A_Light2
+      TNT1 A 5 A_Light1
+      TNT1 A 0 A_Light0
+      Stop
+   }
+}
+
+Actor UFCUTacticalCrateBeacon
+{
+Projectile
+Speed 144
+Radius 8
+Height 8
++RIPPER
++BLOODLESSIMPACT
++MTHRUSPECIES
+Damage 0
+Scale 0.6
+var int user_timer;
+States
+{
+  Spawn:
+    TNT1 A 1
+	Loop
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUTacticalCrateHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  Done:
+    UCBC A 4 A_FadeOut(0.1)
+    Loop
+}
+}
+
+Actor UFCUTacticalCrateHelicopterSpawner
+{
+Projectile
+Radius 1
+Height 1
+Speed 500
+Damage 0
++RIPPER
++BLOODLESSIMPACT
++CEILINGHUGGER
++NOCLIP
+var int user_timer;
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUTacticalCrateHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUTacticalCrateHelicopter : UFCUTacticalCrateHelicopterSpawner
+{
+Radius 25
+Height 64
+Speed 10
+Scale 1.0
+States
+{
+   Spawn: 
+	HEL2 A 0 A_SpawnItemEx("TeleportFog")
+	HEL2 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+	HEL2 ABABABABABABABABABABABABA 2 A_SpawnItemEx("TacticalCrateDecoration",0,0,-64)
+	HEL2 ABABABABABABABABABABABABA 2 A_SpawnItemEx("TacticalCrateDecoration",0,0,-64)
+	HEL2 ABABABABABABABABABABABABA 2 A_SpawnItemEx("TacticalCrateDecoration",0,0,-64)
+	HEL2 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL2 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("TacticalCrateDecoration",0,0,-64)
+	HEL2 A 0 A_SpawnItemEx("TacticalCrate",0,0,-64,0,0,0,0,32)
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 A 0 A_SetAngle(angle+random(0,359))
+	HEL2 A 0 A_Recoil(-10)
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 A 0 A_StopSoundEx("SoundSlot7")
+	HEL2 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUEmergencyTacticalBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUEmergencyTacticalTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUEmergencyTacticalTransportSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+Speed 1000
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUEmergencyTacticalTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUEmergencyTacticalTransport : UFCUTacticalCrateHelicopter
+{
+Radius 10
+Height 128
+Speed 55
+Scale 2.4
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAA 2
+	F14T A 0 A_SpawnItemEx("TacticalCrate",0,0,-64,0,0,0,0,32)
+	F14T AAAA 2
+	F14T A 0 A_SpawnItemEx("TacticalCrate",0,0,-64,0,0,0,0,32)
+	F14T AAAA 2
+	F14T A 0 A_SpawnItemEx("TacticalCrate",0,0,-64,0,0,0,0,32)
+	F14T AAAA 2
+	F14T A 0 A_SpawnItemEx("TacticalCrate",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor TacticalCrate 
+{
+Health 200
+Radius 20
+Height 38
+Mass 99999
+PainChance 256
+Scale 0.8
+Gravity 0.25
++SHOOTABLE
++NOBLOOD
++DONTRIP
++DONTBLAST
++NORADIUSDMG
++NOPAIN
+-SOLID
+States
+{
+  Spawn:
+	SCRT BC 2 A_CheckFloor("Landing")
+	Loop
+  Landing:
+	SCRT A 1 A_CHangeFlag("NOPAIN",FALSE)
+	Loop
+  Pain:
+	TNT1 A 0
+	SCRT A 1 A_SpawnItemEx("CrateSplinter",0,0,0,random(-8,8),random(-8,8),random(8,16))
+	TNT1 A 0 A_PlaySound("crate/pain")
+	TNT1 AAA 0 A_SpawnItemEx("CrateSplinter",0,0,0,random(-8,8),random(-8,8),random(8,16))
+	Goto Landing	
+  Death:
+	SCRT A 1
+	TNT1 A 0 A_PlaySound("crate/break")
+	TNT1 A 0 A_SpawnItemEx("CrateDebris",0,0,0,random(-4,4),random(-4,4),random(6,10))
+	TNT1 AAAAAA 0 A_SpawnItemEx("CrateSplinter",0,0,0,random(-8,8),random(-8,8),random(8,16))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("TacticalCrateSpawner",0,0,0,frandom(1,3),frandom(2,4),frandom(3,6),frandom(0,360),0,64)
+	SCRT A 1
+	Stop
+	}
+}
+
+Actor CollectorBotCrate : TacticalCrate
+{
+Health 40
+Radius 16
+Height 16
+Scale 0.4
+Gravity 1.0
+States
+{
+  Spawn:
+	SCRT D 350
+	SCRT DDDDDDDDDD 1 A_FadeOut(0.1)
+	Stop	
+  Death:
+	SCRT A 1
+	TNT1 A 0 A_PlaySound("crate/break")
+	TNT1 A 0 A_SpawnItemEx("CrateDebris",0,0,0,random(-4,4),random(-4,4),random(6,10))
+	TNT1 AAAAAA 0 A_SpawnItemEx("CrateSplinter",0,0,0,random(-8,8),random(-8,8),random(8,16))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 A_SpawnItemEx("CollectorCrateSpawner",0,0,0,frandom(1,3),frandom(2,4),frandom(3,6),frandom(0,360),0,64)
+	SCRT A 1
+	Stop
+}
+}
+
+ACTOR TacticalCrateSpawner : RandomSpawner
+{
+DropItem "PortableMedkit", 256, 40
+DropItem "ArmorPlate", 256, 40
+DropItem "BulletBox", 256, 40
+DropItem "NewShellBox", 256, 40
+DropItem "MissileBox", 256, 40
+DropItem "NewCellPack", 256, 40
+DropItem "AmmoPack", 256, 40
+DropItem "ModdedBackpack", 256, 40
+DropItem "FullRefilePack", 256, 40
+DropItem "DCellPack", 256, 40
+DropItem "ModdedGreenArmor", 256, 40
+DropItem "ExtraArmor", 256, 40
+DropItem "ModdedBlueArmor", 256, 20
+DropItem "RedArmor", 256, 20
+DropItem "AmpGoggles", 256, 20
+DropItem "BerserkPack", 256, 20
+//DropItem "PureRage", 256, 20
+DropItem "DeployableShield", 256, 20
+DropItem "HolographicDecoy", 256, 20
+DropItem "FlameTurret", 256, 20
+DropItem "TimeBomb", 256, 20
+DropItem "SentryBox", 256, 20
+DropItem "MedPack", 256, 20
+DropItem "SoulGenerator", 256, 20
+DropItem "ArmorGenerator", 256, 20
+DropItem "PoisonTurret", 256, 20
+DropItem "TeleportedStrikeBeacon", 256, 20
+DropItem "LightDroneCompanionItem", 256, 20
++NEVERRESPAWN
+}
+
+ACTOR CollectorCrateSpawner : RandomSpawner
+{
+DropItem "PortableMedkit2", 256, 100
+DropItem "ArmorPlate2", 256, 100
+DropItem "BulletBox", 256, 100
+DropItem "NewShellBox", 256, 100
+DropItem "MissileBox", 256, 100
+DropItem "NewCellPack", 256, 100
+DropItem "AmmoPack", 256, 100
+DropItem "ModdedBackpack", 256, 100
+DropItem "DCellPack", 256, 40
+DropItem "ModdedGreenArmor", 256, 40
+DropItem "ExtraArmor", 256, 40
+DropItem "ModdedBlueArmor", 256, 20
+DropItem "RedArmor", 256, 20
+DropItem "FullRefilePack", 256, 10
+DropItem "AmpGoggles", 256, 10
+DropItem "BerserkPack", 256, 10
+//DropItem "PureRage", 256, 10
+DropItem "DeployableShield", 256, 10
+DropItem "HolographicDecoy", 256, 10
+DropItem "FlameTurret", 256, 10
+DropItem "TimeBomb", 256, 10
+DropItem "SentryBox", 256, 10
+DropItem "MedPack", 256, 10
+DropItem "SoulGenerator", 256, 4
+DropItem "ArmorGenerator", 256, 4
+DropItem "PoisonTurret", 256, 4
+DropItem "LightDroneCompanionItem", 256, 10
+DropItem "TeleportedStrikeBeacon", 256, 4
++NEVERRESPAWN
+}
+
+Actor UFCUWeaponCrateBeacon : UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUWeaponCrateBeaconHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUWeaponCrateBeaconHelicopterSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUWeaponCrateBeaconHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUWeaponCrateBeaconHelicopter : UFCUTacticalCrateHelicopter
+{
+States
+{
+  Spawn: 
+	HEL2 A 0 A_SpawnItemEx("TeleportFog")
+	HEL2 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+  SpawnLoop:
+	HEL2 A 0 A_SpawnItemEx("WeaponCrateDecoration",16,16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrateDecoration",16,-16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrateDecoration",-16,16,-24)
+	HEL2 A 2 A_SpawnItemEx("WeaponCrateDecoration",-16,-16,-24)
+	HEL2 B 0 A_SpawnItemEx("WeaponCrateDecoration",16,16,-24)
+	HEL2 B 0 A_SpawnItemEx("WeaponCrateDecoration",16,-16,-24)
+	HEL2 B 0 A_SpawnItemEx("WeaponCrateDecoration",-16,16,-24)
+	HEL2 B 2 A_SpawnItemEx("WeaponCrateDecoration",-16,-16,-24)
+	HEL2 A 0 A_JumpIf(user_timer >= 37,"SpawnStop")
+	HEL2 A 0 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  SpawnStop:
+	HEL2 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL2 A 0 A_SetUserVar("user_timer",0)
+  SpawnStopLoop:
+    HEL2 A 0 A_SpawnItemEx("WeaponCrateDecoration",16,16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrateDecoration",16,-16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrateDecoration",-16,16,-24)
+	HEL2 A 2 A_SpawnItemEx("WeaponCrateDecoration",-16,-16,-24)
+	HEL2 B 0 A_SpawnItemEx("WeaponCrateDecoration",16,16,-24)
+	HEL2 B 0 A_SpawnItemEx("WeaponCrateDecoration",16,-16,-24)
+	HEL2 B 0 A_SpawnItemEx("WeaponCrateDecoration",-16,16,-24)
+	HEL2 B 2 A_SpawnItemEx("WeaponCrateDecoration",-16,-16,-24)
+	HEL2 A 0 A_JumpIf(user_timer >= 13,"SpawnDone")
+	HEL2 A 0 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  SpawnDone: 
+	HEL2 A 0 A_SpawnItemEx("WeaponCrate",16,16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrate",16,-16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrate",-16,16,-24)
+	HEL2 A 0 A_SpawnItemEx("WeaponCrate",-16,-16,-24)	
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 A 0 A_SetAngle(random(0,359))
+	HEL2 A 0 A_Recoil(-10)
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 A 0 A_StopSoundEx("SoundSlot7")
+	HEL2 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUFieldDispenserBeacon : UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUFieldDispenserBeaconHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUFieldDispenserBeaconHelicopterSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUFieldDispenserBeaconHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUFieldDispenserBeaconHelicopter : UFCUTacticalCrateHelicopter
+{
+States
+{
+  Spawn: 
+	HEL2 A 0 A_SpawnItemEx("TeleportFog")
+	HEL2 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+  SpawnLoop:
+	HEL2 A 0 A_SpawnItemEx("FieldDispenserDecoration",-25,0,-24)
+	HEL2 A 2 A_SpawnItemEx("FieldDispenserDecoration",25,0,-24)
+	HEL2 B 0 A_SpawnItemEx("FieldDispenserDecoration",-25,0,-24)
+	HEL2 B 2 A_SpawnItemEx("FieldDispenserDecoration",25,0,-24)
+	HEL2 A 0 A_JumpIf(user_timer >= 37,"SpawnStop")
+	HEL2 A 0 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  SpawnStop:
+	HEL2 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL2 A 0 A_SetUserVar("user_timer",0)
+  SpawnStopLoop:
+    HEL2 A 0 A_SpawnItemEx("FieldDispenserDecoration",-25,0,-24)
+	HEL2 A 2 A_SpawnItemEx("FieldDispenserDecoration",25,0,-24)
+	HEL2 B 0 A_SpawnItemEx("FieldDispenserDecoration",-25,0,-24)
+	HEL2 B 2 A_SpawnItemEx("FieldDispenserDecoration",25,0,-24)
+	HEL2 A 0 A_JumpIf(user_timer >= 13,"SpawnDone")
+	HEL2 A 0 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  SpawnDone: 
+	HEL2 A 0 A_SpawnItemEx("MapAmmoDispenser",-25,0,-24)
+	HEL2 A 0 A_SpawnItemEx("MapHealthDispenser",25,0,-24)
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 A 0 A_SetAngle(random(0,359))
+	HEL2 A 0 A_Recoil(-10)
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 ABABABABABABABABABABABABAB 2
+	HEL2 A 0 A_StopSoundEx("SoundSlot7")
+	HEL2 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUMaxSoldierBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUMaxSoldierTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUMaxSoldierTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUMaxSoldierTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUMaxSoldierTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("MaxSoldier",0,0,-64,0,0,0,0,32)
+	F14T AA 2
+	F14T A 0 A_SpawnItemEx("MaxSoldier",0,0,-64,0,0,0,0,32)
+	F14T AA 2
+	F14T A 0 A_SpawnItemEx("MaxSoldier",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUJetTrooperBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUJetTrooperTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUJetTrooperTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUJetTrooperTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUJetTrooperTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("JetTrooper",0,0,-64,0,0,0,0,32)
+	F14T AA 2
+	F14T A 0 A_SpawnItemEx("JetTrooper",0,0,-64,0,0,0,0,32)
+	F14T AA 2
+	F14T A 0 A_SpawnItemEx("JetTrooper",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUEnforcerBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUEnforcerTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUEnforcerTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUEnforcerTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUEnforcerTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("Enforcer",0,0,-64,0,0,0,0,32)
+	F14T AA 2
+	F14T A 0 A_SpawnItemEx("Enforcer",0,0,-64,0,0,0,0,32)
+	F14T AA 2
+	F14T A 0 A_SpawnItemEx("Enforcer",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUTankBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUTankTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUTankTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUTankTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUTankTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("Tank",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUPlasmaTankBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUPlasmaTankTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUPlasmaTankTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUPlasmaTankTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUPlasmaTankTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("PlasmaTank",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUMissileTankBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUMissileTankTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUMissileTankTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUMissileTankTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUMissileTankTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("MissileTank",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUAssMechaBeacon :  UFCUTacticalCrateBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUAssMechaTransportSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",0,-20,8)
+	UCBC B 0 A_SpawnItemEx("LongGreenFlare",20,0,8)
+	UCBC B 35 Bright A_SpawnItemEx("LongGreenFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUAssMechaTransportSpawner : UFCUEmergencyTacticalTransportSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUAssMechaTransport")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUAssMechaTransport : UFCUEmergencyTacticalTransport
+{
+States
+{
+   Spawn: 
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	F14T A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("AssaultMecha",0,0,-64,0,0,0,0,32)
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	F14T A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUMarineSquadBeacon : UFCUTacticalCrateBeacon
+{
+States
+{
+  Spawn:
+    TNT1 A 1
+	Loop
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUMarineSquadHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,-20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",20,0,8)
+	UCBC C 35 Bright A_SpawnItemEx("LongBlueFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 12,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  Done:
+    UCBC A 4 A_FadeOut(0.1)
+    Loop
+}
+}
+
+Actor UFCUMarineSquadHelicopterSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUMarineSquadHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUMarineSquadHelicopter : UFCUTacticalCrateHelicopter
+{
+Height 128
+Scale 1.6
+States
+{
+  Spawn: 
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	HEL3 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL3 A 0 A_ChangeFlag("CEILINGHUGGER",FALSE)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0) 
+	HEL3 A 0 ThrustThingZ(0,-16,0,0)
+  Landing:
+	HEL3 A 0 A_CheckFloor("LandTroops")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  LandTroops:
+  	HEL3 A 0
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",0,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",0,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",-20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",-20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",-40,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",-40,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",-60,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineSquadMinions",-60,40,0,0,0,0,0,32)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 ThrustThingZ(0,16,0,0)
+  TakeAir:
+	HEL3 A 0 A_CheckCeiling("Leaving")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  Leaving:
+	HEL3 A 0 A_SetAngle(random(0,359))
+	HEL3 A 0 A_Recoil(-10)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_StopSoundEx("SoundSlot7")
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+ACTOR MarineSquadMinions : RandomSpawner
+{
++FRIENDLY
+DropItem "UACGuyAR", 256, 60
+DropItem "UACGuyMinigun", 256, 20
+DropItem "UACGuyExpMinigun", 256, 10
+DropItem "UACGuySniper", 256, 10
+}
+
+Actor UFCUMarineShotgunSquadBeacon : UFCUMarineSquadBeacon
+{
+States
+{
+  Spawn:
+    TNT1 A 1
+	Loop
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUMarineShotgunSquadHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,-20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",20,0,8)
+	UCBC C 35 Bright A_SpawnItemEx("LongBlueFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 12,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  Done:
+    UCBC A 4 A_FadeOut(0.1)
+    Loop
+}
+}
+
+Actor UFCUMarineShotgunSquadHelicopterSpawner : UFCUMarineSquadHelicopterSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUMarineShotgunSquadHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUMarineShotgunSquadHelicopter : UFCUMarineSquadHelicopter
+{
+Height 128
+Scale 1.6
+States
+{
+  Spawn: 
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	HEL3 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL3 A 0 A_ChangeFlag("CEILINGHUGGER",FALSE)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0) 
+	HEL3 A 0 ThrustThingZ(0,-16,0,0)
+  Landing:
+	HEL3 A 0 A_CheckFloor("LandTroops")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  LandTroops:
+    HEL3 A 0
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",0,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",0,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",-20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",-20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",-40,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",-40,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",-60,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineShotgunSquadMinions",-60,40,0,0,0,0,0,32)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 ThrustThingZ(0,16,0,0)
+  TakeAir:
+	HEL3 A 0 A_CheckCeiling("Leaving")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  Leaving:
+	HEL3 A 0 A_SetAngle(random(0,359))
+	HEL3 A 0 A_Recoil(-10)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_StopSoundEx("SoundSlot7")
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+ACTOR MarineShotgunSquadMinions : MarineSquadMinions
+{
+DropItem "UACGuyASG", 256, 50
+DropItem "UACGuySSG", 256, 30
+DropItem "UACGuyQSG", 256, 15
+DropItem "UACGuyHSG", 256, 5
+}
+
+Actor UFCUMarineRocketSquadBeacon : UFCUMarineSquadBeacon
+{
+States
+{
+  Spawn:
+    TNT1 A 1
+	Loop
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUMarineRocketSquadHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,-20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",20,0,8)
+	UCBC C 35 Bright A_SpawnItemEx("LongBlueFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 12,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  Done:
+    UCBC A 4 A_FadeOut(0.1)
+    Loop
+}
+}
+
+Actor UFCUMarineRocketSquadHelicopterSpawner : UFCUMarineSquadHelicopterSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUMarineRocketSquadHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUMarineRocketSquadHelicopter : UFCUMarineSquadHelicopter
+{
+Height 128
+Scale 1.6
+States
+{
+  Spawn: 
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	HEL3 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL3 A 0 A_ChangeFlag("CEILINGHUGGER",FALSE)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0) 
+	HEL3 A 0 ThrustThingZ(0,-16,0,0)
+  Landing:
+	HEL3 A 0 A_CheckFloor("LandTroops")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  LandTroops:
+    HEL3 A 0
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",0,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",0,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",-20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",-20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",-40,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",-40,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",-60,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarineRocketSquadMinions",-60,40,0,0,0,0,0,32)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 ThrustThingZ(0,16,0,0)
+  TakeAir:
+	HEL3 A 0 A_CheckCeiling("Leaving")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  Leaving:
+	HEL3 A 0 A_SetAngle(random(0,359))
+	HEL3 A 0 A_Recoil(-10)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_StopSoundEx("SoundSlot7")
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+ACTOR MarineRocketSquadMinions : MarineSquadMinions
+{
+DropItem "UACGuyRocket", 256, 13
+DropItem "UACGuyHRL", 256, 13
+}
+
+Actor UFCUMarinePlasmaSquadBeacon : UFCUMarineSquadBeacon
+{
+States
+{
+  Spawn:
+    TNT1 A 1
+	Loop
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUMarinePlasmaSquadHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",0,-20,8)
+	UCBC C 0 A_SpawnItemEx("LongBlueFlare",20,0,8)
+	UCBC C 35 Bright A_SpawnItemEx("LongBlueFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 12,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+  Done:
+    UCBC A 4 A_FadeOut(0.1)
+    Loop
+}
+}
+
+Actor UFCUMarinePlasmaSquadHelicopterSpawner : UFCUMarineSquadHelicopterSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 3
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUMarinePlasmaSquadHelicopter")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUMarinePlasmaSquadHelicopter : UFCUMarineSquadHelicopter
+{
+Height 128
+Scale 1.6
+States
+{
+  Spawn: 
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	HEL3 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABA 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL3 A 0 A_ChangeFlag("CEILINGHUGGER",FALSE)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0) 
+	HEL3 A 0 ThrustThingZ(0,-16,0,0)
+  Landing:
+	HEL3 A 0 A_CheckFloor("LandTroops")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  LandTroops:
+    HEL3 A 0
+	HEL3 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",0,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",0,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",-20,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",-20,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",-40,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",-40,40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",-60,-40,0,0,0,0,0,32)
+	HEL3 A 0 A_SpawnItemEx("MarinePlasmaSquadMinions",-60,40,0,0,0,0,0,32)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABABABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 ThrustThingZ(0,16,0,0)
+  TakeAir:
+	HEL3 A 0 A_CheckCeiling("Leaving")
+	HEL3 AB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	Loop
+  Leaving:
+	HEL3 A 0 A_SetAngle(random(0,359))
+	HEL3 A 0 A_Recoil(-10)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 ABABABABABABABABABABABABAB 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL3 A 0 A_StopSoundEx("SoundSlot7")
+	HEL3 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+ACTOR MarinePlasmaSquadMinions : MarineSquadMinions
+{
+DropItem "UACGuyPlasma", 256, 60
+DropItem "UACGuyRepeater", 256, 20
+DropItem "UACGuyRailgun", 256, 10
+DropItem "UACGuyDTRifle", 256, 10
+DropItem "UACGuyPlasmaCaster", 256, 10
+}
+
+Actor UFCUArgentVaporBombBeacon :  UFCUTacticalCrateBeacon
+{
+-RIPPER
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUArgentVaporBombBomberSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUArgentVaporBombBomberSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+Speed 1000
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUArgentVaporBombBomber")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUArgentVaporBombBomber : UFCUTacticalCrateHelicopter
+{
+Radius 10
+Height 48
+Speed 55
+Scale 1.8
+States
+{
+   Spawn: 
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	FIGT A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	FIGT A 0 A_PlaySoundEx("vaporbomb/drop","body",0,1)
+	FIGT A 0 A_CustomMissile("ArgentVaporBomb",-24)
+	FIGT A 0 A_SetAngle(angle+random(0,359))
+	FIGT A 0 A_Recoil(-55)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor ArgentVaporBomb
+{
+Projectile
+Speed 0
+-NOGRAVITY
++MTHRUSPECIES
+DamageType "Marine"
+Gravity 0.25
+Damage 200
+Scale 0.22
+DeathSound "weapons/rocklx"
+States
+{	
+   Spawn:
+	VPBB A 5 Bright
+	Loop
+   Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_SpawnItemEx("LandKaBoom")
+	TNT1 A 10 A_PlaySoundEx("vaporbomb/explode","body",0,1)
+	TNT1 AAAAAAAAA 1 A_SpawnItemEx("NukeHyperSmoke",0,0,0,0.00001*Random(0,900000),0.00001*Random(0,900000),0,Random(0,359),128,0)
+	TNT1 A 17
+	TNT1 A 0 Radius_Quake(175,8,0,1024,0)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("ArgentVaporBombExplosion",random(384,-384),random(384,-384))
+	TNT1 AAAAAAAAA 1 A_SpawnItemEx("NukeHyperFire",0,0,0,0.00001*Random(0,900000),0.00001*Random(0,900000),0,Random(0,359),128,0)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ArgentVaporBombExplosion",random(384,-384),random(512,-512))
+	TNT1 AAAAAAAAA 1 A_SpawnItemEx("NukeHyperFire",0,0,0,0.00001*Random(0,900000),0.00001*Random(0,900000),0,Random(0,359),128,0)
+	TNT1 AAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("ArgentVaporBombExplosion",random(384,-384),random(512,-512))
+	TNT1 A 0
+    Stop
+}
+}
+
+Actor ArgentVaporBombExplosion
+{
+Projectile
+Radius 1
+Height 1
+Speed 0
+Damage 0
+DamageType "Marine"
++RIPPER
++BLOODLESSIMPACT
++CEILINGHUGGER
++FORCERADIUSDMG
++NOCLIP
+States
+{	
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(random(128,355),512)
+	TNT1 AAA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)  
+	TNT1 AAAAAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("ExplosionNoSmoke",0,0,random(80,100),2,random(80,100))
+	Stop
+}
+}
+
+Actor UFCUArgentAnnihilationBombBeacon :  UFCUTacticalCrateBeacon
+{
+-RIPPER
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUArgentAnnihilationBombBomberSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUArgentAnnihilationBombBomberSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+Speed 1000
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUArgentAnnihilationBombBomber")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUArgentAnnihilationBombBomber : UFCUTacticalCrateHelicopter
+{
+Radius 10
+Height 48
+Speed 55
+Scale 1.8
+States
+{
+   Spawn: 
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	FIGT A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	FIGT A 0 A_PlaySoundEx("vaporbomb/drop","body",0,1)
+	FIGT A 0 A_CustomMissile("ArgentAnnihilationBomb",-24)
+	FIGT A 0 A_SetAngle(angle+random(0,359))
+	FIGT A 0 A_Recoil(-55)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor ArgentAnnihilationBomb
+{
+Projectile
+Speed 0
+-NOGRAVITY
++MTHRUSPECIES
+DamageType "Marine"
+Gravity 0.25
+Damage 200
+Scale 0.22
+DeathSound "weapons/rocklx"
+var int user_timer;
+States
+{	
+   Spawn:
+	VPBB B 5 Bright
+	Loop
+   Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,32)
+	TNT1 A 1 A_SpawnItemEx("ArgentAnnihilation",0,0,0,0,0,0,0,32)
+    TNT1 A 10 A_PlaySoundEx("annihilationhole/start","body",0,1)
+   DeathLoop:
+    TNT1 A 0 A_JumpIf(user_timer >= 170,"DeathDone")
+	TNT1 A 0 A_SetUserVar("user_timer",user_timer+1)
+	TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("PurpleParticleSpawner",random(784,-784),random(784,-784),random(20,480),0,0,0,0,128)
+	TNT1 A 2
+    Loop
+   DeathDone:
+    TNT1 A 1
+    Stop
+}
+}
+
+Actor ArgentAnnihilation
+{
+Projectile
+Radius 1
+Height 1
++NOCLIP
++NOBLOCKMAP
++NOGRAVITY
++FORCERADIUSDMG
++FORCEXYBILLBOARD
++NODAMAGETHRUST
++NOEXTREMEDEATH
++FORCEPAIN
+DamageType "Marine"
+Scale 15
+Alpha 0.75
+Renderstyle Translucent
+States
+{
+  Spawn:
+   AVOI A 0 A_RadiusGive("AnnihilationVortexItem",1084,RGF_MONSTERS,1)
+   AVOI ABCDEF 2 Bright A_FadeOut(0.004)
+   Loop
+ }
+}
+
+Actor UFCUArgentToxicBombBeacon :  UFCUTacticalCrateBeacon
+{
+-RIPPER
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUArgentToxicBombBomberSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUArgentToxicBombBomberSpawner : UFCUTacticalCrateHelicopterSpawner
+{
+Speed 1000
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUArgentToxicBombBomber")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUArgentToxicBombBomber : UFCUTacticalCrateHelicopter
+{
+Radius 10
+Height 48
+Speed 55
+Scale 1.8
+States
+{
+   Spawn: 
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	FIGT A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	FIGT A 0 A_PlaySoundEx("vaporbomb/drop","body",0,1)
+	FIGT A 0 A_CustomMissile("ArgentToxicBomb",-24)
+	FIGT A 0 A_SetAngle(angle+random(0,359))
+	FIGT A 0 A_Recoil(-55)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor ArgentToxicBomb
+{
+Projectile
+Speed 0
+-NOGRAVITY
++MTHRUSPECIES
+DamageType "Marine"
+Gravity 0.25
+Damage 200
+Scale 0.22
+DeathSound "weapons/rocklx"
+var int user_timer;
+States
+{	
+   Spawn:
+	VPBB C 5 Bright
+	Loop
+   Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAAAAAAAA 1 A_SpawnItemEx("ToxicHyperSmoke",0,0,0,0.00001*Random(0,900000),0.00001*Random(0,900000),0,Random(0,359),32)
+    TNT1 A 10 A_PlaySoundEx("Daedabus/Chem","body",0,1)
+   DeathLoop:
+    TNT1 A 0 A_JumpIf(user_timer >= 70,"DeathDone")
+	TNT1 A 0 A_SetUserVar("user_timer",user_timer+1)
+	TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("GreenParticleSpawner",random(784,-784),random(784,-784),random(20,480),0,0,0,0,128)
+	TNT1 A 2
+    Loop
+   DeathDone:
+    TNT1 A 1
+    Stop
+}
+}
+
+Actor ToxicHyperSmoke
+{
+Projectile
+Radius 1
+Height 1
++NOCLIP
++NOBLOCKMAP
++NOGRAVITY
++FORCERADIUSDMG
++FORCEXYBILLBOARD
++NODAMAGETHRUST
++NOEXTREMEDEATH
++FORCEPAIN
+DamageType "Marine"
+Scale 15
+Alpha 0.5
+States
+{
+  Spawn:
+   TRPS A 0
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS A 3 Bright A_FadeOut(0.007)
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS B 3 Bright A_FadeOut(0.007)
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS C 3 Bright A_FadeOut(0.007)
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS D 3 Bright A_FadeOut(0.007)
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS E 3 Bright A_FadeOut(0.007)
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS F 3 Bright A_FadeOut(0.007)
+   TRPS A 0 A_Explode(random(34,146),random(384,712))
+   TRPS G 3 Bright A_FadeOut(0.007)
+   Loop
+ }
+}
+
+Actor UFCUArgentSonicBombBeacon : UFCUArgentVaporBombBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 ThrustThingZ(0,35,0,0)
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    UCBC AA 0 A_CustomMissile("UFCUArgentSonicBombBomberSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUArgentSonicBombBomberSpawner : UFCUArgentVaporBombBomberSpawner
+{
+-CEILINGHUGGER
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+	TNT1 A 0 A_CustomMissile("UFCUArgentSonicBombBomber")
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUArgentSonicBombBomber : UFCUArgentVaporBombBomber
+{
+Speed 105
+-CEILINGHUGGER
+States
+{
+   Spawn: 
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	FIGT A 0 A_PlaySoundEx("map/airnobomb","Voice",0,2)
+   Flying:
+	FIGT A 1 A_JumpIfCloser(320,"DropBomb")
+	Loop
+   DropBomb:
+	FIGT A 0 A_CustomMissile("ArgentSonicBomb",-24)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor ArgentSonicBomb
+{
+Projectile
+Speed 0
+DamageType "Marine"
+Gravity 0.25
+Damage 0
+Scale 1.0
++MTHRUSPECIES
++NODAMAGETHRUST
++FORCERADIUSDMG
++NOEXTREMEDEATH
++FOILINVUL
+States
+{	
+   Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("sonicbomb/explosion","SoundSlot6",0,1)
+	TNT1 A 0 A_PlaySoundEx("sonicbomb/boom","SoundSlot7",0,1)
+	TNT1 A 0 A_SpawnItemEx("ArgentSonicBombMinorBlast",0,0,40,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Explode(128,1528)
+	TNT1 A 15
+    Stop
+}
+}
+
+Actor UFCUArgentSysmicDetonationBeacon :  UFCUArgentVaporBombBeacon
+{
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_SpawnItemEx("ArgentSysmicDetonation",0,0,0,0,0,0,0,32)
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor ArgentSysmicDetonation
+{
+Projectile
+Speed 0
++MTHRUSPECIES
++FLOORHUGGER
+DamageType "Marine"
+Gravity 0.25
+Damage 0
+Scale 1.0
+States
+{	
+   Spawn:
+	TNT1 A 35
+	TNT1 A 0 Radius_Quake(5,30,0,300,0)
+	TNT1 A 0 A_PlaySoundEx("sysmicdetonation/loop","SoundSlot7",0,1)
+	TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("Debris",random(-192,192),random(-192,192),0,0,0,0,0,32)
+	TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("SmokeFX3",random(-192,192),random(-192,192),0,0,0,0,0,32)
+	TNT1 AAA 17 A_SpawnItemEx("ArgentSysmicDetonationFire",random(-192,192),random(-192,192),0,0,0,0,0,32)
+	TNT1 A 55
+	TNT1 A 0 A_PlaySoundEx("sysmicdetonation/loop","SoundSlot7",0,1)
+	TNT1 A 35 Radius_Quake(6,100,0,300,0)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Debris",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SmokeFX3",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 A 0 Radius_Quake(6,100,0,300,0)
+	TNT1 A 0 A_PlaySoundEx("sysmicdetonation/loop","SoundSlot7",0,1)
+	TNT1 AAAAAAAAA 8 A_SpawnItemEx("ArgentSysmicDetonationFire",random(-512,512),random(-512,512),0,0,0,0,0,32,64)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Debris",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SmokeFX3",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 A 0 A_SpawnItemEx("ArgentSysmicDetonationMegaFire",0,0,0,0,0,0,0,32)
+	TNT1 A 0 Radius_Quake(6,100,0,300,0)
+	TNT1 A 0 A_PlaySoundEx("sysmicdetonation/loop","SoundSlot7",0,1)
+	TNT1 AAAAAAAAA 8 A_SpawnItemEx("ArgentSysmicDetonationFire",random(-512,512),random(-512,512),0,0,0,0,0,32,64)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Debris",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SmokeFX3",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 A 0 Radius_Quake(6,100,0,300,0)
+	TNT1 A 0 A_PlaySoundEx("sysmicdetonation/loop","SoundSlot7",0,1)
+	TNT1 AAAAAAAAA 8 A_SpawnItemEx("ArgentSysmicDetonationFire",random(-512,512),random(-512,512),0,0,0,0,0,32,64)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Debris",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SmokeFX3",random(-512,512),random(-512,512),4,0,0,0,0,32)
+	TNT1 A 0 Radius_Quake(6,100,0,300,0)
+	TNT1 A 0 A_PlaySoundEx("sysmicdetonation/loop","SoundSlot7",0,1)
+	TNT1 AAAAAAAAA 8 A_SpawnItemEx("ArgentSysmicDetonationFire",random(-512,512),random(-512,512),0,0,0,0,0,32,64)
+    Stop
+}
+}
+
+Actor UFCUAirStrikeBeacon :  UFCUArgentVaporBombBeacon
+{
+-RIPPER
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+    UCBC A 0 A_CustomMissile("UFCUAirStrikeBomberSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUAirStrikeBomberSpawner : UFCUArgentVaporBombBomberSpawner
+{
+States
+{
+  Spawn: 
+	TNT1 A 12
+  Death:
+    TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	TNT1 A 0 A_PlaySoundEx("map/airstrike","Voice",0,2)
+	TNT1 AAAAAAA 12 A_CustomMissile("UFCUAirStrikeBomber",0,random(-64,64))
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUAirStrikeBomber : UFCUArgentVaporBombBomber
+{
+Radius 10
+Height 48
+Speed 55
+Scale 1.8
+States
+{
+   Spawn: 
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	FIGT A 0 A_PlaySoundEx("vaporbomb/drop","body",0,1)
+	FIGT AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("UACAirStrikeBomb",0,0,-24,random(-5,5),random(-5,5),0,0)
+	FIGT A 0 A_SetAngle(angle+random(0,359))
+	FIGT A 0 A_Recoil(-55)
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+Actor UFCUHelicopterStrikeBeacon :  UFCUArgentVaporBombBeacon
+{
+-RIPPER
+var int user_angle;
+States
+{
+  Death:
+	UCBC A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	UCBC A 35 A_Gravity
+	UCBC A 0 A_CustomMissile("UFCUHelicopterStrikeHelicopterSpawner",0,0,random(1,359))
+  Waiting:
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",0,-20,8)
+	UCBC D 0 A_SpawnItemEx("LongRedFlare",20,0,8)
+	UCBC D 35 Bright A_SpawnItemEx("LongRedFlare",-20,0,8)
+	TNT1 A 0 A_JumpIf(user_timer >= 6,"Done")
+	UCBC A 35 A_SetUserVar("user_timer",user_timer+1)
+	Loop
+}
+}
+
+Actor UFCUHelicopterStrikeHelicopterSpawner : UFCUArgentVaporBombBomberSpawner
+{
+Speed 500
+States
+{
+  Spawn: 
+	TNT1 A 6
+  Death:
+	TNT1 A 0 A_SpawnItemEx("UFCUHelicopterStrikeHelicopter",-300,512,0,5,0,0,180,32,0)
+	TNT1 A 0 A_SpawnItemEx("UFCUHelicopterStrikeHelicopter",-300,-512,0,5,0,0,180,32,0)
+	TNT1 A 0 A_SpawnItemEx("UFCUHelicopterStrikeHelicopter",-150,256,0,5,0,0,180,32,0)
+	TNT1 A 0 A_SpawnItemEx("UFCUHelicopterStrikeHelicopter",-150,-256,0,5,0,0,180,32,0)
+	TNT1 A 0 A_SpawnItemEx("UFCUHelicopterStrikeHelicopter",0,0,0,5,0,0,180,32,0)
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor UFCUHelicopterStrikeHelicopter : UFCUTacticalCrateHelicopter
+{
+Height 128
+States
+{
+   Spawn: 
+	FIGT A 0 A_SpawnItemEx("TeleportFog")
+	HEL1 A 0 A_PlaySoundEx("attackhelicopter/loop","SoundSlot7",1)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)		
+	HEL1 A 0 A_SetAngle(angle+180)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)	
+	HEL1 A 0 A_Recoil(-7)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 2 A_SpawnItemEx("StrikeHelicopterTurret",32,0,-48,0,0,0,0,32,0)
+	HEL1 A 0 A_StopSoundEx("SoundSlot7")
+	HEL1 A 0 A_SpawnItemEx("TeleportFog")
+	Stop
+}
+}
+
+ACTOR StrikeHelicopterTurret
+{
+Radius 0
+Height 0
+Speed 0
++NOGRAVITY
++MISSILEMORE
++MISSILEEVENMORE
++FRIENDLY
++LOOKALLAROUND
+-COUNTKILL
+States
+{
+  Spawn:
+	TNT1 AA 1 A_LookEx(2,0,25000,0,360,"See")
+	Stop
+  See:
+	TNT1 A 0 
+	TNT1 A 0 A_Jump(88,4)
+	TNT1 A 0 A_CustomMissile("StrikeHelicopterMinigunProj",8,0,random(-3,3))
+	TNT1 A 0 A_PlaySound("hminigun/fire2")
+	TNT1 A 0 A_SpawnItemEx("TurretFlash",35,0,8)
+	TNT1 A 1 
+	Stop
+}
+}
+
+Actor OrbitalStrikeMarker
+{
+Projectile
+Speed 20
+WallBounceFactor 1.1
+BounceFactor 1.1
+RenderStyle Add
+Damage 0
++BLOODLESSIMPACT
++FLOORHUGGER
++BOUNCEONACTORS
++USEBOUNCESTATE
++HEXENBOUNCE
++FORCEYBILLBOARD
++SEEKERMISSILE
+XScale 0.25
+YScale 10.0
+Alpha 0.9
+ReactionTime 1120
+var int user_time;
+States
+{
+  Spawn:
+	SRED A 0
+	SRED A 70 Bright A_PlaySoundEx("orbital/bombardment","body",0,1)
+	SRED A 1 Bright A_CustomMissile("OrbitalStrikeBombSpawner",0,0,0,CMF_AIMDIRECTION)
+  Bounce:
+    SRED A 0
+  	SRED A 0 A_JumpIf(user_time >= 14,"Bomb")
+	SRED A 0 A_SetUserVar("user_time",user_time+1)
+	SRED A 0 A_CountDown
+	STMK A 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TRACER,AAPTR_DEFAULT)
+	SRED A 2 Bright A_SeekerMissile(350,180,SMF_LOOK,256,25)
+	Loop
+  Bomb:
+    SRED A 0
+	SRED A 0 A_SetUserVar("user_time",0)
+	SRED A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	STMK A 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TRACER,AAPTR_DEFAULT)
+	STMK A 0 A_SeekerMissile(350,180,SMF_LOOK,256,25)
+    SNCE A 0 A_CheckFlag(FLOAT,"SeekerBomb",AAPTR_MASTER)
+	SRED A 2 Bright A_CustomMissile("OrbitalStrikeBombSpawner",0,0,0,CMF_AIMDIRECTION)
+    Goto Bounce
+  SeekerBomb:
+	SRED A 2 Bright A_CustomMissile("OrbitalStrikeSeekerBombSpawner",0,0,0,CMF_AIMDIRECTION)
+    Goto Bounce
+  Death:
+	SRED A 2 Bright A_FadeOut(0.1)
+	Loop
+ }
+}
+
+ACTOR OrbitalStrikeBombSpawner
+{
+Height 2
+Radius 2
+Speed 0
+RenderStyle Add
+Alpha 0.9
+XScale 3
+YScale 0.5
+PROJECTILE
++SPAWNCEILING
++CEILINGHUGGER
++NOCLIP
++DONTSPLASH
+States
+{
+  Spawn:
+	TNT1 A 1
+	TNT1 A 1 A_SpawnItemEx("OrbitalStrikeBomb",random(-350,350),random(-350,350),-18)
+    Stop
+}
+}
+
+ACTOR OrbitalStrikeSeekerBombSpawner : OrbitalStrikeBombSpawner
+{
+States
+{
+  Spawn:
+	TNT1 A 1
+	TNT1 A 1 A_SpawnItemEx("OrbitalStrikeSeekerBomb",random(-350,350),random(-350,350),-18,0,0,-15)
+    Stop
+}
+}
+
+ACTOR OrbitalStrikeBomb
+{
+Radius 8
+Height 8
+Speed 0
+Damage 55
+RenderStyle Add
+Alpha 0.6
+Scale 1.0
+DamageType "Marine"
+PROJECTILE
++SPAWNCEILING
++DONTSPLASH
++FORCERADIUSDMG
+-NOGRAVITY
+-FLOAT
+SeeSound "HFCyb/rocket"
+DeathSound "weapons/rocklx"
+Gravity 2.2
+States
+{
+  Spawn:
+    AMIS A 1 Bright A_SpawnItemEx("OrbitalStrikeBombTrail",0,0,0,0,0,0,0,128,0)
+    Loop
+  Death:
+	TNT1 A 0 A_Explode(128,128)
+    TNT1 A 0 A_Explode(64,512)
+	TNT1 A 0 A_CustomMissile("HugeExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("HugeRocketEx")
+    Stop
+}
+}
+
+ACTOR OrbitalStrikeSeekerBomb : OrbitalStrikeBomb
+{
++SEEKERMISSILE
++NOGRAVITY
+Speed 45
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_SeekerMissile(20,50,SMF_LOOK|SMF_PRECISE)
+    AMIS A 1 Bright A_SpawnItemEx("OrbitalStrikeBombTrail",0,0,0,0,0,0,0,128,0)
+    Loop
+}
+}
+
+Actor OrbitalStrikeBombTrail : ClientSideEffect
+{
+RenderStyle Add
+Alpha 0.6
++NOCLIP
++NOGRAVITY
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
+Scale 1.0
+States
+  {
+  Spawn:
+  	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+    AMIS A 5 Bright
+    AMIS A 1 Bright A_FadeOut(0.15)
+    Goto Spawn+3
+  }
+}

@@ -1,0 +1,2560 @@
+//=====================================
+// Waiting Room Monsters a bunch of WTF
+//=====================================
+
+ACTOR NewCyberdemon2 : NewCyberdemon
+{
+Height 64
+Health 3000
+-COUNTKILL
+-BOSS
++DROPOFF
+MaxStepHeight 384
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+DropItem "RoomDrop" 64
+States
+{
+  Death:
+    CYB2 G 10 A_Scream
+    CYB2 H 10 A_NoBlocking
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    CYB2 IIIII 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    CYB2 JJJJJ 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))		
+    CYB2 KKKKK 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)		
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    CYB2 LLLLL 1 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    CYB2 MMMMM 1 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAA 0 A_CustomMissile("SmokeFX3", Random(20,80), 0, random(0,360), 2, random(0,360))	
+    CYB2 N 10
+    CYB2 O 8	
+    CYB2 P 2100
+    Stop
+  }
+}
+
+ACTOR LegZombie2 : LegZombie1
+{ 
+Health 1500
+-COUNTKILL
+-BOSS
++DROPOFF
+MaxStepHeight 384
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+States
+{
+Spawn:
+    LPOS AQ 10 A_Look
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    Loop
+See:
+    LPOS AABB 3 A_Chase
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LPOS CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LPOS A 0 A_Jump(80,"Rush")
+    TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    Loop
+Rush:
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("LegZombieGhostA",0,0,0,0,0,0,0,128)
+	LPOS A 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegZombieGhostA",0,0,0,0,0,0,0,128)
+	LPOS A 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryZombieGhostB",0,0,0,0,0,0,0,128)
+	LPOS B 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryZombieGhostB",0,0,0,0,0,0,0,128)
+	LPOS B 1 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("LegZombieGhostC",0,0,0,0,0,0,0,128)
+	LPOS C 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegZombieGhostC",0,0,0,0,0,0,0,128)
+	LPOS C 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryZombieGhostD",0,0,0,0,0,0,0,128)
+	LPOS D 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("LegendaryZombieGhostD",0,0,0,0,0,0,0,128)
+	LPOS D 1 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_Jump(84,"See")
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	Loop
+Pause:
+	LPOS E 20 A_PlaySound("weapons/demontechsteam")
+	Goto See	
+Missile:
+	LPOS E 12 A_FaceTarget
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LPOS E 3 A_FaceTarget
+    TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("LegendaryProjectile",32,0,Random(100,-100)/100.00,0)
+	LPOS F 3 Bright A_PlaySoundEx("weapons/DemonTechRifle","Weapon")
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_Jump(24,"Pause")
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpidRefire
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 Bright A_PlayWeaponSound("BlueDTRFire")
+	Goto Missile+1
+Pain:
+    LPOS G 6 A_Pain
+	TNT1 A 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    Goto See
+Death:
+    TNT1 A 0 A_StopSound(6)
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	LPOS H 5 A_Scream
+    LPOS I 5 A_Fall
+    LPOS J 5 A_SpawnItem("BodyCrash",0,0,0,0)
+    LPOS K 5
+    LPOS L 2100
+	Stop
+XDeath:
+    TNT1 A 0 A_StopSound(6)
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	LPOS O 3 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    LPOS P 3 A_XScream
+    LPOS R 3 A_Fall
+    LPOS STUV 3
+    LPOS W 2100 
+    Stop
+    }
+}
+
+ACTOR LegendaryHellKnight2 : LegendaryHellKnight1
+{
+  -COUNTKILL
+  -BOSS
+  +DROPOFF
+  Health 1750
+  MaxStepHeight 384
+  DropItem "RoomDrop" 256
+  DropItem "RoomDrop" 127
+  States
+  {
+  Spawn:
+    TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    LNBL A 14 A_Look
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL Z 14 A_Look
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    Loop
+  See:
+    TNT1 A 0 A_Jump(100,"Rush")
+	LNBL AA 3 A_Chase
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GoldWalkFire",0,0,0,0,0,0,0,128)
+	LNBL BB 3 A_Chase
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    TNT1 A 0 A_SpawnItemEx("GoldWalkFire",0,0,0,0,0,0,0,128)
+	LNBL CC 3 A_Chase
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GoldWalkFire",0,0,0,0,0,0,0,128)
+	LNBL DD 3 A_Chase
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("GoldWalkFire",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Jump(32,"Teleport")
+    Loop
+  Rush:
+    LNBL A 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL A 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase  
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL B 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL B 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL C 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL C 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase  
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL D 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+    LNBL D 2 A_SpawnItemEx("LNGhost",0,0,0,0,0,0,0,128)
+	LNBL AAAA 0 A_Chase
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 AAA 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_Jump(24,"Teleport")
+	TNT1 A 0 A_Jump(75,"See")
+    Loop
+  Teleport:
+    LNBL P 1 A_UnSetShootable
+	LNBL PPPP 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL PPPPPPPPPP 1 A_FadeOut(0.1,0)
+	LNBL P 2
+	LNBL PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+	LNBL PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+    LNBL P 1 A_PlayWeaponSound("boss/teleport")
+	LNBL PPPP 0 A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL PPPPPPPPPPP 1 A_FadeIn(0.1)
+    LNBL P 1 A_SetShootable
+    Goto See
+  Missile:
+	TNT1 A 0 
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_SetTranslucent(1)
+    TNT1 A 0 A_Jump(127,"Spread","Hugger","FloorFire","Rage","BestAttack","Rain")
+	//TNT1 A 0 A_Jump(64,"MinionSummoner")
+	TNT1 A 0 A_Jump(100,"4Comets","BlueComet","SuperComet")
+  Normal:
+    LNBL EF 5 A_FaceTarget
+	LNBL G 5 A_CustomMissile("LegNobleBall",32,0,0)
+    LNBL ST 5 A_FaceTarget
+	LNBL U 5 A_CustomMissile("LegNobleBall",32,0,0)	
+	TNT1 A 0 A_Jump(127,"Spread")
+	Goto See
+  Spread:
+    LNBL PQ 9 Bright A_FaceTarget
+    LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,18)	
+	LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,-18)
+    LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,15)	
+	LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,-15)
+    LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,12)	
+	LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,-12)
+    LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,9)	
+	LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,-9)
+    LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,6)	
+	LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,-6)	
+    LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,3)	
+	LNBL R 0 A_CustomMissile("LegNobleBall2",32,0,-3)
+    LNBL R 8 Bright A_CustomMissile("LegNobleBall2",32,0,0)
+	TNT1 A 0 A_Jump(127,"Hugger")
+    Goto See
+  BlueComet:
+    LNBL EF 7 Bright A_FaceTarget	
+	LNBL R 2 Bright A_CustomMissile("LegNobleComet", 32, 0, 0)
+    TNT1 A 0 Bright A_CustomMissile("LegNobleComet", 32, 0, 6)
+    LNBL R 4 Bright A_CustomMissile("LegNobleComet", 32, 0, -6)
+    Goto See
+  Melee:
+    LNBL EF 8 A_FaceTarget 
+    LNBL G 8 A_MeleeAttack	
+    Goto See 
+  MinionSummoner:
+    LNBL P 1
+	Goto Missile
+  Hugger:
+    LNBL RQ 9 Bright A_FaceTarget
+	LNBL PPPP 2 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL P 0 A_CustomMissile("LegNobleBall3",32,20,0)
+    LNBL P 0 Bright A_CustomMissile("LegNobleBall3",32,-20,0)
+	LNBL PPPP 2 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_Jump(120,"Rain")
+    Goto See
+  Rage:	
+    LNBL Q 1 Bright A_PlaySound("baron/sight")
+	LNBL Q 1 Bright A_FaceTarget
+	LNBL Q 1 Bright A_SetUserVar("user_missile",0)
+    LNBL RRRR 2 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL QQQQ 2 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+  Raging:
+    LNBL Q 0 A_JumpIf(user_missile >= 28,"See")	 
+    LNBL Q 0 A_SetUserVar("user_missile",user_missile+1)
+    LNBL QQ 0 A_CustomMissile("LegNobleBall3Small",0,0,random(0,359))	
+    LNBL Q 4 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+    Loop
+  BestAttack:
+    LNBL Q 1 Bright A_PlaySound("baron/sight")
+    LNBL P 2 Bright A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+	LNBL PPPPPPPPPPPPPPPPP 2 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL Q 2 Bright A_FaceTarget
+	LNBL QQQQQQQQQQQQQQQQQ 2 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LNBL R 2 Bright A_FaceTarget
+	TNT1 A 0 A_UnSetInvulnerable
+    LNBL R 8 Bright A_CustomMissile("LegNobleBall4",32,0,0)
+    Goto See
+  Rain:
+    LNBL P 2 Bright A_FaceTarget
+    LNBL PPPPPPP 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL Q 0 A_CustomMissile("BlueRainCometNull",32,0,200)
+    LNBL Q 0 A_CustomMissile("BlueRainCometNull",32,0,90)
+    LNBL Q 0 A_CustomMissile("BlueRainCometNull",32,0,-90)	
+    LNBL Q 8 Bright A_CustomMissile("BlueRainCometNull",32,0,0)
+    TNT1 A 0 A_SetInvulnerable
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+	LNBL Q 2 Bright A_FaceTarget
+    LNBL QQQQQQQQ 2 Bright A_SpawnItem("BHellionSmokeSpawner",0,0,0,0)
+    TNT1 A 0 A_UnSetInvulnerable
+    Goto See	
+  Pain:
+    TNT1 A 0 A_Jump(8,"Rage")	
+  	TNT1 A 0 A_Jump(42,"Teleport")	
+	TNT1 A 0 A_Jump(128,"PainMissile")
+    LNBL H 2
+    LNBL H 2 A_Pain
+    Goto See
+  PainMissile: 
+    LNBL H 3 	
+    LNBL H 3 A_Pain
+    Goto Missile
+  Death:
+	LNBL I 8
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+    LNBL J 8 A_Scream
+    LNBL K 8
+    LNBL L 8 A_NoBlocking
+    LNBL MN 8
+    LNBL O 2100 A_BossDeath
+    Stop
+  }
+}
+
+Actor TodesRitter2 : TodesRitter
+{
++DROPOFF
+-COUNTKILL 
+-BOSS
+MaxStepHeight 384
+Height 64
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+Health 3000
+States
+{
+  Death:
+    DKGT M 11 A_Scream
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+    DKGT NOP 11 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+    DKGT Q 11 A_NoBlocking
+	DKGT R 11  A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+    DKGT S 2100 A_BossDeath
+    Stop
+  }
+}
+
+ACTOR JitterSkull
+{              
+   Health 2500
+   PainChance 15
+   Speed 40 
+   Radius 20
+   Height 56
+   Scale 0.24
+   Mass 999999
+   Monster
+   MeleeRange 400
+   SeeSound "skultaunt" 
+   PainSound "jitpain" 
+   DeathSound "skulldie" 
+   ActiveSound "skultaunt" 
+   BloodType "jitterchip"
+   Translation "112:127=80:95"
+   Species "Hell"
+   DamageFactor "Hell", 0.0 
+   DamageFactor 0.5
+   RadiusDamageFactor 0.2
+   DropItem "RoomDrop" 256
+   DropItem "RoomDrop" 127
+   +DONTHARMSPECIES
+   +QUICKTORETALIATE
+   +LOOKALLAROUND
+   +AMBUSH
+   +FLOORCLIP 
+   +FLOORHUGGER
+   -COUNTKILL
+   Obituary "%o was crunched by a jitterskull." 
+   Tag "\ccJitter Skull\c-"
+   States 
+   { 
+   Spawn: 
+      JSKL A 10 A_Look 
+      Loop 
+   See: 
+      JSKL A 0 A_PlaysoundEx("skullact","Body")
+      JSKL A 0 A_Chase
+      JSKL ABCBABCABCABCABC 1
+      JSKL A 0 A_FaceTarget
+      JSKL A 1 A_Recoil(-255)
+      JSKL A 1 A_Stop
+      Loop 
+   Melee: 
+      JSKL A 0 A_ChangeFlag("NOPAIN",1)
+      JSKL A 1 A_FaceTarget
+      JSKL A 0 A_PlaysoundEx("skullattack","Body")
+      JSKL D 0 A_Recoil(-57)
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL D 0 A_CustomMissile("JittAttack",0,0,0,2,0)
+      JSKL DDD 1
+      JSKL A 10
+      JSKL A 1 A_ChangeFlag("NOPAIN",0)
+      Goto See    
+   Pain: 
+      JSKL A 2 
+      JSKL B 2 A_Pain 
+      Goto See 
+   Death: 
+      JSKL A 1 A_StopSoundEx("Voice")
+	  TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+      JSKL D 1 A_PlaySoundEx("skulldie", "Voice")
+      JSKL D 1 A_NoBlocking
+      JSKL DDDDDDDDDDDDDDDDDDDD 1 BRIGHT A_CustomMissile("ArchvileFirex",2,0,random(0,360),2,0)
+      JSKL ZZZZZZZZZZZ 1 A_CustomMissile("ArchvileFirex",0,0,random(0,360),2,0)
+      JSKL Z 2100
+      Stop
+   } 
+} 
+
+Actor JittAttack
+{
+PROJECTILE
+Speed 0
+Scale 0.8
++NOTELEPORT
++EXTREMEDEATH
++FORCERADIUSDMG
+Decal "BloodSplat"
+Obituary "%o was cruched by a jitterskull." 
+Damage 0
+Height 5
+Radius 6
+Damagetype "Hell"
+States
+{
+   Spawn:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(12,152)
+   	TNT1 A 1 A_Explode(150,84)
+	Stop
+   Death:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(12,1952)
+	TNT1 A 1 A_Explode(150,84)
+    TNT1 A 1 
+	Stop
+}
+}
+
+ACTOR Creeper
+{              
+   Health 1200
+   PainChance 256
+   Speed 25
+   Radius 13
+   Height 18
+   Scale 0.4
+   Mass 80
+   Monster
+   MaxStepHeight 384
+   //MeleeRange 30
+   BloodColor "Green"
+   SeeSound "creeptaunt" 
+   PainSound "creeperpain" 
+   DeathSound "creeperdie" 
+   ActiveSound "creeptaunt" 
+   MinMissileChance 250
+   Species "Hell"
+   DamageFactor "Hell", 0.0 
+   DamageFactor 0.5
+   RadiusDamageFactor 0.2
+   DropItem "RoomDrop" 256
+   DropItem "RoomDrop" 127
+   +DONTHARMSPECIES
+   +FLOORCLIP 
+   +DROPOFF
+   +QUICKTORETALIATE
+   +LOOKALLAROUND
+   +AMBUSH
+   +FLOORCLIP 
+   -COUNTKILL
+   Obituary "A creeper sucked out %o's soul." 
+   Tag "\cuCreeper\c-"
+   States 
+   { 
+   Spawn: 
+      CRE6 A 10 A_Look 
+      Loop 
+   See: 
+      CRE6 A 0 A_PlaysoundEx("creeperact","Body")
+      CRE6 ABCABCABC 2 A_Chase
+      Loop 
+   Melee: 
+      CRE6 A 2
+      CRE6 B 2 A_CustomMeleeAttack(158,"creeperattack",none,"Hell")
+      Goto See 
+   Missile:
+      CRE6 B 0 A_Jump(200,"See")
+      CRE6 B 1 A_CustomMissile("CreeperBall",32,0,random(-2,2))
+      Goto See     
+   Pain: 
+      CRE6 A 2 
+      CRE6 A 2 A_Pain 
+      Goto See 
+  Death:
+      CRE6 Z 0 A_SpawnItem("Creeperdeath")
+      CRE6 Z 0 A_GiveToTarget("CrateGiver",1)
+      CRE6 Z 1 A_NoBlocking
+      CRE6 Z 2100
+      Stop       
+   } 
+} 
+
+Actor CreeperBall
+{
+Speed 42
+Damage 25
+Damagetype "Hell" 
+Height 8
+Radius 10
+Renderstyle Add
+Scale 0.6
+Alpha 1.0
+PROJECTILE
+Decal "Creeperballdecal"
+Seesound "CreeperBall"
+Deathsound "CreeperBallD"
+States
+{
+   Spawn:
+	SRBA ABCD 3 
+	Loop
+   Death:
+	SRBA EFGHIJ 3 bright A_SetTranslucent(1.0, 1)
+	Stop
+	}
+} 
+   
+ACTOR TheOni
+{
+Health 2000
+Radius 20
+Height 64
+Mass 100
+Speed 20
+Monster 
+BloodColor "Blue"
+SeeSound "TheOni/See"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.5
+RadiusDamageFactor 0.2
+MeleeRange 84
+MaxStepHeight 384
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
++FLOORCLIP
++BRIGHT
++NOPAIN
++LOOKALLAROUND
++DONTHARMSPECIES
++QUICKTORETALIATE
++DROPOFF
+-COUNTKILL
+Obituary "%o was raped to death by The Oni"
+Tag "\cnOni\c-"
+States
+{
+   Spawn:
+	AONI A 1 A_Look
+	AONI A 0 A_StopSound(CHAN_VOICE)
+	Loop  
+   See:
+	AONI ABC 2 A_Chase
+	AONI A 0 A_SpawnItem("FootStep",0,0,0,0)
+	AONI ABC 2 A_Chase
+	AONI A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+   Melee:
+	AONI A 1 A_FaceTarget
+	AONI C 10 A_CustomMeleeAttack(110,"Aooni/See",none)
+	Goto See 
+   Death:
+	AONI A 0 A_Scream
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	AONI A 0 A_Fall
+	AONI A 0 A_SpawnItemEx("TheAoniGibbedGenerator",0,0,0,0,0,0,0,128,0)
+	AONI A 1 A_StopSound(CHAN_VOICE)
+	AONI D 2100
+	Stop
+	}
+}
+
+ACTOR BattleLord
+{
+Monster
+Health 3000
+Radius 40
+Height 64
+Mass 5555
+Speed 10
+PainChance 7
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Legendary", 0.75
+DamageFactor "BFGSplash", 0.5
+DamageFactor "PDTBFG", 0.5
+DamageFactor "PDTBFGTracer", 0.5
+DamageFactor 0.75
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+MaxStepHeight 384
++DONTHARMSPECIES
++NORADIUSDMG
++QUICKTORETALIATE
++DROPOFF
+-COUNTKILL
+Obituary "%o could not go up against the Battlelord's weapons."
+SeeSound "OVLOSIT"
+AttackSound "plasmaminigun/fire"
+PainSound "OVLOPAIN"
+DeathSound "OVLODEAT" 
+Tag "\ceBattle Lord\c-"
+States
+{
+	Spawn:
+		LORD A 4 A_Look
+		Loop
+	See:
+	    LORD AABB 3 A_Chase
+		TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+		LORD CCDD 3 A_Chase
+		TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+		Loop
+	Missile:
+		LORD E 0 A_Jump(120,"Grenadier")
+    Normal:
+ 		LORD E 20 bright A_FaceTarget
+		LORD EF 4 bright A_CustomBulletAttack(22.5,0,1,random(1,5)*6,"HellBulletPuff",0,CBAF_NORANDOM)
+ 		LORD F 1 bright A_SpidRefire
+ 		Goto Normal+1
+	Grenadier:
+	 	LORD G 1 Bright A_JumpIfCloser(800,1)
+		Goto Normal
+ 		LORD G 6 Bright A_Facetarget
+ 		LORD G 0 A_PlaySound("Weapons/GrenadeFire")
+ 		LORD H 6 A_CustomMissile("UpdatedDemonGrenade",40,26,random(-2,2),CMF_AIMOFFSET,4.328125)
+ 		LORD G 6 Bright A_Facetarget
+ 		LORD G 0 A_PlaySound("Weapons/GrenadeFire")
+ 		LORD H 6 A_CustomMissile("UpdatedDemonGrenade",40,26,random(-2,2),CMF_AIMOFFSET,4.328125)
+ 		LORD G 6 Bright A_Facetarget
+ 		LORD G 0 A_PlaySound("Weapons/GrenadeFire")
+ 		LORD H 6 A_CustomMissile("UpdatedDemonGrenade",40,26,random(-2,2),CMF_AIMOFFSET,4.328125)
+ 		LORD G 6 Bright A_Facetarget
+ 		LORD G 0 A_PlaySound("Weapons/GrenadeFire")
+ 		LORD H 6 A_CustomMissile("UpdatedDemonGrenade",40,26,random(-2,2),CMF_AIMOFFSET,4.328125)
+ 		LORD G 6 Bright A_Facetarget
+ 		LORD G 0 A_PlaySound("Weapons/GrenadeFire")
+ 		LORD H 6 A_CustomMissile("UpdatedDemonGrenade",40,26,random(-2,2),CMF_AIMOFFSET,4.328125)		
+ 		Goto See		
+    Pain:
+		TNT1 A 0 A_Jump(87,"PainMissile")
+		LORD I 4 A_Pain
+		Goto See
+	PainMissile:
+		LORD I 4 A_Pain
+		Goto Missile		
+	Death:
+		LORD I 10 A_Scream
+		TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+		TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		LORD IIIII 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+		TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		LORD JJJJJ 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))	
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+		TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		LORD KKKKK 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+		TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		LORD LLLLL 2 Bright A_CustomMissile("Kaboom", random(20,80), random(20,-20), random(0,360), 2, random(0,360))		
+		LORD M 10 A_Noblocking
+		LORD N 2100 A_SetFloorClip
+		Stop
+	}
+}
+
+ACTOR SadFace
+{
+Health 2000
+Radius 38
+Height 64
+Mass 99999
+Speed 24
+Monster 
+SeeSound "sad/explain"
+DeathSound "sad/explain"
+ActiveSound "sad/explain"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.5
+RadiusDamageFactor 0.2
+MeleeRange 94
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+Scale 3.0
++FLOORCLIP
++BRIGHT
++NOPAIN
++LOOKALLAROUND
++DONTHARMSPECIES
++NOBLOOD
++QUICKTORETALIATE
++NOGRAVITY
++FLOAT
+-COUNTKILL
+Obituary "%o died in sadness when he saw the sad face."
+Tag "\cgSad Face D=\c-"
+States
+{
+   Spawn:
+	SAAD A 1 A_Look
+	Loop  
+   See:
+	SAAD A 2 A_Chase
+	Loop
+   Melee:
+	SAAD A 8 A_CustomMeleeAttack(110,"sad/explain",none)
+	Goto See 
+   Death:
+	SAAD A 0 A_Scream
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	SAAD A 0 A_Fall
+	SAAD AAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("ArchvileFirex",2,0,random(0,360),2,0)
+	Stop
+	}
+}
+
+Actor TestBagel
+{
+Monster
+Radius 20
+Height 56
+Health 2000
+Speed 19
+Mass 100
+Species "Hell"
+DamageFactor "Hell", 0.0
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+PainChance 10
+MeleeRange 84
+MaxStepHeight 384
+MaxTargetRange 2048	
+MinMissileChance 252
+DamageFactor 0.5
+RadiusDamageFactor 0.2
++DROPOFF
++FLOORCLIP
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++STRIFEDAMAGE
+-COUNTKILL
+SeeSound "bagel/see"
+PainSound "bagel/pain"
+DeathSound "bagel/death"
+ActiveSound "bagel/active"
+MeleeSound "bagel/melee1"
+Obituary "%o was gang banged by a bagel."
+var int user_script;
+Tag "\coBagel\c-"
+States
+{
+  Spawn:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+    TNT1 A 0 ACS_ExecuteAlways(3555,0,1,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	BAGL ABCDCB 1 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,3)
+    TNT1 A 0 ACS_ExecuteAlways(3555,0,1,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_Jump(15,"Jump")
+    BAGL ABC 1 A_Chase
+    Loop
+  Jump:	
+	BAGL A 0 A_JumpIf(momz != 0,"See")
+	BAGL A 0 A_FaceTarget
+	BAGL A 0 A_SetAngle(angle+random(-45,45))
+	BAGL A 0 ThrustThingZ(0,35,0,0)
+	BAGL A 3 A_Recoil(-8)
+	BAGL A 0 A_Recoil(-0.1)
+    BAGL B 1 A_CheckFloor("See")
+	BAGL C 1 A_JumpIf(momz==0,"See")
+	Goto Jump+5
+   Melee:
+    BAGL FF 3 A_Chase("","")
+    TNT1 A 0 A_SpawnItemEX("Honk",0,0,random(50,70),0)
+	TNT1 A 0 A_CustomMeleeAttack(random(50,80),"bagel/melee1","bagel/melee1","Bagel")
+	BAGL AA 3 A_Chase("","")
+    BAGL FF 3 A_Chase("","")
+    TNT1 A 0 A_SpawnItemEX("Honk",0,0,random(50,70),0)
+	TNT1 A 0 A_CustomMeleeAttack(random(50,80),none,none,"Bagel")
+	BAGL AA 3 A_Chase("","")
+    Goto Spawn
+   Missile:
+    BAGL FF 3 A_Chase("","")
+    TNT1 A 0 A_PlayWeaponSound("potato/pop")
+	TNT1 A 0 A_CustomMissile("ExplosivePotato",32)
+	BAGL AA 3 A_Chase("","")
+    Goto Spawn   
+  Pain:
+    BAGL A 1
+    BAGL A 1 A_Pain
+    Goto See	
+  Death:
+	BAGL M 8 
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+    BAGL N 8 A_Scream
+    BAGL O 8 A_NoBlocking 
+    BAGL PQ 8    
+    Stop	
+  }
+}
+
+Actor ExplosivePotato
+{
+  PROJECTILE
+  Height 8
+  Radius 11
+  Speed 20
+  Damage 27
+  Scale 0.05
+  Bouncefactor 0.7
+  WallBounceFactor 0.7
+  BounceCount 6
+  SeeSound "potato/pop"
+  DamageType "Potato"
+  +RANDOMIZE
+  +HEXENBOUNCE
+  //-NOGRAVITY
+  States
+  {
+  Spawn:
+    POTT AAAAAAAAAA 1 A_SpawnItemEx("PotatoTrail",0,0,0,0,0,0,0,128)
+	POTT BBBBBBBBBB 1 A_SpawnItemEx("PotatoTrail",0,0,0,0,0,0,0,128)
+	POTT CCCCCCCCCC 1 A_SpawnItemEx("PotatoTrail",0,0,0,0,0,0,0,128)
+	POTT DDDDDDDDDD 1 A_SpawnItemEx("PotatoTrail",0,0,0,0,0,0,0,128)
+    Loop
+  Death:
+    TNT1 A 0 A_SpawnItemEX("POP",0,0,random(50,70),0)
+	TNT1 A 0 A_PlaySound("potato/pop")
+	MISL BCD 6 Bright
+	Stop
+  }
+}
+
+Actor PotatoTrail
+{
+ +NOGRAVITY
+ +CLIENTSIDEONLY
+ RenderStyle Translucent
+ Alpha 0.1
+ Scale 0.05
+ States
+ {
+  Spawn:
+  POTT ABCD 10
+  Stop
+ }
+}
+
+Actor ISISTerrorist
+{
+Health 2000
+Radius 20 
+Height 56 
+Speed 6
+Mass 100
+PainChance 5
+MONSTER 
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DROPOFF
+-COUNTKILL
+-BOSS
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "ISIS/See"
+PainSound "grunt/pain"
+DeathSound "ISIS/Die"
+ActiveSound "ISIS/taunt"
+AttackSound "weapons/arifle"
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+Obituary "%o was killed by the brave soldier of ISIS, Allah is now proud of him."
+var int user_script;
+Tag "\cmIsis\cu Terrorist\c-"
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(user_script == 1,5)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	    TNT1 A 0 A_Jump(256,2)
+	    TNT1 A 0 A_Changeflag("NOPAIN",1)
+        TNT1 A 0 A_SetUserVar("user_script",1)
+        ISIS A 10 A_Look
+        Loop
+	See:
+		TNT1 A 0 A_JumpIf(user_script == 1,5)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	    TNT1 A 0 A_Jump(256,2)
+	    TNT1 A 0 A_Changeflag("NOPAIN",1)
+        TNT1 A 0 A_SetUserVar("user_script",1)	
+	    ISIS A 0 A_JumpIfTargetInLOS("Strafing")
+		ISIS AABB 2 A_Chase
+		TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+		ISIS CCDD 2 A_Chase
+		TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+		Loop
+	Strafing:
+		ISIS A 0 A_SpawnItem("FootStep",0,0,0,0)
+		TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+		ISIS AABB 3 A_GiveInventory("SpecOpsStrafing",1)
+		ISIS C 0 A_SpawnItem("FootStep",0,0,0,0)
+		TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+        ISIS CCDD 3 A_GiveInventory("SpecOpsStrafing",1)
+		Goto See
+	Missile:
+	    ISIS E 0 A_PlaySound("ISIS/taunt")
+		ISIS E 0 A_Jump(24,"Suicide")
+		ISIS E 0 A_Jump(110,"FragGrenade","QuadShot")
+        ISIS EE 5 A_GiveInventory("SpecOpsStrafing",1)
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)		
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)	
+        ISIS A 0 A_SpawnItemEx("RifleCasing",12,6,30,Random(2,6),0,Random(1,3),Random(-80,-90),128)
+        ISIS F 1 Bright A_CustomBulletAttack(7,7,1,5,"HellBulletPuff")
+        ISIS E 1 A_GiveInventory("SpecOpsStrafing",1)		
+		Goto See
+	QuadShot:
+		ISIS EEE 5 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_PlaySound("weapons/qsgfire")
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+		ISIS F 5 Bright A_CustomBulletAttack(15.4,10.6,24,Random(1,4)*6,"HellBulletPuff")
+		ISIS EEEEE 5 A_GiveInventory("AIStrafing",1)	
+		TNT1 A 0 A_PlaySound("weapons/qsgopen")	
+		ISIS EEE 5 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		ISIS E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		ISIS E 2 A_SpawnItemEx("ShellCasing", -10, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		ISIS E 0 A_PlaySound("weapons/qsgshellslide")	
+		ISIS EE 3 A_GiveInventory("SpecOpsStrafing",1)
+		ISIS EE 4 A_GiveInventory("SpecOpsStrafing",1)
+		ISIS E 0 A_PlaySound("weapons/qsgshellslide")	
+		ISIS EE 3 A_GiveInventory("SpecOpsStrafing",1)
+		ISIS EE 3 A_GiveInventory("SpecOpsStrafing",1)
+		ISIS EE 4 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_GiveInventory("SpecOpsStrafing",1)
+		ISIS E 5 A_PlaySound("weapons/qsgclose")	
+		TNT1 A 0 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_PlaySound("ISIS/taunt")
+		TNT1 A 0 A_Jump(40,"See")	
+		ISIS E 5 A_CPosRefire
+		Goto QuadShot
+	FragGrenade:
+        ISIS E 1 A_JumpIfCloser(1000,1)
+		Goto Missile
+		ISIS E 0 A_JumpIfCloser(280,"Missile")
+        ISIS E 6 A_GiveInventory("SpecOpsStrafing",1)
+        ISIS EEE 4 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_GiveInventory("SpecOpsStrafing",1)
+        ISIS E 6 A_CustomMissile("ZGrenade",32,0,0,2,10)
+		ISIS E 1
+		Goto See
+	Suicide:
+		ISIS E 0 A_SetInvulnerable
+        ISIS EEE 35 A_PlaySound("ISIS/taunt")	
+		ISIS E 0 A_SpawnItemEx("DarkDesNuke")
+		ISIS E 0 A_UnSetInvulnerable
+		ISIS E 1 A_Die
+		Goto See		
+	Pain:
+		ISIS G 3 A_GiveInventory("SpecOpsStrafing",1)
+        ISIS G 3 A_Pain 
+        Goto See
+	Death:
+        ISIS H 5  
+		TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+        ISIS I 5 A_Scream
+        ISIS J 5 A_Fall
+        ISIS K 5
+		ISIS L 2100
+        Stop	
+	/*XDeath:
+		ISIS A 0 A_PlaySound("gibbage/xsplat")
+		TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+		ISIS O 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		ISIS P 3 A_XScream
+		ISIS Q 3 A_Fall
+		ISIS RSTUV 3
+		ISIS W 2100
+        Stop*/
+		}
+}
+
+
+Actor IsisGrenade : ZGrenade
+{
+Damage 6
+Obituary "%o was killed by the brave soldier of ISIS, Allah is now proud of him."
+States
+{
+  Spawn:
+	TNT1 A 0
+	HGN1 A 3 A_StopSound
+	HGN1 BCDEFGHABCDEFGHABCDEFGH 3
+	Goto Death      
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySound("weapons/hgrenadeex",CHAN_BODY)
+	TNT1 A 0 A_PlaySound("Explosion",CHAN_WEAPON)
+	TNT1 A 0 A_PlaySound("FAREXPL",CHAN_VOICE)
+	TNT1 A 0 Radius_Quake(2,24,0,15,0)
+	TNT1 A 0 A_Explode(158,225)
+	TNT1 A 0 A_CustomMissile("DiggerExplosion",0,0,random(80,100),2,random(80,100))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("DiggerEx")
+    Stop
+}
+}
+
+ACTOR MexicanRevenant1
+{
+Health 1700
+Radius 20 
+Height 56 
+Speed 40
+Mass 500
+PainChance 100
+MONSTER
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DROPOFF
+-COUNTKILL
+-BOSS
+Scale 0.8
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "mexcivanrevenant/active"
+PainSound "grunt/pain"
+DeathSound "mexcivanrevenant/death"
+ActiveSound "mexcivanrevenant/active"
+AttackSound ""
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+DropItem "RoomDrop" 64
+Obituary "%o was too slow to keep up with the Mexican Revenant."
+var int user_script;
+Tag "\cgMexican\cc Revenant\c-"
+States
+{
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+    FBON A 10 A_Look
+    Loop
+  See:
+  	TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    FBON AAABBB 1 A_Chase
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    FBON CCCDDD 1 A_Chase
+    Loop
+  Missile:
+    FBON EEEE 3 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("skeletons/sight")
+	TNT1 A 0 A_PlaySoundEx("mexcivanrevenant/active","SoundSlot6")
+	FBON EEEE 3 Bright A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("weapons/hsgfire")
+	TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(38,44),0,Random(6,-6),0)
+    FBON F 5 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"HellBulletPuff")	
+	FBON EEEEEE 0 A_SpawnItemEx("SSGShellCasing",48,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+    FBON E 6 A_PlaySound("weapons/qsgshellslide")	
+    FBON E 6
+    FBON E 6 A_PlaySound("weapons/qsgshellslide")	
+    FBON E 6
+	FBON E 6 A_PlaySound("weapons/qsgshellslide")	
+    FBON E 6
+    FBON E 6 A_PlaySound("weapons/qsgclose")	
+    Goto See
+  Pain:
+	TNT1 A 0 A_Jump(87,"PainMissile")
+	FBON G 4 A_Pain
+	Goto See
+  PainMissile:
+	FBON G 4 A_Pain
+	Goto Missile	
+  Death:
+    FBON HI 7
+    FBON J 7 A_Scream
+    FBON K 7 A_NoBlocking
+    FBON L 7 A_SpawnItem("BodyCrash",0,0,0,0)
+    FBON M -1
+    Stop
+    }
+}
+
+Actor Spoon1
+{
+Health 2200
+Radius 48
+Height 65
+Speed 44
+Mass 60
+MeleeRange 110
+MONSTER
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++DROPOFF
++NOPAIN
++NOBLOOD
+-COUNTKILL
+-BOSS
+Scale 1.1
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "Spoon/sight"
+PainSound "Spoon/sight"
+ActiveSound "Spoon/active"
+MeleeSound "Spoon/melee"
+DeathSound "Spoon/death"
+AttackSound ""
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+DropItem "RoomDrop" 64
+Obituary "%o got spooned by a spoon. %o's sexuality is questionable."
+var int user_script;
+Tag "\cuSpoon\c-"
+States
+{
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	SPON AA 1 A_Look
+	Loop
+  See:
+  	TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	SPON A 0 A_PlaySound("Spoon/sight")
+	SPON AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	Loop
+  Pain:
+	SPON A 1
+	SPON A 1 A_Pain
+	Goto See
+  Melee:
+	SPON A 1 A_CustomMeleeAttack(325,"Spoon/melee",none)
+	SPON AA  1
+    Goto See
+  Death:
+	SPON A 1
+	SPON A 1 A_Scream
+	SPON A 1 A_Fall
+	Stop
+    }
+}
+
+ACTOR EyeSore1
+{ 
+Health 3500
+Radius 20
+Height 56
+Speed 40
+Mass 900
+MeleeRange 120
+PainChance 230
+MONSTER
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++DROPOFF
++NORADIUSDMG
+-COUNTKILL
+-BOSS
+Scale 0.36
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "EyesoreAct" 
+PainSound "" 
+DeathSound "EyesoreDie" 
+ActiveSound "EyesoreAct" 
+AttackSound ""
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+Obituary "%o was munched by an eyesore."
+BloodColor "Yellow"
+var int user_script;
+Tag "\cgEyesore\c-"
+States 
+{ 
+   Spawn: 
+      TNT1 A 0 A_JumpIf(user_script == 1,5)
+	  TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	  TNT1 A 0 A_Jump(256,2)
+	  TNT1 A 0 A_Changeflag("NOPAIN",1)
+	  TNT1 A 0 A_SetUserVar("user_script",1)
+      EYS2 A 10 A_Look 
+      Loop 
+   See: 
+      TNT1 A 0 A_JumpIf(user_script == 1,5)
+	  TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	  TNT1 A 0 A_Jump(256,2)
+	  TNT1 A 0 A_Changeflag("NOPAIN",1)
+	  TNT1 A 0 A_SetUserVar("user_script",1)
+      EYS2 A 0 A_PlaySoundEx("EyesoreAct","Body")
+      EYS2 ABABABABABABABABABABABAB 3 A_Chase
+      Loop 
+   Melee: 
+      EYS2 A 0
+      EYS2 ABAB 4 A_CustomMeleeAttack(random(30,60),"EyesoreBite",none)
+      Goto See 
+   Missile:
+      EYS2 A 13 A_PlayWeaponSound("EyesoreSpit")
+      EYS2 AA 1 A_SpawnItemEx("BabyEyeSore",0,0,0,random(3,8),0,random(2,8),random(0,359),32)
+      EYS2 A 6
+      Goto See           
+   Pain: 
+      EYS2 A 0
+      EYS2 A 1 A_SpawnItemEx("BabyEyeSore",0,0,0,random(3,8),0,random(2,8),random(0,359),32)
+      Goto See 
+   Death: 
+      EYS2 C 1 A_Scream
+      EYS2 C 3 A_Fall
+      EYS2 D 3 A_NoBlocking
+      EYS2 E 3
+      EYS2 F 3
+      EYS2 H 3 Bright A_PlaySound("Vile/FireCrkl")
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,0,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,30,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,60,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,90,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,120,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,150,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,180,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,-30,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,-60,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,-90,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,-120,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirex",0,0,-150,2)
+      EYS2 Z -1
+      Stop 
+   } 
+} 
+
+ACTOR BabyEyeSore
+{              
+Health 1
+Radius 11
+Height 13
+Speed 40
+Mass 10
+MeleeRange 120
+MONSTER
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++DROPOFF
++NORADIUSDMG
++NOPAIN
+-COUNTKILL
+-BOSS
+Scale 0.1
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "SEyesoreAct" 
+PainSound "" 
+MeleeSound "SEyesoreBite"
+DeathSound "SEyesoreDie"
+ActiveSound "SEyesoreAct"
+AttackSound ""
+BloodColor "Yellow"
+Obituary "%o was munched by a baby eyesore." 
+var int user_timer;
+Tag "\cgBaby Eyesore\c-"
+States 
+{ 
+   Spawn: 
+      EYS2 A 10 A_Look 
+      Loop 
+   See: 
+      EYS2 A 0 A_JumpIf(user_timer >= 60,"Done")	 
+      EYS2 A 0 A_SetUserVar("user_timer",user_timer+1)
+      EYS2 A 0 A_PlaySoundEx("SEyesoreAct","Body")
+      EYS2 ABABABABABABABABABABABAB 3 A_Chase
+      Loop 
+   Melee: 
+      EYS2 ABAB 4 A_CustomMeleeAttack(random(2,4),"SEyesoreBite",none)
+      Goto See 
+   Done:
+	  EYS2 A 1 A_Die
+      Goto See
+   Missile:
+      Goto See         
+   Death: 
+      EYS2 C 1 A_Scream
+      EYS2 C 3 A_Fall
+      EYS2 D 3 A_NoBlocking
+      EYS2 E 3
+      EYS2 F 3
+      EYS2 H 3 Bright A_PlaySound("Vile/FireCrkl")
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,0,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,30,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,60,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,90,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,120,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,150,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,180,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,-30,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,-60,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,-90,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,-120,2)
+      EYS2 H 0 A_CustomMissile("ArchvileFirexSmall",0,0,-150,2)
+      EYS2 Z -1
+      Stop 
+   } 
+} 
+
+ACTOR Diabeetus
+{
+Health 2500
+Radius 38
+Height 64
+Mass 99999
+Speed 24
+Monster 
+SeeSound "Diabeetus/sound"
+DeathSound "Diabeetus/sound"
+ActiveSound "Diabeetus/sound"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.5
+RadiusDamageFactor 0.2
+MeleeRange 94
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
++FLOORCLIP
++BRIGHT
++NOPAIN
++LOOKALLAROUND
++DONTHARMSPECIES
++MISSILEMORE
++MISSILEEVENMORE
++NOBLOOD
++QUICKTORETALIATE
++NOGRAVITY
++FLOAT
+-COUNTKILL
+Obituary "%o didn't take his diabeetus too seriously and finaly died thanks to a kidney dicease."
+Tag "\ccDiabeetus\c-"
+States
+{
+   Spawn:
+	DIEB A 1 A_Look
+	Loop  
+   See:
+	DIEB A 2 A_Chase
+	Loop
+   Missile:
+    DIEB A 0 A_Jump(188,"BigAttack","SpreadAttack","ComboAttack")
+    DIEB A 5 A_PlaySound("Diabeetus/sound")
+	DIEB AAA 20 A_CustomMissile("SugarSpoonProj",32,0,0)
+	Goto See
+   BigAttack:
+	DIEB A 5 A_PlaySound("Diabeetus/sound")
+	DIEB A 40 A_CustomMissile("SugarBigProj",32,0,0)
+	Goto See
+   ComboAttack:
+	DIEB A 5 A_PlaySound("Diabeetus/sound")
+	DIEB AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 3 A_CustomMissile("SugarBigSmallProj",32,0,0)
+	Goto See
+   SpreadAttack:
+	DIEB A 5 A_PlaySound("Diabeetus/sound")
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,35)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-35)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,30)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-30)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,25)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-25)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,20)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-20)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,15)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-15)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,10)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-10)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,5)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-5)
+	DIEB A 20 A_CustomMissile("SugarMediumProj",32,0,0)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,35)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-35)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,30)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-30)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,25)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-25)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,20)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-20)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,15)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-15)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,10)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-10)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,5)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-5)
+	DIEB A 20 A_CustomMissile("SugarMediumProj",32,0,0)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,35)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-35)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,30)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-30)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,25)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-25)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,20)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-20)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,15)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-15)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,10)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-10)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,5)
+	DIEB A 0 A_CustomMissile("SugarMediumProj",32,0,-5)
+	DIEB A 20 A_CustomMissile("SugarMediumProj",32,0,0)
+	Goto See
+   Death:
+	DIEB A 0 A_Scream
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	DIEB A 0 A_Fall
+	DIEB AAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("ArchvileFirex",2,0,random(0,360),2,0)
+	Stop
+	}
+}
+
+ACTOR SugarSpoonProj
+{
+Radius 6
+Height 8
+Speed 22
+Damage 40
+Projectile
++RANDOMIZE
+SeeSound "imp/attack"
+DeathSound "imp/shotx"
+Scale 0.5
+States
+{
+  Spawn:
+    SUGR D 4 Bright
+    Loop
+  Death:
+    SUGR D 4 Bright A_Explode(24,128,0)
+    Stop
+  }
+}
+
+ACTOR SugarMediumProj
+{
+Radius 6
+Height 8
+Speed 70
+Damage 38
+Projectile
++RANDOMIZE
+SeeSound "imp/attack"
+DeathSound "imp/shotx"
+Scale 0.40
+States
+{
+  Spawn:
+    SUGR B 4 Bright
+    Loop
+  Death:
+	SUGR A 4 Bright A_Explode(24,64,0)
+    Stop
+  }
+}
+
+ACTOR SugarBigProj
+{
+Radius 6
+Height 8
+Speed 8
+Damage 150
+Projectile
++RANDOMIZE
+SeeSound "imp/attack"
+DeathSound "imp/shotx"
+Scale 0.5
+States
+{
+  Spawn:
+    SUGR A 4 Bright
+    Loop
+  Death:
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,18,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,36,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,54,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,72,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,90,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,108,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,126,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,144,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,162,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,180,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,196,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,216,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,234,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,252,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,270,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,288,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,306,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,324,2)
+	SUGR A 0 A_CustomMissile("SugarBigMediumProj",0,0,342,2)
+	SUGR A 4 Bright A_Explode(256,256,0)
+    Stop
+  }
+}
+
+ACTOR SugarBigMediumProj
+{
+Radius 6
+Height 8
+Speed 70
+Damage 38
+Projectile
++RANDOMIZE
+SeeSound "imp/attack"
+DeathSound "imp/shotx"
+Scale 0.40
+States
+{
+  Spawn:
+    SUGR B 4 Bright
+    Loop
+  Death:
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,18,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,36,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,54,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,72,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,90,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,108,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,126,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,144,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,162,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,180,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,196,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,216,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,234,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,252,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,270,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,288,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,306,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,324,2)
+	SUGR A 0 A_CustomMissile("SugarBigSmallProj",0,0,342,2)
+	SUGR A 4 Bright A_Explode(24,64,0)
+    Stop
+  }
+}
+
+ACTOR SugarBigSmallProj
+{
+Radius 6
+Height 8
+Speed 140
+Damage 8
+Projectile
++RANDOMIZE
+SeeSound "imp/attack"
+DeathSound "imp/shotx"
+Scale 0.18
+States
+{
+  Spawn:
+    SUGR C 4 Bright
+    Loop
+  Death:
+	SUGR C 4 Bright
+    Stop
+  }
+}
+
+Actor LivingDevastator1
+{
+Health 1500
+Radius 15
+Height 25
+Speed 18
+Mass 60
+MONSTER
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++DROPOFF
++NOPAIN
++NOBLOOD
+-COUNTKILL
+-BOSS
+Scale 1.3
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "devastator/up"
+PainSound "devastator/up"
+ActiveSound "devastator/up"
+DeathSound "devastator/up"
+AttackSound ""
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+Obituary "%o was atomized by a living devastator. Wait... what??!!"
+var int user_script;
+Tag "\cgDevastator\c-"
+States
+{
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	WDEV A 10 A_Look
+	Loop
+  See:
+  	TNT1 A 0 A_JumpIf(user_script == 1,5)
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	WDEV AAAA 4 A_Chase
+	Loop
+  Pain:
+	WDEV A 1
+	WDEV A 1 A_Pain
+	Goto See
+  Missile:
+	WDEV A 1 A_CustomMeleeAttack(325,"Spoon/melee",none)
+	WDEV AA 1
+    Goto See	
+  Missile:
+    WDEV A 0 Bright A_PlaySound ("devastator/charge")
+    WDEV AAAAAAAAAA 2 Bright A_GiveInventory("SpecOpsStrafing",1)
+	WDEV AAAAAAAAAA 2 Bright A_GiveInventory("SpecOpsStrafing",1)
+	WDEV AAAAAAAAAA 2 Bright A_GiveInventory("SpecOpsStrafing",1)
+	WDEV AAAAAAAAAA 2 Bright A_GiveInventory("SpecOpsStrafing",1)
+	WDEV AAAAAAAAAA 2 Bright A_GiveInventory("SpecOpsStrafing",1)
+	WDEV AAAAA 2 Bright A_GiveInventory("SpecOpsStrafing",1)
+    WDEV A 0 A_PlayWeaponSound("devastator/fire")
+    WDEV A 35 Bright A_CustomMissile("UpdatedDemonDevastatorBall",16,0,random(-5,5))
+    Goto See
+  Death:
+	WDEV A 1
+	TNT1 A 0 A_Explode(24,628,0)
+	TNT1 A 0 A_Explode(96,400,0)
+	TNT1 A 0 A_Explode(256,256,1)
+    TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("Explode",random(20,80),random(20,-20),random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	WDEV A 1 A_Scream
+	WDEV A 1 A_Fall
+	Stop
+    }
+}
+
+Actor Clowny1
+{
+Health 2400
+Radius 32
+Height 64
+Mass 99999
+Speed 18
+Monster 
+Scale 0.5
+RenderStyle Add
+SeeSound "clown/see"
+ActiveSound "clown/see"
+DeathSound "clown/death"
+MeleeSound "clown/see"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.5
+RadiusDamageFactor 0.2
+MeleeRange 94
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
++FLOORCLIP
++BRIGHT
++NOPAIN
++LOOKALLAROUND
++DONTHARMSPECIES
++MISSILEMORE
++MISSILEEVENMORE
++NOBLOOD
++QUICKTORETALIATE
++NOGRAVITY
++FLOAT
+-COUNTKILL
+Obituary "%o thought %g saw Clowny."
+Tag "\cmClowny\c-"
+States
+{
+  Spawn:
+	CLOW A 10 A_Look
+	Loop
+  See:
+    CLOW A 0 A_UnsetInvulnerable
+	CLOW A 0 A_Jump(40,"Darkness")
+	CLOW A 1 A_Chase
+	CLOW A 0 A_Settranslucent(0.1,0)
+	CLOW AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	CLOW B 0 A_Settranslucent(0.2,0)
+	CLOW BB 1 A_Chase
+	CLOW B 0 A_Settranslucent(0.3,0)
+	CLOW BB 1 A_Chase
+	CLOW B 0 A_Settranslucent(0.4,0)
+	CLOW BB 1 A_Chase
+	CLOW B 0 A_Settranslucent(0.5,0)
+	CLOW AA 1 A_Chase
+	CLOW A 0 A_Settranslucent(0.4,0)
+	CLOW AA 1 A_Chase
+	CLOW A 0 A_Settranslucent(0.3,0)
+	CLOW AA 1 A_Chase
+	CLOW A 0 A_Settranslucent(0.2,0)
+	CLOW AA 1 A_Chase
+	Loop
+  Darkness:
+	CLOW A 0 A_SetInvulnerable
+	CLOW A 1 A_PlaySound("clown/active")
+	CLOW A 10 A_Settranslucent(0.6)
+	CLOW A 10 A_Settranslucent(0.5)
+	CLOW A 10 A_Settranslucent(0.4)
+	CLOW A 10 A_Settranslucent(0.6)
+	CLOW A 10 A_Settranslucent(0.2)
+	CLOW A 10 A_Settranslucent(0.1)
+	CLOW A 10 A_Settranslucent(0.0)
+	Goto See2
+  Rage:
+	CLOW A 0 A_SetInvulnerable
+	CLOW A 1 A_PlaySound("clown/active")
+	CLOW A 10 A_Settranslucent(0.0)
+	CLOW A 10 A_Settranslucent(0.1)
+	CLOW A 10 A_Settranslucent(0.2)
+	CLOW A 10 A_Settranslucent(0.3)
+	CLOW A 10 A_Settranslucent(0.4)
+	CLOW A 10 A_Settranslucent(0.5)
+	CLOW A 10 A_Settranslucent(0.6)
+	Goto See
+	See2:
+	CLOW A 0 A_UnsetInvulnerable
+	CLOW A 0 A_Jump(1,"Rage")
+	CLOW A 1 A_JumpIfCloser(360,"Charge")
+	CLOW AA 1 A_Chase("","")
+	Loop
+  Charge:
+	CLOW A 1 A_PlaySound("clown/surprise")
+	CLOW AAAAAAAAAAAAAA 5 A_FaceTarget
+	CLOW A 0 A_UnsetInvulnerable
+	CLOW A 0 A_Settranslucent(0.8)
+	CLOW A 0 A_Recoil(-40)
+	CLOW BBBBBBBBBBBBBBBB 6 A_CustomMissile("ClownyAttack",0,0,0,2,0)
+	Goto See 
+  Melee:
+	CLOW A 0 A_UnsetInvulnerable
+	CLOW B 0 A_Settranslucent(0.5,0)
+	CLOW B 4 A_CustomMeleeAttack(325,"clown/see",none)
+	CLOW BB 35
+	Goto See 
+  Death:
+	CLOW A 0 A_Settranslucent(0.4,0)
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+	CLOW A 50 A_Scream
+	CLOW A 4 A_NoBlocking
+	CLOW AAAAAAAAAAAAAAAA 0 A_CustomMissile("ArchvileFirex3", 0,0,random(0,360), 2,0)
+	CLOW AAAA 5 A_Fadeout(0.1)
+	Stop
+}
+}
+
+Actor ClownyAttack
+{
+PROJECTILE
+Speed 0
+Scale 0.8
++NOTELEPORT
++NOEXTREMEDEATH
++FORCERADIUSDMG
+Decal "BloodSplat"
+Obituary "%o thought %g saw Clowny."
+Damage 0
+Height 5
+Radius 6
+Damagetype "Hell"
+States
+{
+   Spawn:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(64,364)
+   	TNT1 A 1 A_Explode(196,220)
+	Stop
+   Death:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(64,364)
+	TNT1 A 1 A_Explode(196,220)
+    TNT1 A 1 
+	Stop
+}
+}
+
+Actor Shrek
+{
+Monster
+Radius 20
+Height 56
+Health 3000
+Speed 28
+Mass 100
+Species "Hell"
+DamageFactor "Hell", 0.0
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+PainChance 10
+MeleeRange 84
+MaxStepHeight 384
+MaxTargetRange 2048	
+MinMissileChance 252
+DamageFactor 0.5
+RadiusDamageFactor 0.2
++DROPOFF
++FLOORCLIP
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++MISSILEMORE
++MISSILEEVENMORE
+-COUNTKILL
+Scale 2.2
+SeeSound "shrek/see"
+PainSound "shrek/pain"
+DeathSound "shrek/death"
+ActiveSound "shrek/see"
+Obituary "%o got shrekt by Shrek. Time will tell if we are going to see him again."
+var int user_script;
+Tag "\cqShrek\c-"
+States
+{
+  Spawn:
+	SHRK A 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_Jump(15,"Jump")
+    SHRK AAABBBCCCDDD 2 A_Chase
+    Loop
+  Jump:	
+	SHRK A 0 A_JumpIf(momz != 0,"See")
+	SHRK A 0 A_FaceTarget
+	SHRK A 0 A_SetAngle(angle+random(-45,45))
+	SHRK A 0 ThrustThingZ(0,35,0,0)
+	SHRK A 3 A_Recoil(-8)
+	SHRK A 0 A_Recoil(-0.1)
+    SHRK B 1 A_CheckFloor("See")
+	SHRK C 1 A_JumpIf(momz==0,"See")
+	Goto Jump+5
+   Melee:	
+	SHRK E 3 A_FaceTarget
+    SHRK F 3 A_CustomMeleeAttack(random(90,150),"shrek/see",none)
+	SHRK E 3 A_FaceTarget
+    Goto Spawn
+   Missile:
+    SHRK EEE 5 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("M79/Fire")
+    SHRK F 14 Bright A_CustomMissile("ZM79Grenade",64,35,random(-1,1))
+	SHRK EE 5 A_FaceTarget
+    Goto Spawn
+  Pain:
+    SHRK H 2
+    SHRK H 2 A_Pain
+    Goto See	
+  Death:
+	SHRK H 8 A_ScreamAndUnblock
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+    SHRK IJKLM 6
+    SHRK N 2100    
+    Stop	
+  }
+}
+
+Actor Sonic
+{
+Health 2200
+Radius 48
+Height 65
+Speed 44
+Mass 60
+MeleeRange 64
+MONSTER
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++LOOKALLAROUND
++DROPOFF
+-COUNTKILL
+PainChance 80
+Scale 1.1
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "sonic/see"
+PainSound "sonic/pain"
+ActiveSound "sonic/see"
+DeathSound "sonic/death"
+AttackSound ""
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+DropItem "RoomDrop" 64
+Obituary "%o's eyes we not fast enought to keep up with the speed of Sonic the Hedgehog."
+Gravity 0.5
+var int user_script;
+Tag "\chSonic\c-"
+States
+{
+  Spawn:
+	SONC A 1 A_Look
+	Loop
+  See:
+	TNT1 A 0 A_SpawnItem("SonicGhost",0,0)
+	SONC A 1 A_Chase
+	TNT1 A 0 A_SpawnItem("SonicGhost",0,0)
+	SONC B 1 A_Chase
+	TNT1 A 0 A_SpawnItem("SonicGhost",0,0)
+	SONC C 1 A_Chase
+	TNT1 A 0 A_SpawnItem("SonicGhost",0,0)
+	SONC D 1 A_Chase
+	Loop
+  Pain:
+	SPON G 0
+	SPON G 0 A_Pain
+	SPON G 0 A_Stop
+	SPON GGGGGGGGGGGGGGGGGGGGGG 0 A_SpawnItemEx("SonicRing",0,0,0,random(2,11),0,random(4,9),random(0,359),32,80)
+	SONC G 0 ThrustThingZ(0,35,0,0)
+	SONC A 0 A_Recoil(25)
+	SONC G 50
+	Goto See
+  Melee:
+    SONC A 0 A_PlaySound("sonic/melee") 
+	SONC EFEFEFEF 3 A_CustomMeleeAttack(110,none,none)
+    Goto See
+  Missile:
+    SONC A 0 A_PlaySound("sonic/jump") 
+	SONC A 0 ThrustThingZ(0,35,0,0)
+	SONC EFEFEFEF 2
+	SONC A 0 A_FaceTarget
+	SONC A 0 A_PlaySound("sonic/dash") 
+	SONC A 0 A_Recoil(-50)
+	SONC EFEFEFEF 2 A_CustomMissile("SonicAttack",0,0,0,2,0)
+	SONC EFEFEFEF 2 A_CustomMissile("SonicAttack",0,0,0,2,0)
+	SONC EFEFEFEF 2 A_CustomMissile("SonicAttack",0,0,0,2,0)
+    Goto See
+  Death:
+  	SONC H 0 A_Stop
+	SONC H 0 ThrustThingZ(0,35,0,0)
+	SONC H 0 A_Recoil(25)
+	SONC H 8 A_ScreamAndUnblock
+	TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+    SONC IJKLM 6
+    SONC N 2100    
+    Stop
+    }
+}
+
+Actor SonicRing
+{
+Projectile
+-NOGRAVITY
++HEXENBOUNCE
++EXTREMEDEATH
+Gravity 0.25
+Obituary "%o thought he was able to take the special rings of Sonic the Hedgehog."
+DeathSound "sonic/ring"
+Scale 0.15
+Damage 1000
+ReactionTime 525
+BounceCount 999
+States
+{
+  Spawn:
+    SRIG A 1 A_CountDown    
+    Loop
+}
+}
+
+Actor SonicAttack
+{
+PROJECTILE
+Speed 0
+Scale 0.8
++NOTELEPORT
++EXTREMEDEATH
++FORCERADIUSDMG
+Decal "BloodSplat"
+Obituary "%o's eyes we not fast enought to keep up with the speed of Sonic the Hedgehog."
+Damage 0
+Height 5
+Radius 6
+Damagetype "Hell"
+States
+{
+   Spawn:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(64,220)
+   	TNT1 A 1 A_Explode(196,100)
+	Stop
+   Death:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(64,220)
+	TNT1 A 1 A_Explode(196,100)
+    TNT1 A 1 
+	Stop
+}
+}
+
+ACTOR SonicGhost : FamineDashGhostA
+{
+Scale 1.0
+States
+{
+Spawn:
+    SONC A 2 A_FadeOut(0.12)
+    Loop
+    }
+}
+
+Actor Barney
+{
+Health 2000
+Radius 20 
+Height 56 
+Speed 8
+Mass 100
+PainChance 5
+MONSTER 
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DROPOFF
+-COUNTKILL
+-BOSS
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "Barney/Sound"
+PainSound "Barney/Pain"
+DeathSound "Barney/Pain"
+ActiveSound "Barney/Sound"
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+Obituary "%o underestimated the power of Barney."
+var int user_script;
+Tag "\ctBarney\c-"
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(user_script == 1,5)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	    TNT1 A 0 A_Jump(256,2)
+	    TNT1 A 0 A_Changeflag("NOPAIN",1)
+        TNT1 A 0 A_SetUserVar("user_script",1)
+        BARN A 10 A_Look
+        Loop
+	See:
+		TNT1 A 0 A_JumpIf(user_script == 1,5)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	    TNT1 A 0 A_Jump(256,2)
+	    TNT1 A 0 A_Changeflag("NOPAIN",1)
+        TNT1 A 0 A_SetUserVar("user_script",1)	
+	    BARN A 0 A_JumpIfTargetInLOS("Strafing")
+		BARN AABB 2 A_Chase
+		TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+		BARN CCDD 2 A_Chase
+		TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+		Loop
+	Strafing:
+		BARN A 0 A_SpawnItem("FootStep",0,0,0,0)
+		TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+		BARN AABB 3 A_GiveInventory("SpecOpsStrafing",1)
+		BARN C 0 A_SpawnItem("FootStep",0,0,0,0)
+		TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+        BARN CCDD 3 A_GiveInventory("SpecOpsStrafing",1)
+		Goto See
+	Missile:
+	    BARN E 0 A_PlaySound("Barney/Sound")
+        BARN EE 5 A_GiveInventory("SpecOpsStrafing",1)
+        BARN F 0 A_GiveInventory("SpecOpsStrafing",1)
+        BARN F 7 Bright A_CustomMissile("CyberLordRocket",40,0,random(-1,1))
+		BARN E 0 A_CposRefire
+        BARN E 3 A_GiveInventory("SpecOpsStrafing",1)		
+		Goto Missile+3	
+	Pain:
+		BARN H 3 A_GiveInventory("SpecOpsStrafing",1)
+        BARN H 3 A_Pain 
+        Goto Missile
+	Death:
+        BARN I 5 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+        BARN J 5 A_Scream
+        BARN K 5 A_Fall
+		BARN L 2100 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+        Stop
+		}
+}
+
+Actor Santa
+{
+Health 3000
+Radius 24 
+Height 64 
+Speed 8
+Mass 100
+PainChance 75
+MONSTER 
+Scale 1.25
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DROPOFF
+-COUNTKILL
+-BOSS
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor 0.6
+MaxStepHeight 384
+SeeSound "Santa/See"
+PainSound "Santa/Pain"
+DeathSound "Santa/Death"
+ActiveSound "Santa/Idle"
+DropItem "RoomDrop" 256
+DropItem "RoomDrop" 127
+DropItem "RoomDrop" 64
+Obituary "The Santa didn't come to give %o a present but death instead."
+var int user_script;
+Tag "\cgSanta \ccClaus\c-"
+States
+{
+	Spawn:
+		TNT1 A 0 A_JumpIf(user_script == 1,5)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	    TNT1 A 0 A_Jump(256,2)
+	    TNT1 A 0 A_Changeflag("NOPAIN",1)
+        TNT1 A 0 A_SetUserVar("user_script",1)
+        SANT A 10 A_Look
+        Loop
+	See:
+		TNT1 A 0 A_JumpIf(user_script == 1,5)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)	
+	    TNT1 A 0 A_Jump(256,2)
+	    TNT1 A 0 A_Changeflag("NOPAIN",1)
+        TNT1 A 0 A_SetUserVar("user_script",1)	
+	    SANT A 0 A_JumpIfTargetInLOS("Strafing")
+		SANT AABB 2 A_Chase
+		TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+		SANT CCDD 2 A_Chase
+		TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+		Loop
+	Strafing:
+		SANT A 0 A_SpawnItem("FootStep",0,0,0,0)
+		TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+		SANT AABB 3 A_GiveInventory("SpecOpsStrafing",1)
+		SANT C 0 A_SpawnItem("FootStep",0,0,0,0)
+		TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+        SANT CCDD 3 A_GiveInventory("SpecOpsStrafing",1)
+		Goto See
+	Missile:
+	    SANT E 0
+		SANT E 0 A_Jump(128,"Present")
+	    SANT E 0 A_PlaySound("Santa/See")
+        SANT EE 5 A_GiveInventory("SpecOpsStrafing",1)
+        SANT F 0 A_GiveInventory("SpecOpsStrafing",1)
+        SANT F 7 Bright A_CustomMissile("SantaStarProjectile",48,0,0)
+		SANT E 0 A_CposRefire
+		SANT E 0 A_Jump(128,"See")
+        SANT EEEEEEEEEEE 3 A_GiveInventory("SpecOpsStrafing",1)		
+		Goto Missile+2	
+	Present:
+		SANT EEEE 5 A_GiveInventory("SpecOpsStrafing",1)
+		SANT E 0 A_PlaySound("Santa/Idle")
+		SANT F 0 A_GiveInventory("SpecOpsStrafing",1)
+		SANT F 7 Bright A_SpawnItemEx("SantaPresent",32,0,0,random(6,12),0,random(3,9))
+		SANT EEEE 5 A_GiveInventory("SpecOpsStrafing",1)
+		SANT E 0 A_PlaySound("Santa/Idle")
+		SANT F 0 A_GiveInventory("SpecOpsStrafing",1)
+		SANT F 7 Bright A_SpawnItemEx("SantaPresent",32,0,0,random(6,12),0,random(3,9))
+		SANT EEEE 5 A_GiveInventory("SpecOpsStrafing",1)
+		SANT E 0 A_PlaySound("Santa/Idle")
+		SANT F 0 A_GiveInventory("SpecOpsStrafing",1)
+		SANT F 7 Bright A_SpawnItemEx("SantaPresent",32,0,0,random(6,12),0,random(3,9))
+		Goto See
+	Pain:
+		SANT H 2 A_GiveInventory("SpecOpsStrafing",1)
+        SANT H 2 A_Pain 
+        Goto Missile
+	Death:
+        SANT H 5
+		TNT1 A 0 A_GiveToTarget("CrateGiver",1)
+        SANT I 5 A_Scream
+        SANT J 5 A_Fall
+		SANT KLM 5 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		SANT N 2100 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+        Stop
+	}
+}
+
+Actor SantaStarProjectile
+{
+Projectile
++SKYEXPLODE
++SEEKERMISSILE
+Damage 50
+Speed 16
+Height 5
+Radius 5
+Scale 0.5
+Renderstyle Translucent
+DeathSound "StarHit"
+DamageType "Hell"
+Alpha 1.0
+States
+{
+  Spawn:
+	STAL B 1 Bright A_SpawnItemEx("StarDrop1", 0, 0, 0, random(5,15), random(5,15), random(-15,15), random(0,360))
+	STAL B 0 A_SpawnItemEx("StarDrop2", 0, 0, 0, random(5,15), random(5,15), random(-15,15), random(0,360))
+	STAL B 0 A_Explode(12,222,0)
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItem("StarExplode")
+	TNT1 A 0 A_PlaySound("StarHit")
+	TNT1 A 0 A_Explode(5,150,0)
+	TNT1 A 1 A_SpawnItemEx("StarDrop1", random(-3,3), random(-3,3), random(-3,3), random(5,15), random(5,15), random(-15,15), random(0,360))
+	TNT1 A 1 A_SpawnItemEx("StarDrop2", random(-3,3), random(-3,3), random(-3,3), random(5,15), random(5,15), random(-15,15), random(0,360))
+	TNT1 A 0 A_FadeOut(0.1)
+	Goto Death+1
+	}
+}
+
+
+Actor StarExplode
+{
++CLIENTSIDEONLY
++NOINTERACTION
+-SOLID
++NOGRAVITY
+Radius 1
+Height 1
+Alpha 0.9
+Translation "176:191=160:167"
+Renderstyle Translucent
+States
+{
+  Spawn:
+	MISL BCDE 10 Bright
+	Stop
+}
+}
+
+Actor StarDrop1
+{
+Projectile
+Height 3
+Radius 3
+Damage 0
+Speed 8
+-NOGRAVITY
++DOOMBOUNCE
++CLIENTSIDEONLY
+BounceCount 5
+BounceFactor 0.5
+SeeSound "StarTwinkle"
+Scale 0.3
+Renderstyle Translucent
+Alpha 1.0
+States
+{
+  Spawn:
+	TNT1 A 2
+	STAL B 1 bright A_FadeOut(0.08)
+	Goto Spawn+1
+}
+}
+
+Actor StarDrop2 : StarDrop1
+{
+States
+{
+  Spawn:
+	TNT1 A 2
+	STAL C 1 bright A_FadeOut(0.08)
+	Goto Spawn+1
+}
+}
+
+Actor SantaPresent
+{
+Projectile
+-NOGRAVITY
++HEXENBOUNCE
+Gravity 0.66
+DamageType "Hell"
+Damage 20
+Radius 6
+Height 12
+ReactionTime 525
+BounceCount 999
+RenderStyle Translucent
+Alpha 1.0
+States
+{
+  Spawn:
+    PR3S A 1 A_CountDown    
+    Loop
+  Death:
+	PR3S A 0 A_PlaySound("Santa/See", CHAN_VOICE)
+	PR3S ABCD 2
+	PR3S D 0 A_Explode(128, 128, 0)
+	PR3S D 0 A_PlaySound("PresentExplode", CHAN_WEAPON)
+	PR3S D 0 A_SpawnItemEx("SantaPresentDamage", 0, 0, 0, 0, 0, 20, 0)
+	PR3S DDDDDDDDDDDDDDD 0 A_SpawnItemEx("HollyThrownFromPresent", 0, 0, 16, random(-8,8), random(-8,8), random(3,9))
+	PR3S EEEEEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StarDrop1", 0, 0, 0, random(-5,5), random(-5,5), random(10,20))
+	PR3S E 1000
+	Stop
+}
+}
+
+Actor HollyThrownfromPresent
+{
+Projectile
++RIPPER
+Height 5
+Radius 5
+Speed 50
+Scale 0.5
+SeeSound "HollyThrow"
++BLOODLESSIMPACT
+Damage (64)
+DamageType "Hell"
+States
+{
+  Spawn:
+	HOLL OPOP 2
+	HOLL O 2 A_ChangeFlag("NOGRAVITY",0)
+	Loop
+  Death:
+	HOLL O 0 A_SpawnItemEx("Holly",0,0,0,0,0,-1)
+	Stop
+}
+}
+
+Actor Holly
+{
+Projectile
+-NOGRAVITY
+Speed 10
+Height 5
+Radius 5
+Scale 0.5
+Damage (64)
+DamageType "Hell"
++BLOODLESSIMPACT
++RIPPER
+States
+{
+  Spawn:
+	HOLL C 0 A_GiveInventory("Clip",1)
+	HOLL C 0 A_JumpIfInventory("Clip",100,"Death2")
+	HOLL C 1
+	Loop
+  Death:
+	HOLL C 0 A_PlaySound("HollyLand")
+	HOLL C 0 A_CustomMissile("HollySpike", 0, 0, 0, 0)
+	Stop
+  Death2:
+	HOLL C 1
+	Stop
+	}
+}
+
+Actor HollySpike
+{
+Speed 0
+Projectile
++NOCLIP
+DamageType "Hell"
+Damage (random(24,68))
+Radius 5
+Scale 0.5
+Height 5
+-NOGRAVITY
++DONTBLAST
++THRUGHOST
+DeathSound "HollyHit"
+ReactionTime 525
+States
+{
+  Spawn:
+	HOLL C 20
+	HOLL C 0 A_ChangeFlag("NOCLIP",0)
+	HOLL C 0 A_PlaySound("HollySpike")
+	HOLL D 1 A_CountDown
+	Goto Spawn+3
+  Death:
+	HOLL D 1
+	Stop
+	}
+}
+
+Actor SantaPresentDamage
+{
+Projectile
++NODAMAGETHRUST
+-NOBLOCKMAP
+DamageType "Hell"
+Radius 4
+Height 4
+Damage 0
+States
+{
+  Spawn:
+	TNT1 A 2 A_Explode(5,158,0)
+	Loop
+}
+}

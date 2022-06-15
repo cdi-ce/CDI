@@ -1,0 +1,198 @@
+//==============
+// Rune Spawners
+//==============
+
+ACTOR NewRuneInvasionSpot : CustomPickupInvasionSpot
+{
+//$Category "Invasion Rune Spawners/Complex Doom Invasion"
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR AgilityRuneItemSpot : NewRuneInvasionSpot 15276
+{
+	//$Title Agility Rune
+	//$Sprite RUN3U0
+	DropItem "AgilityRuneItemMap"
+}
+
+ACTOR RandomRuneDefenseSpot : NewRuneInvasionSpot 15277
+{
+	//$Category "Invasion Rune Spawners/Complex Doom Invasion/Random"
+	//$Title Random Rune (Defense)
+	//$Sprite RUN3D0
+	DropItem "RegenerationRuneItemMap"
+	DropItem "ResistanceRuneItemMap"
+	DropItem "ProsperityRuneItemMap"
+	DropItem "AbsorptionRuneItemMap"
+}
+
+ACTOR RandomRuneOffenseSpot : NewRuneInvasionSpot 15278
+{
+	//$Category "Invasion Rune Spawners/Complex Doom Invasion/Random"
+	//$Title Random Rune (Offense)
+	//$Sprite RUN3C0
+	DropItem "StrengthRuneItemMap"
+	DropItem "RageRuneItemMap"
+	DropItem "RevengeRuneItemMap"
+	DropItem "SummonerRuneItemMap"
+}
+
+ACTOR RandomRuneOtherSpot : NewRuneInvasionSpot 15279
+{
+	//$Category "Invasion Rune Spawners/Complex Doom Invasion/Random"
+	//$Title Random Rune (Other)
+	//$Sprite RUN3M0
+	//DropItem "HasteRuneItemMap"
+	//DropItem "HighJumpRuneItemMap"
+	DropItem "AgilityRuneItemMap"
+	DropItem "TimeRunePickupMap"
+	DropItem "ConfusionRuneItemMap"
+	DropItem "LootingRuneItemMap"
+}
+
+ACTOR LuckRuneItemSpot : NewRuneInvasionSpot 15280
+{
+	//$Title Luck Rune
+	//$Sprite RUN3A0
+	DropItem "LuckRuneItemMap"
+}
+
+ACTOR RegenerationRuneItemSpot : NewRuneInvasionSpot 15281
+{
+	//$Title Regeneration Rune
+	//$Sprite RUN3B0
+	DropItem "RegenerationRuneItemMap"
+}
+
+ACTOR StrengthRuneItemSpot : NewRuneInvasionSpot 15282
+{
+	//$Title Strength Rune
+	//$Sprite RUN3C0
+	DropItem "StrengthRuneItemMap"
+}
+
+ACTOR ResistanceRuneItemSpot : NewRuneInvasionSpot 15283
+{
+	//$Title Resistance Rune
+	//$Sprite RUN3D0
+	DropItem "ResistanceRuneItemMap"
+}
+
+ACTOR RageRuneItemSpot : NewRuneInvasionSpot 15284
+{
+	//$Title Rage Rune
+	//$Sprite RUN3E0
+	DropItem "RageRuneItemMap"
+}
+
+ACTOR HasteRuneItemSpot : NewRuneInvasionSpot 15285
+{
+	//$Title Haste Rune
+	//$Sprite RUN3F0
+	DropItem "HasteRuneItemMap"
+}
+
+ACTOR SpreadRuneItemSpot : NewRuneInvasionSpot 15286
+{
+	//$Title Spread Rune
+	//$Sprite RUN3H0
+	DropItem "SpreadRuneItemMap"
+}
+
+ACTOR RevengeRuneItemSpot : NewRuneInvasionSpot 15287
+{
+	//$Title Revenge Rune
+	//$Sprite RUN3K0
+	Scale 0.5
+	DropItem "RevengeRuneItemMap"
+}
+
+ACTOR SummonerRuneItemSpot : NewRuneInvasionSpot 15288
+{
+	//$Title Summoner Rune
+	//$Sprite RUN3L0
+	Scale 0.75
+	DropItem "SummonerRuneItemMap"
+}
+
+ACTOR HighJumpRuneItemSpot : NewRuneInvasionSpot 15289
+{
+	//$Title High Jump Rune
+	//$Sprite RUN3M0
+	DropItem "HighJumpRuneItemMap"
+}
+
+ACTOR TimeRunePickupSpot : NewRuneInvasionSpot 15290
+{
+	//$Title Time Rune
+	//$Sprite RUN3P0
+	Scale 0.66
+	DropItem "TimeRunePickupMap"
+}
+
+ACTOR LegendaryRunePickupSpot : NewRuneInvasionSpot 15291
+{
+	//$Title Legendary Rune
+	//$Sprite LGRNA0
+	DropItem "LegendaryRunePickupMap"
+}
+
+ACTOR PowerupRuneItemSpot : NewRuneInvasionSpot 15292
+{
+	//$Title Powerup Rune
+	//$Sprite RUN3N0
+	DropItem "PowerupRuneItemMap"
+}
+
+ACTOR ProsperityRuneItemSpot : NewRuneInvasionSpot 15293
+{
+	//$Title Prosperity Rune
+	//$Sprite RUN3O0
+	DropItem "ProsperityRuneItemMap"
+}
+
+ACTOR AwakenedLegendaryRuneSpot : NewRuneInvasionSpot 15294
+{
+	//$Title Awakened Legendary Rune
+	//$Sprite AGRNA0
+	DropItem "AwakenedLegendaryRune"
+}
+
+ACTOR TrueLegendaryRuneSpot : NewRuneInvasionSpot 15295
+{
+	//$Title True Legendary Rune
+	//$Sprite TGRNA0
+	DropItem "TrueLegendaryRune"
+}
+
+ACTOR AbsorptionRuneItemSpot : NewRuneInvasionSpot 15296
+{
+	//$Title Absorption Rune
+	//$Sprite RUN3R0
+	DropItem "AbsorptionRuneItemMap"
+}
+
+ACTOR ConfusionRuneItemSpot : NewRuneInvasionSpot 15297
+{
+	//$Title Confusion Rune
+	//$Sprite RUN3J0
+	DropItem "ConfusionRuneItemMap"
+}
+
+ACTOR LootingRuneItemSpot : NewRuneInvasionSpot 15298
+{
+	//$Title Looting Rune
+	//$Sprite RUN3S0
+	DropItem "LootingRuneItemMap"
+}
+
+ACTOR VeterancyRuneItemSpot : NewRuneInvasionSpot 15299
+{
+	//$Title Veterancy Rune
+	//$Sprite RUN3T0
+	DropItem "VeterancyRuneItemMap"
+}

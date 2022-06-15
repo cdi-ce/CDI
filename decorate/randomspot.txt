@@ -1,0 +1,734 @@
+//=========================
+// Random Monsters Spawners
+//=========================
+
+ACTOR NewRandomMonsterInvasionSpot : CustomMonsterInvasionSpot
+{
+//$Category "Invasion Monster Spawners/Random"
+//$Angled
+//$Arg0 "Start Spawn Number"
+//$Arg1 "Spawn Delay"
+//$Arg2 "Round Spawn Delay"
+//$Arg3 "First Appear Wave"
+//$Arg4 "Max Spawn"
+}
+
+ACTOR WeakMonsterSpot1 : NewRandomMonsterInvasionSpot 15400
+{
+	//$Title Weak Monster Spot 1
+	//$Sprite TROOA2A8
+	Radius 20
+	Height 56
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "PistolZombie"
+    DropItem "PistolZombie"
+	DropItem "Railgunner"
+	DropItem "Railgunner"
+	DropItem "RepeaterZombie"
+	DropItem "RepeaterZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "VoidImp"
+}
+
+
+ACTOR WeakZombieSpot1 : NewRandomMonsterInvasionSpot 15401
+{
+	//$Title Weak Zombie Spot 1
+	//$Sprite POSSA2A8
+	Radius 20
+	Height 56
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "PistolZombie"
+    DropItem "PistolZombie"
+	DropItem "Railgunner"
+	DropItem "Railgunner"
+	DropItem "RepeaterZombie"
+	DropItem "RepeaterZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+}
+
+ACTOR ShotgunnersSpot1 : NewRandomMonsterInvasionSpot 15402
+{
+	//$Title Shotgunners Spot 1
+	//$Sprite SPOSA2A8
+	Radius 20
+	Height 56
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "ShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "AssaultShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "QuadShotgunZombie"
+	DropItem "QuadShotgunZombie"
+	DropItem "Hexa-ShotgunZombie"
+}
+
+ACTOR ShotgunnersSpot2 : NewRandomMonsterInvasionSpot 15403
+{
+	//$Title Shotgunners Spot 2
+	//$Sprite SPOSA2A8
+	Radius 20
+	Height 56
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "SuperShotgunZombie"
+	DropItem "QuadShotgunZombie"
+	DropItem "QuadShotgunZombie"
+	DropItem "Hexa-ShotgunZombie"
+}
+
+ACTOR ImpsSpot1 : NewRandomMonsterInvasionSpot 15404
+{
+	//$Title Imps Spot 1
+	//$Sprite TROOA2A8
+	Radius 20
+	Height 56
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "VoidImp"
+	DropItem "VoidImp"
+	DropItem "VoidImp"
+	DropItem "VoidImp"
+	DropItem "Devil"
+	DropItem "Devil"
+	DropItem "PhaseImp"
+}
+
+ACTOR FiendsSpot1 : NewRandomMonsterInvasionSpot 15405
+{
+	//$Title Fiends Spot 1
+	//$Sprite SAR2A2A8
+	Radius 24
+	Height 48
+	DropItem "BullFiend"
+	DropItem "BullFiend"
+	DropItem "BullFiend"
+	DropItem "CyberFiend"
+}
+
+ACTOR CacodemonsSpot1 : NewRandomMonsterInvasionSpot 15406
+{
+	//$Title Cacodemons Spot 1
+	//$Sprite CALIA2A8
+	Radius 30
+	Height 56
+	DropItem "Cacodemon~"
+	DropItem "Cacodemon~"
+	DropItem "Cacodemon~"
+	DropItem "Watcher"
+}
+
+ACTOR MediumMonsterSpot1 : NewRandomMonsterInvasionSpot 15407
+{
+	//$Title Medium Monster Spot 1
+	//$Sprite BOS2A2C8
+	Radius 20
+	Height 56
+	DropItem "Cacodemon~"
+	DropItem "Guardian"
+	DropItem "HellKnight~"
+}
+
+ACTOR ZombieManSpot1 : NewRandomMonsterInvasionSpot 15408
+{
+	//$Title ZombieMan Spot 1
+	//$Sprite POSSA2A8
+	Radius 20
+	Height 56
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Plasmagunner"
+	DropItem "Railgunner"
+	DropItem "Railgunner"
+	DropItem "Railgunner"
+	DropItem "Railgunner"
+	DropItem "RepeaterZombie"
+	DropItem "RepeaterZombie"
+	DropItem "RepeaterZombie"
+	DropItem "DemonTechZombie"
+	DropItem "DemonTechZombie"
+	DropItem "DemonTechBallistaZombie"
+	DropItem "RocketZombie"
+}
+
+ACTOR ChaingunnerSpot1 : NewRandomMonsterInvasionSpot 15409
+{
+	//$Title Chaingunner Spot 1
+	//$Sprite CPOSA2
+	Radius 20
+	Height 56
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "AssaultRifleZombie"
+	DropItem "Chaingunner"
+	DropItem "Chaingunner"
+	DropItem "Chaingunner"
+	DropItem "Chaingunner"
+	DropItem "Minigunner"
+	DropItem "Minigunner"
+}
+
+ACTOR NaziSpot1 : NewRandomMonsterInvasionSpot 15410
+{
+	//$Title Nazi Spot 1
+	//$Sprite SSWVA2
+	Radius 20
+	Height 56
+	DropItem "Guard"
+	DropItem "Guard"
+	DropItem "Guard"
+	DropItem "Guard"
+	DropItem "Guard"
+	DropItem "Guard"
+	DropItem "SSGunner"
+	DropItem "SSGunner"
+	DropItem "SSGunner"
+	DropItem "SSGunner"
+	DropItem "SSShotgunner"
+	DropItem "SSShotgunner"
+	DropItem "SSShotgunner"
+	DropItem "SSShotgunner"
+	DropItem "SSNazi"
+	DropItem "SSNazi"
+	DropItem "SSNazi"
+	DropItem "SSNazi"
+	DropItem "Officer"
+	DropItem "Officer"
+}
+
+ACTOR NaziSpot2 : NewRandomMonsterInvasionSpot 15411
+{
+	//$Title Nazi Spot 2
+	//$Sprite SSWVA2
+	Radius 20
+	Height 56
+	DropItem "SSNazi"
+	DropItem "SSNazi"
+	DropItem "SSNazi"
+	DropItem "SSNazi"
+	DropItem "Officer"
+}
+
+ACTOR ImpsSpot2 : NewRandomMonsterInvasionSpot 15412
+{
+	//$Title Imps Spot 2
+	//$Sprite TROOA2A8
+	Radius 20
+	Height 56
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "Imp"
+	DropItem "VoidImp"
+}
+
+ACTOR NoblesSpot1 : NewRandomMonsterInvasionSpot 15413
+{
+	//$Title Nobles Spot 1
+	//$Sprite BOS2A2C8
+	Radius 24
+	Height 64
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "BaronOfHell~"
+	DropItem "BaronOfHell~"
+	DropItem "ArchbaronOfHell"
+}
+
+ACTOR FatsosSpot1 : NewRandomMonsterInvasionSpot 15414
+{
+	//$Title Fatsos Spot 1
+	//$Sprite TABUA2A8
+	Radius 30
+	Height 64
+	DropItem "Hectebus"
+	DropItem "Hectebus"
+	DropItem "Hectebus"
+	DropItem "Hectebus"
+	DropItem "Daedabus"
+}
+
+ACTOR SpecOpsSpot1 : NewRandomMonsterInvasionSpot 15415
+{
+	//$Title Spec Ops Weak Weapons Spot
+	//$Sprite ZSP6A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops"
+	DropItem "ZombieSpecops3"
+	DropItem "ZombieSpecops4"
+	DropItem "ZombieSpecops5"
+	DropItem "ZombieSpecops6"
+	DropItem "ZombieSpecops7"
+	DropItem "ZombieSpecops8"
+	DropItem "ZombieSpecops10"
+	DropItem "ZombieSpecops11"
+	DropItem "ZombieSpecops19"
+}
+
+ACTOR SkeletonsSpot1 : NewRandomMonsterInvasionSpot 15416
+{
+	//$Title Skeletons Spot 1
+	//$Sprite SKELA2D8
+	Radius 20
+	Height 56
+	DropItem "Guardian"
+	DropItem "Guardian"
+	DropItem "Guardian"
+	DropItem "Guardian"
+	DropItem "Cadaver"
+}
+
+ACTOR ArchonSpot1 : NewRandomMonsterInvasionSpot 15417
+{
+	//$Title Archon Spot 1
+	//$Sprite HLARA2C8
+	Radius 24
+	Height 64
+	DropItem "HellArchon"
+	DropItem "HellArchon"
+	DropItem "HellArchon"
+	DropItem "PyroDemon"
+}
+
+ACTOR HellFireMonsterSpot1 : NewRandomMonsterInvasionSpot 15418
+{
+	//$Title Hell Fire Monster Spot 1
+	//$Sprite PYROA2C8
+	Radius 24
+	Height 64
+	DropItem "HellArchon"
+	DropItem "Afrit"
+	DropItem "PyroDemon"
+	DropItem "BruiserDemon"
+	DropItem "HellfireRevenant"
+}
+
+ACTOR HellFireMonsterSpot2 : NewRandomMonsterInvasionSpot 15419
+{
+	//$Title Hell Fire Monster Spot 2
+	//$Sprite FRITA2A8
+	Radius 24
+	Height 64
+	DropItem "Afrit"
+	DropItem "Afrit"
+	DropItem "BruiserDemon"
+	DropItem "BruiserDemon"
+	DropItem "InfernalKnight"
+}
+
+ACTOR CyberNoblesSpot1 : NewRandomMonsterInvasionSpot 15420
+{
+	//$Title Cyber Nobles Spot 1
+	//$Sprite CBOSA2
+	Radius 24
+	Height 64
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberBaron"
+	DropItem "CyberBaron"
+	DropItem "CyberArchBaron"
+}
+
+ACTOR SpecOpsCommandoSpot1 : NewRandomMonsterInvasionSpot 15421
+{
+	//$Title Spec Ops Commando Spot 1
+	//$Sprite ZPS3A2
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecops12"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecOps13"
+	DropItem "ZombieSpecops14"
+	DropItem "ZombieSpecops14"
+	DropItem "ZombieSpecops14"
+	DropItem "ZombieSpecops14"
+	DropItem "ZombieSpecops15"
+	DropItem "ZombieSpecops15"
+}
+
+ACTOR ToxicMonsterSpot1 : NewRandomMonsterInvasionSpot 15422
+{
+	//$Title Toxic Monster Weak Spot 1
+	//$Sprite TIMPA2A8
+	Radius 20
+	Height 56
+	DropItem "LesserMutant"
+	DropItem "LesserMutant"
+	DropItem "LesserMutant"
+	DropItem "ToxicImp"
+}
+
+ACTOR ToxicMonsterSpot2 : NewRandomMonsterInvasionSpot 15423
+{
+	//$Title Toxic Monster Strong Spot 1
+	//$Sprite CUTHA2A8
+	Radius 24
+	Height 64
+	DropItem "ToxicDemon"
+	DropItem "ToxicDemon"
+	DropItem "ToxicDemon"
+	DropItem "ToxicDemon"
+	DropItem "ToxicDemon"
+	DropItem "ToxicDemon"
+	DropItem "ToxicRevenant"
+	DropItem "ToxicRevenant"
+	DropItem "ToxicKnight"
+}
+
+ACTOR SpecOpsSpot2 : NewRandomMonsterInvasionSpot 15424
+{
+	//$Title Spec Ops Medium Weapons Spot
+	//$Sprite ZSP8A2A8
+	Radius 20
+	Height 56
+	DropItem "ZombieSpecops2"
+	DropItem "ZombieSpecops16"
+	DropItem "ZombieSpecops17"
+	DropItem "ZombieSpecops9"
+	DropItem "ZombieSpecops18"
+	DropItem "ZombieSpecops20"
+}
+
+ACTOR CyberMonstersWeakSpot : NewRandomMonsterInvasionSpot 15425
+{
+	//$Title Cyber Monsters Weak Spot
+	//$Sprite CIMPA2
+	Radius 24
+	Height 56
+	DropItem "CyberImp"
+	DropItem "CyberImp"
+	DropItem "CyberImp"
+	DropItem "CyberImp"
+	DropItem "CyberFiend"
+	DropItem "CyberFiend"
+	DropItem "CyberFiend"
+	DropItem "CyberFiend"
+	DropItem "RocketImp"
+	DropItem "IronFiend"
+	DropItem "IronFiend"
+	DropItem "CyberBrute"
+	DropItem "CyberTrooper"
+	DropItem "CyberTrooper"
+}
+
+ACTOR CyberMonstersMediumSpot : NewRandomMonsterInvasionSpot 15426
+{
+	//$Title Cyber Monsters Medium Spot
+	//$Sprite BRUSA2
+	Radius 24
+	Height 64
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberNoble"
+	DropItem "CyberBrute"
+	DropItem "Cybruiser"
+	DropItem "CyberBaron"
+	DropItem "CyberArchBaron"
+}
+
+ACTOR CyberMonstersStrongSpot : NewRandomMonsterInvasionSpot 15427
+{
+	//$Title Cyber Monsters Strong Spot
+	//$Sprite BR2SA2
+	Radius 24
+	Height 64
+	DropItem "Paladin"
+	DropItem "Paladin"
+	DropItem "Paladin"
+	DropItem "Paladin"
+	DropItem "Cydestroyer"
+	DropItem "Cydestroyer"
+	DropItem "Cydestroyer"
+	DropItem "CyberHellArchon"
+	DropItem "CyberHellArchon"
+	DropItem "CyberBruiserDemon"
+}
+
+ACTOR IceMonstersSpot : NewRandomMonsterInvasionSpot 15428
+{
+	//$Title Ice Monsters Spot
+	//$Sprite ICEYA2C8
+	Radius 24
+	Height 64
+	DropItem "CryoImp"
+	DropItem "CryoImp"
+	DropItem "CryoImp"
+	DropItem "ColdNightmare"
+	DropItem "ColdNightmare"
+	DropItem "ColdNightmare"
+	DropItem "CryoDemon"
+}
+
+ACTOR NaziMediumSpot : NewRandomMonsterInvasionSpot 15429
+{
+	//$Title Nazi Medium Spot
+	//$Sprite OTTOA0
+	Radius 24
+	Height 64
+	DropItem "SSRocketMan"
+	DropItem "SSRocketMan"
+	DropItem "SSFlameCommando"
+	DropItem "SSFlameCommando"
+	DropItem "SSCorporal"
+	DropItem "SSCorporal"
+	DropItem "SSVeteran"
+	DropItem "SSVeteran"
+	DropItem "SSScientist"
+	DropItem "SSGrenadier"
+	DropItem "SSGrenadier"
+	DropItem "SSUberRocketMan"
+}
+
+ACTOR NaziStrongSpot : NewRandomMonsterInvasionSpot 15430
+{
+	//$Title Nazi Strong Spot
+	//$Sprite HANSA0
+	Radius 24
+	Height 64
+	DropItem "SSSuperSoldier"
+	DropItem "SSSuperSoldier"
+	DropItem "SSSuperSoldier"
+	DropItem "SSSuperSoldier"
+	DropItem "SSAssaultSoldier"
+	DropItem "SSAssaultSoldier"
+	DropItem "SSAssaultSoldier"
+	DropItem "SSAssaultSoldier"
+	DropItem "SSHunter"
+	DropItem "SSHunter"
+	DropItem "SSHunter"
+	DropItem "SSEliteSoldier"
+	DropItem "SSEliteSoldier"
+	DropItem "SSGuardian"
+	DropItem "SSGuardian"
+	DropItem "SSExplosiveSoldier"
+	DropItem "SSExplosiveSoldier"
+	DropItem "SSShockTrooper"
+	DropItem "SSTechTrooper"
+	DropItem "SSUberSoldier"
+}
+
+ACTOR NaziSuperSoldiersSpot : NewRandomMonsterInvasionSpot 15431
+{
+	//$Title Nazi Super Soldiers Spot
+	//$Sprite HANSA0
+	Radius 24
+	Height 64
+	DropItem "SSSuperSoldier"
+	DropItem "SSSuperSoldier"
+	DropItem "SSSuperSoldier"
+	DropItem "SSSuperSoldier"
+	DropItem "SSEliteSoldier"
+	DropItem "SSEliteSoldier"
+	DropItem "SSShockTrooper"
+	DropItem "SSExplosiveSoldier"
+}
+
+ACTOR NaziRocketMenSpot2 : NewRandomMonsterInvasionSpot 15432
+{
+	//$Title Nazi Rocket Men Spot
+	//$Sprite OTTOA0
+	Radius 24
+	Height 64
+	DropItem "SSRocketMan"
+	DropItem "SSRocketMan"
+	DropItem "SSRocketMan"
+	DropItem "SSUberRocketMan"
+}
+
+ACTOR ElementalsSpot1 : NewRandomMonsterInvasionSpot 15433
+{
+	//$Title Elementals Spot 1
+	//$Sprite PLEMA2A8
+	Radius 30
+	Height 56
+	DropItem "SoulKeeper"
+	DropItem "SoulKeeper"
+	DropItem "SoulKeeper"
+	DropItem "Defiler"
+}
+
+ACTOR ElementalsSpot2 : NewRandomMonsterInvasionSpot 15434
+{
+	//$Title Elementals Spot 2
+	//$Sprite INFPA2A8
+	Radius 30
+	Height 56
+	DropItem "SoulKeeper"
+	DropItem "SoulKeeper"
+	DropItem "SoulKeeper"
+	DropItem "SoulKeeper"
+	DropItem "Defiler"
+	DropItem "Defiler"
+	DropItem "BombElemental"
+}
+
+ACTOR SoulsSpot1 : NewRandomMonsterInvasionSpot 15435
+{
+	//$Title Souls Spot 1
+	//$Sprite FRGOA1
+	Radius 30
+	Height 56
+	DropItem "TerrorSoul"
+	DropItem "TerrorSoul"
+	DropItem "TerrorSoul"
+	DropItem "TerrorSoul"
+	DropItem "ForgottenOne"
+	DropItem "ForgottenOne"
+	DropItem "Rictus"
+}
+
+ACTOR ImprovedMediumMonsterSpot1 : NewRandomMonsterInvasionSpot 15436
+{
+	//$Title Improved Medium Monster Spot 1
+	//$Sprite TABUA2A8
+	Radius 36
+	Height 64
+	DropItem "Cacodemon~"
+	DropItem "Cacodemon~"
+	DropItem "Guardian"
+	DropItem "Guardian"
+	DropItem "HellKnight~"
+	DropItem "HellKnight~"
+	DropItem "Hectebus"
+	DropItem "Dualachnotron"
+	DropItem "SoulKeeper"
+}
+
+ACTOR DarkImpsSpot : NewRandomMonsterInvasionSpot 15437
+{
+	//$Title Dark Imps Spot
+	//$Sprite DR3SA2A8
+	Radius 20
+	Height 56
+	DropItem "NewDarkImp"
+	DropItem "NewDarkImp"
+	DropItem "NewDarkImp"
+	DropItem "NewDarkImp"
+	DropItem "NewDarkImp"
+	DropItem "NewDarkImp"
+	DropItem "NewDarkImp"
+	DropItem "DarkVoidImp"
+	DropItem "DarkVoidImp"
+	DropItem "DarkVoidImp"
+	DropItem "DarkVoidImp"
+	DropItem "DarkDevil"
+	DropItem "DarkDevil"
+	DropItem "PhaseImp"
+}
+
+ACTOR NaziStrongMutantsSpot : NewRandomMonsterInvasionSpot 15438
+{
+	//$Title Nazi Strong Mutants
+	//$Sprite SMT4A0
+	Radius 24
+	Height 64
+	DropItem "SSAssaultMutant"
+	DropItem "SSScientistMutant"
+	DropItem "SSUberMutant"
+	DropItem "SSUberMutant"
+}
+
+ACTOR NaziDogsSpot : NewRandomMonsterInvasionSpot 15439
+{
+	//$Title Nazi Dogs
+	//$Sprite DG03A2A8
+	Radius 20
+	Height 56
+	DropItem "NaziDog"
+	DropItem "NaziDog"
+	DropItem "NaziDog"
+    DropItem "NaziDog"
+	DropItem "NaziDog"
+	DropItem "CyberNaziDog"
+	DropItem "CyberNaziDog"
+	DropItem "CyberNaziDog"
+	DropItem "RocketNaziDog"
+}

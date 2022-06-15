@@ -1,0 +1,348 @@
+//=======
+// Player
+//=======
+
+Actor Lives : Ammo{Inventory.MaxAmount 10 Ammo.BackPackAmount 0 Ammo.BackPackMaxAmount 10}
+Actor Waiter : Inventory{Inventory.MaxAmount 1}
+Actor LuckRune : Inventory{Inventory.MaxAmount 1}
+Actor HasRegenerationRune : Inventory{Inventory.MaxAmount 1}
+Actor HasHasteRune : Inventory{Inventory.MaxAmount 1}
+Actor HasRageRune : Inventory{Inventory.MaxAmount 1}
+Actor HasStrenghtRune : Inventory{Inventory.MaxAmount 1}
+Actor HasResistanceRune : Inventory{Inventory.MaxAmount 1}
+Actor HasSpreadRune : Inventory{Inventory.MaxAmount 1}
+Actor HasRevengeRune : Inventory{Inventory.MaxAmount 1}
+Actor HasSummonerRune : Inventory{Inventory.MaxAmount 1}
+Actor HasHighJumpRune : Inventory{Inventory.MaxAmount 1}
+Actor HasPowerupRune : Inventory{Inventory.MaxAmount 1}
+Actor HasTimeRune : Inventory{Inventory.MaxAmount 1}
+Actor HasTimeRuneCooldown : Inventory{Inventory.MaxAmount 1}
+Actor HasProsperityRune : Inventory{Inventory.MaxAmount 1}
+Actor HasAbsorptionRune : Inventory{Inventory.MaxAmount 1}
+Actor HasConfusionRune : Inventory{Inventory.MaxAmount 1}
+Actor HasLootingRune : Inventory{Inventory.MaxAmount 1}
+Actor HasVeterancyRune : Inventory{Inventory.MaxAmount 1}
+Actor HasAgilityRune : Inventory{Inventory.MaxAmount 1}
+Actor HasAwakenedLegendaryRune : Inventory{Inventory.MaxAmount 1}
+Actor HasTrueLegendaryRune : Inventory{Inventory.MaxAmount 1}
+Actor IsWorthyOfTheAwakenedLegendaryRune : Inventory{Inventory.MaxAmount 1}
+Actor IsWorthyOfTheTrueLegendaryRune : Inventory{Inventory.MaxAmount 1}
+Actor ChaosSphereFinished : Inventory{Inventory.MaxAmount 1}
+Actor PowerupDelay : Inventory{Inventory.MaxAmount 1}
+Actor IsRemoved : Inventory{Inventory.MaxAmount 1}
+Actor HasLegendarySphere : Inventory{Inventory.MaxAmount 1}
+Actor MissileType2 : Inventory{Inventory.MaxAmount 1}
+Actor MissileType3 : Inventory{Inventory.MaxAmount 1}
+Actor MissileType4 : Inventory{Inventory.MaxAmount 1}
+Actor MissileType5 : Inventory{Inventory.MaxAmount 1}
+Actor MissileType6 : Inventory{Inventory.MaxAmount 1}
+Actor ImStillAliveSomehow : Inventory{Inventory.MaxAmount 1}
+Actor CanHold : Inventory{Inventory.MaxAmount 1}
+Actor CanHalfHold : Inventory{Inventory.MaxAmount 1}
+Actor AttackCharge : Ammo{Inventory.MaxAmount 10 Ammo.BackPackAmount 0 Ammo.BackPackMaxAmount 1}
+Actor IsKamikaze : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateUltraSphere : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateLegendarySphere : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateLegendaryArmor : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateRandomWeaponGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateLightDroneGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGatePoisonTrapGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateKamikazeGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateStrikeBeaconGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateEmergencyTeleporterGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateMisteryBoxGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateWeaponUpgraderGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateExperienceGiver : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateDamage : Inventory{Inventory.MaxAmount 1}
+Actor InvasionGateLives : Inventory{Inventory.MaxAmount 1}
+Actor LegendaryCrystalPoints : Inventory{Inventory.MaxAmount 750}
+Actor TrueLegendaryCrystalPoints : Inventory{Inventory.MaxAmount 1000}
+Actor PlayerCallingMinions : Inventory{Inventory.MaxAmount 1}
+Actor IsNotarget : Inventory{Inventory.MaxAmount 1}
+Actor ImDead : Inventory{Inventory.MaxAmount 1}
+Actor IsDemon : Inventory{Inventory.MaxAmount 1}
+Actor RespawnSupply : Ammo{Inventory.MaxAmount 3 Ammo.BackPackAmount 0 Ammo.BackPackMaxAmount 3}
+Actor RespawnSupplyActivated : Inventory{Inventory.MaxAmount 1}
+Actor RespawnSupplyCooldown : Ammo{Inventory.MaxAmount 30 Ammo.BackPackAmount 0 Ammo.BackPackMaxAmount 30}
+Actor SpawnCount : Inventory{Inventory.MaxAmount 9999}
+Actor BonusCrateActivated : Inventory{Inventory.MaxAmount 999}
+
+Actor CDICheatAmmunition : Inventory{Inventory.MaxAmount 1}
+Actor CDICheatDamage : PowerDamage
+{
+DamageFActor "Normal", 100.0
+Powerup.Duration -99999
+Powerup.Color Red 0.0
+}
+
+Actor UtilityPack : Inventory{Inventory.MaxAmount 1}
+
+Actor ComplexDoomPlayer : DoomPlayer
+{
+Speed 1
+Health 100
+GibHealth 50
+Radius 16
+Height 56
+Mass 100
+PainChance 255
+Species "Player"
+-NOSKIN
++THRUSPECIES
++DONTHARMSPECIES
++MTHRUSPECIES
++NOICEDEATH
++NOTELEFRAG
+DamageFactor "Marine", 0.0
+DamageFactor "MarinePierce", 0.0
+DamageFactor "MarineKaboom", 0.0
+DamageFactor "Legendary", 0.0
+DamageFactor "MechStep", 0.0
+DamageFactor "Mine", 0.0
+Player.MaxHealth 100
+Player.SoundClass "Marine"
+Player.ColorRange 112, 127
+Player.DisplayName "Doom Guy"
+Player.CrouchSprite "PLYC"
+Player.DamageScreenColor Red, 0.1
+Player.StartItem "Handgun"
+Player.StartItem "HandGrenadeAmmo" 2
+Player.StartItem "MineAmmo" 2
+Player.StartItem "NewMelee"
+Player.StartItem "BulletMag" 60
+Player.StartItem "PistolMagazine" 16
+Player.StartItem "ShotgunMagazine" 9
+Player.StartItem "SSGShell" 2
+Player.StartItem "ShotgunDrum" 16
+Player.StartItem "QuadShell" 4
+Player.StartItem "ARMagazine" 41
+Player.StartItem "RocketDrum" 7
+Player.StartItem "GrenadeDrum" 7
+Player.StartItem "NewPlasmaCell" 100
+Player.StartItem "DemonMagazine" 60
+Player.StartItem "CellCharge" 50
+Player.StartItem "MP40Mag" 33
+Player.StartItem "StartingArmor"
+States
+{
+		Spawn:
+		    TNT1 A 0 A_TakeInventory("IsDemon",1)
+			PLAY A 1
+			Loop
+		See:
+		    TNT1 A 0 A_TakeInventory("IsDemon",1)
+			PLAY ABCD 5
+			Goto Spawn
+		Missile:
+			PLAY E 12
+			Goto Spawn
+		Melee:
+			PLAY F 6 Bright
+			Goto Missile
+		Pain:
+			PLAY G 4
+			PLAY G 4 A_Pain
+			Goto Spawn
+		Pain.Potato:
+		    TNT1 A 0
+		    TNT1 A 0 ThrustThingZ(0,80,0,0)
+            TNT1 A 0 ThrustThing(Random(0,359),80)
+			TNT1 A 0 A_PlaySound("potato/bounce")
+            PLAY G 4 A_Pain
+	        Goto Spawn
+		Death:
+			TNT1 A 0
+			TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+			TNT1 A 0 A_TakeInventory("MineAction",1)
+			TNT1 A 0 A_TakeInventory("RailgunAction",1)
+			PLAY H 8
+			PLAY I 8 A_PlayerScream
+			PLAY J 8 A_NoBlocking
+			PLAY K 8
+			PLAY L 8 A_SpawnItem("BodyCrash",0,0,0,0)
+			PLAY M 8
+			PLAY N -1
+			Stop
+		XDeath:
+			TNT1 A 0
+			TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+			TNT1 A 0 A_TakeInventory("MineAction",1)
+			TNT1 A 0 A_TakeInventory("RailgunAction",1)
+			TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+			PLAY P 3 A_PlayerScream
+			PLAY Q 3 A_NoBlocking
+			PLAY RSTUV 3
+			PLAY W -1
+			Stop
+		Death.Potato:
+			TNT1 A 0
+			TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+			TNT1 A 0 A_TakeInventory("MineAction",1)
+			TNT1 A 0 A_TakeInventory("RailgunAction",1)
+			TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		    TNT1 A 0 ThrustThingZ(0,80,0,0)
+            TNT1 A 0 ThrustThing(Random(0,359),80)
+			TNT1 A 0 A_PlaySound("bagel/kill")
+			PLAY P 3 A_XScream
+			PLAY Q 3 A_NoBlocking
+			PLAY RSTUV 3
+			PLAY W -1
+			Stop
+		Death.Bagel:
+			TNT1 A 0
+			TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+			TNT1 A 0 A_TakeInventory("MineAction",1)
+			TNT1 A 0 A_TakeInventory("RailgunAction",1)
+			PLAY H 8
+			PLAY I 8 A_PlaySound("bagel/kill")
+			PLAY J 8 A_NoBlocking
+			PLAY K 8
+			PLAY L 8 A_SpawnItem("BodyCrash",0,0,0,0)
+			PLAY M 8
+			PLAY N -1
+			Stop
+		Incorp:
+			TNT1 A 0 A_ChangeFlag("SOLID", FALSE)
+			Goto Spawn
+		Corp:
+			TNT1 A 0 A_ChangeFlag("SOLID", TRUE)
+			Goto Spawn
+}
+}
+
+Actor ClientSideEffect
+{
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	States
+    {
+	  Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+		TNT1 A 5 Bright
+		Stop
+	  Toaster:
+		TNT1 A 0
+		Stop
+    }
+}
+
+Actor MonsterTracker
+{
++NOINTERACTION
++NOTIMEFREEZE
++NOCLIP
++NEVERTARGET
++NOTARGET
++NOGRAVITY
++FLOAT
+-COUNTKILL
+-SHOOTABLE
+States
+{
+   Spawn:
+	TNT1 A 0
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MonsterTrackerMinion",0,0,0,0,0,0,0)
+	TNT1 A 1
+	Stop
+}
+}
+
+Actor MonsterTrackerMinion : MonsterTracker
+{
+Speed 35
+var int user_moving;
+States
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(user_moving > 24,"Done")
+	TNT1 A 0 A_SetUserVar("user_moving",user_moving+1)
+	TNT1 A 0 ACS_NamedExecuteAlways("Moving Point",0,8,0,0)
+	TNT1 AAAAAAAA 1 A_RadiusGive("MonsterTrackerItem",10000,RGF_MONSTERS,1)
+	Loop
+  Done:
+    TNT1 A 1
+	Stop
+}
+}
+
+Actor MonsterTrackerItem : CustomInventory
+{
+  +Inventory.QUIET
+  +Inventory.UNDROPPABLE
+  +Inventory.ALWAYSPICKUP
+  +Inventory.AUTOACTIVATE
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  States
+  {
+  PickUp:
+    NULL A 1
+    NULL A 1 A_JumpIfInventory("HasMonsterTracker",1,2)
+	NULL A 1 ACS_NamedExecuteAlways("Monster Map Tracker",0,0,0,0)
+	NULL A 1
+    Stop
+  Nope:
+	NULL A 1
+    Stop
+  }
+}
+
+Actor HasMonsterTracker : Inventory{Inventory.MaxAmount 1}
+
+Actor MonsterTrackerMapMarker : MapMarker
+{
++CLIENTSIDEONLY
++NOTIMEFREEZE
+Scale 0.175
+States
+{
+  Spawn:
+	MSTR A 3
+	Stop
+}
+}
+
+Actor ThePlayer1 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer2 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer3 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer4 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer5 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer6 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer7 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer8 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer9 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer10 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer11 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer12 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer13 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer14 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer15 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer16 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer17 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer18 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer19 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer20 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer21 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer22 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer23 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer24 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer25 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer26 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer27 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer28 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer29 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer30 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer31 : Inventory{Inventory.MaxAmount 1}
+Actor ThePlayer32 : Inventory{Inventory.MaxAmount 1}
+
+Actor ActionInventory : CustomInventory
+{
++INVENTORY.QUIET
++INVENTORY.UNDROPPABLE
++INVENTORY.ALWAYSPICKUP
++INVENTORY.AUTOACTIVATE
+Inventory.Amount 1
+Inventory.MaxAmount 1
+}

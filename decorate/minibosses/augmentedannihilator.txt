@@ -1,0 +1,406 @@
+ACTOR AugmentedAnnihilator
+{  
+Health 18000
+Radius 64
+Height 209
+Mass 999999
+Speed 16
+Monster
+Obituary "The Augmented Annihilator litteraly exploded the entire corpse of %o."
++BOSS
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NORADIUSDMG
++DONTHARMSPECIES
++NOTIMEFREEZE
++DROPOFF
++DONTRIP
++NOPAIN
++NOFEAR
+YScale 1.9
+XScale 1.6
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Cyber10K", 0.0
+DamageFactor "Legendary", 0.2
+DamageFactor "BFGSplash", 0.25
+DamageFactor "PDTBFG", 0.05
+DamageFactor "PDTBFGTracer", 0.05
+DamageFactor "PlayerDevBall", 0.15
+DamageFactor "PlayerDevTracer", 0.15
+DamageFactor "MechStep", 0.0
+DamageFactor "Pierce", 0.35
+DamageFactor "MarinePierce", 0.35
+DamageFactor "Kaboom", 0.3
+DamageFactor "MarineKaboom", 0.3
+DamageFactor 0.35
+MinMissileChance 10
+SeeSound "auganni/see"
+PainSound "monsters/cyberlordpain"
+ActiveSound "cyber/active"
+DeathSound "monsters/cldie"
+MaxStepHeight 32
+MaxDropOffHeight 32
+RadiusDamageFactor 0.5
+var int user_script;
+var int user_delay;
+DropItem ""
+Tag "\c[w8]Augmented\c[m8] Annihilator\c-"
+States
+{
+  Spawn:
+  	TNT1 A 0 A_JumpIf(user_script == 1,4)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,15,1,0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    ANOP AB 10 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_JumpIf(user_script == 1,4)
+    TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,15,1,0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    TNT1 A 0 A_JumpIfCloser(2000,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	ANOP A 0 A_Playsound("monsters/clhoof")
+	ANOP AABB 2 A_Chase		
+	ANOP C 0 A_Playsound("monsters/clhoof") 
+	ANOP CCDD 2 A_Chase
+    Loop
+  Strafing:
+	TNT1 A 0 A_Playsound("monsters/clhoof") 
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	ANOP AA 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	ANOP BB 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+    ANOP CC 2 A_GiveInventory("LegCyberStrafe",1)	
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_Playsound("monsters/clhoof")
+	ANOP DD 2 A_GiveInventory("LegCyberStrafe",1)
+	Goto See
+  Missile:
+	TNT1 A 0
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+    TNT1 A 0 A_Jump(144,"HeavyRockets","DiggerGrenade","M79Grenade","ExpMinigun","ExpMinigunRocket")
+	TNT1 A 0 A_Jump(16,"Nukes")
+	TNT1 A 0 A_Jump(127,"BFG9K","DTBFG","BFG12K") 
+  Normal:
+    ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,52,random(-1,1))
+    ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,-52,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,52,random(-1,1))
+    ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,-52,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,52,random(-1,1))
+    ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,-52,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,52,random(-1,1))
+    ANOP H 0 Bright A_CustomMissile("AugmentedAnnihilatorRocket",95,-52,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,52,random(-1,1))
+    ANOP H 0 A_CustomMissile("AugmentedAnnihilatorRocket",95,-52,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(110,"M79Grenade")
+    Goto See
+  M79Grenade:
+    ANOP EEEEE 8 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("M79/Fire")
+	ANOP H 0 A_CustomMissile("ZM79Grenade",95,52,random(-2,2))
+    ANOP H 0 A_CustomMissile("ZM79Grenade",95,-52,random(-2,2))
+	ANOP EEEEEEEEEEEEEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEEEEEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("M79/Fire")
+	ANOP H 0 A_CustomMissile("ZM79Grenade",95,52,random(-2,2))
+    ANOP H 0 A_CustomMissile("ZM79Grenade",95,-52,random(-2,2))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEEEEEEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(110,"HeavyRockets")
+    Goto See
+  HeavyRockets:
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerHeavyRocket",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(110,"DiggerGrenade")
+    Goto See
+  DiggerGrenade:
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_PlayWeaponSound("digger/fire")
+	ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_PlayWeaponSound("digger/fire")
+	ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_PlayWeaponSound("digger/fire")
+	ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	ANOP H 0 A_PlayWeaponSound("digger/fire")
+	ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,46,random(-1,1))
+    ANOP H 0 A_CustomMissile("BersekerDiggerGrenade",95,-46,random(-1,1))
+	ANOP HHHH 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(110,"BFG9K")
+    Goto See
+  ExpMinigun:
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP F 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP G 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_CposRefire
+	TNT1 A 0 A_Jump(32,"Missile","See","ExpMinigunRocket")
+    Goto ExpMinigun+4
+  ExpMinigunRocket:
+	ANOP EEEE 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP F 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP G 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",95,52,random(-1,1))
+    TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",95,-52,random(-1,1))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP I 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP J 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP F 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,28,170,Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-28,170,Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)	
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,30,Random(2,-2))
+	TNT1 A 0 A_CustomMissile("HitlerExplosiveTracer",170,-30,Random(2,-2))
+	TNT1 A 0 A_GiveInventory("LegCyberStrafe",1)
+	ANOP G 2 Bright A_PlaySound("sentient/fire")
+	TNT1 A 0 A_CposRefire
+	TNT1 A 0 A_Jump(32,"Missile","See","ExpMinigun")
+    Goto ExpMinigunRocket+4
+  BFG9K:	
+	ANOP KKK 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	ANOP LLMMNNOOPP 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP Q 0 A_CustomMissile("AugmentedAnnihilatorBFG9500Ball",155,24,-4)
+	ANOP Q 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP Q 0 A_CustomMissile("AugmentedAnnihilatorBFG9500Ball",155,24,0)
+	ANOP Q 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP Q 0 A_CustomMissile("AugmentedAnnihilatorBFG9500Ball",155,24,4)
+	ANOP Q 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP RRR 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP KKK 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	ANOP SSTTUUVVWW 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP X 0 A_CustomMissile("AugmentedAnnihilatorBFG9500Ball",155,-24,4)
+	ANOP X 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP X 0 A_CustomMissile("AugmentedAnnihilatorBFG9500Ball",155,-24,0)
+	ANOP X 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP X 0 A_CustomMissile("AugmentedAnnihilatorBFG9500Ball",155,-24,-4)
+	ANOP X 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP YYY 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP KKK 2 A_FaceTarget
+	TNT1 A 0 A_Jump(110,"DTBFG")
+	Goto See
+  DTBFG:	
+	ANOP KKK 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("Cardinal/9k")
+	ANOP LLMMNNOOPP 3 Bright A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("DarkAnniDTBFGBall",155,24,random(-4,4))
+	ANOP Q 0 A_CustomMissile("DarkAnniDTBFGBall",155,24,0)
+	ANOP QQQRRR 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP KKK 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("Cardinal/9k")
+	ANOP SSTTUUVVWW 3 Bright A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("DarkAnniDTBFGBall",155,-24,random(-4,4))
+    ANOP X 0 A_CustomMissile("DarkAnniDTBFGBall",155,-24,0)
+	ANOP XXXYYY 2 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP KKK 2 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(110,"BFG12K")
+	Goto See
+  BFG12K:
+	ANOP KKKKK 5 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	ANOP LLMMNOP 5 Bright A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("DemonBFG12000Ball",155,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonBFG12000Ball",155,24,0)
+	ANOP QQR 5 Bright A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	ANOP SSTTUVW 5 Bright A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_CustomMissile("DemonBFG12000Ball",155,-24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonBFG12000Ball",155,-24,0)
+	ANOP XXY 5 Bright A_GiveInventory("LegCyberStrafe",1)
+	ANOP KKK 6 A_GiveInventory("LegCyberStrafe",1)
+	TNT1 A 0 A_Jump(16,"Nukes")
+	Goto See
+  Nukes:
+	TNT1 A 0 A_PlaySound("weapons/nuclearmissilecharge",0,10.0)
+	ANOP E 3 A_PlaySound("auganni/see",CHAN_AUTO,1.0,FALSE,ATTN_NONE)
+	TNT1 A 0 Radius_Quake(50,150,0,24,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",TRUE)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_PlaySoundEx("Cardihilator/NukeFire",1,0,2)
+	ANOP H 0 A_CustomMissile("MonsterFusionNuke",95,-46,Random(-3,3))
+	ANOP H 6 A_CustomMissile("MonsterFusionNuke",95,46,Random(-3,3))
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_PlaySoundEx("Cardihilator/NukeFire",1,0,2)
+	ANOP H 0 A_CustomMissile("MonsterFusionNuke",95,-46,Random(-3,3))
+	ANOP H 6 A_CustomMissile("MonsterFusionNuke",95,46,Random(-3,3))
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_FaceTarget
+	ANOP EEEE 4 Bright A_SpawnItemEx("AugmentedAnnihilatorRageRageFlameSpawner")
+	TNT1 A 0 A_PlaySoundEx("Cardihilator/NukeFire",1,0,2)
+	ANOP H 0 A_CustomMissile("MonsterFusionNuke",95,-46,Random(-3,3))
+	ANOP H 6 A_CustomMissile("MonsterFusionNuke",95,46,Random(-3,3))
+	TNT1 A 0 A_ChangeFlag("NOPAIN",FALSE)
+	TNT1 A 0 A_UnsetInvulnerable
+	ANOP EEEEEEEEEEEEEEEE 4 A_FaceTarget
+	ANOP E 35 
+	Goto See
+  Death:
+	ANOQ A 10 A_Scream
+	ANOQ B 10 A_NoBlocking
+	TNT1 AA 0 A_GiveToTarget("EpicCrateStrongGiver",1)
+	TNT1 AAAAA 0 A_GiveToTarget("BossCrateGiver",1)
+	TNT1 AAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(20,-20),Random(20,-20),Random(20,120),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_CustomMissile("BigRedBloodCloud",random(10,160),0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(8,64))
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	ANOQ BBBBBBBBBBBBBBBB 2 Bright A_CustomMissile("Kaboom",random(20,160),random(40,-40),random(0,360),2,random(0,360))
+	TNT1 AAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(20,-20),Random(20,-20),Random(20,120),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_CustomMissile("BigRedBloodCloud",random(10,160),0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(8,64))
+	ANOQ CCCCCCCCCCCCCCCC 2 Bright A_CustomMissile("Kaboom",random(20,160),random(40,-40),random(0,360),2,random(0,360))
+	TNT1 AAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(20,-20),Random(20,-20),Random(20,120),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_CustomMissile("BigRedBloodCloud",random(10,160),0,random(0,360),2,random(0,360))	
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(8,64))
+	ANNI KKKKKKKKKKKKKKKK 2 Bright A_CustomMissile("Kaboom",random(20,160),random(40,-40),random(0,360),2,random(0,360))
+	TNT1 AAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(20,-20),Random(20,-20),Random(20,120),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_CustomMissile("BigRedBloodCloud",random(10,160),0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItemEx("BossExplosionEffect",random(-64,64),random(-64,64),random(8,64))
+	ANNI LLLLLLLLLLLLLLLL 2 Bright A_CustomMissile("Kaboom",random(20,160),random(40,-40),random(0,360),2,random(0,360))
+	TNT1 AAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(20,-20),Random(20,-20),Random(20,120),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_CustomMissile("BigRedBloodCloud",random(10,160),0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	TNT1 A 0 A_SpawnItemEx("SuperBossExplosionEffect",0,0,0)
+	ANNI MMMMMMMMMMMMMMMM 2 Bright A_CustomMissile("Kaboom",random(20,160),random(40,-40),random(0,360),2,random(0,360))
+	TNT1 AAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(20,-20),Random(20,-20),Random(20,120),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_CustomMissile("BigRedBloodCloud",random(10,160),0,random(0,360),2,random(0,360))
+	TNT1 AAAAAAAAAAAAAAAAA 0 A_CustomMissile("SmokeFX3",Random(20,160),0,random(0,360),2,random(0,360))	
+	ANNI NO 5
+	ANNI P -1
+	Stop
+}
+}
+
+Actor AugmentedAnnihilatorRocket : MRLFastRocket
+{
+-MTHRUSPECIES
+Damage 22
+Speed 40
+Damagetype "Hell"
+SeeSound "rocket/fire"
+States
+{
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Explode(138,158,0)
+    TNT1 A 0 A_StopSoundEx("SoundSlot7")
+    TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_SpawnItemEx("RocketExplosionFlare",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_SpawnItemEx("RocketExplosionShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,random(4,-4),random(4,-4),random(4,8),0,128)
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+}
+}
+
+Actor AugmentedAnnihilatorBFG9500Ball : ZBFG9500Ball {Speed 80}

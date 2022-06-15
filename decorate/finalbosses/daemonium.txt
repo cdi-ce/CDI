@@ -1,0 +1,262 @@
+ACTOR DOverlord
+{ 
+Monster
+Speed 12
+Mass 99999
+Radius 80
+Height 150
+Health 19000
+Scale 2.2
+Decal Bulletchip
+SeeSound "Cardinal/Laugh"
+DeathSound "monsters/darkcyberdie"
+ActiveSound "cyber/active"
+Species "Hell"
+DamageFactor "Hell", 0.0 
+DamageFactor "Cyber10K", 0.0
+DamageFactor "CerEnergyBall", 0.0
+DamageFactor "Legendary", 0.75
+DamageFactor "BFGSplash", 0.5
+DamageFactor "PDTBFG", 0.25
+DamageFactor "PDTBFGTracer", 0.25
+DamageFactor "PlayerDevBall", 0.3
+DamageFactor "PlayerDevTracer", 0.3
+DamageFactor "MechStep", 0.0
+DamageFactor "FinalBossSector", 0.0
+DamageFactor "Pierce", 0.25
+DamageFactor "MarinePierce", 0.25
+DamageFactor "Kaboom", 0.2
+DamageFactor "MarineKaboom", 0.2
+DamageFactor 0.55
+RadiusDamageFactor 0.5
++DONTHARMSPECIES
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NOTIMEFREEZE
++NOPAIN
++DONTRIP
++NORADIUSDMG
++NOGRAVITY
++FLOAT
++DONTFALL
++BOSS
++NOFEAR
+Obituary "%o was blessed by the Daemonium Overlord."  
+var int user_script;
+var int user_part1;
+var int user_part2;
+var int user_part3;
+Tag "\c[t1]Daemonium\c[m4] Overlord\c-"
+States 
+{ 
+   Spawn:
+      TNT1 A 0 A_JumpIf(user_script == 1,4)
+      TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,8,0,0)
+	  TNT1 A 0 A_SpawnItemEx("DOverlordFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+      TNT1 A 0 A_SetUserVar("user_script",1)
+      DAEM AB 4 Bright A_Look
+      Loop
+   See:
+      TNT1 A 0 A_JumpIf(user_script == 1,4)
+      TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,8,0,0)
+	  TNT1 A 0 A_SpawnItemEx("DOverlordFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+      TNT1 A 0 A_SetUserVar("user_script",1)
+	  TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+      DAEM AABB 3 Bright A_Chase 
+      Loop
+  Strafing:
+	  TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	  DAEM A 3 Bright A_GiveInventory("DOverlordStrafe",1)
+	  TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	  DAEM B 3 Bright A_GiveInventory("DOverlordStrafe",1)
+	  TNT1 A 0 A_Jump(8,"See")
+	  Loop	
+  Missile:
+      TNT1 A 0 A_Jump(48,"Legendary1","Legendary2") 
+	  TNT1 A 0 A_Jump(127,"Seeker","Seeker","IceBall","IceBall","Help")  
+  Normal:
+	  DAEM GGHHII 2 Bright A_GiveInventory("DOverlordStrafe",1)
+	  TNT1 A 0 A_PlaySound("imp/attack")
+	  TNT1 A 0 A_CustomMissile("DOBlueBall",136,0,random(-7,7))	  
+	  DAEM K 1 Bright A_GiveInventory("DOverlordStrafe",1)
+	  TNT1 A 0 A_CposRefire
+	  TNT1 A 0 A_Jump(8,"Missile","See")
+	  Goto Normal+7
+  Seeker:
+	  DAEM GGHHII 2 Bright A_GiveInventory("DOverlordStrafe",1)
+	  TNT1 A 0 A_PlaySound("imp/attack")
+	  TNT1 A 0 A_CustomMissile("DOSeekBlueBall",136,0,0)	  
+	  DAEM KK 2 Bright A_GiveInventory("DOverlordStrafe",1)
+	  TNT1 A 0 A_CposRefire
+	  TNT1 A 0 A_Jump(8,"Missile","See")
+	  Goto Seeker+7	 	  
+  IceBall:
+	  DAEM GGHHII 3 Bright A_GiveInventory("DOverlordStrafe",1)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("DOIUBall",96,0,0)	  
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("DOIUBall",96,0,0)	  
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("DOIUBall",96,0,0)	  
+	  Goto See
+  Help:
+	  DAEM GGGGGHHHHH 3 Bright A_GiveInventory("DOverlordStrafe",1)
+	  DAEM IIIIIIIIIIIII 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+      TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+      TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+      TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MonolithOfSinSummon",0,0,96,random(2,8),0,0,0,32)	
+	  DAEM KKKKK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_Jump(110,"Help")
+	  Goto See
+  Legendary1:
+	  DAEM GGGHH 3 Bright A_GiveInventory("DOverlordStrafe",1)
+	  DAEM IIIIIIIIII 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("LegendaryImpBlueBall",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("LegendaryImpBlueBall",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("LegendaryImpBlueBall",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)	  
+	  Goto See	 
+  Legendary2:
+  	  TNT1 A 0 A_PlaySoundEx("cyber/sight1","Body",0,2)
+	  DAEM GGGGGHHHHH 3 Bright A_GiveInventory("DOverlordStrafe",1)
+	  DAEM IIIIIIIIIIIII 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("LegRevBall3",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("LegRevBall3",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)
+	  TNT1 A 0 A_CustomMissile("LegRevBall3",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)	
+	  TNT1 A 0 A_CustomMissile("LegRevBall3",96,0,0)
+	  DAEM KK 3 Bright A_GiveInventory("DOverlordStrafe1",1)	
+	  Goto See
+   Death:
+      TNT1 A 0 A_Stop
+	  TNT1 A 0 A_GiveInventory("ImDead",1)
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM OOOOOOO 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+      TNT1 A 0 A_Scream
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM PPPPPPP 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+	  TNT1 A 0 A_NoBlocking
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM QQQQQQQ 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM RRRRRRR 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM SSSSSSS 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM TTTTTTT 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(24,64),0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud",random(32,96), 0, random(0,360), 2, random(0,360))
+      DAEM UUUUUUU 2 Bright A_SpawnItemEx("RedKaboom",random(-32,32),random(-40,40),random(32,96),random(-4,4),random(-4,4),random(0,4))
+      Stop 
+   } 
+}
+
+ACTOR DOverlordFireFollower
+{
++NOBLOCKMAP
++NOTELEPORT
++DONTSPLASH
++NOINTERACTION
++NOGRAVITY
+States
+{
+  Spawn:
+	TNT1 A 2 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	TNT1 A 0 A_SpawnItemEx("DOverlordFireSpawner",0,0,0,0,0,0,0,32)
+	TNT1 A 0 A_JumpIfInventory("ImDead",1,"Death",AAPTR_TARGET)
+	Loop
+  Death:
+	TNT1 A 1
+	Stop
+	}
+}
+
+ACTOR DOverlordFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_PlaySound("monster/ambientfire3")
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(304) == 1, "Toaster")
+	TNT1 A 0 A_SpawnItemEx("DOverlordFireEx",random(16,-16),random(16,-16),random(90,110),0,0,random(-4,-6),0,128,0)	
+    TNT1 AAAAAAAA 0 A_SpawnItemEx("DarkCyberFlame",random(36,-36),random(36,-36),random(90,110),0,0,random(-6,-8),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR DOverlordFireEx : Kaboom4
+{
+Speed 0
+Scale 0.85
+}
+
+Actor DOIUBall
+{
+	Scale 2.5
+	Radius 15
+	Height 17
+	Speed 80
+	FastSpeed 100
+	Damage 75
+	DamageType "Corrupt"
+	Species "Hell"
+	Projectile
+	+Bright
+	+ExtremeDeath
+	+Thruspecies
+	RenderStyle Normal
+    SeeSound "painlord/barrageball"
+    DeathSound "painlord/barrageballblast"
+	DontHurtShooter
+	Obituary "%o was instantly fronzen by the Corruption"
+    Decal Scorch
+	States
+{
+    Spawn:
+	    TNT1 A 0 A_Explode(24,128,0)
+	    TNT1 AAAAAAA 0 A_SpawnItemEx("FrozenWind", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+		IMBL AB 1 A_Tracer2
+		TNT1 A 0 A_SpawnItemEx("IuBallTrail",-3,0,0,0,0,0,0,0,0)
+		TNT1 AAAAAAA 0 A_SpawnItemEx("FrozenWind", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+		Loop
+	Death:
+		BXPO A 0 Bright A_StopSound(CHAN_BODY)
+		BXPO A 0 Bright A_Explode(128,1024,0) 
+		BXPO AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		BXPO AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		BXPO ABCDEFGH 1 Bright
+		BXPO IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop		
+		}
+}
+
+Actor DOBlueBall : LegendaryBall{Speed 50 Damage 27 Decal Scorch}
+
+ACTOR DOSeekBlueBall : LegImpSeekBall
+{
+Damage (Random(12,18))
+Decal DoomImpScorch
+States
+{
+    Spawn:
+	    TNT1 A 0 A_SeekerMissile(12,3,SMF_LOOK)
+		TNT1 A 0 A_BishopMissileWeave
+        LIM1 A 1 Bright A_SpawnItemEx("LegImpSeekBallTrail",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_BishopMissileWeave
+        LIM1 B 1 Bright A_SpawnItemEx("LegImpSeekBallTrail",0,0,0,0,0,0,0,128,0)
+        Loop
+}
+}

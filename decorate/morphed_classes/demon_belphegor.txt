@@ -1,0 +1,319 @@
+//=================================================\\
+// ----------------- Belphegor ------------------- \\
+//=================================================\\
+
+ACTOR BelphegorGiver : MechGiver{Powerup.Type "Belphegor"}
+
+ACTOR PowerBelphegor : PowerMorph
+{
+  PowerMorph.PlayerClass "Demon_Belphegor"
+  PowerMorph.MorphFlash "TeleportFog"
+  PowerMorph.UnMorphFlash "TeleportFog"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR Demon_Belphegor : Demon_Cydestroyer
+{
+  Player.SoundClass "PBelphegor"
+  Player.DisplayName "Belphegor"
+  Player.MorphWeapon "Belphegor-Weapons"
+  Player.ForwardMove 0.8
+  Player.SideMove 0.55
+  RadiusDamageFactor 0.5
+  -NORADIUSDMG
+  States
+  {
+   Spawn:
+    TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerDemonRuneMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1)
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	NBRN A 1
+	Loop
+   See:
+    TNT1 A 0 A_JumpIf(user_effect == 1,3)
+	TNT1 A 0 A_SpawnItemEx("PlayerDemonRuneMarkFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SetUserVar("user_effect",1) 
+	TNT1 A 0 A_GiveInventory("IsDemon",1)
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("DukeWalkFire",0,0,0,0,0,0,0,128)
+	NBRN AA 3 Bright
+	TNT1 A 0 A_SpawnItemEx("DukeWalkFire",0,0,0,0,0,0,0,128)
+	NBRN BB 3 Bright
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("DukeWalkFire",0,0,0,0,0,0,0,128)
+	NBRN CC 3 Bright
+	TNT1 A 0 A_SpawnItemEx("DukeWalkFire",0,0,0,0,0,0,0,128)
+	NBRN DD 3 Bright
+	Goto Spawn
+  Melee:
+  Missile:
+    NBRN E 1 Bright
+	NBRN E 0 A_JumpIfInventory("MissileType6",1,"Missile6")
+	NBRN E 0 A_JumpIfInventory("MissileType5",1,"Missile5")
+	NBRN E 0 A_JumpIfInventory("MissileType4",1,"Missile4")
+	NBRN E 0 A_JumpIfInventory("MissileType3",1,"Missile3")
+	NBRN E 0 A_JumpIfInventory("MissileType2",1,"Missile2")
+    NBRN EFGEFG 4 Bright
+	Goto Spawn
+  Missile2:
+	NBRN E 0 A_TakeInventory("MissileType2",1)
+	NBRN EFGEFGEFG 5 Bright
+    Goto Spawn
+  Missile3:
+	NBRN E 0 A_TakeInventory("MissileType3",1)
+	NBRN EFG 6 Bright
+    Goto Spawn	
+  Missile4:
+	NBRN E 0 A_TakeInventory("MissileType4",1)
+	NBRN EFG 5 Bright
+    Goto Spawn	
+  Missile5:
+	NBRN E 0 A_TakeInventory("MissileType5",1)
+	NBRN EFGGG 5 Bright
+    Goto Spawn	
+  Missile6:
+	NBRN G 0 A_TakeInventory("MissileType6",1)
+	NBRN GF 5 Bright
+	NBRN E 154 Bright
+    Goto Spawn	
+  Pain:
+	NBRN H 4
+    NBRN H 4 Bright A_Pain
+    Goto Spawn
+  Death:
+	NBRN H 0
+    NBRN H 10 Bright A_PlaySound("superbaron/death")
+	NBRN H 0 A_NoBlocking
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	NBRN H 0 A_FadeOut(0.1)
+	NBRN HHHH 2 Bright A_CustomMissile("Kaboom4", random(20,80), 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_HideThing
+    TNT1 A -1
+	Stop
+  }
+}
+
+ACTOR Belphegor-Weapons : Weapon
+{
++WEAPON.DONTBOB
++WEAPON.CHEATNOTWEAPON
++WEAPON.AMMO_OPTIONAL
++WEAPON.ALT_AMMO_OPTIONAL
++INVENTORY.UNDROPPABLE 
+States
+{
+  Ready:
+    TNT1 A 0 A_GiveInventory("CanHold",1)
+    TNT1 A 0 A_GiveInventory("CanHalfHold",1)
+    TNT1 A 0 A_TakeInventory("AttackCharge",10)
+    BH2D A 1 Bright A_WeaponReady
+    Loop
+  Deselect: 
+    BH2D A 1 Bright A_Lower
+    Loop
+  Select:
+    BH2D A 1 Bright A_Raise
+    Loop
+  Fire:
+    BH2D A 1 Bright A_JumpIfInventory("AttackCharge",10,"Fire3")
+    BH2D A 0 A_GiveInventory("AttackCharge",1)
+    BH2D A 1 Bright
+    BH2D A 1 Bright A_Refire
+  Fire1:
+    BH2D B 0 A_JumpIfInventory("AttackCharge",10,"Fire3")
+    BH2D B 0 A_JumpIfInventory("AttackCharge",5,"Fire2")
+	BH2D B 0 A_TakeInventory("AttackCharge",10)
+	BH2D BCD 2 Bright
+	BH2D E 0 A_FireCustomMissile("PlayerCyNobleBall",0,1,0)
+	BH2D E 0 A_FireCustomMissile("PlayerCyNobleBall",-4,1,0)
+	BH2D E 3 Bright A_FireCustomMissile("PlayerCyNobleBall",4,1,0)
+	BH2D FBCD 2 Bright
+	BH2D E 0 A_FireCustomMissile("PlayerCyNobleBall",0,1,0)
+	BH2D E 0 A_FireCustomMissile("PlayerCyNobleBall",-4,1,0)
+	BH2D E 3 Bright A_FireCustomMissile("PlayerCyNobleBall",4,1,0)
+	BH2D FGHZ 2 Bright    
+	Goto Ready 	
+  Fire2:
+  	BH2D B 0 A_GiveInventory("MissileType2")
+	BH2D B 0 A_GunFlash	
+	BH2D BCD 3 Bright
+	BH2D EEEEE 0 A_FireCustomMissile("PlayerKnightFastBall",random(-8,8),1,0)
+	BH2D E 5 Bright A_FireCustomMissile("PlayerKnightFastBall",0,1,0)
+	BH2D FBCD 3 Bright
+	BH2D EEEEE 0 A_FireCustomMissile("PlayerKnightFastBall",random(-8,8),1,0)
+	BH2D E 5 Bright A_FireCustomMissile("PlayerKnightFastBall",0,1,0)
+	BH2D FBCD 3 Bright
+	BH2D EEEEE 0 A_FireCustomMissile("PlayerKnightFastBall",random(-8,8),1,0)
+	BH2D E 5 Bright A_FireCustomMissile("PlayerKnightFastBall",0,1,0)
+	BH2D FGH 3 Bright
+	BH2D Z 3 Bright	A_TakeInventory("AttackCharge",10) 
+	Goto Ready
+  Fire3:
+  	BH2D B 0 A_GiveInventory("MissileType3")
+	BH2D B 0 A_GunFlash	
+	BH2D BCD 3 Bright
+	BH2D E 0 A_FireCustomMissile("PlayerDukeBall",-4,1,0)
+	BH2D E 0 A_FireCustomMissile("PlayerDukeBall",4,1,0)
+	BH2D E 5 Bright A_FireCustomMissile("PlayerDukeBall",0,1,0)
+	BH2D FGH 3 Bright
+	BH2D Z 3 Bright	A_TakeInventory("AttackCharge",10) 
+	Goto Ready
+  AltFire:
+    BH2D A 1 Bright A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    BH2D A 0 A_GiveInventory("AttackCharge",1)
+    BH2D A 1 Bright
+    BH2D A 1 Bright A_Refire
+  AltFire1:
+    BH2D I 0 A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    BH2D I 0 A_JumpIfInventory("AttackCharge",5,"AltFire2")
+	BH2D I 0 A_TakeInventory("AttackCharge",10)
+	BH2D I 0 A_GiveInventory("MissileType4")
+	BH2D I 0 A_GunFlash	
+	BH2D IJK 4 Bright
+	BH2D L 0 A_FireCustomMissile("PlayerDukeFireSpawner",12,1,0)
+	BH2D L 0 A_FireCustomMissile("PlayerDukeFireSpawner",-12,1,0)
+	BH2D L 5 Bright A_FireCustomMissile("PlayerDukeFireSpawner",0,1,0)
+	BH2D Z 4 Bright
+    Goto Ready
+  AltFire2:
+  	BH2D I 0 A_GiveInventory("MissileType5")
+	BH2D I 0 A_GunFlash	
+	BH2D IJK 4 Bright
+	BH2D L 0 A_FireCustomMissile("PlayerHDComet",4,1,0)
+	BH2D L 0 A_FireCustomMissile("PlayerHDComet",-4,1,0)
+	BH2D L 10 Bright A_FireCustomMissile("PlayerHDComet",0,1,0)
+	BH2D Z 4 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  AltFire3:
+    BH2D A 0 A_GiveInventory("MissileType6")
+	BH2D A 0 A_GunFlash	
+	BH2D IJK 4 Bright
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)	  
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D LLLLLLLLLLLLLLLL 1 Bright A_SpawnItemEx("PlayerDukeSpike",Random(300,-300),Random(300,-300),0,0,0,0,0,0)
+	BH2D L 5 Bright
+	BH2D Z 4 Bright A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  Spawn:
+    TNT1 A 1
+    Stop	  
+   }
+}
+
+ACTOR PlayerCyNobleBall : CyNobleBall
+{
+Speed 36
+Damage 12
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
+}
+
+ACTOR PlayerKnightFastBall : KnightFastBall
+{
+Speed 58
+Damage 8
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
+}
+
+ACTOR PlayerDukeBall : DukeBall2
+{
+Speed 28
+Damage 50
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
+}
+
+ACTOR PlayerDukeFireSpawner : DukeFireSpawner
+{
+Damage 14
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
+MissileType PlayerDukeFire
+Decal DoomImpScorch
+States
+{
+  Death:
+    TNT1 A 0
+    TNT1 A 0 A_StopSoundEx("Voice")
+    TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    FTRD K 4 Bright
+    FTRD L 4 Bright A_Explode(64,128,0)
+    FTRD MNO 3 Bright
+    Stop
+    }
+}
+
+ACTOR PlayerDukeFire : DukeFire
+{
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
+States
+{
+  Spawn:
+    TNT1 A 0
+    FTRD A 1 Bright A_Explode(16,68)
+	FTRD ABBCDEFGHIJ 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+ACTOR PlayerHDComet : HDComet
+{
+Speed 32
+Damage 25
+ExplosionDamage 148
+ExplosionRadius 156
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
++FORCERADIUSDMG
+}
+
+ACTOR PlayerDukeSpike : DukeSpike
+{
+Damagetype "Marine"
+-THRUSPECIES
++MTHRUSPECIES
++FORCERADIUSDMG
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySound("monsters/hellionflame")
+	FTRD AB 2 Bright
+    FTRD C 10 Bright A_Explode(96,128,0)
+	FTRD DEFGHIJ 1 Bright 
+    Stop
+	}
+}

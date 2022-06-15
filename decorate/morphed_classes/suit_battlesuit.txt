@@ -1,0 +1,522 @@
+//=========================================================\\
+// ---------------------- Battle Suit --------------------- \\
+//=========================================================\\
+
+Actor BattleSuit : MechPickup
+{
+  Scale 1.2
+  States
+  {
+  Spawn:
+    BTB4 A 1 A_SpawnItemEx("SuitIndicator",0,0,80)
+    Loop
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("BattleSuitGiver")
+	Stop
+  Nope:
+	BTB4 A 1
+	Stop
+  }
+}
+
+Actor BattleSuit_Used1 : BattleSuit
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("BattleSuitGiver_Used1")
+	Stop
+  }
+}
+
+Actor BattleSuit_Used2 : BattleSuit
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("BattleSuitGiver_Used2")
+	Stop
+  }
+}
+
+Actor BattleSuit_Used3 : BattleSuit
+{
+  States
+  {
+  Pickup:
+  	NULL A 1
+	NULL A 1 A_JumpIf(ACS_ExecuteWithResult(3703,0,0,0) == 1 ,"Nope")
+	NULL A 1 ACS_ExecuteAlways(2994,0,0,0,0)
+    NULL A 1 A_GiveInventory("BattleSuitGiver_Used3")
+	Stop
+  }
+}
+
+Actor BattleSuitGiver : MechGiver{Powerup.Type "BattleSuit"}
+ACTOR BattleSuitGiver_Used1 : BattleSuitGiver{Powerup.Type "BattleSuit_Used1"}
+ACTOR BattleSuitGiver_Used2 : BattleSuitGiver{Powerup.Type "BattleSuit_Used2"}
+ACTOR BattleSuitGiver_Used3 : BattleSuitGiver{Powerup.Type "BattleSuit_Used3"}
+
+Actor PowerBattleSuit : PowerMorph
+{
+  PowerMorph.PlayerClass "Mech_BattleSuit"
+  PowerMorph.MorphFlash "Nothing"
+  PowerMorph.UnMorphFlash "Nothing"
+  PowerMorph.MorphStyle (MRF_FULLHEALTH|MRF_ADDSTAMINA|MRF_NEWTIDBEHAVIOUR|MRF_WHENINVULNERABLE|MRF_LOSEACTUALWEAPON)
+}
+
+ACTOR PowerBattleSuit_Used1 : PowerBattleSuit{PowerMorph.PlayerClass "Mech_BattleSuit_Used1"}
+ACTOR PowerBattleSuit_Used2 : PowerBattleSuit{PowerMorph.PlayerClass "Mech_BattleSuit_Used2"}
+ACTOR PowerBattleSuit_Used3 : PowerBattleSuit{PowerMorph.PlayerClass "Mech_BattleSuit_Used3"}
+
+Actor Mech_BattleSuit : BaseMech
+{
+	Health 500
+	Radius 20
+    Height 56
+	Scale 1.2
+	Speed 0.8
+	Mass 500
+	Player.MaxHealth 500
+	Player.ForwardMove 0.7
+	Player.SideMove 0.45
+	Player.JumpZ 9
+	Player.SoundClass "PBattleSuit"
+	Player.DisplayName "Battle Suit"
+	Player.AttackZOffset 30
+	Player.DamageScreenColor Blue, 0.1
+	Player.ViewHeight 64
+	Player.MorphWeapon "BattleSuit-Weapons"
+	PainChance 0
+	DamageFactor 0.4
+	RadiusDamageFActor 0.7
+	States
+	{
+	Spawn:
+	  BTB4 A 1
+	  Loop
+	See:
+      BTB4 AABB 3
+      TNT1 A 0 A_PlaySound("Terminator/terstepA")
+      BTB4 CCDD 3
+      TNT1 A 0 A_PlaySound("Terminator/terstepA")
+      Goto Spawn
+	Melee:
+    Missile:
+      BTB4 H 1
+	  BTB4 H 0 A_JumpIfInventory("MissileType6",1,"Missile6")
+	  BTB4 H 0 A_JumpIfInventory("MissileType5",1,"Missile5")
+	  BTB4 H 0 A_JumpIfInventory("MissileType4",1,"Missile4")
+	  BTB4 H 0 A_JumpIfInventory("MissileType3",1,"Missile3")
+	  BTB4 H 0 A_JumpIfInventory("MissileType2",1,"Missile2")
+	  BTB4 H 4 Bright
+	  BTB4 G 5
+	  BTB4 H 4 Bright
+	  BTB4 G 5
+	  BTB4 H 4 Bright
+	  BTB4 G 5
+	  BTB4 H 4 Bright
+	  BTB4 G 5
+      Goto Spawn
+    Missile2:
+      BTB4 H 1
+	  BTB4 H 0 A_TakeInventory("MissileType2",1)
+      BTB4 H 4 Bright
+	  BTB4 G 4
+	  BTB4 H 4 Bright
+	  BTB4 G 4
+	  BTB4 H 4 Bright
+	  BTB4 G 4
+	  BTB4 H 4 Bright
+	  BTB4 G 4
+	  BTB4 H 4 Bright
+	  BTB4 G 4
+	  BTB4 H 4 Bright
+	  BTB4 G 4
+	  Goto Spawn
+	Missile3:
+      BTB4 G 1
+	  BTB4 G 0 A_TakeInventory("MissileType3",1)
+      BTB4 G 40
+	  BTB4 H 10 Bright
+	  Goto Spawn
+	Missile4:
+      BTB4 H 1
+	  BTB4 H 0 A_TakeInventory("MissileType4",1)
+      BTB4 H 2 Bright
+	  BTB4 G 2
+	  BTB4 H 2 Bright
+	  BTB4 G 2
+	  BTB4 H 2 Bright
+	  BTB4 G 2
+	  BTB4 H 2 Bright
+	  BTB4 G 2
+	  BTB4 H 2 Bright
+	  BTB4 G 2
+	  BTB4 H 2 Bright
+	  BTB4 G 2
+	  Goto Spawn
+	Missile5:
+      BTB4 E 1
+	  BTB4 E 0 A_TakeInventory("MissileType5",1)
+      BTB4 E 37
+	  BTB4 G 2
+	  BTB4 F 4 Bright
+	  BTB4 E 3
+	  BTB4 F 4 Bright
+	  BTB4 E 3
+	  BTB4 F 4 Bright
+	  BTB4 E 3
+	  BTB4 F 4 Bright
+	  BTB4 E 3
+	  BTB4 F 4 Bright
+	  BTB4 E 3
+	  BTB4 F 4 Bright
+	  BTB4 E 3
+	  Goto Spawn
+	Missile6:
+      BTB4 E 1
+	  BTB4 E 0 A_TakeInventory("MissileType6",1)
+      BTB4 E 30
+	  BTB4 F 6 Bright
+	  BTB4 E 6
+	  Goto Spawn
+	Death:
+	  BTB4 M 6 A_PlaySound("monster/termdth")
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	  BTB4 NNNOOO 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	  BTB4 PPPQQQ 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))  
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	  BTB4 RRRSSS 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))  
+	  TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	  TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	  BTB4 TTTUUU 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))   
+	  BTB4 V 4 
+	  BTB4 W 6 A_Fall
+	  BTB4 X 6
+	  BTB4 Y 1 A_PlaySound("Terminator/terstepA")
+	  BTB4 Y 5 
+	  BTB4 Y -1  
+	  Stop
+}
+}
+
+ACTOR Mech_BattleSuit_Used1 : Mech_BattleSuit{Health 375}
+ACTOR Mech_BattleSuit_Used2 : Mech_BattleSuit{Health 250}
+ACTOR Mech_BattleSuit_Used3 : Mech_BattleSuit{Health 125}
+
+Actor BattleSuit-Weapons : MechWeapon
+{
+  Decal DoomImpScorch
+  States
+  {
+  Ready:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+    TNT1 A 0 A_GiveInventory("CanHold",1)
+    TNT1 A 0 A_GiveInventory("CanHalfHold",1)
+    TNT1 A 0 A_TakeInventory("AttackCharge",10)
+	MJUD A 1 A_WeaponReady
+	Loop
+  Select:
+	MJUD A 1 A_Raise
+	Loop
+  Deselect:
+	MJUD A 1 A_Lower
+	Loop
+  Fire:
+    MJUD A 1 A_JumpIfInventory("AttackCharge",10,"Fire3")
+    MJUD A 0 A_GiveInventory("AttackCharge",1)
+    MJUD A 1 
+    MJUD A 1 A_Refire
+  Fire1:
+    MJUD A 0 A_JumpIfInventory("AttackCharge",10,"Fire3")
+    MJUD A 0 A_JumpIfInventory("AttackCharge",5,"Fire2")
+	MJUD A 0 A_TakeInventory("AttackCharge",10)
+	MJUD A 0 A_GunFlash
+	MJUD A 0 A_PlaySound("weapons/pulseshotgun/add",7)
+	MJUD A 0 A_FireBullets(5,6,7,24,"ShotgunPlasmaPuff",FBF_NOFLASH)
+	MJUD A 0 A_SpawnItemEx("ShotgunCellCasing",30,-6,25,Random(2,4),Random(3,6),Random(3,6),0)
+	MJUD A 0 Radius_Quake(3,3,0,1,0)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlaySound("weapons/pulseshotgun/add",7)
+	MJUD A 0 A_FireBullets(5,6,7,24,"ShotgunPlasmaPuff",FBF_NOFLASH)
+	MJUD A 0 A_SpawnItemEx("ShotgunCellCasing",30,-6,25,Random(2,4),Random(3,6),Random(3,6),0)
+	MJUD A 0 Radius_Quake(3,3,0,1,0)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlaySound("weapons/pulseshotgun/add",7)
+	MJUD A 0 A_FireBullets(5,6,7,24,"ShotgunPlasmaPuff",FBF_NOFLASH)
+	MJUD A 0 A_SpawnItemEx("ShotgunCellCasing",30,-6,25,Random(2,4),Random(3,6),Random(3,6),0)
+	MJUD A 0 Radius_Quake(3,3,0,1,0)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlaySound("weapons/pulseshotgun/add",7)
+	MJUD A 0 A_FireBullets(5,6,7,24,"ShotgunPlasmaPuff",FBF_NOFLASH)
+	MJUD A 0 A_SpawnItemEx("ShotgunCellCasing",30,-6,25,Random(2,4),Random(3,6),Random(3,6),0)
+	MJUD A 0 Radius_Quake(3,3,0,1,0)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+    Goto Ready
+  Fire2:
+    MJUD A 0 A_GiveInventory("MissileType2")
+	MJUD A 0 A_GunFlash
+	MJUD A 0 A_PlayWeaponSound("plasmacaster/fire")
+	MJUD C 2 Bright A_FireCustomMissile("PlasmaCasterProj",random(-2,2),0,-28)
+	MJUD D 2 Bright
+	MJUD BA 2
+	MJUD A 0 A_PlayWeaponSound("plasmacaster/fire")
+	MJUD C 2 Bright A_FireCustomMissile("PlasmaCasterProj",random(-2,2),0,-28)
+	MJUD D 2 Bright
+	MJUD BA 2
+	MJUD A 0 A_PlayWeaponSound("plasmacaster/fire")
+	MJUD C 2 Bright A_FireCustomMissile("PlasmaCasterProj",random(-2,2),0,-28)
+	MJUD D 2 Bright
+	MJUD BA 2
+	MJUD A 0 A_PlayWeaponSound("plasmacaster/fire")
+	MJUD C 2 Bright A_FireCustomMissile("PlasmaCasterProj",random(-2,2),0,-28)
+	MJUD D 2 Bright
+	MJUD BA 2
+	MJUD A 0 A_PlayWeaponSound("plasmacaster/fire")
+	MJUD C 2 Bright A_FireCustomMissile("PlasmaCasterProj",random(-2,2),0,-28)
+	MJUD D 2 Bright
+	MJUD BA 2
+	MJUD A 0 A_PlayWeaponSound("plasmacaster/fire")
+	MJUD C 2 Bright A_FireCustomMissile("PlasmaCasterProj",random(-2,2),0,-28)
+	MJUD D 2 Bright
+	MJUD BA 2
+	MJUD A 8 A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  Fire3:
+    MJUD A 0 A_JumpIfInventory("MechBFGReload",1,"Fire2")
+    MJUD A 0 A_GiveInventory("MechBFGReload",1)
+    MJUD A 0 ACS_ExecuteAlways(3104,0,38)
+	MJUD A 0 A_GiveInventory("MissileType3")  
+	MJUD A 0 A_GunFlash
+	MJUD C 40 Bright A_PlayWeaponSound("bfg3500/fire")
+	MJUD D 2 Bright A_FireCustomMissile("BFG3500Ball",0,0,-28)
+	MJUD BA 8 A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  AltFire:
+    MJUD A 1 A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    MJUD A 0 A_GiveInventory("AttackCharge",1)
+    MJUD A 1 
+    MJUD A 1 A_Refire
+  AltFire1:
+    MJUD A 0 A_JumpIfInventory("AttackCharge",10,"AltFire3")
+    MJUD A 0 A_JumpIfInventory("AttackCharge",5,"AltFire2")
+	MJUD A 0 A_TakeInventory("AttackCharge",10)
+	MJUD A 0 A_GiveInventory("MissileType4")
+	MJUD A 0 A_GunFlash
+	MJUD F 0 A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,28,-10)
+	MJUD F 2 Bright A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,-28,-10)
+	MJUD E 2
+	MJUD F 0 A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,28,-10)
+	MJUD F 2 Bright A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,-28,-10)
+	MJUD E 2
+	MJUD F 0 A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,28,-10)
+	MJUD F 2 Bright A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,-28,-10)
+	MJUD E 2
+	MJUD F 0 A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,28,-10)
+	MJUD F 2 Bright A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,-28,-10)
+	MJUD E 2
+	MJUD F 0 A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,28,-10)
+	MJUD F 2 Bright A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,-28,-10)
+	MJUD E 2
+	MJUD F 0 A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,28,-10)
+	MJUD F 2 Bright A_FireCustomMissile("MaxMiniRocket",random(-1,1),0,-28,-10)
+	MJUD E 2
+    Goto Ready
+  AltFire2: 
+    MJUD A 0 A_JumpIfInventory("MechSeekerRocketReload",1,"AltFire2Reset")
+    MJUD A 0 A_GiveInventory("MechSeekerRocketReload",1)
+    MJUD A 0 ACS_ExecuteAlways(3104,0,39)
+	MJUD A 0 A_GiveInventory("MissileType5")  
+	MJUD E 0 A_GunFlash
+	MJUD E 38 Bright A_PlayWeaponSound("weapons/charge15k")
+	MJUD F 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	MJUD F 0 A_FireCustomMissile("10KProjectile",1,0,20)
+	MJUD F 4 Bright A_FireCustomMissile("10KProjectile",-1,0,-20)
+	MJUD E 3
+	MJUD F 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	MJUD F 0 A_FireCustomMissile("10KProjectile",1,0,20)
+	MJUD F 4 Bright A_FireCustomMissile("10KProjectile",-1,0,-20)
+	MJUD E 3
+	MJUD F 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	MJUD F 0 A_FireCustomMissile("10KProjectile",1,0,20)
+	MJUD F 4 Bright A_FireCustomMissile("10KProjectile",-1,0,-20)
+	MJUD E 3
+	MJUD F 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	MJUD F 0 A_FireCustomMissile("10KProjectile",1,0,20)
+	MJUD F 4 Bright A_FireCustomMissile("10KProjectile",-1,0,-20)
+	MJUD E 3
+	MJUD F 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	MJUD F 0 A_FireCustomMissile("10KProjectile",1,0,20)
+	MJUD F 4 Bright A_FireCustomMissile("10KProjectile",-1,0,-20)
+	MJUD E 3
+	MJUD F 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	MJUD F 0 A_FireCustomMissile("10KProjectile",1,0,20)
+	MJUD F 4 Bright A_FireCustomMissile("10KProjectile",-1,0,-20)
+	MJUD E 3
+	MJUD A 8 A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  AltFire2Reset:
+    MJUD A 1 A_TakeInventory("AttackCharge",10)
+	Goto AltFire1
+  AltFire3:  
+    MJUD A 0 A_JumpIfInventory("MechRocketReload",1,"AltFire2")
+    MJUD A 0 A_GiveInventory("MechRocketReload",1)
+    MJUD A 0 ACS_ExecuteAlways(3104,0,40)
+	MJUD A 0 A_GiveInventory("MissileType6")
+	MJUD E 0 A_GunFlash
+	MJUD E 30 Bright A_PlayWeaponSound("weapons/bfgf")
+	MJUD F 0 A_FireCustomMissile("UpdatedBFG9500Ball",6,0,-28)
+	MJUD F 0 A_FireCustomMissile("UpdatedBFG9500Ball",-6,0,-28)
+	MJUD F 6 Bright A_FireCustomMissile("UpdatedBFG9500Ball",0,0,-28)
+	MJUD A 8 A_TakeInventory("AttackCharge",10)
+    Goto Ready
+  GrenadeCheck:
+	MJUD A 0
+	MJUD A 0 A_TakeInventory("HandGrenadeAction",1)
+	MJUD A 0 A_PlaySound("PlasmaCaster/Full")
+	MJUD A 0 A_PlaySound("PlasmaCaster/Charge",5)
+	MJUD A 0 A_GunFlash
+	MJUD A 0 A_PlayWeaponSound("PlasmaCaster/Shot")
+	MJUD AAAAAA 0 A_FireCustomMissile("PlasmaCasterBall",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlayWeaponSound("PlasmaCaster/Shot")
+	MJUD AAAAAA 0 A_FireCustomMissile("PlasmaCasterBall",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlayWeaponSound("PlasmaCaster/Shot")
+	MJUD AAAAAAAA 0 A_FireCustomMissile("PlasmaCasterBall",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlayWeaponSound("PlasmaCaster/Shot")
+	MJUD AAAAAA 0 A_FireCustomMissile("PlasmaCasterBall",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	Goto Ready
+  MineCheck:
+	MJUD A 0
+	MJUD A 0 A_TakeInventory("MineAction",1)
+	MJUD A 0 A_PlaySound("PlasmaCaster/Full")
+	MJUD A 0 A_PlaySound("PlasmaCaster/Charge",5)
+	MJUD A 0 A_GunFlash
+	MJUD A 0 A_PlayWeaponSound("Weapons/KarasawaFire")
+	MJUD AAAAAA 0 A_FireCustomMissile("PlasmaCasterBolt",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlayWeaponSound("Weapons/KarasawaFire")
+	MJUD AAAAAA 0 A_FireCustomMissile("PlasmaCasterBolt",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlayWeaponSound("Weapons/KarasawaFire")
+	MJUD AAAAAAAA 0 A_FireCustomMissile("PlasmaCasterBolt",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	MJUD A 0 A_PlayWeaponSound("Weapons/KarasawaFire")
+	MJUD AAAAAA 0 A_FireCustomMissile("PlasmaCasterBolt",random(-64,64)/10.0,0,-28,0,0,random(-120,120)/100.00)
+	MJUD CD 2 Bright
+	MJUD B 2 
+	MJUD A 3
+	Goto Ready
+  Flash:
+	TNT1 A 1 Bright
+	Stop
+}
+}
+
+ACTOR BattleSuit_UsedWait1
+{
+  Radius 12
+  Height 32
+  Scale 1.2
+  States
+  {
+  Spawn:
+    BTB4 AA 35
+    BTB4 A 1 A_SpawnItemEx("BattleSuit_Used1")
+    Stop
+  }
+}
+
+ACTOR BattleSuit_UsedWait2 : BattleSuit_UsedWait1
+{
+  States
+  {
+  Spawn:
+    BTB4 AA 35
+    BTB4 A 1 A_SpawnItemEx("BattleSuit_Used2")
+    Stop
+  }
+}
+
+ACTOR BattleSuit_UsedWait3 : BattleSuit_UsedWait1
+{
+  States
+  {
+  Spawn:
+    BTB4 AA 35
+    BTB4 A 1 A_SpawnItemEx("BattleSuit_Used3")
+    Stop
+  }
+}
+
+ACTOR BattleSuit_Destroyed
+{
+  Scale 1.2
+  States
+  {
+  Spawn:
+    BTB4 A 70	
+  Death:
+    BTB4 M 6 A_PlaySound("monster/termdth")
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	BTB4 NNNOOO 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	BTB4 PPPQQQ 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))  
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	BTB4 RRRSSS 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))  
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	BTB4 TTTUUU 2 Bright A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))   
+	BTB4 V 4 
+	BTB4 W 6 A_Fall
+	BTB4 X 6
+	BTB4 Y 1 A_PlaySound("Terminator/terstepA")
+	BTB4 Y 5 
+	BTB4 Y -1  
+	Stop
+  }
+}

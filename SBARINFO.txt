@@ -1,0 +1,272 @@
+//================
+// Fullscreen HUD
+//================
+
+Height 32;
+MonoSpaceFonts True, "0";
+
+MugShot "GodAnimated", Health2
+{
+    {GOD00, GOD01, GOD02} 17;
+}
+
+MugShot "XDeath"
+{
+    XDTH0 3;
+    XDTH1 1;
+    XDTH2 2;
+    XDTH3 2;
+    XDTH4 -1;
+}
+
+StatusBar FullScreen, FullScreenOffsets
+{
+    DrawMugshot 5, AnimatedGodMode, XDeathFace, 88, -38;
+
+    InInventory PowerStrength {DrawImage "ZERKA0", 22, -4, CenterBottom;}
+    InInventory Not PowerStrength {DrawImage "MEDIA0", 22, -4, CenterBottom;}
+
+	//Display Lives
+	/*
+	InInventory Not IsKamikaze
+	{
+		DrawString CONFONT, Cyan, "Lives :\ci ", 250, 675, 0;
+		DrawNumber 2, CONFONT, White, Ammo Lives, 243, 675, 0, White, 10, Green, 20;
+	}
+	*/
+
+	//InInventory IsKamikaze {DrawString CONFONT, Cyan, "Lives :\ci Kamikaze", 250, 675, 0;}
+/*
+	InInventory CanHold
+	{//Display Charging Atttack
+		InInventory Not CanHalfHold
+		{
+			DrawString CONFONT, White, "Charge Level : ", 250, 650, 0;
+			DrawNumber 2, CONFONT, White, Ammo AttackCharge, 243, 650, 0, White, 10, Green, 20;
+			InInventory AttackCharge, 10{DrawNumber 2, CONFONT, White, Ammo AttackCharge, 243, 650, 0, Red, 10, Green, 20;}
+		}
+		InInventory CanHalfHold
+		{
+			DrawString CONFONT, White, "Charge Level : ", 250, 650, 0;
+			DrawNumber 2, CONFONT, White, Ammo AttackCharge, 243, 650, 0, White, 10, Green, 20;
+			InInventory AttackCharge, 5{DrawNumber 2, CONFONT, White, Ammo AttackCharge, 243, 650, 0, Cyan, 10, Green, 20;}
+			InInventory AttackCharge, 10{DrawNumber 2, CONFONT, White, Ammo AttackCharge, 243, 650, 0, Red, 10, Green, 20;}
+		}
+	}
+*/
+    DrawNumber 4, HUDFONT_DOOM, DarkGrey, Health, DrawShadow, 84, -22, 0;
+    DrawNumber 4, HUDFONT_DOOM, Gold, Health, WhenNotZero, DrawShadow, 84, -22, 0, Red, 25, Green, 51;
+
+    DrawImage ArmorIcon, 22, -27, CenterBottom;
+    DrawNumber 4, HUDFONT_DOOM, Green, Armor, WhenNotZero, DrawShadow, 84, -41, 0, Red, 25, Blue, 101;
+
+	DrawImage AmmoIcon1, -16, -6, CenterBottom;
+	DrawNumber 4, HUDFONT_DOOM, DarkGreen, Ammo1, DrawShadow, -27, -22, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Green, 100, Green, 201;
+
+    DrawImage AmmoIcon2, -16, -25, CenterBottom;
+    DrawNumber 4, HUDFONT_DOOM, DarkGreen, Ammo2, DrawShadow, -27, -41, 0;
+    DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Green, 10, Green, 21;
+
+    DrawImage "HDCPA0", -14, -128;
+	DrawNumber 4, INDEXFONT, White, Ammo BulletMag, -16, -128;
+	DrawImage "HDSLA0", -16, -121;
+	DrawNumber 4, INDEXFONT, White, Ammo NewShell, -16, -121;
+	DrawImage "HDRKA0", -15, -114;
+	DrawNumber 4, INDEXFONT, White, Ammo Missile, -16, -114;
+	DrawImage "HDCLA0", -14, -107;
+	DrawNumber 4, INDEXFONT, White, Ammo NewCell, -16, -107;
+	DrawImage "HDTKA0", -14, -100;
+	DrawNumber 4, INDEXFONT, White, Ammo DemonAmmo, -16, -100;
+	DrawImage "HDDCB0", -14, -93;
+	DrawNumber 4, INDEXFONT, White, Ammo EradicationCell, -16, -93;
+	DrawImage "HDDCA0", -14, -86;
+	DrawNumber 4, INDEXFONT, White, Ammo DCell, -16, -86;
+	DrawImage "HDUTA0", -14, -79;
+	DrawNumber 4, INDEXFONT, White, Ammo UtilityAmmo, -16, -79;
+	DrawImage "HDFCA0", -14, -72;
+	DrawNumber 4, INDEXFONT, White, Ammo FieldCommandAmmo, -16, -72;
+    DrawImage "HDLCA0", -14, -65;
+    DrawNumber 4, INDEXFONT, White, Ammo LegendaryBulletMag, -16, -65;
+    DrawImage "LHELB0", -14, -58;
+    DrawNumber 4, INDEXFONT, White, Ammo LegendaryShell, -16, -58;
+    DrawImage "HDTKB0", -14, -51;
+    DrawNumber 4, INDEXFONT, White, Ammo LDemonAmmo, -16, -51;
+
+    DrawImage "IGRNA0", -38, -54;
+    DrawNumber 4, INDEXFONT, White, HandGrenadeAmmo, -43, -59;
+    DrawImage "HMINA0", -63, -54;
+    DrawNumber 4, INDEXFONT, White, MineAmmo, -73, -59;
+
+    DrawSwitchableImage WeaponSlot 2, "HUDNUM2", "HU2NUM2", -69, -50;
+    DrawSwitchableImage WeaponSlot 3, "HUDNUM3", "HU2NUM3", -61, -50;
+    DrawSwitchableImage WeaponSlot 4, "HUDNUM4", "HU2NUM4", -53, -50;
+    DrawSwitchableImage WeaponSlot 5, "HUDNUM5", "HU2NUM5", -45, -50;
+    DrawSwitchableImage WeaponSlot 6, "HUDNUM6", "HU2NUM6", -37, -50;
+    DrawSwitchableImage WeaponSlot 7, "HUDNUM7", "HU2NUM7", -29, -50;
+    DrawSwitchableImage WeaponSlot 8, "HUDNUM8", "HU2NUM8", -21, -50;
+
+    DrawSwitchableImage BlueCard && BlueSkull, "", "STKEYS0", "STKEYS3", "STKEYS6", -14, 4;
+    DrawSwitchableImage YellowCard && YellowSkull, "", "STKEYS1", "STKEYS4", "STKEYS7", -14, 13;
+    DrawSwitchableImage RedCard && RedSkull, "", "STKEYS2", "STKEYS5", "STKEYS8", -14, 22;
+
+    DrawSelectedInventory INDEXFONT, -102, -32, -70, -12, White;
+
+	InInventory LegendaryRuneItem, 1 {DrawImage "LGRNA0", 22, -57, CenterBottom;}
+	InInventory LuckRune, 1 {DrawImage "RUNEA0", 22, -57, CenterBottom;}
+	InInventory HasRegenerationRune, 1 {DrawImage "RUNEB0", 22, -57, CenterBottom;}
+	InInventory HasStrenghtRune, 1 {DrawImage "RUNEC0", 22, -57, CenterBottom;}
+	InInventory HasResistanceRune, 1 {DrawImage "RUNED0", 22, -57, CenterBottom;}
+	InInventory HasRageRune, 1 {DrawImage "RUNEE0", 22, -57, CenterBottom;}
+	InInventory HasHasteRune, 1 {DrawImage "RUNEF0", 22, -57, CenterBottom;}
+	InInventory HasSpreadRune, 1 {DrawImage "RUNEH0", 22, -57, CenterBottom;}
+	InInventory HasConfusionRune, 1 {DrawImage "RUNEJ0", 22, -57, CenterBottom;}
+	InInventory HasRevengeRune, 1 {DrawImage "RUNEK0", 22, -57, CenterBottom;}
+	InInventory HasSummonerRune, 1 {DrawImage "RUNEL0", 22, -57, CenterBottom;}
+	InInventory HasHighJumpRune, 1 {DrawImage "RUNEM0", 22, -57, CenterBottom;}
+	InInventory HasPowerupRune, 1 {DrawImage "RUNEN0", 22, -57, CenterBottom;}
+	InInventory HasTimeRune, 1 {DrawImage "RUNEP0", 22, -57, CenterBottom;}
+	InInventory HasProsperityRune, 1 {DrawImage "RUNEO0", 22, -57, CenterBottom;}
+	InInventory HasAbsorptionRune, 1 {DrawImage "RUNER0", 22, -57, CenterBottom;}
+	InInventory HasLootingRune, 1 {DrawImage "RUNES0", 22, -57, CenterBottom;}
+	InInventory HasVeterancyRune, 1 {DrawImage "RUNET0", 22, -57, CenterBottom;}
+	InInventory HasAgilityRune, 1 {DrawImage "RUNEU0", 22, -57, CenterBottom;}
+	InInventory HasAwakenedLegendaryRune, 1 {DrawImage "AGRNA0", 22, -57, CenterBottom;}
+	InInventory HasTrueLegendaryRune, 1 {DrawImage "TLRNA0", 22, -57, CenterBottom;}
+
+	InInventory IsKamikaze, 1 {DrawImage "KAMIA0", 54, -57, CenterBottom;}
+
+	InInventory RespawnSupply, 1 {DrawImage "ITM3Q0", 144, -7, CenterBottom;}
+    InInventory RespawnSupply, 1{DrawNumber 2, CONFONT, White, Ammo RespawnSupply, 148, -9, 0, Blue, 10, Blue, 20;}
+    InInventory RespawnSupply, 1{DrawNumber 2, CONFONT, White, Ammo RespawnSupplyCooldown, 153, -29, 0, Green, 10, Green, 20;}
+
+	//DrawImage "RANK25", 200, -7, CenterBottom;
+
+	InInventory HasLegendarySphere {DrawImage "LSPHP0", 180, -7, CenterBottom;}
+
+	IsSelected "Cydestroyer-Weapons"{drawimage "BR2SA1", 70, -70, centerbottom;}
+	IsSelected "BombElemental-Weapons"{drawimage "INFPA1", 70, -70, centerbottom;}
+	IsSelected "Belphegor-Weapons"{drawimage "NBRNA1", 70, -70, centerbottom;}
+	IsSelected "BabyDarkDemolisher-Weapons"{drawimage "DMSPA1D1", 70, -70, centerbottom;}
+	IsSelected "Diabolist-Weapons"{drawimage "DIABA1D1", 70, -70, centerbottom;}
+	IsSelected "Specilos-Weapons"{drawimage "SPC2A1D1", 70, -70, centerbottom;}
+	IsSelected "Cardihilator-Weapons"{drawimage "CARHA1", 70, -70, centerbottom;}
+	IsSelected "InfernoDemon-Weapons"{drawimage "INFDA1", 70, -70, centerbottom;}
+	IsSelected "CerebralCommander-Weapons"{drawimage "COMMA1", 70, -70, centerbottom;}
+	IsSelected "HellishAvatar-Weapons"{drawimage "AVATA1C1", 70, -70, centerbottom;}
+	IsSelected "LegendaryRevenant-Weapons "{drawimage "LREVA1D1", 70, -70, centerbottom;}
+	IsSelected "LegendaryBehemoth-Weapons"{drawimage "LEG2A1D1", 70, -70, centerbottom;}
+	IsSelected "LegendaryCyberNoble-Weapons"{drawimage "LCBSA1", 70, -70, centerbottom;}
+	IsSelected "LegendaryRedeemer-Weapons"{drawimage "LREDA1", 70, -70, centerbottom;}
+	IsSelected "LegendaryTormentor-Weapons"{drawimage "LPAIA1", 70, -70, centerbottom;}
+}
+
+StatusBar InventoryFullscreen, FullScreenOffsets
+{
+   DrawInventoryBar Doom, NoArrows, Translucent, 6, INDEXFONT, -96 + Center, 0, -68 + Center, 2, White;
+}
+
+//=============
+// StatBar HUD
+//=============
+
+StatusBar Normal
+{
+    DrawImage "CSTBAR", 0, 168;
+
+    GameMode Cooperative, Deathmatch, Teamgame
+    {
+    DrawImage Translatable "STFBANY", 143, 169;
+    }
+
+    DrawImage "STTPRCNT", 90, 171;
+    DrawImage "STTPRCNT", 221, 171;
+
+    DrawMugshot 5, AnimatedGodMode, XDeathFace, 143, 168;
+
+    InInventory Not PowerStrength
+    {
+    DrawImage "STHELT", 55, 191;
+    }
+
+    InInventory PowerStrength
+    {
+    DrawImage "STHELT", 50, 191;
+    DrawImage "HBERZK", 92, 188;
+    }
+
+   	//Display Lives
+	/*
+	InInventory Not IsKamikaze
+	{
+		DrawString CONFONT, Cyan, "L :\ci ", 73, 125, 0;
+		DrawNumber 2, CONFONT, White, Ammo Lives, 66, 125, 0, White, 10, Green, 20;
+	}
+	InInventory IsKamikaze
+	{
+		DrawString CONFONT, Cyan, "L :\ci Kam", 73, 125, 0;
+	}
+	*/
+
+   	InInventory CanHold
+	{//Display Charging Atttack
+		InInventory Not CanHalfHold
+		{
+			DrawString CONFONT, White, "Charge : ", 73, 115, 0;
+			DrawNumber 2, CONFONT, White, Ammo AttackCharge, 66, 115, 0, White, 10, Green, 20;
+			InInventory AttackCharge, 10{DrawNumber 2, CONFONT, White, Ammo AttackCharge, 66, 115, 0, Red, 10, Green, 20;}
+		}
+		InInventory CanHalfHold
+		{
+			DrawString CONFONT, White, "Charge : ", 73, 115, 0;
+			DrawNumber 2, CONFONT, White, Ammo AttackCharge, 66, 115, 0, White, 10, Green, 20;
+			InInventory AttackCharge, 5{DrawNumber 2, CONFONT, White, Ammo AttackCharge, 66, 115, 0, Cyan, 10, Green, 20;}
+			InInventory AttackCharge, 10{DrawNumber 2, CONFONT, White, Ammo AttackCharge, 66, 115, 0, Red, 10, Green, 20;}
+		}
+	}
+
+    DrawImage "STARMR", 195, 191;
+
+    DrawSwitchableImage ArmorType StartingArmor, "", "HARMSV", 182, 188;
+    DrawSwitchableImage ArmorType ModdedGreenArmor, "", "HARMGR", 182, 188;
+    DrawSwitchableImage ArmorType ModdedBlueArmor, "", "HARMBL", 182, 188;
+    DrawSwitchableImage ArmorType RedArmor, "", "HARMRE", 182, 188;
+
+    DrawNumber 3, INDEXFONT, Gold, Ammo BulletMag, 319, 170;
+    DrawNumber 3, INDEXFONT, Gold, Ammo NewShell, 319, 176;
+    DrawNumber 3, INDEXFONT, Gold, Ammo Missile, 319, 182;
+    DrawNumber 3, INDEXFONT, Gold, Ammo NewCell, 319, 188;
+    DrawNumber 3, INDEXFONT, Gold, Ammo DemonAmmo, 319, 194;
+
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Health, 90, 171, 0;
+    DrawNumber 3, HUDFONT_DOOM, Gold, Health, WhenNotZero, 90, 171, 0, Red, 25, Green, 51;
+
+    DrawNumber 3, HUDFONT_DOOM, Green, Armor, WhenNotZero, 221, 171, 0, Red, 25, Blue, 101;
+
+	//DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, 44, 171, 0, Green;
+    //DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, 44, 171, 0, Green, 2, Green, 5;
+
+	DrawNumber 3, HUDFONT_DOOM, DarkGreen, Ammo1, DrawShadow, 44, 171, 0;
+	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, 44, 171, 0, Green, 100, Green, 201;
+
+    DrawNumber 3, INDEXFONT, Gold, HandGrenadeAmmo, 282, 194;
+    DrawNumber 3, INDEXFONT, Gold, MineAmmo, 266, 194;
+
+    DrawSwitchableImage WeaponSlot 2, "STGNUM2", "STYSNUM2", 111, 172;
+    DrawSwitchableImage WeaponSlot 3, "STGNUM3", "STYSNUM3", 123, 172;
+    DrawSwitchableImage WeaponSlot 4, "STGNUM4", "STYSNUM4", 135, 172;
+    DrawSwitchableImage WeaponSlot 5, "STGNUM5", "STYSNUM5", 111, 182;
+    DrawSwitchableImage WeaponSlot 6, "STGNUM6", "STYSNUM6", 123, 182;
+    DrawSwitchableImage WeaponSlot 7, "STGNUM7", "STYSNUM7", 135, 182;
+
+    DrawSwitchableImage BlueCard && BlueSkull, "", "STKEYS0", "STKEYS3", "STKEYS6", 236, 169;
+    DrawSwitchableImage YellowCard && YellowSkull, "", "STKEYS1", "STKEYS4", "STKEYS7", 236, 179;
+    DrawSwitchableImage RedCard && RedSkull, "", "STKEYS2", "STKEYS5", "STKEYS8", 236, 189;
+
+    DrawSelectedInventory INDEXFONT, 250, 165, 278, 172, Gold;
+}
+
+StatusBar Inventory, FullScreenOffsets
+{
+   DrawInventoryBar Doom, NoArrows, Translucent, 6, INDEXFONT, -96 + Center, 0, -68 + Center, 2, White;
+}

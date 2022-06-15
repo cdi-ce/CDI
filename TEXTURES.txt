@@ -1,0 +1,2018 @@
+Texture COMCYL01, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON01, 8, 49
+}
+
+Texture COMCYL02, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON02, 8, 49
+}
+
+Texture COMCYL03, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON03, 8, 49
+}
+
+Texture COMCYL04, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON04, 8, 49
+}
+
+Texture COMCYL05, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON05, 8, 49
+}
+
+Texture COMCYL06, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON06, 8, 49
+}
+
+Texture COMCYL07, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON07, 8, 49
+}
+
+Texture COMCYL08, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON06, 8, 49
+	{
+		FlipX
+	}
+}
+
+Texture COMCYL09, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON05, 8, 49
+	{
+		FlipX
+	}
+}
+
+Texture COMCYL10, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON04, 8, 49
+	{
+		FlipX
+	}
+}
+
+Texture COMCYL11, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON03, 8, 49
+	{
+		FlipX
+	}
+}
+
+Texture COMCYL12, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON02, 8, 49
+	{
+		FlipX
+	}
+}
+
+Texture COMCYL13, 64, 64
+{
+	Patch CYLONBK, 0, 0
+	Patch CYLON01, 8, 49
+	{
+		FlipX
+	}
+}
+
+Sprite NMGAA0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 110
+	Patch NMG01, 328, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NMGEA0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG05, 132, 105
+	Patch NMG05, 319, 105
+	{
+		FlipX
+	}
+}
+
+Sprite NMGEB0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG06, 130, 109
+	Patch NMG06, 324, 109
+	{
+		FlipX
+	}
+}
+
+Sprite NMGEC0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG07, 128, 110
+	Patch NMG07, 324, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NMGFA0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG05, 127, 110
+	Patch NMG05, 324, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NMGFB0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG06, 126, 113
+	Patch NMG06, 328, 113
+	{
+		FlipX
+	}
+}
+
+Sprite NMGFC0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG07, 125, 113
+	Patch NMG07, 327, 113
+	{
+		FlipX
+	}
+}
+
+Sprite NMGFD0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG05, 124, 113
+	Patch NMG05, 327, 113
+	{
+		FlipX
+	}
+}
+
+Sprite NMGFE0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG06, 123, 116
+	Patch NMG06, 331, 116
+	{
+		FlipX
+	}
+}
+
+Sprite NMGFF0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG07, 122, 116
+	Patch NMG07, 330, 116
+	{
+		FlipX
+	}
+}
+
+Sprite NMGDA0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 128, 116
+	Patch NMG01, 334, 116
+	{
+		FlipX
+	}
+}
+
+Sprite NMGDB0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG02, 129, 115
+	Patch NMG02, 333, 115
+	{
+		FlipX
+	}
+}
+
+Sprite NMGDC0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG03, 130, 114
+	Patch NMG03, 332, 114
+	{
+		FlipX
+	}
+}
+
+Sprite NMGDD0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG04, 131, 113
+	Patch NMG04, 331, 113
+	{
+		FlipX
+	}
+}
+
+Sprite NMGDE0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 132, 112
+	Patch NMG01, 330, 112
+	{
+		FlipX
+	}
+}
+
+Sprite NMGDF0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG02, 133, 111
+	Patch NMG02, 329, 111
+	{
+		FlipX
+	}
+}
+
+Sprite NRKAA0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 104
+	Patch NRK01, 312, 104
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFA0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK02, 126, 105
+	Patch NRK02, 305, 105
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFB0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK03, 125, 106
+	Patch NRK03, 307, 106
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFC0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK04, 124, 107
+	Patch NRK04, 306, 107
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFD0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK05, 123, 108
+	Patch NRK05, 306, 108
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFE0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK06, 122, 109
+	Patch NRK06, 305, 109
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFF0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK07, 121, 110
+	Patch NRK07, 306, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFG0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK08, 121, 109
+	Patch NRK08, 314, 109
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFH0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK09, 120, 110
+	Patch NRK09, 320, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFI0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK10, 119, 111
+	Patch NRK10, 321, 111
+	{
+		FlipX
+	}
+}
+
+Sprite NRKFJ0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 118, 114
+	Patch NRK01, 322, 114
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUA0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 119, 113
+	Patch NRK01, 321, 113
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUB0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 120, 112
+	Patch NRK01, 320, 112
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUC0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 121, 111
+	Patch NRK01, 319, 111
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUD0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 122, 110
+	Patch NRK01, 318, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUE0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 123, 109
+	Patch NRK01, 317, 109
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUF0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 124, 108
+	Patch NRK01, 316, 108
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUG0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 125, 107
+	Patch NRK01, 315, 107
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUH0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 126, 106
+	Patch NRK01, 314, 106
+	{
+		FlipX
+	}
+}
+
+Sprite NRKUI0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 127, 105
+	Patch NRK01, 313, 105
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCA0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 111
+	Patch NMG01, 328, 111
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCB0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 113
+	Patch NMG01, 328, 113
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCC0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 116
+	Patch NMG01, 328, 116
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCD0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 120
+	Patch NMG01, 328, 120
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCE0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 125
+	Patch NMG01, 328, 125
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCF0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 131
+	Patch NMG01, 328, 131
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCG0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 138
+	Patch NMG01, 328, 138
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCH0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 146
+	Patch NMG01, 328, 146
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCI0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 155
+	Patch NMG01, 328, 155
+	{
+		FlipX
+	}
+}
+
+Sprite NMGCJ0, 600, 200
+{
+	Offset 120, 0
+	Patch NMG01, 134, 165
+	Patch NMG01, 328, 165
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCA0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 105
+	Patch NRK01, 312, 105
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCB0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 107
+	Patch NRK01, 312, 107
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCC0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 110
+	Patch NRK01, 312, 110
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCD0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 114
+	Patch NRK01, 312, 114
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCE0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 119
+	Patch NRK01, 312, 119
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCF0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 125
+	Patch NRK01, 312, 125
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCG0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 132
+	Patch NRK01, 312, 132
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCH0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 140
+	Patch NRK01, 312, 140
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCI0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 149
+	Patch NRK01, 312, 149
+	{
+		FlipX
+	}
+}
+
+Sprite NRKCJ0, 600, 200
+{
+	Offset 120, 0
+	Patch NRK01, 128, 159
+	Patch NRK01, 312, 159
+	{
+		FlipX
+	}
+}
+
+Sprite PSGAA0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG01, 220, 90
+}
+
+Sprite PSGFA0, 600, 200
+{
+	XScale 0.950
+	YScale 0.950
+	Offset 125, 0
+	Patch PSG06, 212, 71
+}
+
+Sprite PSGFB0, 600, 200
+{
+	XScale 0.900
+	YScale 0.900
+	Offset 125, 0
+	Patch PSG07, 204, 57
+}
+
+Sprite PSGFC0, 600, 200
+{
+	XScale 0.850
+	YScale 0.850
+	Offset 125, 0
+	Patch PSG01, 196, 76
+}
+
+Sprite PSGFD0, 600, 200
+{
+	XScale 0.900
+	YScale 0.900
+	Offset 125, 0
+	Patch PSG01, 204, 87
+}
+
+Sprite PSGFE0, 600, 200
+{
+	XScale 0.950
+	YScale 0.950
+	Offset 125, 0
+	Patch PSG01, 212, 90
+}
+
+Sprite PSGRA0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG01, 211, 95
+}
+
+Sprite PSGRB0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 160, 15
+}
+
+Sprite PSGRC0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 145, 7
+}
+
+Sprite PSGRD0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 131, 1
+}
+
+Sprite PSGRE0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 110, -7
+}
+
+Sprite PSGRF0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 145, -40
+}
+
+Sprite PSGRG0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 131, -50
+}
+
+Sprite PSGRH0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 122, -54
+}
+
+Sprite PSGRI0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 117, -46
+}
+
+Sprite PSGRJ0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 113, -39
+}
+
+Sprite PSGRK0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG04, 108, -32
+}
+
+Sprite PSGRL0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG04, 103, -25
+}
+
+Sprite PSGRM0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG05, 96, -17
+}
+
+Sprite PSGRN0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG05, 90, -8
+}
+
+Sprite ERGGA0, 320, 200
+{
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTBRL1, 164, 82
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGGB0, 320, 200
+{
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTBRL2, 164, 82
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLA0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLB0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLC0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLD0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLE0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLF0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLG0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLH0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLI0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLJ0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGLK0, 320, 200
+{
+	Patch ERGGB0, 0, 0
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Graphic ERGGFULL, 320, 200
+{
+	Patch ERGTLOD1, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFA0, 320, 200
+{
+	Patch GUNFLSH2, 98, 29
+	{
+		Blend #FF090F
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+	Patch ERGTBRL3, 164, 82
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFB0, 320, 200
+{
+	Patch GUNFLSH1, 111, 39
+	{
+		Blend #FF090F
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+	Patch ERGTBRL3, 164, 82
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFC0, 320, 200
+{
+	Patch ERGTBRL3, 167, 85
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+}
+
+Sprite ERGFD0, 320, 200
+{
+	Patch ERGTBRL3, 171, 89
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+}
+
+Sprite ERGFE0, 320, 200
+{
+	Patch ERGTBRL3, 174, 92
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+}
+
+Sprite ERGFF0, 320, 200
+{
+	Patch ERGTBRL3, 175, 93
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+}
+
+Sprite ERGFG0, 320, 200
+{
+	Patch ERGTBRL3, 176, 94
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+}
+
+Sprite ERGFH0, 320, 200
+{
+	Patch ERGTBRL3, 177, 95
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGGFULL, 0, 0
+}
+
+Sprite ERGFI0, 320, 200
+{
+	Patch ERGTBRL2, 177, 95
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD2, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFJ0, 320, 200
+{
+	Patch ERGTBRL2, 176, 94
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD3, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFK0, 320, 200
+{
+	Patch ERGTBRL2, 174, 92
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD4, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFL0, 320, 200
+{
+	Patch ERGTBRL2, 171, 89
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD5, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFM0, 320, 200
+{
+	Patch ERGTBRL2, 168, 86
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTLOD6, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite ERGFN0, 320, 200
+{
+	Patch ERGTBRL2, 165, 83
+	{
+		Style CopyAlpha
+	}
+	Patch ERGTGUN, 135, 96
+	{
+		Style CopyAlpha
+	}
+}
+
+
+Sprite EWPAA0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 333, 110
+}
+
+Sprite EWPFA0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST01, 317, 77
+}
+
+Sprite EWPFB0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST01, 321, 81
+}
+
+Sprite EWPFC0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST03, 340, 93
+}
+
+Sprite EWPFD0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST03, 344, 89
+}
+
+Sprite EWPFE0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST04, 348, 59
+}
+
+Sprite EWPFF0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST04, 351, 57
+}
+
+Sprite EWPFG0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST04, 353, 53
+}
+
+Sprite EWPFH0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 340, 117
+}
+
+Sprite EWPFI0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 336, 113
+}
+
+Sprite EWPRA0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 336, 107
+}
+
+Sprite EWPRB0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 342, 101
+}
+
+Sprite EWPRC0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST03, 348, 71
+}
+
+Sprite EWPRD0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST03, 354, 65
+}
+
+Sprite EWPRE0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST04, 359, 27
+}
+
+Sprite EWPRF0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST04, 365, 21
+}
+
+Sprite EWPRG0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST04, 371, 27
+}
+
+Sprite EWPRH0, 600, 250
+{
+	Offset 125, 50
+	Patch ESD01, 37, 188
+	Patch EST05, 360, 34
+}
+
+Sprite EWPRI0, 600, 250
+{
+	Offset 125, 50
+	Patch ESD01, 37, 188
+	Patch EST05, 362, 46
+}
+
+Sprite EWPRJ0, 600, 250
+{
+	Offset 125, 50
+	Patch ESD01, 37, 188
+	Patch EST06, 362, 50
+}
+
+Sprite EWPRK0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST06, 364, 8
+}
+
+Sprite EWPRL0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST07, 366, 123
+}
+
+Sprite EWPRM0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST07, 368, 131
+}
+
+Sprite EWPRN0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST08, 375, 116
+}
+
+Sprite EWPRO0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST08, 377, 108
+}
+
+Sprite EWPRP0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST09, 379, 60
+}
+
+Sprite EWPRQ0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST09, 381, 52
+}
+
+Sprite EWPRR0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 381, 92
+}
+
+Sprite EWPRS0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 383, 100
+}
+
+Sprite EWPRT0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 375, 102
+}
+
+Sprite EWPRU0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 367, 106
+}
+
+Sprite EWPRV0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 361, 109
+}
+
+Sprite EWPRW0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 356, 111
+}
+
+Sprite EWPRX0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 348, 111
+}
+
+Sprite EWPRY0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 37, 138
+	Patch EST02, 341, 110
+}
+
+Sprite EWPBA0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 54, 122
+	Patch EST02, 341, 118
+}
+
+Sprite EWPBB0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 75, 109
+	Patch EST02, 349, 126
+}
+
+Sprite EWPBC0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 95, 93
+	Patch EST02, 357, 134
+}
+
+Sprite EWPBD0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 116, 80
+	Patch EST02, 365, 142
+}
+
+Sprite EWPBE0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 130, 73
+	Patch EST02, 373, 150
+}
+
+Sprite EWPBF0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 141, 67
+	Patch EST02, 381, 158
+}
+
+Sprite EWPBG0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 148, 65
+	Patch EST02, 389, 166
+}
+
+Sprite EWPBH0, 600, 200
+{
+	Offset 125, 0
+	Patch ESD01, 157, 65
+}
+
+Sprite EZSGA0, 167, 100
+{
+	Offset -64, -68
+	Patch DSHOT1, 0, 0
+}
+
+Sprite EZSGB0, 167, 100
+{
+	XScale 0.970
+	YScale 0.970
+	Offset -60, -70
+	Patch DSHOT2, 0, 0
+}
+
+Sprite EZSGC0, 167, 100
+{
+	XScale 0.950
+	YScale 0.950
+	Offset -57, -73
+	Patch DSHOT2, 0, 0
+}
+
+Sprite EZSGD0, 167, 110
+{
+	XScale 0.930
+	YScale 0.930
+	Offset -53, -66
+	Patch DSHOT3, 0, 0
+}
+
+Sprite EZSGE0, 167, 110
+{
+	XScale 0.910
+	YScale 0.910
+	Offset -50, -67
+	Patch DSHOT3, 0, 0
+}
+
+Sprite EZSGF0, 167, 100
+{
+	XScale 0.910
+	YScale 0.910
+	Offset -50, -77
+	Patch DSHOT1, 0, 0
+}
+
+Sprite EZSGG0, 167, 100
+{
+	XScale 0.930
+	YScale 0.930
+	Offset -53, -76
+	Patch DSHOT1, 0, 0
+}
+
+Sprite EZSGH0, 167, 100
+{
+	XScale 0.950
+	YScale 0.950
+	Offset -56, -75
+	Patch DSHOT1, 0, 0
+}
+
+Sprite EZSGI0, 167, 100
+{
+	XScale 0.970
+	YScale 0.970
+	Offset -59, -74
+	Patch DSHOT1, 0, 0
+}
+
+Sprite EZSGJ0, 167, 100
+{
+	Offset -64, -74
+	Patch DSHOT1, 0, 0
+}
+
+Sprite EZSGK0, 167, 100
+{
+	Offset -64, -71
+	Patch DSHOT1, 0, 0
+}
+
+Sprite HLSAA0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS01, 237, 96
+}
+
+Sprite HLSFA0, 600, 200
+{
+	XScale 0.950
+	YScale 0.950
+	Offset 125, 0
+	Patch HLS05, 229, 86
+}
+
+Sprite HLSFB0, 600, 200
+{
+	XScale 0.900
+	YScale 0.900
+	Offset 125, 0
+	Patch HLS06, 221, 73
+}
+
+Sprite HLSFC0, 600, 200
+{
+	XScale 0.850
+	YScale 0.850
+	Offset 125, 0
+	Patch HLS07, 213, 68
+}
+
+Sprite HLSFD0, 600, 200
+{
+	XScale 0.800
+	YScale 0.800
+	Offset 125, 0
+	Patch HLS01, 205, 78
+}
+
+Sprite HLSFE0, 600, 200
+{
+	XScale 0.750
+	YScale 0.750
+	Offset 125, 0
+	Patch HLS01, 197, 73
+}
+
+Sprite HLSFF0, 600, 200
+{
+	XScale 0.800
+	YScale 0.800
+	Offset 125, 0
+	Patch HLS01, 205, 78
+}
+
+Sprite HLSFG0, 600, 200
+{
+	XScale 0.850
+	YScale 0.850
+	Offset 125, 0
+	Patch HLS01, 213, 83
+}
+
+Sprite HLSFH0, 600, 200
+{
+	XScale 0.900
+	YScale 0.900
+	Offset 125, 0
+	Patch HLS01, 221, 87
+}
+
+Sprite HLSFI0, 600, 200
+{
+	XScale 0.950
+	YScale 0.950
+	Offset 125, 0
+	Patch HLS01, 229, 91
+}
+
+Sprite HLSCA0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS01, 231, 94
+}
+
+Sprite HLSCB0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS01, 225, 91
+}
+
+Sprite HLSCC0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS02, 213, 84
+}
+
+Sprite HLSCD0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS02, 196, 74
+}
+
+Sprite HLSCE0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS02, 182, 66
+}
+
+Sprite HLSCF0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 179, 52
+}
+
+Sprite HLSCG0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 161, 38
+}
+
+Sprite HLSCH0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 149, 32
+}
+
+Sprite HLSCI0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 141, 29
+}
+
+Sprite HLSCJ0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 133, 34
+}
+
+Sprite HLSCK0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 125, 40
+}
+
+Sprite HLSCL0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS04, 97, 50
+}
+
+Sprite HLSCM0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS04, 91, 55
+}
+
+Sprite HLSCN0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS04, 79, 62
+}
+
+Sprite HLSQH0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS01, 226, 91
+}
+
+Sprite HLSQG0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS02, 209, 82
+}
+
+Sprite HLSQF0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS02, 183, 71
+}
+
+Sprite HLSQE0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS02, 145, 57
+}
+
+Sprite HLSQD0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 122, 39
+}
+
+Sprite HLSQC0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 77, 30
+}
+
+Sprite HLSQB0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 53, 29
+}
+
+Sprite HLSQA0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS03, 21, 29
+}
+
+Sprite HLSRA0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 127, 57
+}
+
+Sprite HLSRB0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 127, 57
+	Patch HANDI0, 237, 159
+	{
+		Rotate 90
+	}
+}
+
+Sprite HLSRC0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 125, 58
+	Patch HANDI0, 214, 155
+	{
+		Rotate 90
+	}
+}
+
+Sprite HLSRD0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 121, 60
+	Patch HANDI0, 188, 152
+	{
+		Rotate 90
+	}
+}
+
+Sprite HLSRE0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 117, 62
+	Patch HANDJ0, 161, 154
+	{
+		Rotate 90
+	}
+}
+
+Sprite HLSRF0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 115, 63
+	Patch HANDJ0, 197, 154
+}
+
+Sprite HLSRG0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 117, 62
+	Patch HANDJ0, 207, 160
+}
+
+Sprite HLSRH0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 121, 60
+	Patch HANDJ0, 214, 164
+}
+
+Sprite HLSRI0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 125, 58
+	Patch HANDJ0, 219, 168
+}
+
+Sprite HLSRJ0, 600, 200
+{
+	Offset 125, 0
+	Patch HLS08, 127, 57
+}
+
+Sprite IMMGA0, 202, 98
+{
+	Offset -59, -71
+	Patch IMPMIN1, 0, 0
+}
+
+Sprite IMMGB0, 202, 98
+{
+	Offset -59, -71
+	Patch IMPMIN2, 0, 0
+}
+
+Sprite IMMGC0, 202, 98
+{
+	Offset -59, -71
+	Patch IMPMIN3, 0, 0
+}
+
+Sprite IMMGD0, 202, 98
+{
+	Offset -59, -71
+	Patch IMPMIN4, 0, 0
+}
+
+Sprite IMMGE0, 202, 128
+{
+	Offset -59, -46
+	Patch IMPMIN5, 0, 0
+}
+
+Sprite IMMGF0, 202, 130
+{
+	Offset -59, -44
+	Patch IMPMIN6, 0, 0
+}
+
+Sprite IMMGG0, 123, 98
+{
+	Offset -46, -132
+	Patch IMPMIN7, 0, 0
+}
+
+Sprite IMMGH0, 123, 98
+{
+	Offset -52, -112
+	Patch IMPMIN8, 0, 0
+}
+
+Sprite IMMGI0, 123, 98
+{
+	Offset -64, -92
+	Patch IMPMIN9, 0, 0
+}
+
+Sprite IMMGJ0, 123, 98
+{
+	Offset -76, -82
+	Patch IMPMIN10, 0, 0
+}
