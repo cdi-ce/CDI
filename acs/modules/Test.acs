@@ -1,0 +1,3 @@
+Script "cdi_ce_test" (void) {
+	Print(s:"CDI:CE Test complete!");
+}
