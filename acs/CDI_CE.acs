@@ -1,0 +1,7 @@
+#library "CDI_CE"
+#include "zcommon.acs"
+
+// Include your modules here
+// Compile this file when you make any changes
+
+#include "Test.acs"
