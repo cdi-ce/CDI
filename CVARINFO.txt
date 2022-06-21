@@ -186,3 +186,8 @@ server noarchive int cdi_player_rank_60 = 0;
 server noarchive int cdi_player_rank_61 = 0;
 server noarchive int cdi_player_rank_62 = 0;
 server noarchive int cdi_player_rank_63 = 0;
+
+// Community Edition
+
+// Debug tools
+local bool cdi_ce_debug_waves = false;

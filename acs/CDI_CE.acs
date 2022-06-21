@@ -1,8 +1,11 @@
 #library "CDI_CE"
 #include "zcommon.acs"
 
+#define SECONDS 35
+
 // Include your modules here
 // Compile this file when you make any changes
 // instead of modules themselves
 
 #include "Test.acs"
+#include "Debug.acs"

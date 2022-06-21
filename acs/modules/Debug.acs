@@ -1,0 +1,26 @@
+const str WAVE_STATES[7] = {
+				"IS_WAITINGFORPLAYERS",
+				"IS_FIRSTCOUNTDOWN",
+				"IS_INPROGRESS",
+				"IS_BOSSFIGHT",
+				"IS_WAVECOMPLETE",
+				"IS_COUNTDOWN",
+				"IS_MISSIONFAILED"
+			};
+
+Script "cdi_ce_debug_tick" OPEN CLIENTSIDE {
+	while (true) {
+		if (GetCVar("cdi_ce_debug_waves")) {
+			const str prefix = "[Debug Waves] ";
+			
+			int state = GetInvasionState();
+
+			if (state == -1) Print(s:prefix, s:"Is not invasion");
+			else Print(s:prefix,
+				s:"Wave: ", i:GetInvasionWave(),
+				s:" State: ", s:WAVE_STATES[state], s:" ", i:state);
+		}
+
+		Delay(1 * SECONDS);
+	}
+}
