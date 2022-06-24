@@ -1,0 +1,273 @@
+#include "zcommon.acs"
+
+Script 1 ENTER
+{// Enter Map Message
+SetHudSize(640, 400, 0);
+Setfont("dbigfont");
+Hudmessage(s:"\c[K3]Celestial Station";HUDMSG_FADEOUT, 0, CR_DARKGREEN, 320.4, 190.0, 3.5, 1.0);
+Setfont("smallfont");
+Hudmessage(s:"By \ccBlast98"; HUDMSG_FADEOUT, 0, CR_WHITE, 320.4, 205.0, 3.5, 1.0);
+}
+
+Script 10 OPEN
+{// Map Settings
+Thing_Move(500,random(550,552),TRUE);
+Scroll_Texture_Both(1,0,0,0,200);
+Scroll_Texture_Both(-1,0,0,0,200);
+Scroll_Texture_Both(2,0,0,0,200);
+Scroll_Texture_Both(-2,0,0,0,200);
+Scroll_Texture_Both(3,0,0,0,200);
+Scroll_Texture_Both(-3,0,0,0,200);
+Scroll_Texture_Both(4,0,0,0,200);
+Scroll_Texture_Both(-4,0,0,0,200);
+Scroll_Texture_Both(5,0,0,0,200);
+Scroll_Texture_Both(-5,0,0,0,200);
+Scroll_Texture_Both(6,0,0,0,200);
+Scroll_Texture_Both(-6,0,0,0,200);
+ACS_NamedExecuteAlways("Set Incursion Radius",0,64.0,0,0);
+/*
+Thing_Activate(85001);
+Thing_Activate(85002);
+Thing_Activate(85003);
+Thing_Activate(85004);
+Thing_Activate(85005);
+Thing_Activate(85006);
+Thing_Activate(85007);
+Thing_Activate(85008);
+*/
+}
+
+Script 2 OPEN
+{
+While (( GetInvasionWave() != 1 ) || ( GetInvasionState( ) != IS_WAVECOMPLETE ))Delay(1);
+ACS_ExecuteAlways(15854,0,1,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+While (( GetInvasionWave() != 2 ) || ( GetInvasionState( ) != IS_WAVECOMPLETE ))Delay(1);
+ACS_ExecuteAlways(15854,0,2,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Door_Open(111,16);
+While (( GetInvasionWave() != 3 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,3,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_Execute(3,0,0,0,0);
+Floor_LowerToLowest(118,32);
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,64.0,0,0);delay(1);
+Thing_Activate(85001);//Activates (Hell Incursion Moving Spot)
+While (( GetInvasionWave() != 4 ) || ( GetInvasionState( ) != IS_WAVECOMPLETE ))Delay(1);
+ACS_ExecuteAlways(6,0,1,0,0);
+ACS_ExecuteAlways(6,0,11,0,0);
+ACS_ExecuteAlways(15854,0,4,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Thing_Activate(85002);//Activates (Hell Incursion Moving Spot)
+While (( GetInvasionWave() != 5 ) || ( GetInvasionState( ) != IS_WAVECOMPLETE ))Delay(1);
+ACS_ExecuteAlways(6,0,2,0,0);
+ACS_ExecuteAlways(6,0,12,0,0);
+ACS_ExecuteAlways(15854,0,5,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Thing_Activate(85003);//Activates (Hell Incursion Moving Spot)
+While (( GetInvasionWave() != 6 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,6,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,96.0,0,0);delay(1);
+Thing_Activate(85004);//Activates (Hell Incursion Moving Spot)
+//Thing_Remove(331);
+Thing_SetSpecial(331,70,120,0,TRUE);
+delay(35*13);
+Floor_LowerToLowest(119,32);
+While (( GetInvasionWave() != 7 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,7,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,128.0,0,0);delay(1);
+Thing_Activate(85005);//Activates (Hell Incursion Moving Spot)
+Thing_ChangeTID(351,0);
+Thing_ChangeTID(352,351);
+delay(35*13);
+Floor_LowerToLowest(125,32);
+While (( GetInvasionWave() != 8 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,8,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,224.0,0,0);delay(1);
+Thing_Activate(85006);//Activates (Hell Incursion Moving Spot)
+//Thing_Remove(332);
+Thing_SetSpecial(331,70,122,0,TRUE);
+delay(35*10);
+ACS_EXECUTE(4,0,0,0,0);
+Floor_LowerToLowest(121,200);
+While (( GetInvasionWave() != 9 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,9,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+delay(35*13);
+ACS_ExecuteAlways(6,0,3,0,0);
+ACS_ExecuteAlways(6,0,13,0,0);
+While (( GetInvasionWave() != 10 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,10,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Thing_ChangeTID(351,0);
+Thing_ChangeTID(353,351);
+//Thing_Remove(333);
+Thing_SetSpecial(331,70,127,0,TRUE);
+delay(35*10);
+ACS_ExecuteAlways(6,0,4,0,0);
+ACS_ExecuteAlways(6,0,14,0,0);
+delay(35*3);
+Door_Open(124,16);
+While (( GetInvasionWave() != 11 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,11,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,224.0,0,0);delay(1);
+Thing_Activate(85007);//Activates (Hell Incursion Moving Spot)
+delay(35*15);
+ACS_ExecuteAlways(6,0,5,0,0);
+ACS_ExecuteAlways(6,0,15,0,0);
+While (( GetInvasionWave() != 12 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,12,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+//Thing_Remove(334);
+Thing_SetSpecial(331,70,129,0,TRUE);
+Delay(35*11);
+Floor_LowerToLowest(126,8);
+Delay(35*7);
+ACS_ExecuteAlways(6,0,6,0,0);
+ACS_ExecuteAlways(6,0,16,0,0);
+While (( GetInvasionWave() != 13 ) || ( GetInvasionState( ) != IS_WAVECOMPLETE ))Delay(1);
+ACS_ExecuteAlways(15854,0,13,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_NamedExecuteAlways("Enable Body Remover",0,0,0,0);
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,224.0,0,0);delay(1);
+Thing_Activate(85008);//Activates (Hell Incursion Moving Spot)
+Thing_ChangeTID(351,0);
+Thing_ChangeTID(354,351);
+Delay(160);
+Floor_LowerToLowest(128,8);
+While (( GetInvasionWave() != 14 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,14,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Delay(35*14);
+Door_Open(131,16);
+While (( GetInvasionWave() != 15 ) || ( GetInvasionState( ) != IS_COUNTDOWN ))Delay(1);
+ACS_ExecuteAlways(15854,0,15,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Delay(35*14);
+Door_Open(132,16);
+Door_Open(133,16);
+}
+
+Script 3 (VOID)
+{
+Polyobj_Move(30,32,128,64);
+Polyobj_Move(60,32,256,64);
+Polyobj_Move(30,32,256,64);
+Polyobj_Move(60,32,128,64);
+Delay(150);
+}
+
+Script 4 (VOID)
+{
+Polyobj_Move(33,32,128,64);
+Polyobj_Move(63,32,256,64);
+Polyobj_Move(33,32,256,64);
+Polyobj_Move(63,32,128,64);
+Delay(150);
+}
+
+Script 5 (int sArg0)
+{//Jumping Pad
+LocalAmbientSound("world/jumpad",127);
+ThrustThingZ (0, sArg0, 0, 0);
+if(PlayerNumber() == -1){delay(15);ThrustThing((GetActorAngle(0)*255)>>16,5,1,0);}
+}
+
+Script 6 (int iLine)
+{// Unblock Line
+For(int i=100;i>=0;i-=5)
+{
+    TranslucentLine(iLine,i);
+    delay(1);
+}
+SetLineBlocking(iLine,BLOCK_NOTHING);
+}
+
+Script 7 (void)
+{// Test
+Thing_Remove(1);
+Thing_Remove(2);
+Thing_Remove(3);
+/*
+Thing_Remove(4);
+Thing_Remove(5);
+Thing_Remove(6);
+Thing_Remove(7);
+Thing_Remove(8);
+Thing_Remove(9);
+Thing_Remove(10);
+Thing_Remove(11);
+Thing_Remove(12);
+Thing_Remove(13);
+Thing_Remove(14);
+Thing_Remove(15);*/
+}
+
+Script 8 (void)
+{// Unlocks Crates
+ACS_ExecuteAlways(6,0,100,0,0);// Unblock Line
+AmbientSound("glass/break",127);
+}
+
+Script 9 (void)
+{// Unlocks Abominations
+ACS_ExecuteAlways(6,0,101,0,0);// Unblock Line
+AmbientSound("glass/break",127);
+}
+
+int teleporter;
+
+Script 11 (void)
+{
+teleporter++;
+if(teleporter == 1)Thing_SetSpecial(331,70,120,0,TRUE);
+else if(teleporter == 2)Thing_SetSpecial(331,70,122,0,TRUE);
+else if(teleporter == 3)Thing_SetSpecial(331,70,127,0,TRUE);
+else if(teleporter == 4)Thing_SetSpecial(331,70,129,0,TRUE);
+}
+
+
+Script 940 (int part)
+{//Boss Fight Script
+	delay(1);
+	str class = GetActorClass(0);
+	str resistance = GetActorProperty(0,APROP_DamageFactor);
+	GiveInventory("Clip",1);
+	if(part == 1)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("DemolisherMkII",941,15999);SpawnSpotFacing("TeleportFog",941,0);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+	else if(part == 2)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("Apprentice",941,15999);SpawnSpotFacing("TeleportFog",941,0);
+		SpawnSpotFacing("Apprentice",942,15999);SpawnSpotFacing("TeleportFog",942,0);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+	else if(part == 3)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("InfernalEmperor",943,15999);SpawnSpotFacing("TeleportFog",943,0);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+}
+
+Script 5430 (void){}
+Script 5431 (void){}
+Script 5432 (void){}
+Script 5433 (void){}

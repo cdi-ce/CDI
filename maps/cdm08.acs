@@ -1,0 +1,688 @@
+#include "zcommon.acs"
+
+SCRIPT 1 ENTER // Enter Map Message
+{
+SetHudSize(640, 400, 0);
+Setfont("dbigfont");
+Hudmessage(s:"\c[S3]Underground Laboratory";HUDMSG_FADEOUT, 0, CR_GREY, 320.4, 190.0, 3.5, 1.0);
+Setfont("smallfont");
+Hudmessage(s:"By \ctEvaine"; HUDMSG_FADEOUT, 0, CR_WHITE, 320.4, 205.0, 3.5, 1.0);
+}
+
+Script 2 OPEN
+{// Invasion Progress
+ACS_NamedExecuteAlways("Set Incursion Radius",0,64.0,0,0);
+while((GetInvasionWave() != 1) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,1,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Ceiling_RaiseByValue(101,6,112);
+Thing_Activate(85001);//Activates (Hell Incursion Moving Spot)
+while((GetInvasionWave() != 2) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,2,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+while((GetInvasionWave() != 3) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,3,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Ceiling_RaiseByValue(104,6,120);
+Thing_Activate(85002);//Activates (Hell Incursion Moving Spot)
+while((GetInvasionWave() != 4) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,4,0,0);// Remove Wave Monsters
+Thing_ChangeTID(351,700);
+Thing_ChangeTID(361,351);
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,64.0,0,0);delay(1);
+Thing_Activate(85003);//Activates (Hell Incursion Moving Spot)
+delay(35*4);
+PolyObj_Move(1,2,128,88);
+PolyObj_Move(3,2,64,88);
+delay(35*5);
+SetMusic("D_CDM08b");
+while((GetInvasionWave() != 5) || (GetInvasionState() != IS_COUNTDOWN))delay(1);
+ACS_ExecuteAlways(15854,0,5,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+Ceiling_MoveToValue(106,4,192,0);
+Floor_LowerByValue(201,2,32);
+Thing_Activate(85004);//Activates (Hell Incursion Moving Spot)
+while((GetInvasionWave() != 6) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,6,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);
+ACS_ExecuteAlways(14,0,0,0,0);
+Line_SetBlocking(1,BLOCKF_MONSTERS,0);
+Line_SetBlocking(2,BLOCKF_MONSTERS,0);
+Line_SetBlocking(3,BLOCKF_MONSTERS,0);
+Line_SetBlocking(3,BLOCKF_FLOATERS,0);
+Floor_LowerByValue(202,2,32);
+Floor_LowerByValue(316,8,64);
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,64.0,0,0);delay(1);
+Thing_Activate(85005);//Activates (Hell Incursion Moving Spot)
+while((GetInvasionWave() != 7) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,7,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_ExecuteAlways(38,0,0,0,0);
+Floor_LowerByValue(202,2,32);
+Floor_LowerByValue(317,16,184);
+Floor_LowerByValue(39,15,118);
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,96.0,0,0);delay(1);
+Thing_Activate(85006);//Activates (Hell Incursion Moving Spot)
+while((GetInvasionWave() != 8) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,8,0,0);// Remove Wave Monsters
+Thing_ChangeTID(351,700);
+Thing_ChangeTID(362,351);
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+//Door_Close(132,32); Chillax Gameplay !
+//Floor_LowerByValue(501,16,120); Chillax Gameplay !
+while((GetInvasionWave() != 9) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,9,0,0);// Remove Wave Monsters
+Thing_ChangeTID(351,700);
+Thing_ChangeTID(363,351);
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+ACS_ExecuteAlways(70,0,0,0,0); // Wave 10 Setup
+ACS_NamedExecuteAlways("Reset Incursion Settings",0,64.0,0,0);delay(1);
+Thing_Activate(85007);//Activates (Hell Incursion Moving Spot)
+delay(35);
+while((GetInvasionWave() != 10) || (GetInvasionState() != IS_COUNTDOWN))delay(1);
+ACS_ExecuteAlways(15854,0,10,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,0,0,0);// Reinforcement
+delay(35);
+SetHudSize(640, 400, 0);
+Setfont("dbigfont");
+Hudmessage(s:"EXIT TELEPORT BLOCKED!";HUDMSG_FADEOUT, 0, CR_RED, 320.4, 190.0, 3.5, 1.0);
+Setfont("smallfont");
+Hudmessage(s:"An unknow source is blocking the teleporter"; HUDMSG_FADEOUT, 0, CR_WHITE, 320.4, 205.0, 3.5, 1.0);
+AmbientSound("world/alarm6",127);
+delay(35*6);
+Setfont("smallfont");
+Hudmessage(s:"Go check in the main generator area"; HUDMSG_FADEOUT, 0, CR_WHITE, 320.4, 205.0, 3.5, 1.0);
+AmbientSound("world/alarm6",127);
+Line_SetBlocking(7,BLOCKF_PROJECTILES,0);
+TranslucentLine(7,127);
+Door_Open(106,32);
+}
+
+SCRIPT 14 (VOID) // Level 4 Locks Released
+{
+delay(35*15);
+PolyObj_Move(10,4,128,72);
+}
+
+SCRIPT 15 (VOID) // Barrier 1
+{
+delay(18);
+Floor_MoveToValue(2,48,128,0);
+delay(35*5);
+Floor_MoveToValue(2,36,0,0);
+delay(35*15);
+}
+
+SCRIPT 16 (VOID) // Red Key Actions
+{
+Ceiling_MoveToValue(31,128,128,1);
+}
+
+// -------------------------------------------------------------------
+// Wave 7 Action Specials are inserted here for orginization purposes.
+// -------------------------------------------------------------------
+
+SCRIPT 32 (VOID) // Wave 7 Montser Actions (1)
+{
+    Floor_MoveToValue(32,64,257,1);
+}
+
+SCRIPT 33 (VOID) // Wave 7 Montser Actions (2)
+{
+    Floor_MoveToValue(33,128,257,1);
+}
+
+SCRIPT 34 (VOID) // Wave 7 Monster Actions (3)
+{
+    Floor_MoveToValue(34,128,256,1);
+}
+
+SCRIPT 35 (VOID) // Wave 7 Monster Actions (4)
+{
+    Floor_MoveToValue(35,128,256,1);
+}
+
+SCRIPT 36 (VOID) // Wave 7 Monster Actions (5)
+{
+    Floor_MoveToValue(36,128,256,1);
+}
+
+SCRIPT 37 (VOID) // Legendary Imp Room Open Actions
+{
+    Floor_MoveToValue(120,1,256,1);
+    delay(35);
+    PolyObj_Move(315,2,128,60);
+    delay(35*3);
+    Light_ChangeToValue(121,192);
+    delay(52);
+    Light_ChangeToValue(122,192);
+    delay(52);
+    Light_ChangeToValue(123,192);
+    Light_ChangeToValue(22,192);
+    Light_ChangeToValue(23,192);
+    Light_ChangeToValue(24,192);
+    Light_ChangeToValue(25,192);
+    Light_ChangeToValue(26,192);
+    Light_ChangeToValue(27,192);
+    Light_ChangeToValue(28,192);
+    Light_ChangeToValue(29,192);
+    Light_ChangeToValue(30,192);
+    Light_ChangeToValue(124,192);
+    Light_ChangeToValue(125,192);
+    Light_ChangeToValue(126,192);
+    delay(35);
+    Line_SetBlocking(1,0,BLOCKF_MONSTERS);
+    Line_SetBlocking(2,0,BLOCKF_MONSTERS);
+}
+
+// LegendaryImp Spawns after defeating spiders.
+
+SCRIPT 38 (VOID) // Legendary Imp Activation
+{
+    Ceiling_MoveToValue(125,32,232,1);
+    delay(35);
+    Line_SetBlocking(3,0,BLOCKF_MONSTERS);
+    Line_SetBlocking(3,0,BLOCKF_FLOATERS);
+}
+
+// ----------------------------------------------------------------------
+// Wave 7 Action Specials end here. Script numbers now continue normally.
+// ----------------------------------------------------------------------
+
+SCRIPT 19 (VOID) // Dual-Secret Button 1
+{
+    Floor_MoveToValue(15,128,64,0);
+    delay(35);
+    Floor_MoveToValue(15,128,0,0);
+    delay(40);
+}
+
+SCRIPT 20 (VOID) // Dual-Secret Button 2
+{
+    Floor_MoveToValue(16,128,64,0);
+    delay(35);
+    Floor_MoveToValue(16,128,0,0);
+    delay(40);
+}
+
+SCRIPT 21 OPEN // Dual-Secret Activations
+{
+    until(GetSectorFloorZ (15,0,0) == 64.0 && GetSectorFloorZ (16,0,0) == 64.0)delay(1);
+    Ceiling_MoveToValue(17,32,128,0);
+}
+
+SCRIPT 30 OPEN // Central Pillar Activations
+{
+    until (GetSectorFloorZ (61,0,0) == 64.0 && GetSectorFloorZ (62,0,0) == 64.0)delay(1);
+    Floor_MoveToValue(63,32,64,0);
+}
+
+int SecretSwitches = 0;
+
+SCRIPT 75 (void)
+{
+SecretSwitches++; // SecretSwitches Value Increase
+Floor_RaiseByValue(10,15,8);// Sector Floor Height Increase
+}
+
+SCRIPT 31 OPEN // Security Door Activation
+{
+    until(SecretSwitches >= 7)delay(1);
+    Ceiling_MoveToValue(20,16,128,0);
+}
+
+// Boolean Values
+bool BlueDoor = FALSE;
+bool RedDoor = FALSE;
+bool YellowDoor = FALSE;
+// Boolean Values
+
+// ---------------------------------------------------------
+// Scripts 32 - 38 in "Wave 7 Action Specials" section above
+// ---------------------------------------------------------
+
+SCRIPT 41 (VOID) // Key Light-Up Display (1)
+{
+    Floor_RaiseByValue(151,15,64);
+    delay(1);
+    Light_ChangeToValue(154,192);
+    RedDoor = TRUE;
+}
+
+SCRIPT 42 (VOID) // Key Light-Up Display (2)
+{
+    Floor_RaiseByValue(152,15,64);
+    delay(1);
+    Light_ChangeToValue(155,192);
+    YellowDoor = TRUE;
+}
+
+SCRIPT 43 (VOID) // Key Light-Up Display (3)
+{
+    Floor_RaiseByValue(153,15,64);
+    delay(1);
+    Light_ChangeToValue(156,192);
+    BlueDoor = TRUE;
+}
+
+SCRIPT 50 OPEN // Final Door Requirements Check
+{
+    until(RedDoor == TRUE && YellowDoor == TRUE && BlueDoor == TRUE)delay(1);
+    Door_Open(18,1);
+}
+
+SCRIPT 51 (VOID) // CDM08 Puzzle Event - Start!!!
+{
+    SetMusic("",0); // Mute Music
+    Floor_MoveToValue(315,4,0,0); // Start Switch Lowered
+    delay(35);
+    PolyObj_Move(180,32,0,64); // Chamber Door Closed
+    // Sparks (PolyObj Door)
+
+    // Puzzle Stairs Lower
+    Ceiling_MoveToValue(212,64,40,0);
+    Floor_MoveToValue(212,64,24,0);
+    Ceiling_MoveToValue(213,64,40,0);
+        Floor_MoveToValue(213,64,24,0);
+    Ceiling_MoveToValue(214,64,40,0);
+    Floor_MoveToValue(214,64,24,0);
+    // Puzzle Stairs Lower
+    delay(35*3);
+    Door_Open(330,8); // Tele to Chamber Door Open
+    delay(35*2);
+    SetMusic("D_CDM08c");
+
+// Setup Sequence 1 - Revealing Cybers
+
+    Floor_MoveToValue(301,128,0,0);
+    Ceiling_MoveToValue(301,128,256,0);
+    delay(12);
+    Floor_MoveToValue(302,128,0,0);
+    Ceiling_MoveToValue(302,128,256,0);
+    delay(12);
+    Floor_MoveToValue(303,128,0,0);
+    Ceiling_MoveToValue(303,128,256,0);
+    delay(12);
+    Floor_MoveToValue(304,128,0,0);
+    Ceiling_MoveToValue(304,128,256,0);
+    delay(12);
+    Floor_MoveToValue(305,128,0,0);
+    Ceiling_MoveToValue(305,128,256,0);
+    delay(12);
+    Floor_MoveToValue(306,128,0,0);
+    Ceiling_MoveToValue(306,128,256,0);
+    delay(12);
+    Floor_MoveToValue(307,128,0,0);
+    Ceiling_MoveToValue(307,128,256,0);
+    delay(12);
+    Floor_MoveToValue(308,128,0,0);
+    Ceiling_MoveToValue(308,128,256,0);
+    delay(12);
+    Floor_MoveToValue(309,128,0,0);
+    Ceiling_MoveToValue(309,128,256,0);
+    delay(12);
+    Floor_MoveToValue(310,128,0,0);
+    Ceiling_MoveToValue(310,128,256,0);
+    delay(12);
+    Floor_MoveToValue(311,128,0,0);
+    Ceiling_MoveToValue(311,128,256,0);
+    delay(12);
+    Floor_MoveToValue(312,128,0,0);
+    Ceiling_MoveToValue(312,128,256,0);
+    delay(12);
+    Floor_MoveToValue(313,128,0,0);
+    Ceiling_MoveToValue(313,128,256,0);
+    delay(12);
+    Floor_MoveToValue(314,128,0,0);
+    Ceiling_MoveToValue(314,128,256,0);
+    delay(12);
+    Floor_MoveToValue(300,2,0,0); // Barrier Countdown begin
+// Setup Sequence 1 - END
+
+    delay(35);
+
+// Setup Sequence 2 - Puzzle Setup
+
+    // Puzzle Switches
+    Floor_RaiseByValue(321,64,40);
+    delay(16);
+    Floor_RaiseByValue(322,64,40);
+    delay(16);
+    Floor_RaiseByValue(323,64,40);
+    delay(16);
+    Floor_RaiseByValue(324,64,40);
+    // Puzzle Switches
+
+// Setup Sequence 2 - END
+}
+
+SCRIPT 52 (VOID) // Puzzle Switch 1 Actions
+{
+    ACS_Suspend(56,0);
+    // Lock Other Switches
+    Floor_LowerByValue(322,128,40);
+    Floor_LowerByValue(323,192,40);
+    Floor_LowerByValue(324,128,40);
+    delay(25);
+    // Step 4 Raise
+    Ceiling_MoveToValue(214,64,88,0);
+    delay(1);
+    Floor_MoveToValue(214,64,72,0);
+    delay(1);
+    Ceiling_MoveToValue(214,64,88,0);
+    delay(1);
+    Floor_MoveToValue(214,64,72,0);
+    delay(1);
+    // Step 1 Lower
+    Ceiling_MoveToValue(211,64,40,0);
+    delay(1);
+    Floor_MoveToValue(211,64,24,0);
+    delay(1);
+    Ceiling_MoveToValue(211,64,40,0);
+    delay(1);
+    Floor_MoveToValue(211,64,24,0);
+    delay(25);
+    // Unlock Other Switches
+    Floor_RaiseByValue(322,128,40);
+    Floor_RaiseByValue(323,128,40);
+    Floor_RaiseByValue(324,128,40);
+    delay(1);
+    ACS_Execute(56,0);
+    delay(1);
+}
+
+SCRIPT 53 (VOID) // Puzzle Switch 2 Actions
+{
+    ACS_Suspend(56,0);
+    // Lock Other Switches
+    Floor_LowerByValue(321,128,40);
+    Floor_LowerByValue(323,128,40);
+    Floor_LowerByValue(324,128,40);
+    delay(25);
+    // Step 1 Raise
+    Ceiling_MoveToValue(211,64,88,0);
+    delay(1);
+    Floor_MoveToValue(211,64,72,0);
+    delay(1);
+    Ceiling_MoveToValue(211,64,88,0);
+    delay(1);
+    Floor_MoveToValue(211,64,72,0);
+    delay(1);
+    // Step 3 Lower
+    Ceiling_MoveToValue(213,64,40,0);
+    delay(1);
+    Floor_MoveToValue(213,64,24,0);
+    delay(1);
+    Ceiling_MoveToValue(213,64,40,0);
+    delay(1);
+    Floor_MoveToValue(213,64,24,0);
+    delay(25);
+    // Unlock Other Switches
+    Floor_RaiseByValue(321,128,40);
+    Floor_RaiseByValue(323,128,40);
+    Floor_RaiseByValue(324,128,40);
+    delay(1);
+    ACS_Execute(56,0);
+    delay(1);
+}
+SCRIPT 54 (VOID) // Puzzle Switch 3 Actions
+{
+    ACS_Suspend(56,0);
+    // Lock Other Switches
+    Floor_LowerByValue(321,128,40);
+    Floor_LowerByValue(322,128,40);
+    Floor_LowerByValue(324,128,40);
+    delay(25);
+    // Step 2 Raise
+    Ceiling_MoveToValue(212,64,56,0);
+    delay(1);
+    Floor_MoveToValue(212,64,40,0);
+    delay(1);
+    Ceiling_MoveToValue(212,64,56,0);
+    delay(1);
+    Floor_MoveToValue(212,64,40,0);
+    delay(1);
+    // Step 3 Lower
+    Ceiling_MoveToValue(213,64,40,0);
+    delay(1);
+    Floor_MoveToValue(213,64,24,0);
+    delay(1);
+    Ceiling_MoveToValue(213,64,40,0);
+    delay(1);
+    Floor_MoveToValue(213,64,24,0);
+    delay(25);
+    // Unlock Other Switches
+    Floor_RaiseByValue(321,128,40);
+    Floor_RaiseByValue(322,128,40);
+    Floor_RaiseByValue(324,128,40);
+    delay(1);
+    ACS_Execute(56,0);
+    delay(1);
+}
+SCRIPT 55 (VOID) // Puzzle Switch 4 Actions
+{
+    ACS_Suspend(56,0);
+    // Lock Other Switches
+    Floor_LowerByValue(321,128,40);
+    Floor_LowerByValue(322,128,40);
+    Floor_LowerByValue(323,128,40);
+    delay(25);
+    // Step 3 Raise
+    Ceiling_MoveToValue(213,64,72,0);
+    delay(1);
+    Floor_MoveToValue(213,64,56,0);
+    delay(1);
+    Ceiling_MoveToValue(213,64,72,0);
+    delay(1);
+    Floor_MoveToValue(213,64,56,0);
+    delay(1);
+    // Step 1 Lower
+    Ceiling_MoveToValue(211,64,40,0);
+    delay(1);
+    Floor_MoveToValue(211,64,24,0);
+    delay(1);
+    Ceiling_MoveToValue(211,64,40,0);
+    delay(1);
+    Floor_MoveToValue(211,64,24,0);
+    delay(25);
+    // Unlock Other Switches
+    Floor_RaiseByValue(321,128,40);
+    Floor_RaiseByValue(322,128,40);
+    Floor_RaiseByValue(323,128,40);
+    delay(1);
+    ACS_Execute(56,0);
+    delay(1);
+}
+
+SCRIPT 56 OPEN // Check Puzzle Requirements
+{
+    until(GetSectorFloorZ (211,0,0) == 24.0 && GetSectorFloorZ (212,0,0) == 40.0 && GetSectorFloorZ (213,0,0) == 56.0 && GetSectorFloorZ (214,0,0) == 72.0)delay(1);
+    Line_SetBlocking(5,0,BLOCKF_PLAYERS); //Unblock PolyObj_DoorLine
+    delay(1);
+
+    // Lock Puzzle Buttons
+    Floor_LowerByValue(321,128,40);
+    Floor_LowerByValue(322,128,40);
+    Floor_LowerByValue(323,128,40);
+    Floor_LowerByValue(324,128,40);
+
+    // Reconfigure Platforms in case of bugs
+    Ceiling_MoveToValue(211,64,40,0);
+    Floor_MoveToValue(211,64,24,0);
+    delay(1);
+    Ceiling_MoveToValue(212,64,56,0);
+    Floor_MoveToValue(212,64,40,0);
+    delay(1);
+    Ceiling_MoveToValue(213,64,72,0);
+    Floor_MoveToValue(213,64,56,0);
+    delay(1);
+    Ceiling_MoveToValue(214,64,88,0);
+    Floor_MoveToValue(214,64,72,0);
+    delay(1);
+    SetMusic("");
+    delay(35);
+    Radius_Quake(7,35*3,0,0,150);
+    delay(35);
+    PolyObj_Move(14,1,128,60);
+    Ceiling_LowerAndCrush(340,16,99999,1); // Crush Cybers
+    delay(35*5);
+
+    // Close Cyberdemon Doors
+    Floor_MoveToValue(301,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(301,128,128,0);
+    delay(1);
+    Floor_MoveToValue(302,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(302,128,128,0);
+    delay(1);
+    Floor_MoveToValue(303,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(303,128,128,0);
+    delay(1);
+    Floor_MoveToValue(304,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(304,128,128,0);
+    delay(1);
+    Floor_MoveToValue(305,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(305,128,128,0);
+    delay(1);
+    Floor_MoveToValue(306,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(306,128,128,0);
+    delay(1);
+    Floor_MoveToValue(307,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(307,128,128,0);
+    delay(1);
+    Floor_MoveToValue(308,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(308,128,128,0);
+    delay(1);
+    Floor_MoveToValue(309,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(309,128,128,0);
+    delay(1);
+    Floor_MoveToValue(310,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(310,128,128,0);
+    delay(1);
+    Floor_MoveToValue(311,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(311,128,128,0);
+    delay(1);
+    Floor_MoveToValue(312,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(312,128,128,0);
+    delay(1);
+    Floor_MoveToValue(313,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(313,128,128,0);
+    delay(1);
+    Floor_MoveToValue(314,128,128,0);
+    delay(1);
+    Ceiling_MoveToValue(314,128,128,0);
+    delay(18);
+    SetMusic("D_CDM08a");
+}
+
+SCRIPT 57 OPEN // Puzzle Timer
+{
+    until (GetSectorFloorZ (300,0,0) == 64.0)delay(1);
+    Line_SetBlocking(4,0,BLOCKF_MONSTERS);
+    Line_SetBlocking(4,0,BLOCKF_PROJECTILES);
+    delay(1);
+    SetMusic("");
+}
+
+SCRIPT 59 (VOID) // Power Message
+{
+SetHudSize(640, 400, 0);
+Setfont("dbigfont");
+Hudmessage(s:"Find the 7 Hidden Power Switches!";HUDMSG_TYPEON,0,CR_GREY, 320.4, 190.0,1.5,0.05,2.0);
+}
+
+SCRIPT 60 (VOID) // Mancu-Release
+{
+    Door_Open(130,64);
+    delay(35*10);
+    Floor_MoveToValue(131,32,120,0);
+    delay(35*20);
+    Door_Open(132,2);
+}
+
+SCRIPT 70 (VOID) // The Last Desperate Struggle
+{
+    Line_SetBlocking(6,BLOCKF_MONSTERS,0);
+    SetMusic("",0);
+    delay(35*4);
+    SetMusic("D_CDM08d");
+
+    //Evacuate Immediately!
+    SetHudSize(640, 400, 0);
+    Setfont("dbigfont");
+    Hudmessage(s:"CRITICAL SYSTEM ERROR";HUDMSG_FADEOUT, 0, CR_DARKRED, 320.4, 190.0, 3.5, 1.0);
+    Setfont("smallfont");
+    Hudmessage(s:"Evacuate Immediately"; HUDMSG_FADEOUT, 0, CR_BRICK, 320.4, 205.0, 3.5, 1.0);
+    //Evacuate Immediately!
+
+    delay(35*7);
+    delay(1);
+    Door_Close(106,32);         // Level 3 Locks
+    Door_Close(9,32);           // Library
+    //Door_Close(101,32);       // Level 1 Locks
+    Door_Close(104,32);         // Level 2 Locks (1)
+    Door_Close(85,32);          // Level 2 Locks (2)
+    PolyObj_Move(10,32,0,72);   // Level 4 Locks
+    delay(1);
+    Door_Open(132,8);
+    delay(35*15);
+    PolyObj_Move(180,1,128,64);
+    delay(35*15);
+    Floor_LowerByValue(701,1,120);
+    delay(35*15);
+}
+
+Script 940 (int part)
+{//Boss Fight Script
+	delay(1);
+	str class = GetActorClass(0);
+	str resistance = GetActorProperty(0,APROP_DamageFactor);
+	GiveInventory("Clip",1);
+	if(part == 1)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("Aracnorb",941,15999);SpawnSpotFacing("TeleportFog",941,0);
+		SpawnSpotFacing("DemolisherMkII",944,15999);SpawnSpotFacing("TeleportFog",944,0);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+	else if(part == 2)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("Arachnophyte",942,15999);SpawnSpotFacing("TeleportFog",942,0);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+	else if(part == 3)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("BabySentient",943,15999);SpawnSpotFacing("TeleportFog",943,0);
+		SpawnSpotFacing("CerebralSentient",944,15999);SpawnSpotFacing("TeleportFog",944,0);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+}
+
+Script 5430 (void){}
+Script 5431 (void){}
+Script 5432 (void){}
+Script 5433 (void){}

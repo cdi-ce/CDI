@@ -1,0 +1,161 @@
+#include "zcommon.acs"
+
+str InvasionMonsterRandomizerv1[10] =
+{
+	"Plasmagunner",
+	"Railgunner",
+	"RepeaterZombie",
+	"ShotgunZombie",
+	"AssaultShotgunZombie",
+	"Imp",
+	"VoidImp",
+	"Devil",
+	"AssaultRifleZombie",
+	"Chaingunner",
+};
+
+/*Script 940 (int part)
+{//Boss Fight Script
+	str class = GetActorClass(0);
+	str resistance = GetActorProperty(0,APROP_DamageFactor);
+	GiveInventory("Clip",1);
+	if(part == 1)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("PyroDemon",941,15999);
+		SpawnSpotFacing("PyroDemon",942,15999);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+	else if(part == 2)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("HellfireRevenant",942,15999);
+		SpawnSpotFacing("BruiserDemon",943,15999);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+	else if(part == 3)
+	{
+		Thing_Move(0,939,0);
+		SpawnSpotFacing("PyroDemon",941,15999);
+		SpawnSpotFacing("CyberLord",944,15999);
+		delay(35*3);while(ThingCount(T_NONE,15999))delay(1);
+		while(ThingCountNameSector(class,0,939)){delay(1);Thing_Move(0,940,0);}
+		SetActorProperty(0,APROP_DamageFactor,0.01);delay(35*30);SetActorProperty(0,APROP_DamageFactor,resistance);
+		while(ThingCountSector(T_NONE,0,939)){SectorDamage(939,5000,"Crush","Clip",DAMAGE_NONPLAYERS|DAMAGE_IN_AIR);delay(1);}
+	}
+}
+
+Script 1 OPEN
+{// Invasion Progress
+while((GetInvasionWave() != 1) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,1,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+while((GetInvasionWave() != 2) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,2,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+while((GetInvasionWave() != 3) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,3,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+while((GetInvasionWave() != 4) || (GetInvasionState() != IS_WAVECOMPLETE))delay(1);
+ACS_ExecuteAlways(15854,0,4,0,0);// Remove Wave Monsters
+ACS_ExecuteAlways(3006,0,1,0,0);// Reinforcement
+}*/
+
+/*str InvasionMob;
+
+
+/*Script 2 (int typ)
+{//TEST
+delay(35*12);
+GiveActorInventory(1,"Cell",20);
+SpawnSpotFacing("InvasionGate",1,99999);
+while(CheckActorInventory(1,"Cell") > 0)
+{
+	InvasionSelect(100);
+	SpawnInvasion(InvasionMob,1,5555,10,192.0);
+	delay(random(2,12));
+}
+Thing_Remove(99999);
+}
+
+Function void SpawnInvasion(str class,int spotid,int newtid,int max,int radius)
+{
+	int x = GetActorX(spotid) + random(-radius,radius);
+	int y = GetActorY(spotid) + random(-radius,radius);
+	int z = GetActorZ(spotid);
+	int angle = GetActorAngle(spotid) >> 8;
+	int count = ThingCount(T_NONE,newtid);
+	if(max == 0)max = 999;
+	if(count < max)int test = Spawn(class,x,y,z,newtid+1,angle);
+	if(test)
+	{
+		Spawn("TeleportFog",x,y,z,0,0);
+		Thing_Hate(newtid+1,9999,4);
+		SetActivator(newtid+1);
+		Thing_ChangeTID(newtid+1,newtid);
+		SetActivator(spotid);
+		TakeInventory("Cell",1);
+	}
+}
+
+Function void InvasionSelect(int typ)
+{
+	int chance = random(1,100);
+	if(typ == 100)
+	{
+		if(chance >= 25)InvasionMob = "PlasmaGunner";
+		else InvasionMob = "PlasmaGunner";
+	}
+	else if(typ == 101)
+	{
+		if(chance >= 6)InvasionMob = "PlasmaGunner";
+		else InvasionMob = "NewCyberDemon";
+	}
+	else if(typ == 102)
+	{
+		if(chance >= 22)InvasionMob = "CyberImp";
+		else if(chance >= 6 && chance < 22)InvasionMob = "Cybruiser";
+		else InvasionMob = "Cydestroyer";
+	}
+}
+
+/*Function void SpawnRadius(str class,int spotid,int newtid,int max,int radius,int goal)
+{
+   int x = GetActorX(spotid) + random(-radius,radius);
+   int y = GetActorY(spotid) + random(-radius,radius);
+   int z = GetActorZ(spotid) + height;
+   int angle = GetActorAngle(spotid) >> 8;
+   int count = ThingCount(T_NONE,newtid);
+   if(max == 0)max = 999;
+   if(count < max)int test = Spawn(class,x,y,z,newtid+1,angle);
+   if(test)
+   {
+		//GiveActorInventory(newtid+1,"NoBeacon",1);
+		if(goal != 0)
+		{
+			Thing_SetGoal(newtid+1,goal,0,1);
+			//SetUserArray(newtid+1,"user_patrol",0,1);
+		}
+		else
+		{
+			SetActorState(newtid+1,"See");
+			SetActorProperty(newtid+1,APROP_Ambush,TRUE);
+		}
+		//if(hate != 0)Thing_Hate(newtid+1,hate,4);
+		//if(fog == TRUE)Spawn("TeleportFog",x,y,z,0,0);
+		SetActivator(newtid+1);
+		//if(specialz != 0)SetThingSpecial(newtid+1,226,931,0,specialz,0,0);
+		//if(scriptz != 0)ACS_ExecuteAlways(932,0,scriptz,0,0);
+        Thing_ChangeTID(newtid+1,newtid);
+		SetActivator(spotid);
+        TakeInventory("Cell",1);
+   }
+}*/
+
+//Function void SpawnRadius(str class,int spotid,int newtid,int max,int radius,int height,int goal,int hate,bool fog,bool drop,bool map,int specialz,int scriptz)
