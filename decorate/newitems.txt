@@ -313,6 +313,7 @@ Actor WeaponUpgraderDemonTechBallista : Inventory{Inventory.MaxAmount 1}
 Actor WeaponUpgraderPlasmaCaster : Inventory{Inventory.MaxAmount 1}
 Actor WeaponUpgraderPlasmaRifle : Inventory{Inventory.MaxAmount 1}
 Actor WeaponUpgraderQuadRocketLauncher : Inventory{Inventory.MaxAmount 1}
+Actor WeaponUpgraderDemonTechRocketLauncher : Inventory{Inventory.MaxAmount 1}
 
 ACTOR MedPack : CustomInventory
 {
@@ -1084,36 +1085,37 @@ States
 }
 }
 
-ACTOR MarineBeacon
+Actor MarineBeacon
 {
-  Monster
-  Health 1000
-  Radius 6
-  Height 28
-  Mass 9999
-  +FLOORCLIP
-  +FRIENDLY
-  +NOTELEPORT
-  -COUNTKILL
-  -SHOOTABLE
-  -SOLID
-  States
-  {
+Monster
+Health 1000
+Radius 6
+Height 28
+Mass 9999
++FLOORCLIP
++FRIENDLY
++NOTELEPORT
+-COUNTKILL
+-SHOOTABLE
+-SOLID
+States
+{
   Spawn:
     BEAC A 10
 	BEAC AAA 35 A_PlaySound("world/alarm1")
     BEAC AAAA 35 A_SpawnItemEx("MarineBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
     BEAC AAAA 35 A_SpawnItemEx("MarineBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER,85)
-	BEAC A 7
+	BEAC A 105
+	BEAC A 35 A_PlaySound("sentry/warn")
     Goto Death
   Death:
 	TNT1 A 0
-	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
-    TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
-	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
-    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
-    TNT1 A 0 A_PlaySound("weapons/rocklx")
-    TNT1 A 1 A_SpawnItem("TeleportFog")
+	//TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    //TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	//TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    //TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+    //TNT1 A 0 A_PlaySound("weapons/rocklx")
+    TNT1 A 1 A_SpawnItemEx("TeleportFog",0,0,8)
     Stop
 }
 }
@@ -1233,8 +1235,8 @@ States
     B3AC E 20
     B3AC F 15 Bright A_PlaySound("world/alarm1")
     B3AC F 35 Bright
-    B3AC E 70 A_SpawnItemEx("MarineBeaconSpawners",0,0,0,0,0,0,0,32|SXF_SETMASTER)
-	B3AC A 1
+    B3AC E 105 A_SpawnItemEx("MarineBeaconSpawners",0,0,0,0,0,0,0,32|SXF_SETMASTER)
+	B3AC E 35 A_PlaySound("sentry/warn")
     Goto Death
 }
 }
@@ -1277,18 +1279,10 @@ ACTOR TSMarineBeacon : MarineBeacon
 	BEAC BBB 35 A_PlaySound("world/alarm1")
     BEAC BBB 35 A_SpawnItemEx("TaskForceBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
     BEAC BBB 35 A_SpawnItemEx("TaskForceBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER,85)
-	BEAC G 1
+	BEAC B 105
+	BEAC B 35 A_PlaySound("sentry/warn")
     Goto Death
-  Death:
-	TNT1 A 0
-	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
-    TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
-	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
-    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
-    TNT1 A 0 A_PlaySound("weapons/rocklx")
-    TNT1 A 1 A_SpawnItem("RocketEx")
-    Stop
-  }
+}
 }
 
 ACTOR TaskForceBeaconSpawners : MarineBeaconSpawners
@@ -1358,27 +1352,16 @@ States
 }
 }
 
-ACTOR LegendaryMarineBeacon
+ACTOR LegendaryMarineBeacon : MarineBeacon
 {
-  Monster
-  Health 1000
-  Radius 6
-  Height 28
-  Mass 9999
-  +FLOORCLIP
-  +FRIENDLY
-  +NOTELEPORT
-  -COUNTKILL
-  -SHOOTABLE
-  -SOLID
-  States
-  {
+States
+{
   Spawn:
     BEAC C 10
 	BEAC CCC 35 A_PlaySound("world/alarm1")
     BEAC CCC 105 A_SpawnItemEx("LegendaryMarineBeaconSpawners",0,0,0,0,0,0,0,32|SXF_SETMASTER)
 	BEAC CC 105 A_SpawnItemEx("LegendaryMarineBeaconSpawners",0,0,0,0,0,0,0,32|SXF_SETMASTER,192)
-	BEAC C 1
+	BEAC C 35 A_PlaySound("sentry/warn")
     Goto Death
   Death:
 	TNT1 A 0
@@ -1402,6 +1385,196 @@ States
     TNT1 A 5 A_SpawnItemEx("LegendaryMarine",0,0,0,0,0,0,0,32|SXF_TRANSFERPOINTERS)
 	TNT1 A 1 A_Fall
 	Stop
+}
+}
+
+Actor LightSupportBeaconItem : Beacon
+{
+Inventory.Icon "ITM4A0"
+Inventory.PickupMessage "\c[L7]Light Support Beacon"
+Tag "Light Support Beacon"
+Inventory.MaxAmount 2
+States
+{
+  Spawn:
+	RBC1 A -1
+    Stop
+  Use:
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3100,0,0,0) == 1 ,"Nope")
+	TNT1 A 1 A_SpawnItemEx("LightSupportBeacon",0,0,16,8,0,4,0)
+	Stop
+  Nope:
+	TNT1 A 0 A_Print("Can't use this inventory now!")
+	Fail
+}
+}
+
+Actor LightSupportBeacon : MarineBeacon
+{
++BRIGHT
+States
+{
+  Spawn:
+    RBC1 ABCDE 10
+	RBC1 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("LightSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC1 ABCDE 70
+	RBC1 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("LightSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC1 ABCDE 70
+	RBC1 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("LightSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC1 ABCDE 70
+	RBC1 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("LightSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC1 ABCDE 70
+	RBC1 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("LightSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC1 A 105
+	RBC1 A 35 A_PlaySound("sentry/warn")
+    Goto Death
+}
+}
+
+Actor LightSupportBeaconSpawners : MarineBeaconSpawners
+{
+States
+{
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("TeleportFog")
+	TNT1 A 0 A_Jump(256,1,2,3,4)
+    TNT1 A 5 A_SpawnItemEx("UACGuyAR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+    Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyASG",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuySSG",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyChaingun",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+}
+}
+
+Actor HeavySupportBeaconItem : LightSupportBeaconItem
+{
+Inventory.Icon "ITM4B0"
+Inventory.PickupMessage "\c[M6]Heavy Support Beacon"
+Tag "Heavy Support Beacon"
+States
+{
+  Spawn:
+	RBC2 A -1
+    Stop
+  Use:
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3100,0,0,0) == 1 ,"Nope")
+	TNT1 A 1 A_SpawnItemEx("HeavySupportBeacon",0,0,16,8,0,4,0)
+	Stop
+  Nope:
+	TNT1 A 0 A_Print("Can't use this inventory now!")
+	Fail
+}
+}
+
+Actor HeavySupportBeacon : LightSupportBeacon
+{
+States
+{
+  Spawn:
+    RBC2 ABCDE 10
+	RBC2 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("HeavySupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC2 ABCDE 140
+	RBC2 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("HeavySupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC2 ABCDE 140
+	RBC2 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("HeavySupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC2 A 105
+	RBC2 A 35 A_PlaySound("sentry/warn")
+    Goto Death
+}
+}
+
+Actor HeavySupportBeaconSpawners : MarineBeaconSpawners
+{
+States
+{
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("TeleportFog")
+	TNT1 A 0 A_Jump(256,1,2,3)
+	TNT1 A 5 A_SpawnItemEx("UACGuyRocket",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyHRL",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyExpMinigun",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+}
+}
+
+Actor PlasmaSupportBeaconItem : LightSupportBeaconItem
+{
+Inventory.Icon "ITM4C0"
+Inventory.PickupMessage "\c[M4]Plasma Support Beacon"
+Tag "Plasma Support Beacon"
+States
+{
+  Spawn:
+	RBC3 A -1
+    Stop
+  Use:
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3100,0,0,0) == 1 ,"Nope")
+	TNT1 A 1 A_SpawnItemEx("PlasmaSupportBeacon",0,0,16,8,0,4,0)
+	Stop
+  Nope:
+	TNT1 A 0 A_Print("Can't use this inventory now!")
+	Fail
+}
+}
+
+Actor PlasmaSupportBeacon : LightSupportBeacon
+{
+States
+{
+  Spawn:
+    RBC3 ABCDE 10
+	RBC3 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("PlasmaSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC3 ABCDE 105
+	RBC3 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("PlasmaSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC3 ABCDE 105
+	RBC3 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("PlasmaSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC3 ABCDE 105
+	RBC3 F 70 A_PlaySound("world/alarm1")
+	TNT1 A 0 A_SpawnItemEx("PlasmaSupportBeaconSpawners",random(-16,16),random(-16,16),0,0,0,0,0,32|SXF_SETMASTER)
+	RBC3 A 105
+	RBC3 A 35 A_PlaySound("sentry/warn")
+    Goto Death
+}
+}
+
+Actor PlasmaSupportBeaconSpawners : MarineBeaconSpawners
+{
+States
+{
+  Spawn:
+    TNT1 A 0 
+    TNT1 A 0 A_SpawnItemEx("TeleportFog")
+	TNT1 A 0 A_Jump(256,1,2,3,4,5,6)
+	TNT1 A 5 A_SpawnItemEx("UACGuyPlasma",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyRepeater",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyPlasmaCaster",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyRailgun",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+	TNT1 A 5 A_SpawnItemEx("UACGuyDTRifle",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
+    TNT1 A 5 A_SpawnItemEx("UACGuyDTRailgun",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|32)
+	Goto End
 }
 }
 
@@ -7571,6 +7744,7 @@ States
     Stop
   Use:
     TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3100,0,0,0) == 1 ,"Nope")
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Rune Summoning Totem Type",0,0,0) == 12,"Agility")
     TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Rune Summoning Totem Type",0,0,0) == 11,"Time")
     TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Rune Summoning Totem Type",0,0,0) == 10,"Confusion")
     TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Rune Summoning Totem Type",0,0,0) == 9,"Looting")
@@ -7617,6 +7791,9 @@ States
 	Stop
   Time:
 	TNT1 A 1 A_SpawnItemEx("RuneSummoningTotemTime",0,0,16,8,0,4,0)
+	Stop
+  Agility:
+	TNT1 A 1 A_SpawnItemEx("RuneSummoningTotemAgility",0,0,16,8,0,4,0)
 	Stop
   Nope:
 	TNT1 A 0 A_Print("Can't use this inventory now!")
@@ -7746,10 +7923,10 @@ States
 	TNT1 A 0 A_ChangeFlag("USESPECIAL",0)
 	TNT1 A 0 A_SpawnItemEx("LegendaryAssaultProjectileShockwave",0,0,16)
 	TNT1 A 0 A_PrintBold("\c[z3]As you wish.")
-	TNT1 A 0 A_Jump(256,"Runes","Legendary","Legendary")
-  Runes:
+	TNT1 A 0 A_Jump(256,"PowerupRune","Legendary","Legendary")
+  PowerupRune:
 	ACCD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4 A_SpawnItemEx("LegendaryAssaultProjectileParticle",frandom(16,-16),frandom(16,-16),frandom(0,64))
-	ACCD AAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("LootRuneSpawner",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+	ACCD AA 50 A_SpawnItemEx("PowerupRuneItemMap",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
     Goto Done
   Legendary:
 	ACCD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4 A_SpawnItemEx("LegendaryAssaultProjectileParticle",frandom(16,-16),frandom(16,-16),frandom(0,64))

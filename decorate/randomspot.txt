@@ -491,6 +491,8 @@ ACTOR CyberMonstersWeakSpot : NewRandomMonsterInvasionSpot 15425
 	DropItem "CyberFiend"
 	DropItem "CyberFiend"
 	DropItem "CyberFiend"
+	DropItem "CyberDevil"
+	DropItem "CyberDevil"
 	DropItem "RocketImp"
 	DropItem "IronFiend"
 	DropItem "IronFiend"

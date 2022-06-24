@@ -73,6 +73,7 @@ Chance 0.2
 Object TeleportedBomb{Frame TBOM { Light Missile1a }}
 Object TeleportedSeekerBomb{Frame MIS8 { Light Missile1a }}
 Object MRocket{Frame HMIS { Light Missile1a }}
+Object UpgradedDemonTechSeekerRocket{Frame HMIS { Light Missile1a }}
 Object PlayerHomRocket{Frame HMIS { Light Missile1a }}
 Object PlayerHomRocket1{Frame HMIS { Light Missile1a }}
 Object PlayerHomRocket2{Frame HMIS { Light Missile1a }}
@@ -1197,6 +1198,15 @@ Frame CROCE { Light MissileExplode3 }
 Object PlayerCardHomingRocket
 {
 Frame CBRKA { Light Missile1 }
+}
+
+Object UpgradedDemonTechRocket
+{
+Frame CROCA { Light Missile1 }
+Frame CROCB { Light Missile1 }
+Frame CROCC { Light MissileExplode1 }
+Frame CROCD { Light MissileExplode2 }
+Frame CROCE { Light MissileExplode3 }
 }
 
 Object Legendary_Revenant
@@ -3076,6 +3086,7 @@ PointLight RuneSmallWhiteLight {Color 1.0 1.0 1.0 OffSet 0 0 0 Size 20}
 PointLight RuneSmallPurpleLight {Color 1.0 0.0 1.0 OffSet 0 0 0 Size 20}
 PointLight RuneSmallCyanLight{Color 0.0 0.5 1.0 Size 20}
 PointLight RuneSmallBlueLight{Color 0.0 0.0 1.0 Size 20}
+PointLight RuneSmallOrangeLight {Color 1.0 0.25 0 OffSet 0 0 0 Size 20}
 
 Object PlayerResistanceParticle{Frame EFXT{Light RuneSmallGreenLight}}
 Object PlayerRegenerationParticle{Frame EFXT{Light RuneSmallRedLight}}
@@ -3092,12 +3103,15 @@ Object PlayerConfusionParticle{Frame SOCF{Light RuneSmallWhiteLight}}
 Object PlayerHasteParticle{Frame ZAPR{Light RuneSmallCyanLight}}
 Object PlayerPowerupParticle{Frame TEFX{Light RuneSmallCyanLight}}
 Object PlayerTimeParticle{Frame S42V{Light RuneSmallBlueLight}}
+Object PlayerVeterancyParticle{Frame EFXT{Light SmallLegLightPlayer}}
 Object PlayerAwakenedLegendaryRuneParticleYellow{Frame SPK9{Light SmallLegLightPlayer}}
 Object PlayerAwakenedLegendaryRuneParticleBlue{Frame SPX8{Light RuneSmallBlueLight}}
 Object PlayerTrueLegendaryRuneParticle{Frame LBG1{Light RuneSmallBlueLight}}
 Object LegendarySalvationSphereParticle{Frame EFXT{Light SmallLegLightPlayer}}
 Object LegendarySalvationSphereParticle2{Frame EFXT{Light SmallLegLightPlayer}}
 Object LegendaryJudgmentSphereParticle{Frame JGMT{Light SmallLegLightPlayer}}
+Object MonsterKamikazeParticle{Frame PTCL{Light RuneSmallOrangeLight}}
+Object MonsterVitalityParticle{Frame PTCL{Light RuneSmallGreenLight}}
 
 Object PlayerLootingParticle
 {
@@ -3842,6 +3856,11 @@ Frame MSP2K { Light BabySpiderBoom1 }
 Object BabySentient1
 {
 Frame MARP { Light BabySentientFire1 }
+}
+
+Object BabyDemolisherMKII
+{
+Frame BD3M { Light BabySentientFire1 }
 }
 
 Object BabySentient~
@@ -4609,6 +4628,7 @@ Object AssaultWarlord{Frame ASWAN { Light ZOMBIEATK }Frame ASWAG { Light ZOMBIEA
 Object DraugrMissile{Frame AMIS { Light Missile1 }Frame TNT1 { Light Missile1 }}
 
 Object CyberImp{Frame CIMPG  { Light ZombiePlasma1 }}
+Object CyberDevil{Frame CD3VH  { Light ZombiePlasma1 }}
 
 Object LMoxinShot{Frame GHFX  { Light SmallGreenLight }}
 Object ToxicImpBall{Frame B4LX  { Light SmallGreenLight }}
@@ -4918,6 +4938,7 @@ Object LesserRainCometSpawner2{Frame CMRA { Light BruiserComet1 }}
 Object LesserRainComet{Frame COMT { Light Comet1 }}
 
 Object BabyMastermind{Frame CSP0G { Light ZOMBIEATK }Frame CSP0H { Light ZOMBIEATK }}
+Object TripleMinigunArachnotron{Frame CSP3T { Light ZOMBIEATK }}
 
 Object BattleLordOfHell{Frame HLGDF { Light MediumYellowLight }}
 Object BattleLordBall{Frame HGFB { Light MediumYellowLight }}
@@ -6744,6 +6765,7 @@ Object RuneSummoningTotemSummoner { frame RNBC { light SmallGreenLight }}
 Object RuneSummoningTotemLooting { frame RNBC { light SmallGreenLight }}
 Object RuneSummoningTotemConfusion { frame RNBC { light SmallGreenLight }}
 Object RuneSummoningTotemTime { frame RNBC { light SmallGreenLight }}
+Object RuneSummoningTotemAgility { frame RNBC { light SmallGreenLight }}
 
 Object DemonicAssault { frame TNT1 { light MegaRedLight }}
 Object DemonicAssault_1 { frame TNT1 { light MegaRedLight }}
@@ -6948,7 +6970,9 @@ Object AgilityRuneJumpEffect{frame DASH {light MediumGreenLight}}
 Object AwakenedLegendaryProjectile{frame NPSB {light MediumYellowLight}frame TNT1 {light MediumYellowLight}}
 Object LegendaryMiniWaitBall{frame NPSB {light MediumYellowLight}frame TNT1 {light MediumYellowLight}}
 
+Object LightSupportBeacon{Frame RBC1F { Light SmallCyanLight }}
+Object HeavySupportBeacon{Frame RBC2F { Light SmallRedLight }}
+Object PlasmaSupportBeacon{Frame RBC3F { Light SmallGreenLight }}
 
-
-
-
+Object UpgradedDemonTechRocketBoomFX{Frame ICYX { Light SmallOrangeLight }}
+Object InfernalEmperorFloorBoomFX{Frame ICYX { Light SmallOrangeLight }}

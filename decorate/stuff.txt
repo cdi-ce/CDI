@@ -3152,6 +3152,43 @@ States
 }
 }
 
+Actor SectorCleaner 18150
+{
+//$Category "Decoration/New Decoration"
+//$Title Sector Cleaner
+//$Sprite BXP2H0
++NOGRAVITY
++NOCLIP
+-SOLID
+Height 64
+Radius 24
+States
+{
+  Spawn:
+	TNT1 A 1 
+    TNT1 A 1 A_SpawnItemEx("SectorCleanerBomb")
+    TNT1 A 35
+    Loop
+}
+}
+
+Actor SectorCleanerBomb : LegSuicideBomb
+{
+DamageType "Marine"
++FORCERADIUSDMG
++FOILINVUL
++NOTIMEFREEZE
++NODAMAGETHRUST
++NOEXTREMEDEATH
+States
+{
+  Spawn:
+	TNT1 A 1
+	TNT1 A 1 A_Explode(9999,9999)
+    Stop
+}
+}
+
 //WTF
 
 Actor TPortal : SwitchableDecoration 18927

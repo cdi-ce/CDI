@@ -26,15 +26,17 @@ Tag "\c[z3]Legendary Sentient\c-"
 States
 {
   Spawn:
-   	TNT1 A 0 A_JumpIf(user_script2 == 1,4)
+   	TNT1 A 0 A_JumpIf(user_script2 == 1,5)
 	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,96,1,0)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("LegSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
     TNT1 A 0 A_SetUserVar("user_script2",1)
 	LUPR AB 2 A_Look
 	Loop	
   See:
-    TNT1 A 0 A_JumpIf(user_script2 == 1,4)
+    TNT1 A 0 A_JumpIf(user_script2 == 1,5)
 	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,96,1,0)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("LegSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
     TNT1 A 0 A_SetUserVar("user_script2",1)
 	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")

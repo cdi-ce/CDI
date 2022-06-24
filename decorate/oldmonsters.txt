@@ -4761,6 +4761,7 @@ DamageFactor "Hell", 0.0
 DamageFactor "MechStep", 0.2
 DropItem "BonusCrateDrop" 1
 +DONTHARMSPECIES
++BRIGHT
 MaxStepHeight 32
 MaxDropOffHeight 32
 var int user_script;
@@ -4842,7 +4843,7 @@ States
     MARP A 20 Bright A_Scream
 	TNT1 A 0 A_GiveToTarget("StrongCrateGiver",1)
     MARP E 6 Bright A_Fall
-	MARP F 6 Bright
+	MARP F 6 Bright A_GiveInventory("ImDead",1)
 	TNT1 AAA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	MARP GGGGG 2 Bright A_CustomMissile("Kaboom2", random(20,40), random(10,-10), random(0,360), 2, random(0,360))
 	TNT1 AAAA 0 A_CustomMissile("SmokeFX2", random(20,40), 0, random(0,360), 2, random(0,360))
@@ -4957,6 +4958,7 @@ States
     LBBS A 20 Bright A_Scream
 	TNT1 A 0 A_GiveToTarget("EpicCrateGiver",1)
 	TNT1 A 0 A_GiveToTarget("PowerCrateGiver",1)
+ 	TNT1 A 0 A_GiveInventory("ImDead",1)
     LBBS E 6 Bright A_Fall
 	LBBS F 6 Bright
 	TNT1 AAA 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
@@ -4967,7 +4969,7 @@ States
 	LBBS J 2
     TNT1 A -1 
     Stop
-  }
+}
 }
 
 ACTOR Guardian1 : Guardian replaces Guardian
@@ -8699,7 +8701,6 @@ States
     TNT1 A 0 A_SetUserVar("user_script",1)
 	TNT1 A 0 A_UnsetInvulnerable
 	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
-    ARCY A 0 A_SpawnItem("SentientFireSpawner",0,0,0,0)
     ARCY A 2 A_Chase
     TNT1 A 0 A_Jump(32,"Evade")	
     Loop
@@ -8809,15 +8810,15 @@ States
   BFG9K:
 	TNT1 A 0 A_PlaySound("weapons/bfgf")
 	ARCY DDDDDDDDDDDDEEEE 2 A_FaceTarget
-	SUPR E 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
+	ARCY E 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
 	ARCY EDDD 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfgf")
 	ARCY DDDDDDDDDDDDEEEE 2 A_FaceTarget
-	SUPR E 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
+	ARCY E 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
 	ARCY EDDD 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfgf")
 	ARCY DDDDDDDDDDDDEEEE 2 A_FaceTarget
-	SUPR E 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
+	ARCY E 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
 	ARCY EDDD 2 A_FaceTarget
 	TNT1 A 0 A_Jump(144,"BFG10K")
 	Goto See
@@ -8960,11 +8961,11 @@ States
   Devastator:
 	TNT1 A 0 A_PlaySound("devastator/charge")
 	ARCY DDDDDD 10 A_FaceTarget  
-	ARCY E 0 A_PlayWeaponSound("devastator/fire")
+	TNT1 A 0 A_PlayWeaponSound("devastator/fire")
 	ARCY E 35 A_CustomMissile("UpdatedDemonDevastatorBall",48,-27,random(-3,3))
 	TNT1 A 0 A_PlaySound("devastator/charge")
 	ARCY DDDDDD 10 A_FaceTarget  
-	ARCY E 0 A_PlayWeaponSound("devastator/fire")
+	TNT1 A 0 A_PlayWeaponSound("devastator/fire")
 	ARCY E 35 A_CustomMissile("UpdatedDemonDevastatorBall",48,-27,random(-3,3))
 	ARCY DD 10 A_FaceTarget
 	TNT1 A 0 A_Jump(128,"EradicationBFG")
@@ -9180,7 +9181,7 @@ States
 	ARCY FFFFFFFFFFFFFFFFFFFFFF 3 A_SpawnItem("SentientBrainSFX",0,0,0,0)
 	TNT1 A 0 A_Jump(196,"EradicationBFG")
 	TNT1 A 0 A_UnSetInvulnerable
-	SUPR A 3
+	ARCY A 3
 	Goto See	
   Death:
     TNT1 A 0
@@ -9210,6 +9211,651 @@ States
 	TNT1 A -1 
 	Stop
   }
+}
+
+Actor CerebralCardihilator : CerebralCardinal1
+{
+Health 19000
+Tag "\c[w8]Cerebral Cardihilator\c-"
+Obituary "%o was not ready against the full arsenal of the Cerebral Cardihilator."
+States
+{
+  Spawn:
+	TNT1 A 0 A_JumpIf(user_script == 1,7)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("CerebralSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+    AHCY AB 2 A_Look
+	Loop
+  See:
+	TNT1 A 0 
+	TNT1 A 0 A_JumpIf(user_script == 1,7)
+    TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(3708,0,0,0) == TRUE,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Changeflag("NOPAIN",1)
+	TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("CerebralSentientFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+    AHCY AB 2 A_Chase
+    TNT1 A 0 A_Jump(48,"Evade")	
+    Loop
+  Evade:
+	TNT1 A 0 A_Jump(128,"EvadeAlt")
+	TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+	AHCY ABABABAB 2 A_Chase       
+	TNT1 A 0 A_Stop
+	Goto See
+  EvadeAlt:
+	TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+	AHCY ABABABAB 2 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+  Missile:
+	TNT1 A 0 
+	TNT1 A 0 A_SetShootable
+    TNT1 A 0 A_UnsetInvulnerable
+    TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_GiveInventory("ImStillAliveSomehow")
+	TNT1 A 0 A_Jump(16,"FusionNuke")
+	TNT1 A 0 A_Jump(188,"CyberRockets","CyberHomingRockets","HeavyRocket","Railgun","BFG9K","BFG10K","MiniDTBFG","DTBFG10K")
+	TNT1 A 0
+  Normal:
+    TNT1 A 0 A_JumpIfCloser(1500,1)
+	Goto CyberHomingRockets
+	AHCY CCC 2 A_FaceTarget
+	TNT1 A 0 A_SpawnItem("SentientFireSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 10, 12, 40, Random(2, 6), 0, Random(1, 3), Random(80, 90), 128)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+	AHCY G 2 A_CustomMissile("SentientExplosiveTracer",36,0,Random(-800,800)/100.00,0)
+	TNT1 A 0 A_SpawnItem("SentientFireSpawner",0,0,0,0)	
+    TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 10, -12, 40, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+	AHCY H 2 A_CustomMissile("SentientExplosiveTracer",36,0,Random(-800,800)/100.00,0)
+	TNT1 A 0 A_StopSoundEx("Weapon")	
+	TNT1 A 0 A_Jump(3,"See","BFG9K","BFG10K","DTBFG10K")
+    TNT1 A 0 A_JumpIfCloser(1500,2)
+	TNT1 A 0 A_Jump(256,"CyberHomingRockets")
+    TNT1 A 0 A_SpidRefire
+	Goto Normal+4
+  CyberRockets:
+	AHCY CCC 2 A_FaceTarget   
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"CyberHomingRockets")
+	Goto See
+  CyberHomingRockets:
+	AHCY CCC 2 A_FaceTarget   
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedCardinalHomingRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("UpdatedCardinalHomingRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"HeavyRocket")
+	Goto See
+  HeavyRocket:
+	AHCY CCC 2 A_FaceTarget   
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("BersekerHeavyRocket",55,24,random(-4,4))
+	AHCY D 6 A_CustomMissile("BersekerHeavyRocket",55,-24,random(-4,4))
+	AHCY C 3 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"Railgun")
+	Goto See
+  Railgun:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+	AHCY CCCCCCCCCCCCCCC 2 A_FaceTarget
+	AHCY G 4 A_CustomMissile("CardinalRail",55,-24)
+	TNT1 A 0 A_CustomMissile("CardinalRail",55,24,random(-3,3))
+	AHCY D 4 A_CustomMissile("CardinalRail",55,-24,random(-3,3))
+	AHCY CCCCC 2 A_FaceTarget
+	AHCY G 4 A_CustomMissile("CardinalRail",55,-24)
+	TNT1 A 0 A_CustomMissile("CardinalRail",55,24,random(-3,3))
+	AHCY D 4 A_CustomMissile("CardinalRail",55,-24,random(-3,3))
+	AHCY CCCCC 2 A_FaceTarget
+	AHCY G 4 A_CustomMissile("CardinalRail",55,-24)
+	TNT1 A 0 A_CustomMissile("CardinalRail",55,24,random(-3,3))
+	AHCY D 4 A_CustomMissile("CardinalRail",55,-24,random(-3,3))
+	AHCY CCCCC 2 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"BFG9K")
+	Goto See
+  BFG9K:
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	AHCY EEEEEEEEEEEEFFFF 2 A_FaceTarget
+	AHCY F 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
+	AHCY FF 2 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedSentientBFG9500Ball",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("UpdatedSentientBFG9500Ball",55,-24,random(-4,4))
+	AHCY DD 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	AHCY EEEEEEEEEEEEFFFF 2 A_FaceTarget
+	AHCY F 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
+	AHCY FF 2 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedSentientBFG9500Ball",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("UpdatedSentientBFG9500Ball",55,-24,random(-4,4))
+	AHCY DD 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	AHCY EEEEEEEEEEEEFFFF 2 A_FaceTarget
+	AHCY F 2 A_CustomMissile("UpdatedSentientBFG9500Ball",42,0,0)
+	AHCY FF 2 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedSentientBFG9500Ball",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("UpdatedSentientBFG9500Ball",55,-24,random(-4,4))
+	AHCY DD 2 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"BFG10K")
+	Goto See
+  BFG10K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	AHCY EEEEEE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY DE 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	AHCY F 2 A_CustomMissile("DemonRed10KProjectile",42,0,random(4,-4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,24,random(-4,4))
+	TNT1 A 0 A_CustomMissile("DemonRed10KProjectile",55,-24,random(-4,4))
+	AHCY D 2 A_FaceTarget
+	AHCY C 20 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	TNT1 A 0 A_Jump(144,"MiniDTBFG")
+	Goto See
+  MiniDTBFG:
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGCharge")
+	AHCY EEEEEE 5 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	AHCY F 4 A_CustomMissile("LesserCardinalMiniDTBFG",42,0,random(-3,3))
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,-24,random(-3,3))
+	AHCY DE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	AHCY F 4 A_CustomMissile("LesserCardinalMiniDTBFG",42,0,random(-3,3))
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,-24,random(-3,3))
+	AHCY DE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	AHCY F 4 A_CustomMissile("LesserCardinalMiniDTBFG",42,0,random(-3,3))
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,-24,random(-3,3))
+	AHCY DE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	AHCY F 4 A_CustomMissile("LesserCardinalMiniDTBFG",42,0,random(-3,3))
+	TNT1 A 0 A_PlaySound("LesserCardinal/BFGFire") 
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("LesserCardinalMiniDTBFG",55,-24,random(-3,3))
+	AHCY DE 4 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"DTBFG10K")
+	Goto See
+  DTBFG10K:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	AHCY EEEEEE 4 A_FaceTarget
+	AHCY F 4 A_CustomMissile("UpdatedDemonDTBFG10KBall",42,0,0)
+	AHCY C 4 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",55,-24,random(-3,3))
+	AHCY DC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	AHCY EEEEEE 4 A_FaceTarget
+	AHCY F 4 A_CustomMissile("UpdatedDemonDTBFG10KBall",42,0,0)
+	AHCY C 4 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",55,-24,random(-3,3))
+	AHCY DC 4 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"HellStormBFG10K")
+	Goto See
+  HellStormBFG10K:
+	TNT1 A 0 A_PlaySound("weapons/Hcharge10k")
+	AHCY EEEEEEE 4 A_FaceTarget
+	TNT1 AAAAAA 0 A_CustomMissile("CardihilationHSBFG10kShot",48,-27,random(-4,4))
+	AHCY F 3 A_PlaySound("weapons/Hbfg10kfire")
+	AHCY EEE 4 A_FaceTarget
+	TNT1 AAAAAA 0 A_CustomMissile("CardihilationHSBFG10kShot",48,-27,random(-4,4))
+	AHCY F 3 A_PlaySound("weapons/Hbfg10kfire")
+	AHCY EEE 4 A_FaceTarget
+	TNT1 AAAAAA 0 A_CustomMissile("CardihilationHSBFG10kShot",48,-27,random(-4,4))
+	AHCY F 3 A_PlaySound("weapons/Hbfg10kfire")
+	AHCY EEE 4 A_FaceTarget
+	TNT1 AAAAAA 0 A_CustomMissile("CardihilationHSBFG10kShot",48,-27,random(-4,4))
+	AHCY F 3 A_PlaySound("weapons/Hbfg10kfire")
+	AHCY EEE 4 A_FaceTarget
+	TNT1 AAAAAA 0 A_CustomMissile("CardihilationHSBFG10kShot",48,-27,random(-4,4))
+	AHCY F 3 A_PlaySound("weapons/Hbfg10kfire")
+	AHCY EEE 4 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"HellStormAltBFG10K")
+	Goto See
+  HellStormAltBFG10K:
+	TNT1 A 0 A_PlaySound("HellStormBFG/Charge2")
+	AHCY EEEEEE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("HellStormBFG/Fire2")
+	AHCY E 3 A_CustomMissile("CardihilationHSBFG10kBigShot",42,0,0)
+	TNT1 A 0 A_PlaySound("HellStormBFG/Fire2")
+	TNT1 A 0 A_CustomMissile("CardihilationHSBFG10kBigShot",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("CardihilationHSBFG10kBigShot",55,-24,random(-3,3))
+	AHCY D 3 A_FaceTarget
+	AHCY CCCCCC 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("HellStormBFG/Charge2")
+	AHCY EEEEEE 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("HellStormBFG/Fire2")
+	AHCY E 3 A_CustomMissile("CardihilationHSBFG10kBigShot",42,0,0)
+	TNT1 A 0 A_PlaySound("HellStormBFG/Fire2")
+	TNT1 A 0 A_CustomMissile("CardihilationHSBFG10kBigShot",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("CardihilationHSBFG10kBigShot",55,-24,random(-3,3))
+	AHCY D 3 A_FaceTarget
+	AHCY CCCCCC 4 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"BFG12K")
+	Goto See
+  BFG12K:
+	AHCY EEEEE 5 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	AHCY EEEEEEE 5 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",42,0,0,0)
+	AHCY F 8 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",55,-24,random(-3,3))
+	AHCY D 8 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("BFG12000/Fire")
+	AHCY EEEEEEE 5 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",42,0,0,0)
+	AHCY F 8 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",55,-24,random(-3,3))
+	AHCY D 8 A_FaceTarget
+	AHCY CCC 6 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"SuperLazer")
+	Goto See
+  SuperLazer:
+    AHCY E 20 A_FaceTarget
+    TNT1 A 0 A_PlayWeaponSound("SuperLazer/Charge")
+    AHCY EEEEEEEEEE 8 A_FaceTarget	
+	TNT1 A 0 A_PlayWeaponSound("SuperLazer/Fire")
+	TNT1 A 0 A_SetUserVar("user_missile",0)
+  SuperLazerLoop:
+	TNT1 A 0 A_JumpIf(user_missile >= 30,"SuperLazerEnd")	 
+	TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+	TNT1 A 0 A_FaceTarget(0.75,180)
+	AHCY F 1 A_CustomMissile("DemonSuperLazerRed",44,0,0)
+	TNT1 A 0 A_FaceTarget(0.75,180)
+	AHCY F 1 A_CustomMissile("DemonSuperLazerRed",44,0,0)
+	TNT1 A 0 A_FaceTarget(0.75,180)
+	AHCY F 1 A_CustomMissile("DemonSuperLazerRed",44,0,0)
+	TNT1 A 0 A_FaceTarget(0.75,180)
+    Loop
+  SuperLazerEnd:
+	AHCY EEE 6 A_FaceTarget
+	TNT1 A 0 A_Jump(144,"Devastator")
+	Goto See
+  Devastator:
+	TNT1 A 0 A_PlaySound("devastator/charge")
+	AHCY EEEEEE 10 A_FaceTarget  
+	TNT1 A 0 A_PlayWeaponSound("devastator/fire")
+	AHCY F 17 A_CustomMissile("UpdatedDemonDevastatorBall",48,-27,random(-3,3))
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",55,-24,random(-3,3))
+	AHCY D 17 A_FaceTarget
+	TNT1 A 0 A_PlaySound("devastator/charge")
+	AHCY EEEEEE 10 A_FaceTarget  
+	TNT1 A 0 A_PlayWeaponSound("devastator/fire")
+	AHCY F 17 A_CustomMissile("UpdatedDemonDevastatorBall",48,-27,random(-3,3))
+	TNT1 A 0 A_CustomMissile("UpdatedDemonDTBFG10KBall",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("RedDemonBFG12000Ball",55,-24,random(-3,3))
+	AHCY D 17 A_FaceTarget
+	AHCY CC 10 A_FaceTarget
+	TNT1 A 0 A_Jump(128,"EradicationBFG")
+	Goto See
+  EradicationBFG:
+	AHCY C 10 A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+	AHCY C 3 A_PlaySound("CerebralCardinal/sight")
+	TNT1 A 0 A_PlayWeaponSound("EradicationBFG/Charge")
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("DEradicationBFGProjectile",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("DEradicationBFGProjectile",55,-24,random(-3,3))
+	TNT1 A 0 A_FaceTarget
+    AHCY DCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("DEradicationBFGProjectile",55,24,random(-3,3))
+	TNT1 A 0 A_CustomMissile("DEradicationBFGProjectile",55,-24,random(-3,3))	
+	TNT1 A 0 A_FaceTarget
+    AHCY DCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("DEradicationBFGProjectile",55,24,random(-3,3))	
+	TNT1 A 0 A_CustomMissile("DEradicationBFGProjectile",55,-24,random(-3,3))	
+	TNT1 A 0 A_FaceTarget
+    AHCY DCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    AHCY CCCC 5 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnsetInvulnerable
+	AHCY C 20
+	TNT1 A 0 A_Jump(128,"EradicationBFGAlt")
+	Goto See
+  EradicationBFGAlt:
+	TNT1 A 0
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_PlaySound("CerebralCardinal/sight")
+	TNT1 A 0 A_PlayWeaponSound("obelisk/fire")
+	AHCY EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 A_GiveInventory("CebSentEradicationAiming",1)
+	AHCY EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 A_GiveInventory("CebSentEradicationAiming",1)
+	AHCY EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 A_GiveInventory("CebSentEradicationAiming",1)
+	AHCY F 3 A_CustomMissile("DEradicationBFGFocusProj",44,0,0)	
+	AHCY EEEEEEEEEEE 1 A_GiveInventory("CebSentEradicationAiming",1)
+	AHCY F 3 A_CustomMissile("DEradicationBFGFocusProj",44,0,random(-3,3))
+	AHCY EEEEEEEEEEE 1 A_GiveInventory("CebSentEradicationAiming",1)
+	AHCY F 3 A_CustomMissile("DEradicationBFGFocusProj",44,0,random(-3,3))		
+	TNT1 A 0 A_UnSetInvulnerable
+	AHCY CCCCCC 10 A_FaceTarget
+	TNT1 A 0 A_Jump(128,"FusionNuke")
+	Goto See
+  FusionNuke:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(user_fusionnuke >= 2,"Devastator")
+	TNT1 A 0 Radius_Quake(50,150,0,24,0)
+	TNT1 A 0 A_SetUserVar("user_wait",0) 
+	AHCY C 3 A_PlaySound("CerebralCardinal/sight", CHAN_AUTO, 1.0, False, ATTN_NONE)
+  FusionNukeGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 32,"FusionNukeEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	AHCY CC 2 A_FaceTarget
+	Loop
+  FusionNukeEnd:
+	TNT1 A 0 A_PlaySoundEx("Cardihilator/NukeFire", 1, 0, 2)
+	TNT1 A 0 A_SetUserVar("user_fusionnuke",user_fusionnuke+1)
+	TNT1 A 0 A_CustomMissile("MonsterFusionNuke",55,24,random(-2,2))	
+	TNT1 A 0 A_CustomMissile("MonsterFusionNuke",55,-24,random(-2,2))
+	AHCY CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 2 A_FaceTarget
+	Goto See
+  Pain:
+	TNT1 A 0 A_Jump(128,"PainResurrect","Meteors","EradicationBFG")
+	AHCY I 3
+	AHCY I 3 A_Pain
+	TNT1 A 0 A_Jump(196,"Missile")
+	Goto See
+  Meteors:
+	TNT1 A 0
+	AHCY I 3 A_Pain
+	TNT1 A 0 A_JumpIfInventory("CardinalToken",3,"See")	
+	AHCY I 12
+	TNT1 A 0 A_GiveInventory("CardinalToken",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 Radius_Quake(10,80,0,24,0)
+	TNT1 A 0 A_GiveInventory("Health",750)
+	TNT1 A 0 A_PlaySound("Cardinal/Laugh")	
+	TNT1 A 0 A_SetUserVar("user_wait",0) 
+  MeteorsGo:
+    TNT1 A 0 A_JumpIf(user_wait >= 64,"MeteorsEnd")	 
+    TNT1 A 0 A_SetUserVar("user_wait",user_wait+1)
+	TNT1 A 0 A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0)
+	AHCY I 2 A_SpawnItemEx("RainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0)
+	Loop
+  MeteorsEnd:
+	TNT1 A 0 
+	TNT1 A 0 A_Jump(196,"EradicationBFG","EradicationBFGAlt","FusionNuke")
+	TNT1 A 0 A_UnSetInvulnerable
+	AHCY II 3
+	Goto See
+  PainResurrect:
+	AHCY C 3
+	AHCY C 3 A_Pain
+	TNT1 A 0 A_JumpIfInventory("SentientToken",3,"See")	
+	AHCY CCCC 3 A_FaceTarget
+	TNT1 A 0 A_GiveInventory("SentientToken",1)
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 Radius_Quake(10,80,0,24,0)
+	TNT1 A 0 A_GiveInventory("Health",750)
+	TNT1 A 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("SentientFireSpawner",0,0,0,0)
+    AHCY C 3 A_PlaySound("sentient/laugh")
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,30,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,90,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,150,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,210,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,270,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,330,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,360,0)
+	AHCY CC 3 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,15,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,45,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,75,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,105,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,135,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,165,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,195,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,225,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,255,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,285,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,315,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrectionEffect",10,0,345,0)
+	AHCY CC 3 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,10,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,20,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,30,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,40,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,50,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,70,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,80,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,90,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,100,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,110,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,130,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,140,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,150,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,160,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,170,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,190,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,200,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,210,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,220,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,230,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,250,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,260,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,270,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,280,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,290,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,310,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,320,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,330,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,340,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,350,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,360,0)
+	AHCY CCCCCCCCCCCCCCCCCCCCCC 3 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,10,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,20,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,30,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,40,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,50,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,70,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,80,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,90,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,100,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,110,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,130,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,140,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,150,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,160,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,170,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,190,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,200,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,210,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,220,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,230,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,250,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,260,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,270,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,280,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,290,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,310,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,320,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,330,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,340,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,350,0)
+	TNT1 A 0 A_CustomMissile("SentientMassResurrection",10,0,360,0)
+	AHCY CCCCCCCCCCCCCCCCCCCCCC 3 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+	TNT1 A 0 A_Jump(196,"EradicationBFG")
+	TNT1 A 0 A_UnSetInvulnerable
+	AHCY A 3
+	Goto See
+  Death:
+    TNT1 A 0
+	AHCY J 10 A_Scream
+	AHCY J 20 A_Fall
+	TNT1 A 0 A_GiveToTarget("EpicCrateStrongGiver",1)
+    TNT1 AAAAA 0 A_GiveToTarget("BossCrateGiver",1)
+ 	TNT1 A 0 A_GiveInventory("ImDead",1)
+    TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+	AHCY KKKKKKKKKK 2 A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
+    AHCY LLLLLLLLLL 2 A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    AHCY MMMMMMMMMM 2 A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+    AHCY NNNNNNNNNN 1 A_CustomMissile("Kaboom", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+    TNT1 AAAAAAAA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAAAAAAAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile("SmokeFX3", random(10,60), random(30,-30), random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("Explode",random(20,160),random(20,-20),random(0,360),2,random(0,360))
+	TNT1 A 0 A_CustomMissile("BigExplosion",0,0,random(80,100),2,random(80,100))
+	AHCY NN 1
+	TNT1 A -1
+	Stop
+}
 }
 
 ACTOR Imp2 : VoidImp1{MaxDropOffHeight 68}

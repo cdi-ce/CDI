@@ -30,7 +30,8 @@ Obituary "The True Legendary Cardinal showed no mercy when it erased %o from exi
 States 
 { 
   Spawn:
-	TNT1 A 0 A_JumpIf(user_script == 1,4)
+	TNT1 A 0 A_JumpIf(user_script == 1,5)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
 	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("TrueLegendaryCardinalFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_SetUserVar("user_script",1)
@@ -38,7 +39,8 @@ States
 	TLRD AB 2 A_Look	  
 	Loop
   See:
-	TNT1 A 0 A_JumpIf(user_script == 1,4)
+	TNT1 A 0 A_JumpIf(user_script == 1,5)
+    TNT1 A 0 ACS_NamedExecuteAlways("Strong Monster Phase Setter",0,0,0,0)
 	TNT1 A 0 ACS_NamedExecuteAlways("Boss Fight",0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("TrueLegendaryCardinalFireFollower",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_SetUserVar("user_script",1)

@@ -602,9 +602,11 @@ Damage 300
 Scale 3
 DamageType "NobleComet"
 PROJECTILE
++FORCERADIUSDMG
++SKYEXPLODE
 SeeSound "comet/launch"
 DeathSound "comet/explosion"
-Decal Scorch
+Decal NukeRocketScorch
 States
 {
   Spawn:

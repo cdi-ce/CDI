@@ -3549,3 +3549,39 @@ ACTOR MarauderSpot : NewMonsterInvasionSpot 15786
     Height 56
 	DropItem "Marauder"
 }
+
+ACTOR BabyDemolisherMKIISpot : NewMonsterInvasionSpot 15787
+{
+	//$Title Baby Demolisher MKII
+	//$Sprite BD3MA2A8
+	Radius 36
+	Height 64
+	DropItem "BabyDemolisherMKII"
+}
+
+ACTOR CerebralCardihilatorSpot : NewMonsterInvasionSpot 15788
+{
+	//$Title Cerebral Cardihilator
+	//$Sprite AHCYA2A8
+	Radius 65
+	Height 100
+	DropItem "CerebralCardihilator"
+}
+
+ACTOR TripleMinigunArachnotronSpot : NewMonsterInvasionSpot 15789
+{
+	//$Title Triple Minigun Arachnotron
+	//$Sprite CSP3A2A8
+	Radius 36
+	Height 64
+	DropItem "TripleMinigunArachnotron"
+}
+
+ACTOR CyberDevilSpot : NewMonsterInvasionSpot 15790
+{
+	//$Title Cyber Devil
+	//$Sprite CD3VA2
+	Radius 20
+	Height 56
+	DropItem "CyberDevil"
+}

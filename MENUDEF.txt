@@ -91,7 +91,7 @@ OptionMenu "CDIGlobalSettings"
     StaticText " "
     Option "Enable Bonus Crate","cdm_bonuscrate","TrueOrFalse"
     Option "Enable Bonus Crate Drop","cdm_bonuscrate_drop","TrueOrFalse"
-	Slider "Bonus Crate Chances", "cdm_bonuscrate_chance",0,100,1,0
+	Slider "Bonus Crate Multiplier(/10)", "cdm_bonuscrate_chance",0,200,1,0
     StaticText " "
     Submenu "Global Player Settings","GlobalPlayerSettings"
     StaticText " "
@@ -122,31 +122,62 @@ OptionMenu "GlobalMonsterSettings"
     Option "Enable Invasion Gate","cdm_invasiongate","TrueOrFalse"
     Option "Force Invasion Gate","cdm_invasiongateforced","TrueOrFalse"
     StaticText " "
-	Slider "Security Cooldown(mins)", "cdm_security_delay", 0, 60, 1, 0
+    Submenu "Threat System Settings","ThreatSystemSettings"
     StaticText " "
+    Submenu "Hell Incursion Settings","HellIncursionSettings"
+    StaticText " "
+    Submenu "Monster Event Settings","MonsterEventSettings"
+    StaticText " "
+    Submenu "Demonic Assault Settings","DemonicAssaultSettings"
+    StaticText " "
+    Submenu "Demon Reinforcement Settings","DemonReinforcementSettings"
+}
+
+OptionMenu "ThreatSystemSettings"
+{
+    Title "Threat System Settings"
 	Slider "Threat Level Limit", "cdm_incursion_tier_limit", 1, 9, 1, 0
 	Slider "Threat Progress Multiplier", "cdm_incursion_progress_speed", 1, 16, 1, 0
-    StaticText " "
+	Slider "Threat Trigger Min Monsters", "cdm_incursion_min_monster", 1, 200, 1, 0
+	Slider "Threat Trigger Max Monsters", "cdm_incursion_max_monster", 100, 1000, 1, 0
+	Slider "Security Cooldown(mins)", "cdm_security_delay", 0, 60, 1, 0
+}
+
+OptionMenu "HellIncursionSettings"
+{
+    Title "Hell Incursion Settings"
     Option "Enable Hell Incursion","cdm_incursion","TrueOrFalse"
 	Slider "Max Hell Incursion/Wave", "cdm_max_incursion", 0, 20, 1, 0
 	Slider "Hell Incursion Chance", "cdm_incursion_chance", 0, 100, 1, 0
 	Slider "Hell Incursion Size", "cdm_incursion_size", 0, 5, 0.1, 2
-	Slider "Incursion Trigger Min Monsters", "cdm_incursion_min_monster", 1, 200, 1, 0
-	Slider "Incursion Trigger Max Monsters", "cdm_incursion_max_monster", 100, 1000, 1, 0
-    StaticText " "
+}
+
+OptionMenu "MonsterEventSettings"
+{
+    Title "Monster Event Settings"
     Option "Enable Monster Event","cdm_monster_event","TrueOrFalse"
 	Slider "Monster Event Chance", "cdm_monster_event_chance", 0, 100, 1, 0
 	Slider "Monster Event Delay(mins)", "cdm_monster_event_delay", 1, 60, 1, 0
-    StaticText " "
+}
+
+OptionMenu "DemonicAssaultSettings"
+{
+    Title "Demonic Assault Settings"
     Option "Enable Demonic Assault","cdm_demonic_assault","TrueOrFalse"
 	Slider "Min Demonic Assault/Level", "cdm_demonic_assault_count_min", 0, 3, 1, 0
 	Slider "Max Demonic Assault/Level", "cdm_demonic_assault_count_max", 4, 6, 1, 0
+	Slider "Max Demonic Assault/Wave", "cdm_demonic_assault_count_wave", 1, 6, 1, 0
 	Slider "Demonic Assault Min Delay(s)", "cdm_demonic_assault_time_min", 1, 300, 1, 0
 	Slider "Demonic Assault Max Delay(s)", "cdm_demonic_assault_time_max", 1, 600, 1, 0
-    StaticText " "
+}
+
+OptionMenu "DemonReinforcementSettings"
+{
+    Title "Demon Reinforcement Settings"
     Option "Enable Demon Reinforcement","cdm_demon_reinforcement","TrueOrFalse"
 	Slider "Min Demon Reinforcement/Level", "cdm_demon_reinforcement_count_min", 0, 12, 1, 0
 	Slider "Max Demon Reinforcement/Level", "cdm_demon_reinforcement_count_max", 1, 24, 1, 0
+	Slider "Max Demon Reinforcement/Wave", "cdm_demon_reinforcement_count_wave", 1, 24, 1, 0
 	Slider "Demon Reinforcement Min Delay(s)", "cdm_demon_reinforcement_time_min", 0, 60, 1, 0
 	Slider "Demon Reinforcement Max Delay(s)", "cdm_demon_reinforcement_time_max", 1, 180, 1, 0
 }
@@ -195,6 +226,7 @@ OptionValue "FavoriteRune"
 	9, "Looting"
 	10, "Confusion"
 	11, "Time"
+	12, "Agility"
 }
 
 OptionMenu "CDIHotkeys"

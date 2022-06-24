@@ -1,5 +1,32 @@
 -------------------- Major Update for v0.99.9 --------------------
 
+****************************** BETA 8 ******************************
+
+- Added an Upgrade for "Demon Tech Rocket Launcher".
+- Added a script which resets player Rank and Experience when leaving.
+- Added a new "Demon Enchant" called "Vitality" which increases monsters Health by 500%.
+- Updated the "Bonus Crate Multiplier" settings which will properly work and won't be reset anymore.
+- Updated the "Tactician" Class with new items, also edited the reward amount.
+- Updated the "Favorite Rune" optoin for the "Rune Summoning Totem" which can now select the "Agility Rune".
+- Buffed the "Archon Lord" super projectile now having both "FORCERADIUSDMG" & "SKYEXPLODE" flags.
+- Buffed all Legendary Bosses with a "Boss Health Bar" which will also be able to use the "Legendary Shield".
+- Buffed "Agility Rune" now giving 1 second of invulnerability to the player when using a dash.
+- Edited the "Demonic Assault" by adding a limit per wave and also tweaked the selection of monsters.
+- Edited the activation sound of the "Rune Summoning Totem".
+- Edited the runes dropped by the "Ascended Cacodemon".
+- Edited CDM25 by adding a teleporter to get back in the safe zone without dying.
+- Edited CDM05 & CDM11 by adding a way to clear monsters spawning under 3d sectors by error.
+- Edited "Demon Reinforcement" by adding more restriction on how it can spawn monsters to avoid it from breaking the map progress.
+- Fixed getting the "Legendary Obelisk" from "Bonus Crate" showing a "Legendary Beacon" log.
+- Fixed "Demon Enchant" not giving the "Regeneration Enchant".
+- Fixed "Marauder" not giving anything when killed.
+- Fixed "UAC Respawn Supply" message showing ranks instead.
+- Fixed "Glitched Enchant" sometimes not giving back the Fuzzy effect.
+- Fixed "Bonus Crate" still giving "High Jump Rune" & "Haste Rune" intead of the "Agility Rune".
+- Fixed "Loot Box - Powerup" using the wrong sprites.
+- Fixed CDM08 now properly crushing all Cyberdemons.
+- Fixed CDM24: Wave04 was blocked.
+
 ****************************** BETA 7 ******************************
 
 - Added a new rune the "Agility Rune" which combine "High Jump Rune" & "Haste Rune" and also add double jump and dash.

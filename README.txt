@@ -6,7 +6,7 @@ Primary purpose         : Coop/Invasion
 ===========================================================================
 Title                   : Complex Doom Invasion
 Filename                : complex-doom-invasion_0.99.9.pk3
-Release date            : 07/06/22
+Release date            : 21/06/22
 Author                  : Dr.BLOOD
 Discord Server          : https://discord.gg/q95vSeujR2
 Other Files By Author   : The credits are in the CREDITS.txt.
